@@ -1,22 +1,67 @@
+/* Copyright 2024 Connect & Play. All rights reserved. */
+/* page wide settings */
 :root {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Verdana', sans-serif;
+    background-color: #FEFFD9;
+    color: #000;
+    --primary: #4B006E;
+    --accent: #9C00E5;
+    --highlight: #D6C52E;
 }
+
+/* text style classes */
+
+h1 {
+    font-size: 41px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 33px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 16px;
+}
+
+.heading {
+    font-size: 50px;
+    font-weight: 400;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* classes for interactive elements (buttons, input fields) */
+
+/* spacing and alignment classes */
 
 .flex {
     display: flex;
     flex-wrap: wrap;
+    column-gap: 1vw;
+    row-gap: 1vh;
 }
 
-.gap {
-    gap: 1vw;
+.justify-center {
+    justify-content: center;
 }
 
-.grid {
-    display: grid;
-}
-
+/* columns subtract the width of the gap specified by .flex from their own width */
 .col {
-    width: calc((1/12) * 100% - 1vw);
+    width: calc(8.33% - 1vw);
 }
 
 .col-3 {
@@ -31,12 +76,20 @@
     width: calc(50% - 1vw);
 }
 
+.col-8 {
+    width: calc(66.66% - 1vw);
+}
+
+.col-9 {
+    width: calc(75% - 1vw);
+}
+
 .col-12 {
-    width: calc(100% - 1vw);
+    width: 100%;
 }
 
 .offset {
-    margin-left: calc((1/12) * 100%);
+    margin-left: 8.33%;
 }
 
 .offset-3 {
@@ -51,9 +104,15 @@
     margin-left: 50%;
 }
 
-/*
-    mobile only classes
-*/
+.offset-8 {
+    margin-left: 66.66%;
+}
+
+.offset-9 {
+    margin-left: 75%;
+}
+
+/* mobile only classes */
 @media only screen and (max-width: 576px) {
     .mb-col {
         width: calc((1/12) * 100% - 1vw);
@@ -71,6 +130,14 @@
         width: calc(50% - 1vw);
     }
     
+    .mb-col-8 {
+        width: calc(66.66% - 1vw);
+    }
+    
+    .mb-col-9 {
+        width: calc(75% - 1vw);
+    }
+
     .mb-col-12 {
         width: calc(100% - 1vw);
     }
@@ -90,6 +157,14 @@
     .mb-offset-6 {
         margin-left: 50%;
     }
+
+    .mb-offset-8 {
+        margin-left: 66.66%;
+    }
+    
+    .mb-offset-9 {
+        margin-left: 75%;
+    }
 }
 
 /*
@@ -97,7 +172,7 @@
 */
 @media(prefers-color-scheme: dark) {
     :root {
-        background-color: black;
-        color: white;
+        background-color: #262313;
+        color: #FFF;
     }
 }
