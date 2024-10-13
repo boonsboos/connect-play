@@ -7,8 +7,10 @@
         <title>Contact</title>
     </head>
     <body>
-        <img src="images/bannerImg.jpg" alt="Banner afbeelding" class="bannerImag">
-        <section class="container">
+
+        <img src="images/bannerImg.jpg" alt="Banner afbeelding" class="bannerImg">
+        
+        <section id="contactContainer" class="flex justify-center">
             <form id="form">          
                 <label for="firstName">Voornaam:</label>
                 <input class="input" type="text" id="firstName" name="firstName" placeholder="John">
@@ -24,23 +26,25 @@
 
                 <button class="button" type="submit">Verzenden</button>
             </form>
-            <div class="contactInfoBox">
+            <div id="contactInfoBox">
                 <ul>
                     <li>
-                        <a><img src="images/iconEmail.svg" alt="Mailadres"></a>
+                        <img class="contactImg" src="images/iconEmail.svg" alt="Mailadres">
                         <span>info@connectenplay.nl</span>
                     </li>
                     <li>
-                        <a><img src="images/iconPhone.svg" alt="Telefoonnummer"></a>
+                        <img class="contactImg" src="images/iconPhone.svg" alt="Telefoonnummer">
                         <span>+316 02233555</span>
                     </li>
                     <li>
-                        <a><img src="images/iconLocation.svg" alt="Locatie"></a>
+                        <img class="contactImg" src="images/iconLocation.svg" alt="Locatie">
                         <span>Kaartmanstraat 83 5742RD Piondorp</span>
                     </li>
                 </ul>
             </div>
         </section>
-        Test
+        
+        <script src="script.js" type="text/javascript"></script>
+
     </body>
 </html>
