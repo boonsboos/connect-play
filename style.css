@@ -57,14 +57,14 @@ p {
 	height: 30vh;
 }
 
-.bannerImg {
+.banner-img {
 	width: 100%;
 	height: 30vh;
 	margin: 0;
 	padding: 0;
 }
 
-.contactImg {
+.contact-img {
 	width: 50px;
 	height: 50px;
 }
@@ -95,51 +95,80 @@ p {
 	justify-content: center;
 }
 
-#contactContainer {
+/* Contactpage */
+#contact-container {
 	column-gap: 0;
 }
 
-/* Contactpage */
-
-#form,
-#contactInfoBox {
-	display: flex;
+#contact-container #form-box,
+#contact-info-box {
 	align-items: center;
-	justify-content: center;
 	width: 550px;
-	height: 60vh;
+	height: 500px;
 	padding: 20px;
-	background-color: #d2d3bd;
 }
 
-#form {
-	flex-direction: column;
-	background-color: #dcddbd;
-}
-
-#contactInfoBox ul {
-	list-style: none;
+/* formbox */
+#contact-container #form-box {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	background-color: #d5d6ae;
 }
 
-#contactInfoBox li {
+#contact-container #form-box .full-name .name-field {
+	flex: 1;
+}
+
+#contact-container #form-box #message {
+	height: 10vh;
+}
+
+#contact-container #form-box label {
+	width: 100%;
+}
+
+#contact-container #form-box .button {
+	background-color: #4b006e;
+	color: #d6c52e;
+	font-size: 16px;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#contact-container #form-box .button:hover {
+	background-color: #5d0d82;
+	color: #d6c52e;
+}
+
+/* conctactbox */
+#contact-container #contact-info-box {
+	background-color: #e8e9bd;
+}
+
+#contact-container #contact-info-box ul {
+	list-style: none;
+}
+
+#contact-container #contact-info-box li {
 	display: flex;
 	align-items: center;
-	margin-bottom: 30px;
+	margin-bottom: 40px;
 }
 
-#contactInfoBox li:hover {
+#contact-container #contact-info-box li:hover {
 	transform: scale(1.2) translateX(20px);
 	transition: transform 0.5s ease;
 }
 
-#contactInfoBox li span {
+#contact-container #contact-info-box li span {
 	margin-left: 10px;
 }
 
 /* dienstenpage */
-#dienstenContainer {
+#diensten-container {
 	column-gap: 0;
 }
 
@@ -305,16 +334,15 @@ p {
 		color: #fff;
 	}
 
-	#form,
-	#contactInfoBox {
-		background-color: #605c4bcf;
+	#form-box {
+		background-color: #605c4b9e;
 	}
 
-	#form {
-		background-color: #2a2717cf;
+	#contact-info-box {
+		background-color: #605c4b;
 	}
 
-	#contactInfoBox li img {
+	#contact-info-box li img {
 		filter: invert(100%); /* revert img color for darkmode */
 	}
 }
