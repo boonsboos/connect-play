@@ -1,50 +1,167 @@
 <!DOCTYPE html>
 <html lang="nl">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css" type="text/css">
-        <title>Contact</title>
-    </head>
-    <body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" type="text/css" />
+		<title>Contact</title>
+	</head>
+	<body>
+		<header class="flex justify-center">
+			<div
+				id="header-container"
+				class="flex mb-col-12 col-6 justify-center align-center"
+			>
+				<!-- make the logo and title a home page link -->
+				<a id="home-link" href="index.html">
+					<div class="flex justify-center col-12">
+						<img
+							src="images/c&p-logo.svg"
+							alt="Connect & Play logo"
+						/>
+						<p class="">Connect & Play</p>
+					</div>
+				</a>
 
-        <img src="images/bannerImg.jpg" alt="Banner afbeelding" class="bannerImg">
-        
-        <section id="contactContainer" class="flex justify-center">
-            <form id="form">          
-                <label for="firstName">Voornaam:</label>
-                <input class="input" type="text" id="firstName" name="firstName" placeholder="John">
+				<div id="page-links" class="flex offset mb-col-12">
+					<a href="diensten.html">Diensten</a>
+					<a href="OverOns.html">Over Ons</a>
+					<a href="contact.html">Contact</a>
+				</div>
+			</div>
+		</header>
+		<img
+			src="images/bannerImg.jpg"
+			alt="Banner afbeelding"
+			class="banner-img"
+		/>
 
-                <label for="lastName">Achternaam:</label>
-                <input class="input" type="text" id="lastName" name="lastName" placeholder="Doe">
-
-                <label for="email">E-mail:</label>
-                <input class="input" type="email" id="email" name="email" placeholder="johndoe@doe.com">
-
-                <label for="message">Bericht:</label>
-                <textarea class="input" id="message" name="message"></textarea>
-
-                <button class="button" type="submit">Verzenden</button>
-            </form>
-            <div id="contactInfoBox">
-                <ul>
-                    <li>
-                        <img class="contactImg" src="images/iconEmail.svg" alt="Mailadres">
-                        <span>info@connectenplay.nl</span>
-                    </li>
-                    <li>
-                        <img class="contactImg" src="images/iconPhone.svg" alt="Telefoonnummer">
-                        <span>+316 02233555</span>
-                    </li>
-                    <li>
-                        <img class="contactImg" src="images/iconLocation.svg" alt="Locatie">
-                        <span>Kaartmanstraat 83 5742RD Piondorp</span>
-                    </li>
-                </ul>
+    <section id="contact-container" class="flex justify-center">
+      <div id="form-box" class="flex justify-center">
+        <form class="flex justify-center">
+          <div class="full-name flex">
+            <div class="name-field flex">
+              <label for="first-name">Voornaam:</label>
+              <input
+                id="first-name"
+                class="input"
+                type="text"
+                name="first-name"
+                placeholder="John"
+              />
             </div>
-        </section>
-        
-        <script src="script.js" type="text/javascript"></script>
 
-    </body>
+            <div class="name-field flex">
+              <label for="last-name">Achternaam:</label>
+              <input
+                id="last-name"
+                class="input"
+                type="text"
+                name="last-name"
+                placeholder="Doe"
+              />
+            </div>
+          </div>
+
+          <label for="email">E-mail:</label>
+          <input
+            id="email"
+            class="input"
+            type="email"
+            name="email"
+            placeholder="johndoe@doe.com"
+          />
+
+          <label for="message">Bericht:</label>
+          <textarea id="message" class="input" name="message"></textarea>
+
+          <button class="button" type="submit">Verzenden</button>
+        </form>
+      </div>
+
+      <div id="contact-info-box" class="flex justify-center">
+        <ul>
+          <li>
+            <img
+              class="contact-img"
+              src="images/iconEmail.svg"
+              alt="Mailadres"
+            />
+            <span>info@connectenplay.nl</span>
+          </li>
+          <li>
+            <img
+              class="contact-img"
+              src="images/iconPhone.svg"
+              alt="Telefoonnummer"
+            />
+            <span>+316 02233555</span>
+          </li>
+          <li>
+            <img
+              class="contact-img"
+              src="images/iconLocation.svg"
+              alt="Locatie"
+            />
+            <span>Kaartmanstraat 83 5742RD Piondorp</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+	<footer>
+		<div id="footer-container" class="flex justify-center">
+			<div id="footer-sections" class="col-9 flex text-center">
+				<div class="mb-col-12 col-4">
+					<a href="contact.html"><h3 id="contact">Contact</h3></a>
+					<ul>
+						<li>
+							<img
+								src="images/iconPhone.svg"
+								alt="Telefoon"
+							/>
+							<p>+31 6 02233555</p>
+						</li>
+						<li>
+							<img src="images/iconEmail.svg" alt="E-mail" />
+							<p>info@connect-en-play.nl</p>
+						</li>
+					</ul>
+				</div>
+				<div class="mb-col-12 col-4">
+					<a href="OverOns.html"
+						><h3 id="over-ons">Over ons</h3></a
+					>
+					<ul>
+						<li>
+							<img
+								src="images/iconLocation.svg"
+								alt="Location"
+							/>
+						</li>
+						<li>
+							<p>
+								Kaartmanstraat 83 <br />
+								5742RD Piondorp
+							</p>
+						</li>
+					</ul>
+				</div>
+				<div class="mb-offset-3 mb-col-4 col-4">
+					<h3>Maak een afspraak!</h3>
+					<div class="flex justify-center">
+						<a class="button col-3">Contact</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="flex align-center justify-center">
+			<p>
+				<small>&copy; 2024 Connect & Play VOF</small>
+			</p>
+		</div>
+	</footer>
+
+	<script src="script.js" type="text/javascript"></script>
+</body>
 </html>
