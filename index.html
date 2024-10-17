@@ -13,19 +13,44 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+
+	<header class="flex justify-center">
+		<div
+			id="header-container"
+			class="flex mb-col-12 col-6 justify-center align-center"
+		>
+			<!-- make the logo and title a home page link -->
+			<a id="home-link" href="index.html">
+				<div class="flex justify-center col-12">
+					<img
+						src="images/c&p-logo.svg"
+						alt="Connect & Play logo"
+					/>
+					<p class="">Connect & Play</p>
+				</div>
+			</a>
+
+			<div id="page-links" class="flex offset mb-col-12">
+				<a href="diensten.html">Diensten</a>
+				<a href="OverOns.html">Over Ons</a>
+				<a href="contact.html">Contact</a>
+			</div>
+		</div>
+	</header>
+
     <div class="home-banner">
       <h1 class="heading">Connect & Play</h1>
       <p>
         Klaar met van die saaie bedrijfuitjes of teambuildingactiviteiten? Kijk
-        niet verder dan Connect & Play! Wij organiseren toernoois op het gebied
+        niet verder dan Connect & Play! Wij organiseren toernooien op het gebied
         van videogames, bordspellen en kaartspellen.
       </p>
       <button class="btn" href="contact.html">Button</button>
     </div>
 
     <div class="flex justify-center">
-      <div id="homeInfoBox" class="col-4">
-        <img src="images/bannerImg.jpg" />
+      <div class="col-4 flex justify-center home-info-box">
+        <img class="col-12" src="images/bannerImg.jpg" />
         <h2>Option 1</h2>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores
@@ -35,8 +60,8 @@
         </p>
         <a>Lees meer...</a>
       </div>
-      <div id="homeInfoBox" class="col-4">
-        <img src="images/bannerImg.jpg" />
+      <div class="col-4 flex justify-center home-info-box">
+        <img class="col-12" src="images/bannerImg.jpg" />
         <h2>Option 2</h2>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores
@@ -46,8 +71,8 @@
         </p>
         <a>Lees meer...</a>
       </div>
-      <div id="homeInfoBox" class="col-4">
-        <img src="images/bannerImg.jpg" />
+      <div class="col-4 flex justify-center home-info-box">
+        <img class="col-12" src="images/bannerImg.jpg" />
         <h2>Option 3</h2>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores
@@ -89,5 +114,61 @@
         <img src="images/" />
       </div>
     </div>
+
+	<footer class="col-12">
+		<div id="footer-container" class="flex justify-center col-12">
+			<div id="footer-sections" class="col-9 flex text-center">
+				<div class="mb-col-12 col-4">
+					<a href="contact.html"><h3 id="contact">Contact</h3></a>
+					<ul>
+						<li>
+							<img
+								src="images/iconPhone.svg"
+								alt="Telefoon"
+							/>
+							<p>+31 6 02233555</p>
+						</li>
+						<li>
+							<img src="images/iconEmail.svg" alt="E-mail" />
+							<p>info@connect-en-play.nl</p>
+						</li>
+					</ul>
+				</div>
+				<div class="mb-col-12 col-4">
+					<a href="OverOns.html"
+						><h3 id="over-ons">Over ons</h3></a
+					>
+					<ul>
+						<li>
+							<img
+								src="images/iconLocation.svg"
+								alt="Location"
+							/>
+						</li>
+						<li>
+							<p>
+								Kaartmanstraat 83 <br />
+								5742RD Piondorp
+							</p>
+						</li>
+					</ul>
+				</div>
+				<div class="mb-offset-3 mb-col-4 col-4">
+					<h3>Maak een afspraak!</h3>
+					<div class="flex justify-center">
+						<a class="button col-3" href="contact.html"
+							>Contact</a
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="flex align-center justify-center">
+			<p>
+				<small>&copy; 2024 Connect & Play VOF</small>
+			</p>
+		</div>
+	</footer>
   </body>
 </html>
