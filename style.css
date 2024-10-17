@@ -235,8 +235,9 @@ footer {
 	width: 1200px;
 	display: flex;
 	flex-wrap: wrap;
-	column-gap: 1vw;
-	row-gap: 1vh;
+	column-gap: 15px;
+	row-gap: 15px;
+	margin: 15px 0;
 }
 
 #diensten .dienst {
@@ -252,24 +253,23 @@ footer {
 
 #diensten .dienst img {
 	width: 100%;
-	height: 200px;
+	height: 250px;
 	object-fit: cover;
 	border-radius: 5px;
 }
 
 #diensten .dienst h2 {
-	position: absolute;
-	top: 0;
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	width: 100%;
-	height: 150px;
 	color: #fff;
+	margin: 10px 10px 0;
+	padding: 0;
 }
 
 #diensten .dienst p {
-	padding: 10px;
+	margin: 0 10px 20px;
+	padding: 0;
 }
 #diensten .dienst .button {
 	width: calc(100% - 20px);
