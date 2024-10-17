@@ -36,37 +36,44 @@
 			class="bannerImg"
 		/>
 
-		<section id="contactContainer" class="flex justify-center">
-			<form id="form">
-				<label for="firstName">Voornaam:</label>
-				<input
-					class="input"
-					type="text"
-					id="firstName"
-					name="firstName"
-					placeholder="John"
-				/>
+    <section id="contact-container" class="flex justify-center">
+      <div id="form-box" class="flex justify-center">
+        <form class="flex justify-center">
+          <div class="full-name flex">
+            <div class="name-field flex">
+              <label for="first-name">Voornaam:</label>
+              <input
+                id="first-name"
+                class="input"
+                type="text"
+                name="first-name"
+                placeholder="John"
+              />
+            </div>
 
-				<label for="lastName">Achternaam:</label>
-				<input
-					class="input"
-					type="text"
-					id="lastName"
-					name="lastName"
-					placeholder="Doe"
-				/>
+            <div class="name-field flex">
+              <label for="last-name">Achternaam:</label>
+              <input
+                id="last-name"
+                class="input"
+                type="text"
+                name="last-name"
+                placeholder="Doe"
+              />
+            </div>
+          </div>
 
-				<label for="email">E-mail:</label>
-				<input
-					class="input"
-					type="email"
-					id="email"
-					name="email"
-					placeholder="johndoe@doe.com"
-				/>
+          <label for="email">E-mail:</label>
+          <input
+            id="email"
+            class="input"
+            type="email"
+            name="email"
+            placeholder="johndoe@doe.com"
+          />
 
-				<label for="message">Bericht:</label>
-				<textarea class="input" id="message" name="message"></textarea>
+          <label for="message">Bericht:</label>
+          <textarea id="message" class="input" name="message"></textarea>
 
 				<button class="button" type="submit">Verzenden</button>
 			</form>
