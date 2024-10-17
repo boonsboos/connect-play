@@ -277,24 +277,15 @@ footer {
 }
 
 /* overonspage */
-#overons {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	padding: 1px;
-	border-style: dashed;
-	align-items: center;
-}
 
-#overons-child {
-	max-width: 45%;
-	flex-direction: row;
+.overons-child {
+	width: 40%;
 	margin: 10px;
-	padding: 10px;
+	padding: 40px;
 	border-style: dotted;
 }
 
-#overons-child img {
+.overons-child img {
 	max-width: 100%;
 }
 
@@ -406,6 +397,13 @@ footer {
 
 	.mb-offset-9 {
 		margin-left: 75%;
+	}
+
+	.overons-child {
+		text-align: center;
+		width: 100%;
+		column-gap: 0vw;
+		row-gap: 0vw;
 	}
 }
 
