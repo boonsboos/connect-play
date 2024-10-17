@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Connect & Play - Uniting Players, Creating Legends!</title>
+    <link rel="icon" type="image/x-icon" href="images/c&p-logo.svg" alt="Connect & Play logo"/>" 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,17 +16,11 @@
   <body>
 
 	<header class="flex justify-center">
-		<div
-			id="header-container"
-			class="flex mb-col-12 col-6 justify-center align-center"
-		>
+		<div id="header-container" class="flex mb-col-12 col-6 justify-center align-center">
 			<!-- make the logo and title a home page link -->
 			<a id="home-link" href="index.html">
 				<div class="flex justify-center col-12">
-					<img
-						src="images/c&p-logo.svg"
-						alt="Connect & Play logo"
-					/>
+					<img src="images/c&p-logo.svg" alt="Connect & Play logo"/>
 					<p class="">Connect & Play</p>
 				</div>
 			</a>
@@ -38,19 +33,25 @@
 		</div>
 	</header>
 
-    <div class="home-banner">
+    <div class="home-banner flex justify-center">
+      <div class="mb-col-12 col-8">
       <h1 class="heading">Connect & Play</h1>
-      <p>
-        Klaar met van die saaie bedrijfuitjes of teambuildingactiviteiten? Kijk
-        niet verder dan Connect & Play! Wij organiseren toernooien op het gebied
-        van videogames, bordspellen en kaartspellen.
-      </p>
-      <button class="btn" href="contact.html">Button</button>
+      <div class="col-12">
+        <p>
+          Klaar met van die saaie bedrijfuitjes of teambuildingactiviteiten? Kijk
+          niet verder dan Connect & Play! Wij organiseren toernooien op het gebied
+          van videogames, bordspellen en kaartspellen.
+        </p>
+      </div>
+      <div class="col-12">
+        <button class="btn" href="contact.html">Button</button>
+      </div>
     </div>
+  </div>
 
     <div class="flex justify-center">
-      <div class="col-4 flex justify-center home-info-box">
-        <img class="col-12" src="images/bannerImg.jpg" />
+      <div class="mb-col-12 col-4 flex justify-center home-info-box">
+        <img class="mb-col-12 col-12" src="images/bannerImg.jpg" />
         <h2>Option 1</h2>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores
@@ -58,10 +59,10 @@
           doloremque repellat itaque quidem ratione, iste et soluta!
           Reprehenderit consequuntur in accusamus.
         </p>
-        <a>Lees meer...</a>
+        <a href="#">Lees meer...</a>
       </div>
-      <div class="col-4 flex justify-center home-info-box">
-        <img class="col-12" src="images/bannerImg.jpg" />
+      <div class="mb-col-12 col-4 flex justify-center home-info-box">
+        <img class="mb-col-12 col-12" src="images/bannerImg.jpg" />
         <h2>Option 2</h2>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores
@@ -69,10 +70,10 @@
           doloremque repellat itaque quidem ratione, iste et soluta!
           Reprehenderit consequuntur in accusamus.
         </p>
-        <a>Lees meer...</a>
+        <a href="#">Lees meer...</a>
       </div>
-      <div class="col-4 flex justify-center home-info-box">
-        <img class="col-12" src="images/bannerImg.jpg" />
+      <div class="mb-col-12 col-4 flex justify-center home-info-box">
+        <img class="mb-col-12 col-12" src="images/bannerImg.jpg" />
         <h2>Option 3</h2>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores
@@ -80,15 +81,47 @@
           doloremque repellat itaque quidem ratione, iste et soluta!
           Reprehenderit consequuntur in accusamus.
         </p>
-        <a>Lees meer...</a>
+        <a href="#">Lees meer...</a>
       </div>
     </div>
-    <div class="flex justify-center">
-      <!-- 4 icons -->
-      <div class="col-3">Unique Selling proposition</div>
-      <div class="col-3">Unique Selling proposition</div>
-      <div class="col-3">Unique Selling proposition</div>
-      <div class="col-3">Unique Selling proposition</div>
+    <div id="revert-icon-color" class="flex justify-center">
+      <!-- 4 Unique Selling Propositions (USP's) -->
+      <div class="mb-col-6 col-3 text-center">
+        <h5>Snelheid & Gemak</h5>
+        <ul class="ups">
+          <li>
+            <img class="revert-icon-color" src="images/iconTruck.svg" alt="Vrachtwagen"/>
+            <p class="tiny-text">Binnen 30 minuten geleverd, of het is gratis—gegarandeerd.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="mb-col-6 col-3 text-center">
+        <h5>Milieuvriendelijk & Duurzaam</h5>
+        <ul class="ups">
+          <li>
+            <img class="revert-icon-color" src="images/iconLeaf.svg" alt="Milieu"/>
+            <p class="tiny-text">100% milieuvriendelijke producten, duurzaam en ethisch verantwoord geproduceerd.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="mb-col-6 col-3 text-center">
+        <h5>Uitstekende klantenservice</h5>
+        <ul class="ups">
+          <li>
+            <img class="revert-icon-color" src="images/iconHeadset.svg" alt="Klantenservice"/>
+            <p class="tiny-text">24/7 beschikbaar, met echte mensen die altijd klaarstaan om je te helpen wanneer je ons nodig hebt.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="mb-col-6 col-3 text-center">
+        <h5>Onovertroffen kwaliteitsgarantie</h5>
+        <ul class="ups">
+          <li>
+            <img class="revert-icon-color" src="images/iconAward.svg" alt="Vrachtwagen"/>
+            <p class="tiny-text">We garanderen dat onze producten een leven lang meegaan, of we vervangen ze gratis.</p>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="flex justify-center">
       <!-- More images -->
