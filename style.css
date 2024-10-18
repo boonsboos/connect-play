@@ -70,6 +70,14 @@ a {
 	height: 50px;
 }
 
+.wie-zijn-wij-img {
+	width: 100px;
+}
+
+.missie-en-visie-img {
+	width: 30%;
+}
+
 /* classes for interactive elements (buttons, input fields) */
 
 .input,
@@ -278,15 +286,15 @@ footer {
 
 /* overonspage */
 
-.overons-child {
-	width: 40%;
+.wie-zijn-wij-box {
+	align-items: center;
 	margin: 10px;
-	padding: 40px;
-	border-style: dotted;
 }
 
-.overons-child img {
-	max-width: 100%;
+.missie-visie-box {
+	align-items: center;
+	margin: 10px;
+	flex-direction: row-reverse;
 }
 
 @media only screen and (min-width: 576px) {
@@ -399,7 +407,7 @@ footer {
 		margin-left: 75%;
 	}
 
-	.overons-child {
+	.wie-zijn-wij-box {
 		text-align: center;
 		width: 100%;
 		column-gap: 0vw;
