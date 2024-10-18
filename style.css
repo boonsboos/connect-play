@@ -122,7 +122,7 @@ a {
 	align-items: center;
 }
 
-/* header */
+/* Header */
 
 header {
 	position: sticky;
@@ -161,7 +161,7 @@ footer img {
 	text-decoration: underline;
 }
 
-/* footer */
+/* Footer */
 
 footer {
 	background-color: #fff;
@@ -179,6 +179,13 @@ footer {
 }
 
 /* Homepage */
+.home-head-box {
+	background-color: rgb(100, 100, 100, 0.5);
+	border-radius: 10px;
+	text-wrap: wrap;
+	padding: 20px;
+}
+
 .home-info-box {
 	flex-direction: column;
 	border: 1px solid var(--accent);
