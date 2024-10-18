@@ -4,7 +4,7 @@ const diensten = [
 		id: 1,
 		title: "Dienst 1",
 		description: "Dienst 1 beschrijving",
-		image: "/images/dienst_1.webp",
+		image: "/images/dienst_1.jpg",
 	},
 	{
 		id: 2,
