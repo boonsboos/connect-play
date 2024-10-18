@@ -2,7 +2,7 @@
 /* page wide settings */
 :root {
 	font-family: "Inter", "Verdana", sans-serif;
-	background-color: #feffd9;
+	background-color: #e0e0e0;
 	color: #000;
 	--primary: #4b006e;
 	--accent: #9c00e5;
@@ -36,9 +36,18 @@ h4 {
 	font-weight: bold;
 }
 
+h5 {
+	font-size: 18px;
+	font-weight: bold;
+}
+
 p,
 a {
 	font-size: 16px;
+}
+
+.tiny-text {
+	font-size: 12px;
 }
 
 .heading {
@@ -94,6 +103,12 @@ a {
   height: 4rem;
   padding: 0 1.6rem;
   text-align: center;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.btn:hover {
+	background-color: #5d0d82;
 }
 
 .emptyField {
@@ -117,7 +132,7 @@ a {
 	align-items: center;
 }
 
-/* header */
+/* Header */
 
 header {
 	position: sticky;
@@ -156,7 +171,7 @@ footer img {
 	text-decoration: underline;
 }
 
-/* footer */
+/* Footer */
 
 footer {
 	background-color: #fff;
@@ -169,18 +184,34 @@ footer {
 	padding: 0;
 }
 
-/* Homepage */
+#footer-sections ul li img {
+	filter: invert(100%);
+}
 
-.home-info-box {
-	flex-direction: column;
+/* Homepage */
+.home-head-box {
+	background-color: rgb(100, 100, 100, 0.7);
 	border: 1px solid var(--accent);
-	background-color: color-mix(in srgb, var(--primary) 50%, transparent);
-	border-radius: 5px;
+	border-radius: 10px;
 	text-wrap: wrap;
+	padding: 20px;
+	color: white;
+}
+
+.home-info-box a {
+	color: #fff
+}
+
+.usp-section {
+	border-top: 1px Solid White;
+	border-bottom: 1px Solid White;
+}
+
+.ups {
+	list-style: none;
 }
 
 /* dienstenpage */
-
 #diensten-container {
 	column-gap: 0;
 }
@@ -405,7 +436,7 @@ footer {
 */
 @media (prefers-color-scheme: dark) {
 	:root {
-		background-color: #262313;
+		background-color: #1f1f1f;
 		color: #fff;
 	}
 
@@ -433,6 +464,10 @@ footer {
 	}
 
 	#contact-info-box li img {
+		filter: invert(100%); /* revert img color for darkmode */
+	}
+
+	#revert-icon-color div ul li img {
 		filter: invert(100%); /* revert img color for darkmode */
 	}
 }
