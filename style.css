@@ -2,7 +2,7 @@
 /* page wide settings */
 :root {
 	font-family: "Inter", "Verdana", sans-serif;
-	background-color: #feffd9;
+	background-color: #e0e0e0;
 	color: #000;
 	--primary: #4b006e;
 	--accent: #9c00e5;
@@ -103,6 +103,12 @@ a {
   height: 4rem;
   padding: 0 1.6rem;
   text-align: center;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.btn:hover {
+	background-color: #5d0d82;
 }
 
 /* spacing and alignment classes */
@@ -180,10 +186,12 @@ footer {
 
 /* Homepage */
 .home-head-box {
-	background-color: rgb(100, 100, 100, 0.5);
+	background-color: rgb(100, 100, 100, 0.7);
+	border: 1px solid var(--accent);
 	border-radius: 10px;
 	text-wrap: wrap;
 	padding: 20px;
+	color: white;
 }
 
 .home-info-box {
@@ -192,6 +200,15 @@ footer {
 	background-color: color-mix(in srgb, var(--primary) 50%, transparent);
 	border-radius: 5px;
 	text-wrap: wrap;
+}
+
+.home-info-box a {
+	color: #fff
+}
+
+.usp-section {
+	border-top: 1px Solid White;
+	border-bottom: 1px Solid White;
 }
 
 .ups {
@@ -457,7 +474,7 @@ footer {
 */
 @media (prefers-color-scheme: dark) {
 	:root {
-		background-color: #262313;
+		background-color: #1f1f1f;
 		color: #fff;
 	}
 
