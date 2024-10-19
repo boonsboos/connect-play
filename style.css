@@ -6,10 +6,8 @@
 	--primary: #4b006e;
 	--accent: #9c00e5;
 	--highlight: #d6c52e;
-	--box-1-dark: #2d2d2d; /* darkmode */
-	--box-2-dark: #323232; /* darkmode */
-	--box-1-light: #cdcdcd;
-	--box-2-light: #b5b5b5;
+	--box-1: #cdcdcd;
+	--box-2: #b5b5b5;
 	--footer-header: #000;
 }
 
@@ -75,8 +73,9 @@ a {
 
 .home-banner {
 	background-image: url("images/header.jpg");
+	background-size: cover;
 	width: 100%;
-	height: 30vh;
+	height: 50vh;
 }
 
 .banner-img {
@@ -104,7 +103,6 @@ a {
 .button {
 	width: 100%;
 	padding: 10px 0;
-	margin: 10px 0;
 	border: 1px solid #c3c3c3;
 	border-radius: 5px;
 	box-shadow: 0 1px 1px #4b006e;
@@ -112,11 +110,16 @@ a {
 }
 
 .btn {
-	background-image: linear-gradient(45deg, var(--accent) 9.16%, #973dc0 43.89%, var(--accent) 64.72%);
+	background-image: linear-gradient(
+		45deg,
+		var(--accent) 9.16%,
+		#973dc0 43.89%,
+		var(--accent) 64.72%
+	);
 	border-radius: 8px;
 	border-style: none;
 	box-sizing: border-box;
-	color: #FFFFFF;
+	color: #ffffff;
 	font-size: 16px;
 	font-weight: 500;
 	height: 4rem;
@@ -210,6 +213,32 @@ a {
 	padding-right: 15px;
 }
 
+/* Default padding styles for 30px paddings */
+.p-30 {
+	padding: 30px;
+}
+.py-30 {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+.px-30 {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+/* Default padding styles for 50px paddings */
+.p-50 {
+	padding: 50px;
+}
+.py-50 {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.px-50 {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
 /* Header */
 header {
 	position: sticky;
@@ -237,14 +266,14 @@ footer img {
 #home-link:visited,
 #footer-container a,
 #footer-container a:visited,
-#page-links>a,
-#page-links>a:visited {
+#page-links > a,
+#page-links > a:visited {
 	color: #000;
 	text-decoration: none;
 }
 
 #footer-container a:hover,
-#page-links>a:hover {
+#page-links > a:hover {
 	text-decoration: underline;
 }
 
@@ -263,21 +292,48 @@ footer {
 
 /* Homepage */
 .home-head-box {
-	background-color: rgb(100, 100, 100, 0.7);
+	background-color: rgba(35, 35, 35, 0.7);
 	border: 1px solid var(--accent);
 	border-radius: 10px;
 	text-wrap: wrap;
-	padding: 20px;
 	color: white;
 }
 
+.home-head-box .button {
+	background-color: var(--primary);
+	color: #ffffff;
+	border: none;
+	text-decoration: none;
+	transition: background-color 200ms ease;
+}
+
+.home-head-box .button:hover {
+	background-color: var(--accent);
+}
+
+.home-info-box {
+	row-gap: 0;
+}
+
+.home-info-box > div {
+	border: 1px solid var(--highlight);
+	border-top: none;
+	border-radius: 0px 0px 10px 10px;
+	overflow: hidden;
+}
+
 .home-info-box a {
-	color: #fff
+	color: #fff;
+}
+
+.home-info-box img {
+	object-fit: cover;
+	aspect-ratio: 16/9;
+	border-radius: 10px 10px 0px 0px;
 }
 
 .usp-section {
-	border-top: 1px Solid White;
-	border-bottom: 1px Solid White;
+	border-top: 1px Solid var(--highlight);
 }
 
 .ups {
@@ -335,12 +391,13 @@ footer {
 	column-gap: 0;
 }
 
-#form-box, #contact-info-box {
+#form-box,
+#contact-info-box {
 	padding: 10vh 0;
 }
 
 #form-box {
-	background-color: var(--box-2-light);
+	background-color: var(--box-1);
 }
 
 #form-box .full-name {
@@ -359,7 +416,7 @@ footer {
 }
 
 #contact-info-box {
-	background-color: var(--box-2-light);
+	background-color: var(--box-2);
 }
 
 #contact-info-box ul {
@@ -496,7 +553,7 @@ footer {
 	#form-box .full-name {
 		justify-content: center;
 	}
-	
+
 	#contact-info-box ul {
 		padding: 0;
 	}
@@ -518,14 +575,16 @@ footer {
 	:root {
 		--foreground: #fdfaff;
 		--background: #0a0a0a;
+		--box-1: #2d2d2d; /* darkmode */
+		--box-2: #323232; /* darkmode */
 	}
 
 	#home-link,
 	#home-link:visited,
 	#footer-container a,
 	#footer-container a:visited,
-	#page-links>a,
-	#page-links>a:visited {
+	#page-links > a,
+	#page-links > a:visited {
 		color: #fff;
 	}
 
@@ -535,16 +594,8 @@ footer {
 		border-color: var(--highlight);
 	}
 
-	#form-box {
-		background-color: var(--box-1-dark);
-	}
-
-	#contact-info-box {
-		background-color: var(--box-2-dark);
-	}
-	
 	/* revers color img */
 	.invert-color-img {
-		filter: invert(100%); /
+		filter: invert(100%);
 	}
 }
