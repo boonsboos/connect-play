@@ -11,6 +11,7 @@
 	--box-1-light: #cdcdcd;
 	--box-2-light: #b5b5b5;
 	--footer-header: #000;
+	--header-z-index: 10;
 }
 
 /* reset default browser styles */
@@ -215,6 +216,7 @@ header {
 	top: 0;
 	background-color: #fff;
 	border-bottom: 1px var(--accent) solid;
+	z-index: var(--header-z-index);
 }
 
 #header-container,
@@ -385,7 +387,7 @@ footer {
 	transition: transform 0.5s ease;
 }
 
-@media only screen and (min-width: 576px) {
+@media only screen and (min-width: 768px) {
 	/* columns subtract the width of the gap specified by .flex from their own width */
 
 	.col {
@@ -442,7 +444,7 @@ footer {
 }
 
 /* mobile only classes */
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 768px) {
 	.mb-col {
 		width: calc((1 / 12) * 100% - 1vw);
 	}
