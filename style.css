@@ -9,6 +9,7 @@
 	--box-1: #cdcdcd;
 	--box-2: #b5b5b5;
 	--footer-header: #000;
+	--header-z-index: 10;
 }
 
 /* reset default browser styles */
@@ -71,8 +72,9 @@ a {
 /* img style classes */
 .home-banner {
 	background-image: url("images/header.jpg");
+	background-size: cover;
 	width: 100%;
-	height: 30vh;
+	height: 500px;
 }
 
 .banner-img {
@@ -92,7 +94,6 @@ a {
 .button {
 	width: 100%;
 	padding: 10px 0;
-	margin: 10px 0;
 	border: 1px solid #c3c3c3;
 	border-radius: 5px;
 	box-shadow: 0 1px 1px #4b006e;
@@ -100,14 +101,18 @@ a {
 }
 
 .btn {
-	background-image: linear-gradient(45deg, var(--accent) 9.16%, #973dc0 43.89%, var(--accent) 64.72%);
-	border-radius: 8px;
+	background-image: linear-gradient(
+		45deg,
+		var(--accent) 9.16%,
+		#973dc0 43.89%,
+		var(--accent) 64.72%
+	);
+	border-radius: 10px;
 	border-style: none;
 	box-sizing: border-box;
-	color: #FFFFFF;
+	color: #ffffff;
 	font-size: 16px;
 	font-weight: 500;
-	height: 4rem;
 	padding: 0 1.6rem;
 	text-align: center;
 	padding: 10px;
@@ -198,15 +203,41 @@ a {
 	padding-right: 15px;
 }
 
+/* Default padding styles for 30px paddings */
+.p-30 {
+	padding: 30px;
+}
+.py-30 {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+.px-30 {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+/* Default padding styles for 50px paddings */
+.p-50 {
+	padding: 50px;
+}
+.py-50 {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.px-50 {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
 /* Header */
 header {
 	position: sticky;
 	top: 0;
 	background-color: #fff;
 	border-bottom: 1px var(--accent) solid;
+	z-index: var(--header-z-index);
 }
 
-#header-container,
 #footer-container {
 	margin-top: 2px;
 }
@@ -224,14 +255,14 @@ header img {
 #home-link:visited,
 #footer-container a,
 #footer-container a:visited,
-#page-links>a,
-#page-links>a:visited {
+#page-links > a,
+#page-links > a:visited {
 	color: #000;
 	text-decoration: none;
 }
 
 #footer-container a:hover,
-#page-links>a:hover {
+#page-links > a:hover {
 	text-decoration: underline;
 }
 
@@ -254,25 +285,61 @@ footer img {
 
 /* Homepage */
 .home-head-box {
-	background-color: rgb(100, 100, 100, 0.7);
+	background-color: rgba(35, 35, 35, 0.7);
 	border: 1px solid var(--accent);
 	border-radius: 10px;
 	text-wrap: wrap;
-	padding: 20px;
 	color: white;
 }
 
+.home-head-box .button {
+	background-color: var(--primary);
+	color: #ffffff;
+	border: none;
+	text-decoration: none;
+	transition: background-color 200ms ease;
+}
+
+.home-head-box .button:hover {
+	background-color: var(--accent);
+}
+
+.home-info-box {
+	row-gap: 0;
+}
+
+.home-info-box > div {
+	border: 1px solid var(--highlight);
+	border-top: none;
+	border-radius: 0px 0px 10px 10px;
+	overflow: hidden;
+}
+
 .home-info-box a {
-	color: #fff
+	color: #fff;
+}
+
+.home-info-box img {
+	object-fit: cover;
+	height: 300px;
+	border-radius: 10px 10px 0px 0px;
 }
 
 .usp-section {
-	border-top: 1px Solid White;
-	border-bottom: 1px Solid White;
+	border-top: 1px Solid var(--highlight);
 }
 
 .ups {
 	list-style: none;
+}
+#sample-images img {
+	object-fit: cover;
+	height: 250px;
+}
+
+#home-images img {
+	object-fit: cover;
+	height: 400px;
 }
 
 /* Dienstenpage */
@@ -332,12 +399,13 @@ footer img {
 	column-gap: 0;
 }
 
-#form-box, #contact-info-box {
+#form-box,
+#contact-info-box {
 	padding: 10vh 0;
 }
 
 #form-box {
-	background-color: var(--box-2-light);
+	background-color: var(--box-1);
 }
 
 #form-box .full-name {
@@ -356,7 +424,7 @@ footer img {
 }
 
 #contact-info-box {
-	background-color: var(--box-2-light);
+	background-color: var(--box-2);
 }
 
 #contact-info-box ul {
@@ -373,7 +441,7 @@ footer img {
 	transition: transform 0.5s ease;
 }
 
-@media only screen and (min-width: 576px) {
+@media only screen and (min-width: 768px) {
 	/* columns subtract the width of the gap specified by .flex from their own width */
 
 	.col {
@@ -430,7 +498,7 @@ footer img {
 }
 
 /* mobile only classes */
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 768px) {
 	.mb-col {
 		width: calc((1 / 12) * 100% - 1vw);
 	}
@@ -507,6 +575,9 @@ footer img {
 		transform: scale(1.2);
 		transition: transform 0.5s ease;
 	}
+	.home-banner {
+		height: 300px;
+	}
 }
 
 /*
@@ -516,16 +587,16 @@ footer img {
 	:root {
 		--foreground: #fdfaff;
 		--background: #0a0a0a;
-		--box-1: #2d2d2d;
-		--box-2: #323232;
+		--box-1: #2d2d2d; /* darkmode */
+		--box-2: #323232; /* darkmode */
 	}
 
 	#home-link,
 	#home-link:visited,
 	#footer-container a,
 	#footer-container a:visited,
-	#page-links>a,
-	#page-links>a:visited {
+	#page-links > a,
+	#page-links > a:visited {
 		color: #fff;
 	}
 
@@ -545,6 +616,6 @@ footer img {
 	
 	/* revers color img */
 	.invert-color-img {
-		filter: invert(100%); /
+		filter: invert(100%);
 	}
 }
