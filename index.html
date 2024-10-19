@@ -4,6 +4,12 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Connect & Play - Uniting Players, Creating Legends!</title>
+		<link
+			rel="icon"
+			type="image/x-icon"
+			href="images/c&p-logo.svg"
+			alt="Connect & Play logo"
+		/>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -13,6 +19,8 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
+
+		<!-- Header / Navbar -->
 		<header class="flex justify-center">
 			<div
 				id="header-container"
@@ -37,78 +45,162 @@
 			</div>
 		</header>
 
-		<div class="home-banner">
-			<h1 class="heading">Connect & Play</h1>
-			<p>
-				Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-				Dolores deserunt qui hic, nulla tempore minima perspiciatis
-				ipsum alias doloremque repellat itaque quidem ratione, iste et
-				soluta! Reprehenderit consequuntur in accusamus.
-			</p>
-			<button class="button"><a href="contact.html"></a></button>
-		</div>
+		<!-- Background banner with title, text and button -->
+		<section class="home-banner flex justify-center">
+			<div class="mb-col-12 col-9">
+				<div class="home-head-box">
+					<h1 class="heading">Connect & Play</h1>
+					<div class="col-8">
+						<p>
+							Klaar met van die saaie bedrijfuitjes of
+							teambuildingactiviteiten? Kijk niet verder dan
+							Connect & Play! Wij organiseren toernooien op het
+							gebied van videogames, bordspellen en kaartspellen.
+							Een manier om met elkaar te verbinden door middel
+							van uitdagingen, competitief denken en samenwerking.
+						</p>
+					</div>
+					<div class="col-12">
+						<a class="btn" href="contact.html">
+							Contact ons / Neem contact!
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
 
-		<div class="flex justify-center">
-			<div class="col-4">
-				<img src="images/" />
+		<!-- 3 Sample diensten -->
+		<section class="flex justify-center">
+			<div class="mb-col-12 col-3 flex justify-center home-info-box">
+				<img class="mb-col-12 col-12" src="images/dienst_1.jpg" />
+				<h2>Videogames</h2>
 				<p>
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-					Saepe ipsa, ratione voluptates facilis quisquam suscipit
-					delectus expedita rem perspiciatis aliquid fugit totam
-					neque, voluptate nemo illo ab dolore, modi magnam.
+					Duik in de wereld van videogames, waar strategie en actie
+					elkaar ontmoeten. Ontdek de nieuwste releases en de
+					klassieke favorieten, van singleplayer avonturen tot
+					multiplayer games voor alle leeftijden.
 				</p>
+				<a href="diensten.html">Lees meer...</a>
 			</div>
-			<div class="col-4">
-				<img src="images/" />
+			<div class="mb-col-12 col-3 flex justify-center home-info-box">
+				<img class="mb-col-12 col-12" src="images/dienst_3.jpg" />
+				<h2>Bordspellen</h2>
 				<p>
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-					Dolores deserunt qui hic, nulla tempore minima perspiciatis
-					ipsum alias doloremque repellat itaque quidem ratione, iste
-					et soluta! Reprehenderit consequuntur in accusamus.
+					Verzamel je vrienden en familie voor een gezellige
+					spelavond! Van strategische bordspellen tot snelle
+					kaartspellen, er is voor ieder wat wils. Ontdek onze
+					topaanbevelingen.
 				</p>
+				<a href="diensten.html">Lees meer...</a>
 			</div>
-			<div class="col-4">
-				<img src="images/" />
+			<div class="mb-col-12 col-3 flex justify-center home-info-box">
+				<img class="mb-col-12 col-12" src="images/dienst_4.jpg" />
+				<h2>Toernooien</h2>
 				<p>
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-					Dolores deserunt qui hic, nulla tempore minima perspiciatis
-					ipsum alias doloremque repellat itaque quidem ratione, iste
-					et soluta! Reprehenderit consequuntur in accusamus.
+					Test je vaardigheden in onze spannende toernooien! Doe mee
+					met videogamecompetities of bordspelwedstrijden en bewijs
+					dat jij de kampioen bent. Iedereen is welkom, van beginner
+					tot expert.
 				</p>
+				<a href="diensten.html">Lees meer...</a>
 			</div>
-		</div>
-		<div class="flex justify-center">
-			<!-- 4 icons -->
-			<div class="col-3"></div>
-			<div class="col-3"></div>
-			<div class="col-3"></div>
-			<div class="col-3"></div>
-		</div>
-		<div class="flex justify-center">
-			<!-- More images -->
-			<div class="col-4">
-				<img src="images/" />
-			</div>
-			<div class="col-4">
-				<img src="images/" />
-			</div>
-			<div class="col-4">
-				<img src="images/" />
-			</div>
-		</div>
-		<div class="flex justify-center">
-			<!-- More images -->
-			<div class="col-4">
-				<img src="images/" />
-			</div>
-			<div class="col-4">
-				<img src="images/" />
-			</div>
-			<div class="col-4">
-				<img src="images/" />
-			</div>
-		</div>
+		</section>
 
+		<!-- 4 Unique Selling Propositions (USP's) -->
+		<section id="revert-icon-color" class="usp-section flex justify-center">
+			<div class="mb-col-6 col-3 text-center">
+				<h5 class="text-center">Snelheid & Gemak</h5>
+				<ul class="ups">
+					<li>
+						<img
+							class="revert-icon-color"
+							src="images/iconTruck.svg"
+							alt="Vrachtwagen"
+						/>
+						<p class="tiny-text">
+							Binnen 30 minuten geleverd, of het is
+							gratis—gegarandeerd.
+						</p>
+					</li>
+				</ul>
+			</div>
+			<div class="mb-col-6 col-3 text-center">
+				<h5>Milieuvriendelijk & Duurzaam</h5>
+				<ul class="ups">
+					<li>
+						<img
+							class="revert-icon-color"
+							src="images/iconLeaf.svg"
+							alt="Milieu"
+						/>
+						<p class="tiny-text">
+							100% milieuvriendelijke producten, duurzaam en
+							ethisch verantwoord geproduceerd.
+						</p>
+					</li>
+				</ul>
+			</div>
+			<div class="mb-col-6 col-3 text-center">
+				<h5>Uitstekende klantenservice</h5>
+				<ul class="ups">
+					<li>
+						<img
+							class="revert-icon-color"
+							src="images/iconHeadset.svg"
+							alt="Klantenservice"
+						/>
+						<p class="tiny-text">
+							24/7 beschikbaar, met echte mensen die altijd
+							klaarstaan om je te helpen wanneer je ons nodig
+							hebt.
+						</p>
+					</li>
+				</ul>
+			</div>
+			<div class="mb-col-6 col-3 text-center">
+				<h5>Onovertroffen kwaliteitsgarantie</h5>
+				<ul class="ups">
+					<li>
+						<img
+							class="revert-icon-color"
+							src="images/iconAward.svg"
+							alt="Vrachtwagen"
+						/>
+						<p class="tiny-text">
+							We garanderen dat onze producten een leven lang
+							meegaan, of we vervangen ze gratis.
+						</p>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- More images -->
+		<section class="flex justify-center">
+			<div class="col-3">
+				<img src="images/dienst_1" />
+			</div>
+			<div class="col-3">
+				<img src="images/dienst_2" />
+			</div>
+			<div class="col-3">
+				<img src="images/dienst_3" />
+			</div>
+		</section>
+
+		<section class="flex justify-center">
+			<div class="col-3">
+				<img src="images/dienst_4" />
+			</div>
+			<div class="col-3">
+				<img src="images/dienst_5" />
+			</div>
+			<div class="col-3">
+				<img src="images/dienst_6" />
+			</div>
+		</section>
+
+		<!-- Footer -->
 		<footer class="col-12">
 			<div id="footer-container" class="flex justify-center col-12">
 				<div id="footer-sections" class="col-9 flex text-center">

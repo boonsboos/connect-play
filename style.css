@@ -43,9 +43,18 @@ h4 {
 	font-weight: bold;
 }
 
+h5 {
+	font-size: 18px;
+	font-weight: bold;
+}
+
 p,
 a {
 	font-size: 16px;
+}
+
+.tiny-text {
+	font-size: 12px;
 }
 
 .heading {
@@ -73,15 +82,23 @@ a {
 }
 
 .contact-img {
-	width: 50px;
-	height: 50px;
+	width: 4vw;
+	height: 4vh;
+}
+
+.wie-zijn-wij-img {
+	width: 100px;
+}
+
+.missie-en-visie-img {
+	width: 30%;
 }
 
 /* classes for interactive elements (buttons, input fields) */
 .input,
 .button {
 	width: 100%;
-	padding: 10px;
+	padding: 10px 0;
 	margin: 10px 0;
 	border: 1px solid #c3c3c3;
 	border-radius: 5px;
@@ -100,6 +117,16 @@ a {
   height: 4rem;
   padding: 0 1.6rem;
   text-align: center;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.btn:hover {
+	background-color: #5d0d82;
+}
+
+.emptyField {
+	border: 2px solid #ff0000;
 }
 
 /* spacing and alignment classes */
@@ -128,7 +155,7 @@ a {
 	align-items: center;
 }
 
-/* default padding styles for 10px paddings */
+/* Default padding styles for 10px paddings */
 .p-10 {
 	padding: 10px;
 }
@@ -152,7 +179,8 @@ a {
 	padding-left: 10px;
 	padding-right: 10px;
 }
-/* default padding styles for 15px paddings */
+
+/* Default padding styles for 15px paddings */
 .p-15 {
 	padding: 15px;
 }
@@ -177,7 +205,7 @@ a {
 	padding-right: 15px;
 }
 
-/* header */
+/* Header */
 header {
 	position: sticky;
 	top: 0;
@@ -215,7 +243,7 @@ footer img {
 	text-decoration: underline;
 }
 
-/* footer */
+/* Footer */
 
 footer {
 	background-color: #fff;
@@ -228,84 +256,31 @@ footer {
 	padding: 0;
 }
 
+#footer-sections ul li img {
+	filter: invert(100%);
+}
+
 /* Homepage */
-.home-info-box {
-	flex-direction: column;
+.home-head-box {
+	background-color: rgb(100, 100, 100, 0.7);
 	border: 1px solid var(--accent);
-	background-color: color-mix(in srgb, var(--primary) 50%, transparent);
-	border-radius: 5px;
+	border-radius: 10px;
 	text-wrap: wrap;
-}
-
-/* Contactpage */
-#contact-container {
-	column-gap: 0;
-}
-
-#form-box, #contact-info-box {
-	align-items: center;
-	width: 550px;
-	height: 500px;
 	padding: 20px;
+	color: white;
 }
 
-/* formbox */
-#form-box {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-color: #d5d6ae;
+.home-info-box a {
+	color: #fff
 }
 
-#form-box .full-name .name-field {
-	flex: 1;
+.usp-section {
+	border-top: 1px Solid White;
+	border-bottom: 1px Solid White;
 }
 
-#form-box #message {
-	height: 10vh;
-}
-
-#form-box label {
-	width: 100%;
-}
-
-#form-box .button {
-	background-color: #4b006e;
-	color: #d6c52e;
-	font-size: 16px;
-	padding: 12px 20px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-#form-box .button:hover {
-	background-color: #5d0d82;
-	color: #d6c52e;
-}
-
-/* conctactbox */
-#contact-info-box {
-	background-color: #e8e9bd;
-}
-
-#contact-info-box ul {
+.ups {
 	list-style: none;
-}
-
-#contact-info-box li {
-	display: flex;
-	align-items: center;
-	margin-bottom: 40px;
-}
-
-#contact-info-box li:hover {
-	transform: scale(1.2) translateX(20px);
-	transition: transform 0.5s ease;
-}
-
-#contact-info-box li span {
-	margin-left: 10px;
 }
 
 /* dienstenpage */
@@ -342,26 +317,48 @@ footer {
 	padding: 0;
 }
 
-/* overonspage */
-#overons {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	padding: 1px;
-	border-style: dashed;
+/* Over Ons page */
+.wie-zijn-wij-box {
 	align-items: center;
-}
-
-#overons-child {
-	max-width: 45%;
-	flex-direction: row;
 	margin: 10px;
-	padding: 10px;
-	border-style: dotted;
 }
 
-#overons-child img {
-	max-width: 100%;
+.missie-visie-box {
+	align-items: center;
+	margin: 10px;
+	flex-direction: row-reverse;
+}
+
+/* Contactpage */
+
+#contact-container {
+	column-gap: 0;
+}
+
+#form-box {
+	background-color: #d5d6ae;
+
+}
+
+#contact-info-box {
+	background-color: #e8e9bd;
+}
+
+#contact-info-box ul {
+	list-style: none;
+}
+
+#contact-info-box li {
+	margin-bottom: 1vw;
+}
+
+#contact-info-box li:hover {
+	transform: scale(1.2) translateX(20px);
+	transition: transform 0.5s ease;
+}
+
+#form-box .full-name {
+	justify-content: space-between;
 }
 
 @media only screen and (min-width: 576px) {
@@ -417,7 +414,7 @@ footer {
 
 	.offset-9 {
 		margin-left: 75%;
-	}
+	}	
 }
 
 /* mobile only classes */
@@ -473,6 +470,17 @@ footer {
 	.mb-offset-9 {
 		margin-left: 75%;
 	}
+  
+	.wie-zijn-wij-box {
+		text-align: center;
+		width: 100%;
+		column-gap: 0vw;
+		row-gap: 0vw;
+  }
+	
+	#form-box .full-name {
+		justify-content: center;
+	}
 }
 
 /*
@@ -508,6 +516,10 @@ footer {
 	}
 
 	#contact-info-box li img {
+		filter: invert(100%); /* revert img color for darkmode */
+	}
+
+	#revert-icon-color div ul li img {
 		filter: invert(100%); /* revert img color for darkmode */
 	}
 }
