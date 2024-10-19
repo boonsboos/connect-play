@@ -369,11 +369,6 @@ footer img {
 /* Over Ons page */
 .wie-zijn-wij-box {
 	flex-direction: row-reverse;
-	background-color: white;
-}
-
-.missie-visie-box {
-	background-color: white;
 }
 
 #over-ons-container h1 {
