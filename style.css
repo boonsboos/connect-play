@@ -96,7 +96,7 @@ a {
 	padding: 10px 0;
 	border: 1px solid #c3c3c3;
 	border-radius: 5px;
-	box-shadow: 0 1px 1px #4b006e;
+	box-shadow: 0 1px 1px var(--primary);
 	resize: none;
 }
 
@@ -309,7 +309,7 @@ footer img {
 }
 
 .home-info-box > div {
-	border: 1px solid var(--highlight);
+	border: 1px solid var(--accent);
 	border-top: none;
 	border-radius: 0px 0px 10px 10px;
 	overflow: hidden;
@@ -326,7 +326,7 @@ footer img {
 }
 
 .usp-section {
-	border-top: 1px Solid var(--highlight);
+	border-top: 1px Solid var(--accent);
 }
 
 .ups {
@@ -379,11 +379,11 @@ footer img {
 /* Over Ons page */
 .wie-zijn-wij-box {
 	flex-direction: row-reverse;
-	background-color: var(--box-1);
+	background-color: white;
 }
 
 .missie-visie-box {
-	background-color: var(--box-2);
+	background-color: white;
 }
 
 #over-ons-container h1 {
@@ -618,4 +618,9 @@ footer img {
 	.invert-color-img {
 		filter: invert(100%);
 	}
+
+	.home-head-box, .home-info-box > div, .usp-section {
+		border-color: var(--highlight);
+	}
+
 }
