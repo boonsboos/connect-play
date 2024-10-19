@@ -76,7 +76,7 @@ a {
 .home-banner {
 	background-image: url("images/header.jpg");
 	width: 100%;
-	height: 30vh;
+	height: 400px;
 }
 
 .banner-img {
@@ -113,13 +113,12 @@ a {
 
 .btn {
 	background-image: linear-gradient(45deg, var(--accent) 9.16%, #973dc0 43.89%, var(--accent) 64.72%);
-	border-radius: 8px;
+	border-radius: 10px;
 	border-style: none;
 	box-sizing: border-box;
 	color: #FFFFFF;
 	font-size: 16px;
 	font-weight: 500;
-	height: 4rem;
 	padding: 0 1.6rem;
 	text-align: center;
 	padding: 10px;
@@ -282,6 +281,16 @@ footer {
 
 .ups {
 	list-style: none;
+}
+#sample-images img {
+	object-fit: cover;
+	height: 250px;
+}
+
+
+#home-images img {
+	object-fit: cover;
+	height: 400px;
 }
 
 /* dienstenpage */
@@ -508,6 +517,9 @@ footer {
 	#contact-info-box ul li:hover {
 		transform: scale(1.2);
 		transition: transform 0.5s ease;
+	}
+	.home-banner {
+		height: 300px;
 	}
 }
 
