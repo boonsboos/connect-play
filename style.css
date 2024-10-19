@@ -79,6 +79,14 @@ a {
 	height: 4vh;
 }
 
+.wie-zijn-wij-img {
+	width: 100px;
+}
+
+.missie-en-visie-img {
+	width: 30%;
+}
+
 /* classes for interactive elements (buttons, input fields) */
 
 .input,
@@ -261,27 +269,16 @@ footer {
 	margin: 0px auto 10px;
 }
 
-/* overonspage */
-
-#overons {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	padding: 1px;
-	border-style: dashed;
+/* Over Ons page */
+.wie-zijn-wij-box {
 	align-items: center;
-}
-
-#overons-child {
-	max-width: 45%;
-	flex-direction: row;
 	margin: 10px;
-	padding: 10px;
-	border-style: dotted;
 }
 
-#overons-child img {
-	max-width: 100%;
+.missie-visie-box {
+	align-items: center;
+	margin: 10px;
+	flex-direction: row-reverse;
 }
 
 /* Contactpage */
@@ -425,6 +422,13 @@ footer {
 	.mb-offset-9 {
 		margin-left: 75%;
 	}
+  
+	.wie-zijn-wij-box {
+		text-align: center;
+		width: 100%;
+		column-gap: 0vw;
+		row-gap: 0vw;
+  }
 	
 	#form-box .full-name {
 		justify-content: center;
