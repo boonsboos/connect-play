@@ -6,10 +6,8 @@
 	--primary: #4b006e;
 	--accent: #9c00e5;
 	--highlight: #d6c52e;
-	--box-1-dark: #2d2d2d; /* darkmode */
-	--box-2-dark: #323232; /* darkmode */
-	--box-1-light: #cdcdcd;
-	--box-2-light: #b5b5b5;
+	--box-1: #cdcdcd;
+	--box-2: #b5b5b5;
 	--footer-header: #000;
 }
 
@@ -314,11 +312,11 @@ footer img {
 /* Over Ons page */
 .wie-zijn-wij-box {
 	flex-direction: row-reverse;
-	background-color: var(--box-1-dark);
+	background-color: var(--box-1);
 }
 
 .missie-visie-box {
-	background-color: var(--box-2-dark);
+	background-color: var(--box-2);
 }
 
 #over-ons-container h1 {
@@ -518,6 +516,8 @@ footer img {
 	:root {
 		--foreground: #fdfaff;
 		--background: #0a0a0a;
+		--box-1: #2d2d2d;
+		--box-2: #323232;
 	}
 
 	#home-link,
@@ -536,11 +536,11 @@ footer img {
 	}
 
 	#form-box {
-		background-color: var(--box-1-dark);
+		background-color: var(--box-1);
 	}
 
 	#contact-info-box {
-		background-color: var(--box-2-dark);
+		background-color: var(--box-2);
 	}
 	
 	/* revers color img */
