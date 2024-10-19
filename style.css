@@ -26,7 +26,6 @@ body {
 }
 
 /* text style classes */
-
 h1 {
 	font-size: 41px;
 	font-weight: bold;
@@ -71,7 +70,6 @@ a {
 }
 
 /* img style classes */
-
 .home-banner {
 	background-image: url("images/header.jpg");
 	background-size: cover;
@@ -86,17 +84,9 @@ a {
 	padding: 0;
 }
 
-.wie-zijn-wij-img {
-	width: 100px;
-}
-
-.missie-en-visie-img {
-	width: 30%;
-}
-
 .contact-img {
-	width: 4vw;
-	height: 4vh;
+	width: 6vw;
+	height: 6vh;
 }
 
 /* classes for interactive elements (buttons, input fields) */
@@ -252,8 +242,7 @@ header {
 	margin-top: 2px;
 }
 
-header img,
-footer img {
+header img {
 	width: 50px;
 	height: 50px;
 }
@@ -278,11 +267,15 @@ footer img {
 }
 
 /* Footer */
-
 footer {
 	background-color: #fff;
 	border-bottom: 1px var(--accent) solid;
 	border-top: 1px var(--accent) solid;
+}
+
+footer img {
+	width: 40px;
+	height: 40px;
 }
 
 #footer-sections ul {
@@ -349,7 +342,7 @@ footer {
 	height: 400px;
 }
 
-/* dienstenpage */
+/* Dienstenpage */
 #diensten-container {
 	column-gap: 0;
 }
@@ -385,14 +378,20 @@ footer {
 
 /* Over Ons page */
 .wie-zijn-wij-box {
-	align-items: center;
-	margin: 10px;
+	flex-direction: row-reverse;
+	background-color: var(--box-1);
 }
 
 .missie-visie-box {
-	align-items: center;
-	margin: 10px;
-	flex-direction: row-reverse;
+	background-color: var(--box-2);
+}
+
+#over-ons-container h1 {
+	padding-top: 50px;
+}
+
+.over-ons-img {
+	object-fit: cover;
 }
 
 /* Contactpage */
@@ -552,17 +551,18 @@ footer {
 		margin-left: 75%;
 	}
 
-	.wie-zijn-wij-box {
-		text-align: center;
-		width: 100%;
-		column-gap: 0vw;
-		row-gap: 0vw;
-	}
-
 	#form-box .full-name {
 		justify-content: center;
 	}
 
+	#over-ons-container h1 {
+		padding-top: 20px;
+	}
+
+	#over-ons-container h1,p {
+		text-align: center;
+	}
+	
 	#contact-info-box ul {
 		padding: 0;
 	}
@@ -606,6 +606,14 @@ footer {
 		border-color: var(--highlight);
 	}
 
+	#form-box {
+		background-color: var(--box-1);
+	}
+
+	#contact-info-box {
+		background-color: var(--box-2);
+	}
+	
 	/* revers color img */
 	.invert-color-img {
 		filter: invert(100%);
