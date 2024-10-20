@@ -16,7 +16,8 @@
 * {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box; /* don't include padding and margins to elements width and height */
+	box-sizing: border-box;
+	/* don't include padding and margins to elements width and height */
 }
 
 body {
@@ -78,15 +79,16 @@ a {
 }
 
 .banner-img {
+	object-fit: cover;
 	width: 100%;
-	height: 30vh;
+	height: 200;
 	margin: 0;
 	padding: 0;
 }
 
 .contact-img {
-	width: 6vw;
-	height: 6vh;
+	width: 4vw;
+	height: 4vh;
 }
 
 /* classes for interactive elements (buttons, input fields) */
@@ -111,21 +113,27 @@ a {
 	column-gap: 1vw;
 	row-gap: 1vh;
 }
+
 .flex-col {
 	flex-direction: column;
 }
+
 .flex-row {
 	flex-direction: row;
 }
+
 .flex-col-reverse {
 	flex-direction: column-reverse;
 }
+
 .flex-row-reverse {
 	flex-direction: row-reverse;
 }
+
 .justify-center {
 	justify-content: center;
 }
+
 .align-center {
 	align-items: center;
 }
@@ -134,22 +142,28 @@ a {
 .p-10 {
 	padding: 10px;
 }
+
 .pt-10 {
 	padding-top: 10px;
 }
+
 .pb-10 {
 	padding-bottom: 10px;
 }
+
 .pl-10 {
 	padding-left: 10px;
 }
+
 .pr-10 {
 	padding-right: 10px;
 }
+
 .py-10 {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
+
 .px-10 {
 	padding-left: 10px;
 	padding-right: 10px;
@@ -159,22 +173,28 @@ a {
 .p-15 {
 	padding: 15px;
 }
+
 .pt-15 {
 	padding-top: 15px;
 }
+
 .pb-15 {
 	padding-bottom: 15px;
 }
+
 .pl-15 {
 	padding-left: 15px;
 }
+
 .pr-15 {
 	padding-right: 15px;
 }
+
 .py-15 {
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
+
 .px-15 {
 	padding-left: 15px;
 	padding-right: 15px;
@@ -184,10 +204,16 @@ a {
 .p-30 {
 	padding: 30px;
 }
+
+.pt-30 {
+	padding-top: 30px;
+}
+
 .py-30 {
 	padding-top: 30px;
 	padding-bottom: 30px;
 }
+
 .px-30 {
 	padding-left: 30px;
 	padding-right: 30px;
@@ -197,10 +223,12 @@ a {
 .p-50 {
 	padding: 50px;
 }
+
 .py-50 {
 	padding-top: 50px;
 	padding-bottom: 50px;
 }
+
 .px-50 {
 	padding-left: 50px;
 	padding-right: 50px;
@@ -228,14 +256,14 @@ header img {
 #home-link:visited,
 #footer-container a,
 #footer-container a:visited,
-#page-links > a,
-#page-links > a:visited {
+#page-links>a,
+#page-links>a:visited {
 	color: #000;
 	text-decoration: none;
 }
 
 #footer-container a:hover,
-#page-links > a:hover {
+#page-links>a:hover {
 	text-decoration: underline;
 }
 
@@ -282,7 +310,7 @@ footer img {
 	row-gap: 0;
 }
 
-.home-info-box > div {
+.home-info-box>div {
 	border: 1px solid var(--accent);
 	border-top: none;
 	border-radius: 0px 0px 10px 10px;
@@ -367,12 +395,17 @@ footer img {
 }
 
 /* Over Ons page */
+#over-ons-container h1 {
+	padding-top: 50px;
+}
+
 .wie-zijn-wij-box {
+	background-color: color-mix(in srgb, var(--primary) 30%, transparent);
 	flex-direction: row-reverse;
 }
 
-#over-ons-container h1 {
-	padding-top: 50px;
+.missie-visie-box {
+	background-color: color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
 .over-ons-img {
@@ -390,7 +423,7 @@ footer img {
 }
 
 #form-box {
-	background-color: var(--box-1);
+	background-color: color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
 #form-box .full-name {
@@ -409,15 +442,11 @@ footer img {
 }
 
 #contact-info-box {
-	background-color: var(--box-2);
+	background-color: color-mix(in srgb, var(--primary) 40%, transparent);
 }
 
 #contact-info-box ul {
 	list-style: none;
-}
-
-#contact-info-box ul li {
-	margin-bottom: 1vw;
 }
 
 /* let the li (img and span) from contact-box bigger in slow motion to the right */
@@ -536,7 +565,20 @@ footer img {
 		margin-left: 75%;
 	}
 
-	#form-box .full-name {
+	.home-banner {
+		height: 300px;
+	}
+
+	.banner-img {
+		height: 100px;
+	}
+	
+	.maak-afspraak-footer,
+	.over-ons-footer,
+	.contact-ons-footer {
+		padding-bottom: 20px;
+	}
+	#diensten h2 {
 		justify-content: center;
 	}
 
@@ -544,10 +586,15 @@ footer img {
 		padding-top: 20px;
 	}
 
-	#over-ons-container h1,p {
+	#over-ons-container h1,
+	p {
 		text-align: center;
 	}
 	
+	#form-box .full-name {
+		justify-content: center;
+	}
+
 	#contact-info-box ul {
 		padding: 0;
 	}
@@ -560,16 +607,6 @@ footer img {
 		transform: scale(1.2);
 		transition: transform 0.5s ease;
 	}
-	.home-banner {
-		height: 300px;
-	}
-
-	.banner-img {
-		width: 100%;
-		height: 15vh;
-		margin: 0;
-		padding: 0;
-	}
 }
 
 /*
@@ -579,16 +616,18 @@ footer img {
 	:root {
 		--foreground: #fdfaff;
 		--background: #0a0a0a;
-		--box-1: #2d2d2d; /* darkmode */
-		--box-2: #323232; /* darkmode */
+		--box-1: #2d2d2d;
+		/* darkmode */
+		--box-2: #323232;
+		/* darkmode */
 	}
 
 	#home-link,
 	#home-link:visited,
 	#footer-container a,
 	#footer-container a:visited,
-	#page-links > a,
-	#page-links > a:visited {
+	#page-links>a,
+	#page-links>a:visited {
 		color: #fff;
 	}
 
@@ -605,13 +644,15 @@ footer img {
 	#contact-info-box {
 		background-color: var(--box-2);
 	}
-	
+
 	/* revers color img */
 	.invert-color-img {
 		filter: invert(100%);
 	}
 
-	.home-head-box, .home-info-box > div, .usp-section {
+	.home-head-box,
+	.home-info-box>div,
+	.usp-section {
 		border-color: var(--highlight);
 	}
 
