@@ -1,6 +1,6 @@
 <?php 
 
-class CardEntry {
+class CartEntry {
     private int $copies;
 
     function __construct($copies)
