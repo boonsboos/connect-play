@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>C&P: Diensten</title>
+	<title>C&P: Contact</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link
@@ -23,7 +23,7 @@
 					<p class="">Connect & Play</p>
 				</div>
 			</a>
-      
+
 			<div id="page-links" class="flex offset mb-col-12">
 				<a href="diensten.html">Diensten</a>
 				<a href="over-ons.html">Over Ons</a>
@@ -32,29 +32,27 @@
 			</div>
 		</div>
 	</header>
-	<!-- Background banner with title, text and button -->
-	<section class="home-banner flex justify-center align-center">
-		<div class="mb-col-12 col-9 flex justify-center">
-			<div class="home-head-box py-50 col-6 mb-col-12 flex justify-center">
-				<h1 class="heading pb-15">Onze diensten</h1>
-				<p class="text-center pb-10 col-12 px-10">
-					Connect & Play biedt verschillende diensten aan om
-					teambuilding en plezier te stimuleren. Hieronder vind je
-					een overzicht van onze diensten.
-				</p>
-				<div class="pt-10">
-					<a class="button p-10" href="contact.html">
-						Neem contact op
-					</a>
+	<img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
+
+	<section id="login-container" class="flex justify-center">
+		<form id="form-box" class="mb-col-12 col-6 flex justify-center">
+			<div class="mb-col-12 col-12 flex justify-center pb-30">
+				<div class="mb-col-12 col-5">
+					<label for="userName">Gebruikersnaam:</label>
+					<input id="userName" class="input" type="text" name="userName" placeholder="JohnDoe2025" />
 				</div>
 			</div>
-		</div>
-	</section>
-  
-	<section id="diensten-container" class="flex justify-center py-15">
-		<div id="diensten" class="flex justify-center col-6 mb-col-12">
-			<!-- Here will the 'diensten' be placed -->
-		</div>
+
+			<div class="mb-col-12 col-12 flex justify-center">
+				<div class="mb-col-12 col-5">
+					<label for="passwoord">Wachtwoord:</label>
+					<input id="passwoord" class="input" type="password" name="password" placeholder="Wachtwoord" />
+				</div>
+			</div>
+			<div class="send-message mb-col-6 col-5 pt-30">
+				<button class="button" type="submit">Verzenden</button>
+			</div>
+		</form>
 	</section>
 
 	<!-- Footer -->
@@ -101,7 +99,6 @@
 			</p>
 		</div>
 	</footer>
-
-	<script src="js/diensten.js"></script>
 </body>
+
 </html>

@@ -209,6 +209,10 @@ a {
 	padding-top: 30px;
 }
 
+.pb-30 {
+	padding-bottom: 30px;
+}
+
 .py-30 {
 	padding-top: 30px;
 	padding-bottom: 30px;
@@ -222,6 +226,13 @@ a {
 /* Default padding styles for 50px paddings */
 .p-50 {
 	padding: 50px;
+}
+.pt-50 {
+	padding-top: 50px;
+}
+
+.pb-50 {
+	padding-bottom: 50px;
 }
 
 .py-50 {
@@ -414,7 +425,7 @@ footer img {
 }
 
 /* Contactpage */
-#contact-container {
+#contact-container, #login-container {
 	column-gap: 0;
 }
 
@@ -471,6 +482,10 @@ footer img {
 		width: calc(33.33% - 1vw);
 	}
 
+	.col-5 {
+		width: calc(41.66% - 1vw);
+	  }
+	  
 	.col-6 {
 		width: calc(50% - 1vw);
 	}
