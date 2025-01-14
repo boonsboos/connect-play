@@ -9,15 +9,20 @@ class User
     private $id;
     private $name;
 
-    private $role = UserRole::CUSTOMER;
-    private $addresses = [];
+    private $role;
+    private $addresses;
 
     // zodat de editor het oppakt
     /**
      * @param Address[] $addresses
      */
-    public function __construct(string $email, string $id, string $name, UserRole $role, array $addresses)
-    {
+    public function __construct(
+        string $email,
+        string $id,
+        string $name,
+        UserRole $role = UserRole::CUSTOMER, // zet default
+        array $addresses = [] // niet meegegeven = leeg
+    ) {
         $this->email = $email;
         $this->id = $id;
         $this->name = $name;
