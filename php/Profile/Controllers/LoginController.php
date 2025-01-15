@@ -6,18 +6,11 @@ require_once './php/Profile/DataAccess/UserRepository.php';
 
 class LoginController extends Controller
 {
-    private array $encryptedPasswords;
     private UserRepository $userRepository;
 
     public function __construct(View $view)
     {
         parent::__construct($view);
-
-        $this->encryptedPasswords = [
-            "JD1" => password_hash("JD1", PASSWORD_DEFAULT),
-            "AD1" => password_hash("AD1", PASSWORD_DEFAULT),
-            "CO1" => password_hash("CO1", PASSWORD_DEFAULT),
-        ];
 
         $this->userRepository = new UserRepository();
     }
@@ -27,22 +20,20 @@ class LoginController extends Controller
         try {
             $user = $this->userRepository->getUser($email);
 
-            foreach ($this->encryptedPasswords as $userId=> $userPassword) {
-                if ($user->getId() === $userId) {
-                    $hashedPassword = password_hash($enteredPassword, PASSWORD_DEFAULT);
 
-                    if (password_verify($userPassword, $hashedPassword)) {
-                        header("Location: /contact.php", true, 307);
-                    } else {
-                        throw new Exception("wrongPassword");
-                    }
-                }
+            if (password_verify($enteredPassword, $user->getPassword())) {
+                session_start();
+
+                $_SESSION['uuid'] = $user->getId();
+                header("Location: /contact.php", true, 303);
+                die();
+            } else {
+                throw new Exception("Wachtwoord is onjuist.");
             }
-
-            throw new Exception("noAccount");
         } catch (Exception $exception) {
             // redirect met query parameter
-            header("Location: /login.php?result=" . $exception->getMessage(), true, 307);
+            header("Location: /login.php?error=" . urlencode($exception->getMessage()), true, 303);
+            die(); // or exit(); so the script stops executing
         }
     }
 }

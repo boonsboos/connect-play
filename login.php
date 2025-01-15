@@ -5,15 +5,16 @@ require_once './php/Shared/header.php';
 require_once './php/Profile/Views/LoginView.php';
 require_once './php/Profile/Controllers/LoginController.php';
 
-$loginView = new Loginview();
+$loginView = new LoginView();
 
 $controller = new LoginController($loginView);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	if (isset($_POST['email']) && isset($_POST['password'])) {
+		$email = $_POST['email'];
+		$password = $_POST['password'];
 
-if (isset($_POST['email'])) {
-	$email = $_POST['email'];
-	$password = $_POST['password'];
-
-	$controller->login($email, $password);
+		$controller->login($email, $password);
+	}
 }
 
 ?>
@@ -21,13 +22,11 @@ if (isset($_POST['email'])) {
 
 <section id="login-container" class="flex justify-center">
 
-    <?php if (!$loginView->loginResult): ?>
-
+	<?php if (isset($loginView->loginError)): ?>
 		<div class="mb-col-12 col-12 flex error-message">
-			<p class="text-center">Er ging iets fout met het inloggen!</p>
+			<p class="text-center"><?php echo $loginView->loginError ?></p>
 		</div>
-
-    <?php endif; ?>
+	<?php endif; ?>
 
 	<form id="form-box" class="mb-col-12 col-6 flex justify-center" method="post" action="login.php">
 		<div class="mb-col-12 col-12 flex justify-center pb-30">

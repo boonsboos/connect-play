@@ -2,27 +2,16 @@
 
 require_once './php/Shared/View.php';
 
-class Loginview implements View {
+class LoginView implements View
+{
 
-    public bool $loginResult;
+    public string $loginError;
 
     public function __construct()
     {
-        if (!isset($_GET['result'])) {
-            $this->__construct_default();
-            return;
+        if (isset($_GET['error'])) {
+            $this->loginError = $_GET['error'];
         }
-
-        if ($_GET['result'] != "success") {
-            $this->loginResult = false;
-        } else {
-            $this->loginResult = true;
-        }
-    }
-
-    private function __construct_default(): void
-    {
-        $this->loginResult = true;
     }
 
     function redraw()
