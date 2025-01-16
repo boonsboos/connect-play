@@ -6,11 +6,11 @@ abstract class Controller
     /**
      * @var View
      */
-    private $view;
+    protected $view;
 
-    public function __construct(View $view)
+    public function __construct()
     {
-        $this->view = $view;
+        $this->view = null;
     }
 
     public function updateView()

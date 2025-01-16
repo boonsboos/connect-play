@@ -1,8 +1,8 @@
 <?php
 
-enum UserRole
+enum UserRole: string
 {
-    case CUSTOMER;
-    case EMPLOYEE;
-    case ADMINISTRATOR;
+    case CUSTOMER = "Customer";
+    case EMPLOYEE = "Employee";
+    case ADMINISTRATOR = "Administrator";
 }
