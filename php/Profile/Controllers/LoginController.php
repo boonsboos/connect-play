@@ -1,7 +1,6 @@
 <?php
 
 require_once './php/Shared/Controller.php';
-require_once './php/Shared/View.php';
 require_once './php/Profile/DataAccess/UserRepository.php';
 require_once './php/Profile/Domain/User.php';
 
