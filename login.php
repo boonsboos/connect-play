@@ -5,9 +5,8 @@ require_once './php/Shared/header.php';
 require_once './php/Profile/Views/LoginView.php';
 require_once './php/Profile/Controllers/LoginController.php';
 
-$loginView = new LoginView();
 
-$controller = new LoginController($loginView);
+$controller = new LoginController();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (isset($_POST['email']) && isset($_POST['password'])) {
 		$email = $_POST['email']; // haal email uit $_POST en maak er een variabele van.
