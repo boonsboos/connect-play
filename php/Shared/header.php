@@ -1,7 +1,25 @@
-<?php session_start();
-echo "<pre>";
-var_dump($_SESSION);
-echo "</pre>";
+<?php
+require_once './php/Shared/debug.php';
+require_once './php/Profile/DataAccess/UserRepository.php';
+
+// start de sessie om te kijken of de gebruiker is ingelogd
+// note: sessie moet gestart worden voordat er html wordt geprint
+session_start();
+
+// check of userId in de sessie zit
+if (isset($_SESSION["userId"])) {
+    $userId = $_SESSION["userId"];
+    $repo = new UserRepository();
+    try {
+        $user = $repo->getUser($userId);
+    } catch (Exception $e) { // vang de exception op als de gebruiker niet gevonden is
+        session_destroy();
+        // vervang de huidige pagina met de login pagina
+        header("Location: /login.php", true, 303);
+        die();
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +52,12 @@ echo "</pre>";
                 <a href="diensten.php">Diensten</a>
                 <a href="over-ons.php">Over Ons</a>
                 <a href="contact.php">Contact</a>
-                <a href="login.php">Login</a>
+                <?php if (isset($user)): ?>
+                    <a href="profiel.php">Profiel</a>
+                    <a href="logout.php">Logout</a>
+                <?php else: ?>
+                    <a href="login.php">Login</a>
+                <?php endif; ?>
             </div>
         </div>
     </header>

@@ -10,11 +10,15 @@ $loginView = new LoginView();
 $controller = new LoginController($loginView);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (isset($_POST['email']) && isset($_POST['password'])) {
-		$email = $_POST['email'];
+		$email = $_POST['email']; // haal email uit $_POST en maak er een variabele van.
 		$password = $_POST['password'];
 
 		$controller->login($email, $password);
 	}
+}
+
+if (isset($_GET['error'])) {
+	$loginError = $_GET['error'];
 }
 
 ?>
@@ -22,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <section id="login-container" class="flex justify-center">
 
-	<?php if (isset($loginView->loginError)): ?>
+	<?php if (isset($loginError)): ?>
 		<div class="mb-col-12 col-12 flex error-message">
-			<p class="text-center"><?php echo $loginView->loginError ?></p>
+			<p class="text-center"><?php echo $loginError ?></p>
 		</div>
 	<?php endif; ?>
 

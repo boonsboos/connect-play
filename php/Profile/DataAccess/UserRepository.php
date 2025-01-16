@@ -2,27 +2,6 @@
 
 require_once './php/Profile/Domain/User.php';
 
-class RepoUser extends User
-{
-    private string $password;
-
-    public function __construct(string $email, string $id, string $name, string $password, UserRole $role = UserRole::CUSTOMER, array $addresses = [])
-    {
-        parent::__construct($email, $id, $name, $role, $addresses);
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
-    }
-
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): void
-    {
-        $this->password = $password;
-    }
-}
-
 class UserRepository
 {
     private array $users;
@@ -30,31 +9,31 @@ class UserRepository
     public function __construct()
     {
         $this->users = [
-            new RepoUser(
+            new User(
                 "jd@connect-en-play.nl",
                 "JD1",
                 "John Doe",
                 "JD1",
                 UserRole::EMPLOYEE,
-                [new Address("London", "Downing Street", "10")]
+                [new Address("London", "SW1A 2AA", "Downing Street 10")]
             ),
-            new RepoUser(
+            new User(
                 "admin@connect-en-play.nl",
                 "AD1",
                 "Admin",
                 "AD1",
                 UserRole::ADMINISTRATOR,
-                [new Address("Amsterdam", "Kalverstraat", "3")]
+                [new Address("Amsterdam", "postcode", "Kalverstraat 3")]
             ),
-            new RepoUser(
+            new User(
                 "test@test.nl",
                 "TE1",
                 "Test",
                 "TEst",
                 UserRole::ADMINISTRATOR,
-                [new Address("Test", "Test straat", "69")]
+                [new Address("Test", "6969 FU", "Test straat 69")]
             ),
-            new RepoUser(
+            new User(
                 "connectenplayfan1998@fastmail.com",
                 "CO1",
                 "Connie Enp",
@@ -66,13 +45,16 @@ class UserRepository
     /**
      * @throws Exception
      */
-    public function getUser(string $email): RepoUser
+    public function getUser(string $emailOrId): User
     {
+        /**
+         * @var User $user
+         */
         foreach ($this->users as $user) {
-            if ($user->getEmail() === $email) {
+            if ($user->getEmail() === $emailOrId || $user->getId() === $emailOrId) {
                 return $user;
             }
         }
-        throw new Exception("User not found");
+        throw new Exception("Gebruiker niet gevonden."); // gooit een error als de gebruiker niet gevonden is
     }
 }

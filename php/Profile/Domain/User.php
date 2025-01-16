@@ -2,6 +2,7 @@
 
 require_once 'Address.php';
 require_once 'UserRole.php';
+require_once './php/Shared/debug.php';
 
 class User
 {
@@ -9,6 +10,7 @@ class User
     private $id;
     private $name;
 
+    private string $password;
     private $role;
     private $addresses;
 
@@ -20,6 +22,7 @@ class User
         string $email,
         string $id,
         string $name,
+        string $password,
         UserRole $role = UserRole::CUSTOMER, // zet default
         array $addresses = [] // niet meegegeven = leeg
     ) {
@@ -28,6 +31,7 @@ class User
         $this->name = $name;
         $this->role = $role;
         $this->addresses = $addresses;
+        $this->password = password_hash($password, PASSWORD_DEFAULT); // encrypt het wachtwoord, met algoritme PASSWORD_DEFAULT
     }
 
     public function getEmail(): string
@@ -49,7 +53,15 @@ class User
     {
         return $this->role;
     }
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
 
+    public function setPassword(string $password): void
+    {
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
+    }
     /**
      * @return Address[]
      */
