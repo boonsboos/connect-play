@@ -17,10 +17,10 @@
                 <h1 class="heading pb-15">Profiel</h1>
 
                 <div class="flex col-6 justify-center flex-col">
-                    <p class="text-center">Username: <?php echo $user->getName() ?></p>
-                    <p class="text-center">Email: <?php echo $user->getEmail() ?></p>
-                    <p class="text-center">Role: <?php echo $user->getRole()->value ?></p>
-                    <ul>
+                    <p class="pl-50">Username: <?php echo $user->getName() ?></p>
+                    <p class="pl-50">Email: <?php echo $user->getEmail() ?></p>
+                    <p class="pl-50">Role: <?php echo $user->getRole()->value ?></p>
+                    <ul class="pl-50">
                         <?php
                         foreach ($user->getAddresses() as $address) {
                             echo "<li>" . $address->getAddress() . " " . $address->getPostalCode() . ", " . $address->getCity() . "</li>";

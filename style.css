@@ -213,6 +213,10 @@ a {
 	padding-bottom: 30px;
 }
 
+.pl-30 {
+	padding-left: 30px;
+}
+
 .py-30 {
 	padding-top: 30px;
 	padding-bottom: 30px;
@@ -235,6 +239,10 @@ a {
 	padding-bottom: 50px;
 }
 
+.pl-50 {
+	padding-left: 50px;
+}
+
 .py-50 {
 	padding-top: 50px;
 	padding-bottom: 50px;
@@ -243,6 +251,14 @@ a {
 .px-50 {
 	padding-left: 50px;
 	padding-right: 50px;
+}
+
+
+/*Error Messages*/
+.error-message {
+	background-color:#202020;
+	border: 2px solid #ff0000;
+
 }
 
 /* Header */
@@ -290,7 +306,7 @@ footer img {
 	height: 40px;
 }
 
-#footer-sections ul {
+ul {
 	list-style: none;
 	padding: 0;
 }
@@ -434,7 +450,7 @@ footer img {
 	padding: 10vh 0;
 }
 
-#form-box {
+#form-box, {
 	background-color: color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
