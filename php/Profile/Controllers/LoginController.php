@@ -22,14 +22,14 @@ class LoginController extends Controller
                 session_start();
 
                 $_SESSION['userId'] = $user->getId(); // vul de $_SESSION met de userId uit de user
-                header("Location: /profiel.php", true, 303);
+                header("Location: /connect-play/profiel.php", true, 303);
                 die();
             } else {
                 throw new Exception("Wachtwoord is onjuist.");
             }
         } catch (Exception $exception) {
             // vervang de inlog pagina met de login pagina met een error message
-            header("Location: /login.php?error=" . urlencode($exception->getMessage()), true, 303);
+            header("Location: /connect-play/login.php?error=" . urlencode($exception->getMessage()), true, 303);
             die();
         }
     }
