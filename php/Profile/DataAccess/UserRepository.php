@@ -11,7 +11,7 @@ class UserRepository
         $this->users = [
             new User(
                 "jd@connect-en-play.nl",
-                "JD1",
+                "JD1ID",
                 "John Doe",
                 "JD1",
                 UserRole::EMPLOYEE,
@@ -19,25 +19,27 @@ class UserRepository
             ),
             new User(
                 "admin@connect-en-play.nl",
-                "AD1",
+                "AD1ID",
                 "Admin",
                 "AD1",
                 UserRole::ADMINISTRATOR,
-                [new Address("Amsterdam", "postcode", "Kalverstraat 3")]
+                [new Address("Amsterdam", "2234 AD", "Kalverstraat 3")]
             ),
             new User(
-                "test@test.nl",
-                "TE1",
-                "Test",
-                "TEst",
+                "cardmaster@cardcore.nl",
+                "COID",
+                "Fred Langmaker",
+                "Welkom01",
                 UserRole::ADMINISTRATOR,
-                [new Address("Test", "6969 FU", "Test straat 69")]
+                [new Address("Goes", "6969 FU", "Opwerkstraaat 69")]
             ),
             new User(
                 "connectenplayfan1998@fastmail.com",
-                "CO1",
+                "CO1ID",
                 "Connie Enp",
-                "CO1",
+                "Welkom02",
+                UserRole::ADMINISTRATOR,
+                [new Address("Berlijn", "10176", "Friedrichshain 3")]
             )
         ];
     }
