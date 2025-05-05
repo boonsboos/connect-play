@@ -1,4 +1,4 @@
-<?php require_once './php/Shared/header.php'; ?>
+<?php require_once '../php/Shared/header.php'; ?>
 <!-- Background banner with title, text and button -->
 <section class="home-banner flex justify-center align-center">
 	<div class="mb-col-12 col-9 flex justify-center">
@@ -137,4 +137,4 @@
 	</div>
 </section>
 
-<?php require_once './php/Shared/footer.php'; ?>
+<?php require_once '../php/Shared/footer.php'; ?>

@@ -1,6 +1,6 @@
 <?php
 
-require_once './php/Profile/Domain/User.php';
+require_once '../php/Profile/Domain/User.php';
 
 class UserRepository
 {

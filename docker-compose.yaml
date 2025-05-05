@@ -1,0 +1,28 @@
+services:
+  apache-php:
+    image: "php:8.4-apache"
+    ports:
+      - "8080:80" # de webserver runt op poort 8080
+    depends_on:
+      - mariadb
+      - phpmyadmin
+    volumes:
+      - "./php:/var/www/php"
+      - "./public:/var/www/html" # geef Apache toegang tot de lokale map
+
+  # database
+  mariadb:
+    image: "mariadb:latest"
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "1"
+      MARIADB_ROOT_PASSWORD: "" # voor lokaal gebruik zetten we het root wachtwoord op leeg
+
+  phpmyadmin:
+    image: "phpmyadmin"
+    ports:
+      - "8081:80" # phpMyAdmin is lokaal toegankelijk vanaf poort 8081
+    depends_on:
+      - mariadb
+    environment:
+      PMA_HOST: mariadb # dit geeft aan dat dit de container is waarop de database runt.
+

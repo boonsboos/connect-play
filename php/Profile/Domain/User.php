@@ -2,7 +2,7 @@
 
 require_once 'Address.php';
 require_once 'UserRole.php';
-require_once './php/Shared/debug.php';
+require_once '../php/Shared/debug.php';
 
 class User
 {
