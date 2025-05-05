@@ -1,7 +1,7 @@
 <?php
 
-require_once './php/Shared/header.php';
-require_once './php/Profile/Controllers/LoginController.php';
+require_once '../php/Shared/header.php';
+require_once '../php/Profile/Controllers/LoginController.php';
 
 $controller = new LoginController();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -46,4 +46,4 @@ if (isset($_GET['error'])) {
 	</form>
 </section>
 
-<?php require_once './php/Shared/footer.php'; ?>
+<?php require_once '../php/Shared/footer.php'; ?>

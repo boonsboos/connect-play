@@ -1,4 +1,4 @@
-<?php require_once './php/Shared/header.php'; ?>
+<?php require_once '../php/Shared/header.php'; ?>
 
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
 
@@ -33,4 +33,4 @@
     <?php endif; ?>
 
 </section>
-<?php require_once './php/Shared/footer.php'; ?>
+<?php require_once '../php/Shared/footer.php'; ?>

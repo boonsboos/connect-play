@@ -1,6 +1,6 @@
 <?php
-require_once './php/Shared/debug.php';
-require_once './php/Profile/DataAccess/UserRepository.php';
+require_once '../php/Shared/debug.php';
+require_once '../php/Profile/DataAccess/UserRepository.php';
 
 // start de sessie om te kijken of de gebruiker is ingelogd
 // note: sessie moet gestart worden voordat er html wordt geprint

@@ -1,4 +1,4 @@
-<?php require_once './php/Shared/header.php'; ?>
+<?php require_once '../php/Shared/header.php'; ?>
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
 
 <section id="over-ons-container" class="flex justify-center">
@@ -47,4 +47,4 @@
 			alt="Plaatje met tekst: Missie en Visie?" />
 	</div>
 </section>
-<?php require_once './php/Shared/footer.php'; ?>
+<?php require_once '../php/Shared/footer.php'; ?>
