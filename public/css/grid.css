@@ -1,0 +1,46 @@
+/* grid.css */
+
+/* Flex row wrapper */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -8px; /* half gutter */
+  margin-right: -8px; /* half gutter */
+}
+
+/* Base column style */
+[class^="col-"], [class^="mb-col-"] {
+  padding-left: 8px; /* half gutter */
+  padding-right: 8px; /* half gutter */
+  box-sizing: border-box;
+}
+
+/* 12-column system */
+.col-1  { width: 8.3333%; }
+.col-2  { width: 16.6667%; }
+.col-3  { width: 25%; }
+.col-4  { width: 33.3333%; }
+.col-5  { width: 41.6667%; }
+.col-6  { width: 50%; }
+.col-7  { width: 58.3333%; }
+.col-8  { width: 66.6667%; }
+.col-9  { width: 75%; }
+.col-10 { width: 83.3333%; }
+.col-11 { width: 91.6667%; }
+.col-12 { width: 100%; }
+
+/* === Mobile Overrides (Under 768px) === */
+@media (max-width: 768px) {
+  .mb-col-1  { width: 8.3333%; }
+  .mb-col-2  { width: 16.6667%; }
+  .mb-col-3  { width: 25%; }
+  .mb-col-4  { width: 33.3333%; }
+  .mb-col-5  { width: 41.6667%; }
+  .mb-col-6  { width: 50%; }
+  .mb-col-7  { width: 58.3333%; }
+  .mb-col-8  { width: 66.6667%; }
+  .mb-col-9  { width: 75%; }
+  .mb-col-10 { width: 83.3333%; }
+  .mb-col-11 { width: 91.6667%; }
+  .mb-col-12 { width: 100%; }
+}

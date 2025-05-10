@@ -1,0 +1,39 @@
+/* text.css */
+
+/* === Text Alignment === */
+.text-left   { text-align: left; }
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+
+/* === Native Heading Tags === */
+h1 {
+  font-size: 2.5rem;   /* 40px */
+  font-weight: 700;
+}
+h2 {
+  font-size: 2rem;     /* 32px */
+  font-weight: 600;
+}
+h3 {
+  font-size: 1.75rem;  /* 28px */
+  font-weight: 500;
+}
+h4 {
+  font-size: 1.5rem;   /* 24px */
+  font-weight: 500;
+}
+h5 {
+  font-size: 1.25rem;  /* 20px */
+  font-weight: 500;
+}
+h6 {
+  font-size: 1rem;     /* 16px */
+  font-weight: 500;
+}
+
+/* === Native Font Tags === */
+p { font-size: 1rem; }
+a { font-size: 1rem; }
+
+/* === Custom Font Styles === */
+.tiny-text { font-size: 0.75rem; }     /* 12px */
