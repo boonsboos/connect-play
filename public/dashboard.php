@@ -1,10 +1,10 @@
 <?php
 
 require_once '../php/Shared/header.php'; 
-require_once '../php/Shop/Controllers/DashbordController.php';
+require_once '../php/Shop/DataAccess/DashboardRepository.php';
 
-// maak DashboardController object aan
-$controller = new DashboardController();
+// maak DashboardRepository object aan
+$controller = new DashboardRepository();
 
 // Haal alle buttons op uit de controller
 $allButtons = $controller->getButtons();
