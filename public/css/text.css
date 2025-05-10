@@ -1,11 +1,18 @@
 /* text.css */
 
-/* === Text Alignment === */
+/* Text Alignment */
 .text-left   { text-align: left; }
 .text-center { text-align: center; }
 .text-right  { text-align: right; }
 
-/* === Native Heading Tags === */
+/* Font Weight */
+.font-light      { font-weight: 300; }
+.font-normal     { font-weight: 400; }
+.font-medium     { font-weight: 500; }
+.font-semibold   { font-weight: 600; }
+.font-bold       { font-weight: 700; }
+
+/* Native Heading Tags */
 h1 {
   font-size: 2.5rem;   /* 40px */
   font-weight: 700;
@@ -31,9 +38,11 @@ h6 {
   font-weight: 500;
 }
 
-/* === Native Font Tags === */
+/* Native Font Tags */
 p { font-size: 1rem; }
 a { font-size: 1rem; }
 
-/* === Custom Font Styles === */
-.tiny-text { font-size: 0.75rem; }     /* 12px */
+/* Custom Font Styles */
+.tiny-text {
+  font-size: 0.75rem;  /* 12px */
+}     

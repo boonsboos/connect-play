@@ -63,7 +63,7 @@ body {
 /* classes for interactive elements (buttons, input fields) */
 .input,
 .button {
-	width: 100%;
+	
 	padding: 10px 0;
 	border: 1px solid #c3c3c3;
 	border-radius: 5px;
@@ -115,10 +115,6 @@ header {
 header img {
 	width: 50px;
 	height: 50px;
-}
-
-#page-links {
-	justify-content: space-evenly;
 }
 
 #home-link,
@@ -333,6 +329,10 @@ ul {
 
 	.banner-img {
 		height: 100px;
+	}
+
+	#page-links {
+		margin-top: 16px;
 	}
 
 	#diensten h2 {

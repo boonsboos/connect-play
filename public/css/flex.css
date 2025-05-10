@@ -59,10 +59,7 @@
   flex-direction: column-reverse;
 }
 
-/* Flex Wrap */
-.flex-wrap {
-  flex-wrap: wrap;
-}
+/* Flex Wrap Alternatives */
 .flex-nowrap {
   flex-wrap: nowrap;
 }

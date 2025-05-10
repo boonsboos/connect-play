@@ -28,27 +28,35 @@ if (isset($_SESSION["userId"])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>C&P: Contact</title>
+    <title>Connect & Play</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../public/css/flex.css" />
+    <link rel="stylesheet" href="../public/css/grid.css" />
+    <link rel="stylesheet" href="../public/css/margin.css" />
+    <link rel="stylesheet" href="../public/css/padding.css" />
+    <link rel="stylesheet" href="../public/css/style.css" />
+    <link rel="stylesheet" href="../public/css/text.css" />
 </head>
 
 <body>
     <header class="flex justify-center">
-        <div id="header-container" class="flex mb-col-12 col-6 justify-center align-center py-10">
+        <div id="header-container" class="row col-6 mb-col-12 items-center py-3">
             <!-- make the logo and title a home page link -->
-            <a id="home-link" href="index.php">
-                <div class="flex justify-center col-12 align-center">
-                    <img src="images/c&p-logo.svg" alt="Connect & Play logo" />
-                    <p class="">Connect & Play</p>
-                </div>
-            </a>
 
-            <div id="page-links" class="flex offset mb-col-12">
+            <!-- Logo + Title -->
+            <div class="row col-3 mb-col-12 flex flex-col content-center justify-center">
+                <a id="home-link" href="index.php" class="flex flex-row items-center gap-2">
+                    <img src="../images/c&p-logo.svg" alt="Connect & Play logo" />
+                    <p class="font-semibold">Connect & Play</p>
+                </a>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav id="page-links" class="col-9 mb-col-12 flex flex-row justify-evenly items-center">
                 <a href="diensten.php">Diensten</a>
                 <a href="over-ons.php">Over Ons</a>
                 <a href="contact.php">Contact</a>
@@ -58,6 +66,6 @@ if (isset($_SESSION["userId"])) {
                 <?php else: ?>
                     <a href="login.php">Login</a>
                 <?php endif; ?>
-            </div>
+            </nav>
         </div>
     </header>
