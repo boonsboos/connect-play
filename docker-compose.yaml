@@ -1,6 +1,6 @@
 services:
   apache-php:
-    image: "php:8.4-apache"
+    build: . # gebruik de Dockerfile in de huidige map
     ports:
       - "8080:80" # de webserver runt op poort 8080
     depends_on:
@@ -10,6 +10,7 @@ services:
       - "./images:/var/www/html/images"
       - "./php:/var/www/php"
       - "./public:/var/www/html" # geef Apache toegang tot de lokale map
+      - "./php.ini:/usr/local/etc/php/php.ini" # gebruik een eigen php.ini bestand
 
   # database
   mariadb:
