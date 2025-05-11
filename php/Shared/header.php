@@ -15,7 +15,7 @@ if (isset($_SESSION["userId"])) {
     } catch (Exception $e) { // vang de exception op als de gebruiker niet gevonden is
         session_destroy();
         // vervang de huidige pagina met de login pagina
-        header("Location: /connect-play/login.php", true, 303);
+        header("Location: /login.php", true, 303);
         die();
     }
 }

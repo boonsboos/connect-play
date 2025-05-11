@@ -31,7 +31,7 @@ class User
         $this->name = $name;
         $this->role = $role;
         $this->addresses = $addresses;
-        $this->password = password_hash($password, PASSWORD_DEFAULT); // encrypt het wachtwoord, met algoritme PASSWORD_DEFAULT
+        $this->password = $password;
     }
 
     public function getEmail(): string

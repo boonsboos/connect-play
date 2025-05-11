@@ -21,7 +21,7 @@ if (isset($_GET['error'])) {
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
 
 <section id="login-container" class="flex justify-center">
-	<form id="form-box" class="mb-col-12 col-6 flex justify-center" method="post" action="login.php">
+	<form id="form-box" class="mb-col-12 col-6 flex justify-center" method="post" action="/login.php">
 		<?php if (isset($loginError)): ?>
 			<div class="mb-col-12 col-12 flex justify-center pb-30">
 				<p class="error-message text-center p-10"><?php echo $loginError ?></p>
