@@ -60,7 +60,7 @@ class User
 
     public function setPassword(string $password): void
     {
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
+        $this->password = $password;
     }
     /**
      * @return Address[]

@@ -450,7 +450,7 @@ ul {
 	padding: 10vh 0;
 }
 
-#form-box, {
+#form-box {
 	background-color: color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
