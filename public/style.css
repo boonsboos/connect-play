@@ -70,6 +70,13 @@ a {
 	text-align: center;
 }
 
+#dashboardBox > div > a {
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 18px;
+	text-decoration: none;
+}
+
 /* img style classes */
 .home-banner {
 	background-image: url("images/header.jpg");
@@ -81,7 +88,7 @@ a {
 .banner-img {
 	object-fit: cover;
 	width: 100%;
-	height: 200;
+	height: 200px;
 	margin: 0;
 	padding: 0;
 }
@@ -100,6 +107,27 @@ a {
 	border-radius: 5px;
 	box-shadow: 0 1px 1px var(--primary);
 	resize: none;
+}
+
+.dashboardButton {
+	width: 100%;
+	padding: 30px 0;
+	border: 1px solid #c3c3c3;
+	border-radius: 5px;
+	box-shadow: 0 1px 1px var(--primary);
+	background: linear-gradient(
+		90deg,
+		rgba(75, 0, 110, 0.48),
+		rgba(75, 0, 110, 1)
+	);
+}
+
+.dashboardButton:hover {
+	background: linear-gradient(
+		90deg,
+		rgba(128, 128, 128, 0.48),
+		rgba(128, 128, 128, 1)
+	);
 }
 
 .emptyField {
@@ -217,6 +245,10 @@ a {
 	padding-left: 30px;
 }
 
+.pr-30 {
+	padding-right: 30px;
+}
+
 .py-30 {
 	padding-top: 30px;
 	padding-bottom: 30px;
@@ -243,6 +275,10 @@ a {
 	padding-left: 50px;
 }
 
+.pr-50 {
+	padding-right: 50px;
+}
+
 .py-50 {
 	padding-top: 50px;
 	padding-bottom: 50px;
@@ -253,12 +289,10 @@ a {
 	padding-right: 50px;
 }
 
-
 /*Error Messages*/
 .error-message {
-	background-color:#202020;
+	background-color: #202020;
 	border: 2px solid #ff0000;
-
 }
 
 /* Header */
@@ -441,7 +475,8 @@ ul {
 }
 
 /* Contactpage */
-#contact-container, #login-container {
+#contact-container,
+#login-container {
 	column-gap: 0;
 }
 
@@ -450,7 +485,8 @@ ul {
 	padding: 10vh 0;
 }
 
-#form-box, {
+#form-box,
+#dashboardBox {
 	background-color: color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
@@ -500,8 +536,8 @@ ul {
 
 	.col-5 {
 		width: calc(41.66% - 1vw);
-	  }
-	  
+	}
+
 	.col-6 {
 		width: calc(50% - 1vw);
 	}
