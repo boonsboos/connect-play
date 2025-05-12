@@ -53,6 +53,9 @@ if (isset($_SESSION["userId"])) {
                 <a href="over-ons.php">Over Ons</a>
                 <a href="contact.php">Contact</a>
                 <?php if (isset($user)): ?>
+                        <?php if ($user->getRole() === UserRole::EMPLOYEE || $user->getRole() === UserRole::ADMINISTRATOR): ?>
+                        <a href="dashboard.php">Dashboard</a>
+                    <?php endif; ?>
                     <a href="profiel.php">Profiel</a>
                     <a href="logout.php">Logout</a>
                 <?php else: ?>
