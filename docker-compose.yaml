@@ -11,7 +11,7 @@ services:
             - "./php:/var/www/php"
             - "./public:/var/www/html" # geef Apache toegang tot de lokale map
             - "./php.ini:/usr/local/etc/php/php.ini" # gebruik een eigen php.ini bestand
-            - "./tests:/var/www/html/tests"
+            - "./tests:/var/www/tests"
 
     # database
     mariadb:
