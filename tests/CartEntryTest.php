@@ -15,7 +15,7 @@ class CartEntryTest extends TestCase {
         // Act: Met act wordt de method uitgevoerd
         $cartEntry->addCopy();
 
-        // Assert: controleer of het resultaat juist is
+        // Assert: Controleer of het resultaat juist is
         $this->assertEquals(1, $cartEntry->getCopies());
     }
 

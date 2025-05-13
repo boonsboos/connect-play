@@ -1,10 +1,12 @@
 <?php 
 
+namespace Shop\Domain;
+
 class CartEntry {
     private int $copies;
     private bool $workshopEnabled = false;
 
-    function __construct(int $copies = 0) // hiermee is de default waarde van $copies op 0 gezet
+    public function __construct(int $copies = 0) // hiermee is de default waarde van $copies op 0 gezet
     {
      $this->copies = $copies;   
     }
