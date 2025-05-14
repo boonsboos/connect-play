@@ -22,7 +22,7 @@ class OrderTest extends TestCase {
         $this->assertCount(1, $order->getEntries());
     }
 
-    public function testRemoveEntries() {
+    public function testRemoveEntry() {
         $order = New Order();
         $entry1 = New CartEntry();
         $entry2 = New CartEntry();
@@ -30,7 +30,7 @@ class OrderTest extends TestCase {
         $order->addEntry($entry1);
         $order->addEntry($entry2);
 
-        $order->removeEntries(1);
+        $order->removeEntry(1);
 
         $entries = $order->getEntries();
         
@@ -40,5 +40,7 @@ class OrderTest extends TestCase {
         // controleer of entry inderdaad $entry1 is
         $this->assertSame($entry1, $entries[0]);
     }
+
 }
+
 ?>

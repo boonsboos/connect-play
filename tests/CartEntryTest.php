@@ -36,5 +36,7 @@ class CartEntryTest extends TestCase {
         // deze assert verwacht dat isWorkshopEnabled() een true waarde teruggeeft
         $this->assertTrue($cartEntry->isWorkshopEnabled());
     }
+    
 }
+
 ?>
