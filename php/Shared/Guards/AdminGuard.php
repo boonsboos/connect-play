@@ -8,7 +8,6 @@ class AdminGuard extends Guard {
     public function allowed(): bool
     {
         if (!isset($_SESSION["userId"])) {
-            header("Location: /login.php");
             return false;
         }
 
