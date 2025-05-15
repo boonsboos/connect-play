@@ -26,11 +26,9 @@ $allButtons = $controller->getButtons();
             </div>
         <?php endif; ?>
 
-
-        <!-- Scheidingslijn tussen de rollen -->
-        <hr class="lineBetweenRoles col-12"></hr>
-
         <?php if (isset($user) && ($user->getRole() === UserRole::ADMINISTRATOR)): ?>
+            <!-- Scheidingslijn tussen de rollen. Alleen zichtbaar wanneer admin inlog -->
+            <hr class="lineBetweenRoles col-12"></hr>
             <div class="administratorBox flex justify-center p-30">
                 <!-- Met alleen de rol ADMINISTRATOR wordt de sectie administrator getoond -->
                 <p class="dasboardSectionTitel col-12 pb-30">ADMINISTRATOR</p>

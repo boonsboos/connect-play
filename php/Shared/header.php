@@ -15,7 +15,7 @@ if (isset($_SESSION["userId"])) {
     } catch (Exception $e) { // vang de exception op als de gebruiker niet gevonden is
         session_destroy();
         // vervang de huidige pagina met de login pagina
-        header("Location: /connect-play/login.php", true, 303);
+        header("Location: /login.php", true, 303);
         die();
     }
 }
@@ -53,6 +53,9 @@ if (isset($_SESSION["userId"])) {
                 <a href="over-ons.php">Over Ons</a>
                 <a href="contact.php">Contact</a>
                 <?php if (isset($user)): ?>
+                        <?php if ($user->getRole() === UserRole::EMPLOYEE || $user->getRole() === UserRole::ADMINISTRATOR): ?>
+                        <a href="dashboard.php">Dashboard</a>
+                    <?php endif; ?>
                     <a href="profiel.php">Profiel</a>
                     <a href="logout.php">Logout</a>
                 <?php else: ?>
