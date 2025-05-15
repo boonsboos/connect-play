@@ -10,16 +10,12 @@ class GameRepository {
     ) {}
 
     public function addGame(Game $game) {
-        
-        $stmt = $this->db->prepare("INSERT INTO `game`
-                                (player, price, duration, name, description, difficulty, left_in_stock)
-                                VALUES
-                                (:player, :price, :duration, :name, :description, :difficulty, :leftInStock)"
-                            );
+        // gebruik de prepare() ipv query() om slq injectie voorkomen. Zo kom de invoer niet direcht in de query
+        $stmt = $this->db->prepare("CALL add_game(:price, :players, :duration, :name, :description, :difficulty, :leftInStock)");
 
         $stmt->execute([
-            ':player' => $game->getPlayers(),
             ':price' => $game->getPrice(),
+            ':players' => $game->getPlayers(),
             ':duration' => $game->getDuration(),
             ':name' => $game->getName(),
             ':description' => $game->getDescription(),
@@ -27,14 +23,13 @@ class GameRepository {
             ':leftInStock' => $game->getLeftInStock()
         ]);
 
-        // pdo heeft een functie lastInsertId die geeft dus het id terug van de record waarin de gegeven worden opgeslagen
-        // het opgehaalde id wordt toegevoegd aan het game object
-        $game->setId((int) $this->db->lastInsertId());
+        // haal het id op dat de stored procedure heeft teruggegeven (uit de storerd procedure SELECT LAST_INSERT_ID() AS id;)
+        $gameRow = $stmt->fetch(); // haalt de eerste rij op na uitvoer van procedure en maak een associatieve array
+        if ($gameRow && isset($gameRow['id'])) {
+            $game->setId((int) $gameRow['id']);
+        }
     }
 
-    public function getGames() {
-        
-    }
 }
 
 ?>
