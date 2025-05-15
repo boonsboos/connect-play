@@ -2,7 +2,7 @@
 // Deze functie maakt een verbinding met de database en retourneert een PDO-object.
 function getConnection(): PDO|null
 {
-    $servername = "mariadb"; // de naam van de server. dit is niet localhost omdat de server in een docker container draait
+    $servername = "localhost"; // de naam van de server. dit is niet localhost omdat de server in een docker container draait
     $username = "root";
     $password = "";
     $name = "webshop";

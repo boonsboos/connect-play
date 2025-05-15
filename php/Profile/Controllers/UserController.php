@@ -13,6 +13,16 @@ class UserController extends Controller
         $this->userRepository = new UserRepository();
     }
 
+    public function register(User $user): void
+    {
+        try {
+            $this->userRepository->addUser($user);
+        } catch (Exception $e) {
+            header("Location: /register.php?error=" . urlencode($e->getMessage()), true, 303);
+            die();
+        }
+    }
+
     public function login(string $email, string $enteredPassword): void
     {
         try {

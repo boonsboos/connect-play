@@ -1,7 +1,43 @@
 <?php
 
 require_once '../php/Shared/header.php';
+require_once '../php/Profile/Controllers/UserController.php';
 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $firstname = $_POST['firstname'] ?? '';
+    $infix = $_POST['infix'] ?? '';
+    $lastname = $_POST['lastname'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $repeatEmail = $_POST['repeat_email'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $repeatPassword = $_POST['repeat_password'] ?? '';
+    $address = $_POST['address'] ?? '';
+    $postalcode = $_POST['postalcode'] ?? '';
+    $housenumber = $_POST['housenumber'] ?? '';
+    $city = $_POST['city'] ?? '';
+
+    // Validatie (simpele voorbeelden)
+    if ($email !== $repeatEmail) {
+        die("Emails komen niet overeen.");
+    }
+
+    if ($password !== $repeatPassword) {
+        die("Wachtwoorden komen niet overeen.");
+    }
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $fullName = trim("$firstname $infix $lastname");
+
+    // Maak Address en User objecten aan
+    $addressObj = new Address($postalcode, $housenumber, $address, $city);
+    $user = new User($email, uniqid(), $fullName, $hashedPassword, UserRole::CUSTOMER, [$addressObj]);
+
+    $controller = new UserController();
+    $controller->register($user);
+
+    header("Location: login.php?message=" . urlencode("Registratie succesvol!"));
+    exit();
+}
 ?>
 
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
@@ -30,7 +66,7 @@ require_once '../php/Shared/header.php';
 
         <div class="col-12">
             <label>Herhaal Email</label>
-            <input type="email" name="email" value="" required />
+            <input type="email" name="repeat_email" value="" required />
         </div>
 
         <div class="col-12">
@@ -40,7 +76,7 @@ require_once '../php/Shared/header.php';
 
         <div class="col-12">
             <label>Herhaal wachtwoord</label>
-            <input type="password" name="password" required />
+            <input type="password" name="repeat_password" required />
         </div>
 
         <div class="col-12">

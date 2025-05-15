@@ -18,16 +18,26 @@ class UserRepository
     public function addUser(User $user)
     {
         // gebruik de prepare() ipv query() om slq injectie voorkomen. Zo kom de invoer niet direcht in de query
+        $address = $user->getAddresses()[0];
 
-        $stmt = $this->db->prepare("CALL add_user(:postal_code, :house_number, :email, :name, :role, :password)");
-        $stmt = $this->db->prepare("CALL add_address(:postal_code, :house_number, :street_name, :city");
-        $stmt->execute([
-            ':postal_code' => $user->getAddresses("postal_code"),
-            ':house_number' => $user->getAddresses("house_number"),
+        // 1. Voeg adres toe
+        $stmtAddress = $this->db->prepare("CALL add_address(:postal_code, :house_number, :street_name, :city");
+        $stmtAddress->execute([
+            ':postal_code' => $address->getPostalCode(),
+            ':house_number' => $address->getHouseNumber(),
+            ':street_name' => $address->getStreetName(),
+            ':city' => $address->getCity()
+        ]);
+
+        // 2. Voeg gebruiker toe
+        $stmtUser = $this->db->prepare("CALL add_user(:postal_code, :house_number, :email, :name, :role, :password)");
+        $stmtUser->execute([
+            ':postal_code' => $address->getPostalCode(),
+            ':house_number' => $address->getHouseNumber(),
             ':email' => $user->getEmail(),
             ':name' => $user->getName(),
-            ':role' => $user->getRole(),
-            ':password' => $user->getRole(),
+            ':role' => $user->getRole()->value,
+            ':password' => $user->getPassword(),
         ]);
     }
 

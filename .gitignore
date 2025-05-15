@@ -1,2 +1,3 @@
 config.ini
 /public/vendor
+php/config/database.php

@@ -2,20 +2,32 @@
 
 class Address
 {
-    private $city;
     private $postalCode;
-    private $address;
+    private $houseNumber;
+    private $streetName;
+    private $city;
 
-    public function __construct(string $city, string $postalCode, string $address)
+    public function __construct(string $postalCode, string $houseNumber, string $streetName, string $city)
     {
-        $this->city = $city;
         $this->postalCode = $postalCode;
-        $this->address = $address;
+        $this->houseNumber = $houseNumber;
+        $this->streetName = $streetName;
+        $this->city = $city;
     }
 
-    public function getCity(): string
+    public function setPostalCode(string $postalCode): void
     {
-        return $this->city;
+        $this->postalCode = $postalCode;
+    }
+
+    public function setHouseNumber(string $houseNumber): void
+    {
+        $this->houseNumber = $houseNumber;
+    }
+
+    public function setStreetName(string $streetName): void
+    {
+        $this->streetName = $streetName;
     }
 
     public function setCity(string $city): void
@@ -28,18 +40,18 @@ class Address
         return $this->postalCode;
     }
 
-    public function setPostalCode(string $postalCode): void
+    public function getHouseNumber(): string
     {
-        $this->postalCode = $postalCode;
+        return $this->houseNumber;
     }
 
-    public function getAddress(): string
+    public function getStreetName(): string
     {
-        return $this->address;
+        return $this->streetName;
     }
 
-    public function setAddress(string $address): void
+    public function getCity(): string
     {
-        $this->address = $address;
+        return $this->city;
     }
 }
