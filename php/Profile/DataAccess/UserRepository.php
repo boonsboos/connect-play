@@ -15,6 +15,22 @@ class UserRepository
         }
     }
 
+    public function addUser(User $user)
+    {
+        // gebruik de prepare() ipv query() om slq injectie voorkomen. Zo kom de invoer niet direcht in de query
+
+        $stmt = $this->db->prepare("CALL add_user(:postal_code, :house_number, :email, :name, :role, :password)");
+        $stmt = $this->db->prepare("CALL add_address(:postal_code, :house_number, :street_name, :city");
+        $stmt->execute([
+            ':postal_code' => $user->getAddresses("postal_code"),
+            ':house_number' => $user->getAddresses("house_number"),
+            ':email' => $user->getEmail(),
+            ':name' => $user->getName(),
+            ':role' => $user->getRole(),
+            ':password' => $user->getRole(),
+        ]);
+    }
+
     /**
      * @throws Exception
      */
