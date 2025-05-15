@@ -1,7 +1,7 @@
 <?php
 
-require_once '../php/Profile/Domain/User.php';
-require_once '../php/config/database.php';
+require_once '/var/www/php/Profile/Domain/User.php';
+require_once '/var/www/php/config/database.php';
 
 class UserRepository
 {
