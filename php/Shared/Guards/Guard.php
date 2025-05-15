@@ -18,6 +18,7 @@ abstract class Guard
     {
         if (!$this->allowed()) {
             header("Location: $location");
+            die();
         }
     }
 }
