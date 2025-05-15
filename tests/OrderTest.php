@@ -21,7 +21,7 @@ class OrderTest extends TestCase {
         // Assert: Controleer of het resultaat juist is
         $this->assertCount(1, $order->getEntries());
     }
-
+  
     public function testRemoveEntry() {
         $order = New Order();
         $entry1 = New CartEntry();
@@ -40,7 +40,7 @@ class OrderTest extends TestCase {
         // controleer of entry inderdaad $entry1 is
         $this->assertSame($entry1, $entries[0]);
     }
-
-}
+  
+  }
 
 ?>

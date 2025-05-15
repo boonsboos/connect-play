@@ -5,12 +5,12 @@ namespace Shop\Domain;
 class CartEntry {
 
     private bool $workshopEnabled = false;
-
+  
     // met constructor property promotion hoef je de properties niet apart te declareren bovenaan de klasse
     public function __construct(
         private int $copies = 0 // hiermee is de default waarde van $copies op 0 gezet
     ) {}
-    
+  
     public function addCopy (){
         $this->copies++;
     }
