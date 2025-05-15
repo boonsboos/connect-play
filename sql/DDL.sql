@@ -479,6 +479,9 @@ CREATE PROCEDURE add_game(
 BEGIN
     INSERT INTO game (`price`, `players`, `duration`, `name`, `description`, `difficulty`,`left_in_stock`)
     VALUES (p_price, p_players, p_duration, p_name, p_description, p_difficulty, p_left_in_stock);
+
+    -- om de id van de toegevoegde game te kunnen ophalen
+    SELECT LAST_INSERT_ID() AS id;
 END //
 
 DELIMITER ;
