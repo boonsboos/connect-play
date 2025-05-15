@@ -1,6 +1,4 @@
-<?php
-
-namespace Shop\Domain;
+<?php require_once './CartEntry.php';
 
 class Order {
   
