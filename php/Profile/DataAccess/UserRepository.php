@@ -1,17 +1,20 @@
 <?php
 
 require_once '../php/Profile/Domain/User.php';
-require_once '../php/config/database.php';
+require_once '../php/Shared/Database.php';
 
 class UserRepository
 {
     private PDO $db;
-
     public function __construct()
     {
-        $this->db = getConnection();
-        if ($this->db === null) {
-            throw new Exception("Database connection failed.");
+        try {
+            // Maak een nieuwe databaseverbinding
+            $this->db = Database::connect();
+        } catch (PDOException $e) {
+            // Log de foutmelding of geef een foutmelding weer
+            echo "Fout bij het verbinden met de database: " . $e->getMessage();
+            exit;
         }
     }
 

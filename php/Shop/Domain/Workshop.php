@@ -1,7 +1,5 @@
 <?php
 
-namespace Shop\Domain;
-
 class Workshop {
     
     // met constructor property promotion hoef je de properties niet apart te declareren bovenaan de klasse

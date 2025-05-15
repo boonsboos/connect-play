@@ -1,16 +1,23 @@
 <?php
+require_once '../../Shared/Database.php';
+require_once '../Domain/Game.php';
 
-namespace Shop\DataAccess;
+class GameRepository
+{
+    private PDO $db;
+    public function __construct()
+    {
+        try {
+            $this->db = Database::connect();
+        } catch (PDOException $e) {
+            echo "Fout bij het verbinden met de database: " . $e->getMessage();
+            exit;
+        }
+    }
 
-class GameRepository {
-    
-    // met constructor property promotion hoef je de properties niet apart te declareren bovenaan de klasse
-    public function __construct(
-        private PDO $db // zo wordt er herbruikbare pdo object gemaakt die je kunt gebruiken in meerdere methods
-    ) {}
-
-    public function addGame(Game $game) {
-        // gebruik de prepare() ipv query() om slq injectie voorkomen. Zo kom de invoer niet direcht in de query
+    public function addGame(Game $game)
+    {
+        // gebruik de prepare() ipv query() om sql injectie te voorkomen. Zo komt de invoer niet direct in de query
         $stmt = $this->db->prepare("CALL add_game(:price, :players, :duration, :name, :description, :difficulty, :leftInStock)");
 
         $stmt->execute([
@@ -29,7 +36,4 @@ class GameRepository {
             $game->setId((int) $gameRow['id']);
         }
     }
-
 }
-
-?>
