@@ -10,9 +10,6 @@ class UserRepository
     public function __construct()
     {
         $this->db = getConnection();
-        if ($this->db === null) {
-            throw new Exception("Database connection failed.");
-        }
     }
 
     /**
@@ -21,10 +18,10 @@ class UserRepository
     public function getUser($emailOrId): User
     {
         if ($emailOrId) {
-            $sql = $this->db->prepare("SELECT * FROM user WHERE email = :email OR user_id = :id;");
+            $sql = $this->db->prepare("CALL get_user(:id, :email);");
             $sql->execute([
-                ':email' => $emailOrId,
                 ':id' => (int)$emailOrId,
+                ':email' => $emailOrId,
             ]);
         }
         $user = $sql->fetch();
@@ -32,12 +29,28 @@ class UserRepository
             throw new Exception("Gebruiker niet gevonden."); // gooit een error als de gebruiker niet gevonden is
         }
 
+        $sql = $this->db->prepare("CALL get_address(:postal_code, :house_number);");
+        $sql->execute([
+            ':postal_code' => $user['postal_code'],
+            ':house_number' => $user['house_number'],
+        ]);
+
+        $address = $sql->fetch(); // haal het adres op
+
         return new User(
             $user['email'],
             $user['user_id'],
             $user['name'],
             $user['password'],
             UserRole::from($user['role']),
+            [
+                new Address(
+                    $address['postal_code'],
+                    $address['house_number'],
+                    $address['street_name'],
+                    $address['city'],
+                ),
+            ]
         );
     }
 

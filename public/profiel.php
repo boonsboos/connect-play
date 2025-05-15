@@ -17,20 +17,20 @@ if (isset($user)): ?>
             <div class="col-6 flex justify-center">
                 <div class="col-6 flex flex-col gap-20 p-30 border rounded shadow-md bg-white">
                     <div class="flex flex-col gap-10">
-                        <p><strong>Username:</strong> <?php echo htmlspecialchars($user->getName()) ?></p>
-                        <p><strong>Email:</strong> <?php echo htmlspecialchars($user->getEmail()) ?></p>
-                        <p><strong>Role:</strong> <?php echo htmlspecialchars($user->getRole()->value) ?></p>
+                        <p><strong>Username:</strong> <?php echo $user->getName() ?></p>
+                        <p><strong>Email:</strong> <?php echo $user->getEmail() ?></p>
+                        <p><strong>Role:</strong> <?php echo $user->getRole()->value ?></p>
                     </div>
                 </div>
                 <div class="col-6 flex flex-col gap-20 p-30 border rounded shadow-md bg-white mt-20">
-                    <p><strong>Adressen</strong></p>
+                    <p><strong>Adres</strong></p>
                     <?php if (empty($user->getAddresses())): ?>
                         <p>Geen adressen gevonden.</p>
                     <?php else: ?>
-                        <ul class="list-disc pl-30">
+                        <ul>
                             <?php foreach ($user->getAddresses() as $address): ?>
                                 <li>
-                                    <?php echo htmlspecialchars($address->getAddress() . " " . $address->getPostalCode() . ", " . $address->getCity()); ?>
+                                    <?php echo $address->getStreet() . ' ' . $address->getHouseNumber() . ', ' . $address->getPostalCode() . ' ' . $address->getCity() ?>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
