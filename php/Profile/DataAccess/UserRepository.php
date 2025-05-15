@@ -17,7 +17,7 @@ class UserRepository
 
     public function addUser(User $user)
     {
-        // gebruik de prepare() ipv query() om slq injectie voorkomen. Zo kom de invoer niet direcht in de query
+        // Gebruik de prepare() ipv query() om sql injectie voorkomen. Zo komt de invoer niet direct in de query
         $address = $user->getAddresses()[0];
 
         // 1. Voeg adres toe
