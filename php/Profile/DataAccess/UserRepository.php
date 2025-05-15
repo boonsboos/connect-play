@@ -21,7 +21,7 @@ class UserRepository
         $address = $user->getAddresses()[0];
 
         // 1. Voeg adres toe
-        $stmtAddress = $this->db->prepare("CALL add_address(:postal_code, :house_number, :street_name, :city");
+        $stmtAddress = $this->db->prepare("CALL add_address(:postal_code, :house_number, :street_name, :city)");
         $stmtAddress->execute([
             ':postal_code' => $address->getPostalCode(),
             ':house_number' => $address->getHouseNumber(),

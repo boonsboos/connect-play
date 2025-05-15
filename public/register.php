@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $repeatEmail = $_POST['repeat_email'] ?? '';
     $password = $_POST['password'] ?? '';
     $repeatPassword = $_POST['repeat_password'] ?? '';
-    $address = $_POST['address'] ?? '';
+    $streetname = $_POST['streetname'] ?? '';
     $postalcode = $_POST['postalcode'] ?? '';
     $housenumber = $_POST['housenumber'] ?? '';
     $city = $_POST['city'] ?? '';
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $fullName = trim("$firstname $infix $lastname");
 
     // Maak Address en User objecten aan
-    $addressObj = new Address($postalcode, $housenumber, $address, $city);
+    $addressObj = new Address($postalcode, $housenumber, $streetname, $city);
     $user = new User($email, uniqid(), $fullName, $hashedPassword, UserRole::CUSTOMER, [$addressObj]);
 
     $controller = new UserController();
@@ -80,8 +80,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
 
         <div class="col-12">
-            <label>Adres</label>
-            <input type="text" name="address" required />
+            <label>Straat</label>
+            <input type="text" name="streetname" required />
         </div>
 
         <div class="col-6">
