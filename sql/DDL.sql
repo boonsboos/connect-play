@@ -327,7 +327,7 @@ CREATE PROCEDURE get_address(
 )
 BEGIN
     SELECT
-        `postal_code`
+        `postal_code`,
         `house_number`,
         `street_name`,
         `city`

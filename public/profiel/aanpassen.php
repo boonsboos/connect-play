@@ -25,52 +25,50 @@ if (isset($user)): ?>
                 <a href="/profiel/facturen.php" class="button">Facturen</a>
                 <a href="/profiel/aanpassen.php" class="button active">Profiel aanpassen</a>
             </div>
-            <div class="col-6 flex flex-row justify-between">
-                <form action="/profiel/aanpassen.php" method="post" class="col-6 flex flex-col">
-                    <h2 class="text-center">Info</h2>
-                    <input type="hidden" name="type" value="information">
-                    <input type="hidden" name="userId" value="<?php echo $user->getId() ?>">
-                    <div>
-                        <label for="name">Naam:</label>
-                        <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($user->getName()) ?>" class="input" required>
+            <form action="/profiel/aanpassen.php" method="post">
+                <div class="col-12 flex flex-row gap-20">
+                    <div class="col-6 flex flex-col">
+                        <h2 class="text-center">Info</h2>
+                        <input type="hidden" name="userId" value="<?php echo $user->getId() ?>">
+                        <div>
+                            <label for="name">Naam:</label>
+                            <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($user->getName()) ?>" class="input" required>
+                        </div>
+                        <div>
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user->getEmail()) ?>" class="input" required>
+                        </div>
+                        <div>
+                            <label for="password">Wachtwoord:</label>
+                            <input type="password" id="password" name="password" class="input" required>
+                        </div>
+                        <div>
+                            <label for="password-">Herhaal wachtwoord:</label>
+                            <input type="password" id="password" name="password" class="input" required>
+                        </div>
                     </div>
-                    <div>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user->getEmail()) ?>" class="input" required>
-                    </div>
-                    <div>
-                        <label for="password">Wachtwoord:</label>
-                        <input type="password" id="password" name="password" class="input" required>
-                    </div>
-                    <div>
-                        <label for="password-">Herhaal wachtwoord:</label>
-                        <input type="password" id="password" name="password" class="input" required>
-                    </div>
-                    <button type="submit" class="button">Opslaan</button>
-                </form>
-                <form action="/profiel/aanpassen.php" method="post" class="col-6 flex flex-col">
-                    <h2 class="text-center">Adres</h2>
-                    <input type="hidden" name="type" value="address">
-                    <input type="hidden" name="userId" value="<?php echo $user->getId() ?>">
-                    <div>
-                        <label for="postal">Postcode:</label>
-                        <input type="text" id="name" name="name" value="<?php echo count($user->getAddresses()) > 0 ? htmlspecialchars($user->getAddresses()[0]->getPostalCode()) : "" ?>" class="input" required>
-                    </div>
-                    <div>
-                        <label for="street">Straat naam:</label>
-                        <input type="street" id="street" name="street" value="<?php echo count($user->getAddresses()) > 0 ? htmlspecialchars($user->getAddresses()[0]->getStreet()) : "" ?>" class="input" required>
-                    </div>
-                    <div>
-                        <label for="street">Huisnummer:</label>
-                        <input type="street" id="street" name="street" value="<?php echo count($user->getAddresses()) > 0 ? htmlspecialchars($user->getAddresses()[0]->getHouseNumber()) : "" ?>" class="input" required>
-                    </div>
-                    <div>
-                        <label for="street">Stad:</label>
-                        <input type="street" id="street" name="street" value="<?php echo count($user->getAddresses()) > 0 ? htmlspecialchars($user->getAddresses()[0]->getCity()) : "" ?>" class="input" required>
+                    <div class="col-6 flex flex-col">
+                        <h2 class="text-center">Adres</h2>
+                        <div>
+                            <label for="postal">Postcode:</label>
+                            <input type="text" id="name" name="name" value="<?php echo count($user->getAddresses()) > 0 ? htmlspecialchars($user->getAddresses()[0]->getPostalCode()) : "" ?>" class="input" required>
+                        </div>
+                        <div>
+                            <label for="street">Straat naam:</label>
+                            <input type="street" id="street" name="street" value="<?php echo count($user->getAddresses()) > 0 ? htmlspecialchars($user->getAddresses()[0]->getStreet()) : "" ?>" class="input" required>
+                        </div>
+                        <div>
+                            <label for="street">Huisnummer:</label>
+                            <input type="street" id="street" name="street" value="<?php echo count($user->getAddresses()) > 0 ? htmlspecialchars($user->getAddresses()[0]->getHouseNumber()) : "" ?>" class="input" required>
+                        </div>
+                        <div>
+                            <label for="street">Stad:</label>
+                            <input type="street" id="street" name="street" value="<?php echo count($user->getAddresses()) > 0 ? htmlspecialchars($user->getAddresses()[0]->getCity()) : "" ?>" class="input" required>
+                        </div>
                     </div>
                     <button type="submit" class="button">Opslaan</button>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </section>
 <?php endif;
