@@ -1,0 +1,19 @@
+# gebruik composer
+FROM composer:latest AS base
+
+# kopieer alle php code
+COPY ./php /var/www/php
+COPY ./public /var/www/html
+
+# kopieer alle tests
+COPY ./tests ./tests
+
+# kopieer bestanden voor composer
+COPY ./public/composer.json ./
+COPY ./public/composer.lock ./
+
+# installeer phpunit
+RUN composer install
+
+#                       voer tests uit in map ./tests      en include deze map met onze code
+ENTRYPOINT ["composer", "exec", "phpunit", "./tests", "--", "--include-path", "\"/var/www\""]

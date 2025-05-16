@@ -4,6 +4,7 @@ services:
         ports:
             - "8080:80" # de webserver runt op poort 8080
         depends_on:
+            - test-php
             - mariadb
             - phpmyadmin
         volumes:
@@ -16,6 +17,8 @@ services:
     # database
     mariadb:
         image: "mariadb:latest"
+        depends_on:
+            - test-php
         environment:
             MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "1"
             MARIADB_ROOT_PASSWORD: "" # voor lokaal gebruik zetten we het root wachtwoord op leeg
@@ -29,3 +32,19 @@ services:
         environment:
             PMA_HOST: mariadb # dit geeft aan dat dit de container is waarop de database runt.
 
+    test-php:
+        build:
+            dockerfile: "dockerfile-test" # gebruik de dockerfile-test als image
+        develop:
+            # Als er PHP verandert, wordt de container herstart, opnieuw gebuild
+            # en worden de tests meteen opnieuw uitgevoerd
+            watch:
+                - path: php
+                  action: rebuild
+                - path: tests
+                  action: rebuild
+                - path: public
+                  action: rebuild
+                  ignore: # css of js heeft niks te maken met php, die kunnen we negeren
+                      - ./public/css/
+                      - ./public/js/
