@@ -519,6 +519,20 @@ ul {
 	transition: transform 0.5s ease;
 }
 
+#profile-container {
+	background-color: var(--background);
+}
+
+#profile-container .button {
+	width: auto;
+	background-color: var(--accent);
+	color: var(--foreground);
+	padding: 10px 15px;
+}
+
+#profile-container .button.active {
+	background-color: var(--primary);
+}
 @media only screen and (min-width: 768px) {
 	/* columns subtract the width of the gap specified by .flex from their own width */
 
