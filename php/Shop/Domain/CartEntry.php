@@ -1,7 +1,5 @@
 <?php 
 
-namespace Shop\Domain;
-
 class CartEntry {
 
     private bool $workshopEnabled = false;

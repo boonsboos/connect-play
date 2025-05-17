@@ -2,7 +2,6 @@
 
 require_once 'Address.php';
 require_once 'UserRole.php';
-require_once '../php/Shared/debug.php';
 
 class User
 {
@@ -80,6 +79,11 @@ class User
         $this->name = $name;
     }
 
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
     public function setRole(UserRole $role): void
     {
         $this->role = $role;
@@ -91,5 +95,10 @@ class User
     public function setAddresses(array $addresses): void
     {
         $this->addresses = $addresses;
+    }
+
+    public function addAddress(Address $address): void
+    {
+        $this->addresses[] = $address;
     }
 }

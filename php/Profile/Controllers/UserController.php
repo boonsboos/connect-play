@@ -1,8 +1,8 @@
 <?php
 
-require_once '../php/Shared/Controller.php';
-require_once '../php/Profile/DataAccess/UserRepository.php';
-require_once '../php/Profile/Domain/User.php';
+require_once '/var/www/php/Shared/Controller.php';
+require_once '/var/www/php/Profile/DataAccess/UserRepository.php';
+require_once '/var/www/php/Profile/Domain/User.php';
 
 class UserController extends Controller
 {
@@ -74,6 +74,27 @@ class UserController extends Controller
             }
         } catch (Exception $e) {
             header("Location: /wachtwoord-reset.php?error=" . urlencode($e->getMessage()), true, 303);
+            die();
+        }
+    }
+
+    public function updateUser($userId, array $data): void
+    {
+        try {
+            $user = $this->userRepository->getUser($userId);
+
+            if ($user) {
+                $user->setName($data['name']);
+                $user->setEmail($data['email']);
+                if (isset($data['password']) && !empty($data['password'])) {
+                    $user->setPassword(password_hash($data['password'], PASSWORD_DEFAULT));
+                }
+                $this->userRepository->updateUser($user);
+            } else {
+                throw new Exception("User not found.");
+            }
+        } catch (Exception $e) {
+            header("Location: /profiel/aanpassen.php?error=" . urlencode($e->getMessage()), true, 303);
             die();
         }
     }

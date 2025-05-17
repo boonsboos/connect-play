@@ -1,3 +1,5 @@
 config.ini
 /public/vendor
-php/config/database.php
+
+.vscode/
+.idea/
