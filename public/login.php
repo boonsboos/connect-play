@@ -46,10 +46,18 @@ if (isset($_GET['error'])) {
 			</div>
 		</div>
 
-		<div class="send-message mb-col-6 col-5 pt-30">
-			<button class="button" type="submit">Inloggen</button>
+		<div class="mb-col-6 col-5">
+			<div class="send-message pt-30">
+				<button class="button" type="submit">Inloggen</button>
+			</div>
+
+			<div class="send-message pt-30">
+				<a href="register.php">Registreren</a>
+			</div>
 		</div>
 	</form>
+
+
 </section>
 
 <?php require_once '../php/Shared/footer.php'; ?>

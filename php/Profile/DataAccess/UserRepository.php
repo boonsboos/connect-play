@@ -18,21 +18,49 @@ class UserRepository
         }
     }
 
+    public function addUser(User $user)
+    {
+        // Gebruik de prepare() ipv query() om sql injectie voorkomen. Zo komt de invoer niet direct in de query
+        $address = $user->getAddresses()[0];
+
+        // 1. Voeg adres toe
+        $stmtAddress = $this->db->prepare("CALL add_address(:postal_code, :house_number, :street_name, :city)");
+        $stmtAddress->execute([
+            ':postal_code' => $address->getPostalCode(),
+            ':house_number' => $address->getHouseNumber(),
+            ':street_name' => $address->getStreetName(),
+            ':city' => $address->getCity()
+        ]);
+
+        // 2. Voeg gebruiker toe
+        $stmtUser = $this->db->prepare("CALL add_user(:postal_code, :house_number, :email, :name, :role, :password)");
+        $stmtUser->execute([
+            ':postal_code' => $address->getPostalCode(),
+            ':house_number' => $address->getHouseNumber(),
+            ':email' => $user->getEmail(),
+            ':name' => $user->getName(),
+            ':role' => $user->getRole()->value,
+            ':password' => $user->getPassword(),
+        ]);
+    }
+
     /**
      * @throws Exception
      */
-    public function getUser($emailOrId): User
+    public function getUser($emailOrId): ?User
     {
-        if ($emailOrId) {
-            $sql = $this->db->prepare("CALL get_user(:id, :email);");
-            $sql->execute([
-                ':id' => (int)$emailOrId,
-                ':email' => $emailOrId,
-            ]);
+        if (!$emailOrId) {
+            return null;
         }
+
+        $sql = $this->db->prepare("CALL get_user(:id, :email);");
+        $sql->execute([
+            ':id' => (int)$emailOrId,
+            ':email' => $emailOrId,
+        ]);
         $user = $sql->fetch();
         if (!$user) {
-            throw new Exception("Gebruiker niet gevonden."); // gooit een error als de gebruiker niet gevonden is
+            return null; // gooit een error als de gebruiker niet gevonden is
         }
 
         $sql = $this->db->prepare("CALL get_address(:postal_code, :house_number);");
