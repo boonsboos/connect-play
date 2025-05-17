@@ -47,18 +47,20 @@ class UserRepository
     /**
      * @throws Exception
      */
-    public function getUser($emailOrId): User
+    public function getUser($emailOrId): ?User
     {
-        if ($emailOrId) {
-            $sql = $this->db->prepare("CALL get_user(:id, :email);");
-            $sql->execute([
-                ':id' => (int)$emailOrId,
-                ':email' => $emailOrId,
-            ]);
+        if (!$emailOrId) {
+            return null;
         }
+
+        $sql = $this->db->prepare("CALL get_user(:id, :email);");
+        $sql->execute([
+            ':id' => (int)$emailOrId,
+            ':email' => $emailOrId,
+        ]);
         $user = $sql->fetch();
         if (!$user) {
-            throw new Exception("Gebruiker niet gevonden."); // gooit een error als de gebruiker niet gevonden is
+            return null; // gooit een error als de gebruiker niet gevonden is
         }
 
         $sql = $this->db->prepare("CALL get_address(:postal_code, :house_number);");

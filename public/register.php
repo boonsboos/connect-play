@@ -12,18 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST['password'] ?? '';
     $repeatPassword = $_POST['repeat_password'] ?? '';
     $streetname = $_POST['streetname'] ?? '';
-    $postalcode = $_POST['postalcode'] ?? '';
+    // Als er een spatsie staat tussen de nummers & letters wordt die weggehaald
+    $postalcode = str_replace(' ', '', $_POST['postalcode'] ?? '');
     $housenumber = $_POST['housenumber'] ?? '';
     $city = $_POST['city'] ?? '';
-
-    // Validatie (simpele voorbeelden)
-    if ($email !== $repeatEmail) {
-        die("Emails komen niet overeen.");
-    }
-
-    if ($password !== $repeatPassword) {
-        die("Wachtwoorden komen niet overeen.");
-    }
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $fullName = trim("$firstname $infix $lastname");
@@ -39,67 +31,85 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     exit();
 }
 ?>
+<script src="js/userValidation.js"></script>
 
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
 
 <section id="register-container" class="flex justify-center">
-    <form id="form-box" class="mb-col-12 col-6 flex justify-center" method="post" action="register.php">
-        <div class="col-9">
-            <label>Voornaam</label>
-            <input type="text" name="firstname" value="" required />
+    <form id="form-box" class="mb-col-12 col-6 flex justify-center" method="post">
+        <div id="error-box" class="mb-col-12 col-12 error-message"></div>
+
+        <div class="mb-col-12 col-12 flex justify-center pb-30">
+            <div class="mb-col-9 col-8">
+                <label>Voornaam</label>
+                <input type="text" class="input" name="firstname" value="" required />
+            </div>
+
+            <div class="mb-col-3 col-2">
+                <label>Tussenvoegsel</label>
+                <input type="text" class="input" name="infix" value="" />
+            </div>
         </div>
 
-        <div class="col-3">
-            <label>Tussenvoegsel</label>
-            <input type="text" name="infix" value="" required />
+        <div class="mb-col-12 col-12 flex justify-center pb-30">
+            <div class="mb-col-12 col-9">
+                <label>Achternaam</label>
+                <input type="text" class="input" name="lastname" value="" required />
+            </div>
         </div>
 
-        <div class="col-12">
-            <label>Achternaam</label>
-            <input type="text" name="lastname" value="" required />
+        <div class="mb-col-12 col-12 flex justify-center pb-30">
+            <div class="mb-col-12 col-5">
+                <label for="email">E-mail:</label>
+                <input class="input" type="email" name="email" placeholder="email@example.com" />
+            </div>
+
+            <div class="mb-col-12 col-5">
+                <label>Herhaal Email</label>
+                <input type="email" class="input" name="repeat_email" value="" required />
+            </div>
         </div>
 
-        <div class="col-12">
-            <label>Email</label>
-            <input type="email" name="email" value="" placeholder="email@example.com" required />
+        <div class="mb-col-12 col-12 flex justify-center pb-30">
+            <div class="mb-col-12 col-5">
+                <label>Wachtwoord</label>
+                <input type="password" class="input" name="password" required />
+            </div>
+
+            <div class="mb-col-12 col-5">
+                <label>Herhaal wachtwoord</label>
+                <input type="password" class="input" name="repeat_password" required />
+            </div>
         </div>
 
-        <div class="col-12">
-            <label>Herhaal Email</label>
-            <input type="email" name="repeat_email" value="" required />
+        <div class="mb-col-12 col-12 flex justify-center pb-30">
+            <div class="mb-col-12 col-9">
+                <label>Straat</label>
+                <input type="text" class="input" name="streetname" required />
+            </div>
         </div>
 
-        <div class="col-12">
-            <label>Wachtwoord</label>
-            <input type="password" name="password" required />
-        </div>
+        <div class="mb-col-12 col-12 flex justify-center pb-30">
+            <div class="mb-col-5 col-2">
+                <label>Postcode</label>
+                <input type="text" class="input" name="postalcode" placeholder="1234AB" value="" required />
+            </div>
 
-        <div class="col-12">
-            <label>Herhaal wachtwoord</label>
-            <input type="password" name="repeat_password" required />
-        </div>
+            <div class="mb-col-5 col-2">
+                <label>Huisnummer</label>
+                <input type="text" class="input" name="housenumber" value="" required />
+            </div>
 
-        <div class="col-12">
-            <label>Straat</label>
-            <input type="text" name="streetname" required />
+            <div class="mb-col-12 col-6">
+                <label>Plaats</label>
+                <input type="text" class="input" name="city" value="" required />
+            </div>
         </div>
-
-        <div class="col-6">
-            <label>Postcode</label>
-            <input type="text" name="postalcode" value="" required />
+        <div class="mb-col-12 col-12 flex justify-center pb-30">
+            <div class="mb-col-6 col-6">
+                <button class="button" type="submit">Registreer</button>
+            </div>
         </div>
-
-        <div class="col-6">
-            <label>Huisnummer</label>
-            <input type="text" name="housenumber" value="" required />
-        </div>
-
-        <div class="col-12">
-            <label>Plaats</label>
-            <input type="text" name="city" value="" required />
-        </div>
-
-        <button type="submit">Registreer</button>
     </form>
 </section>
 
