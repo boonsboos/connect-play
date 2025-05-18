@@ -62,12 +62,35 @@ class UserRepository
 
     public function updateUser(User $user): void
     {
-        $sql = $this->db->prepare("CALL update_user(:id, :postal_code, :house_number, :email, :role, :pass);");
-        $sql->execute([
+        $addressStmt = $this->db->prepare("CALL get_address(:postal_code, :house_number);");
+        $addressStmt->execute([
+            ':postal_code' => $user->getAddresses()[0]->getPostalCode(),
+            ':house_number' => $user->getAddresses()[0]->getHouseNumber(),
+        ]);
+        if (!$addressStmt->fetch()) {
+            $addressStmt = $this->db->prepare("CALL add_address(:postal_code, :house_number, :street_name, :city);");
+            $addressStmt->execute([
+                ':postal_code' => $user->getAddresses()[0]->getPostalCode(),
+                ':house_number' => $user->getAddresses()[0]->getHouseNumber(),
+                ':street_name' => $user->getAddresses()[0]->getStreet(),
+                ':city' => $user->getAddresses()[0]->getCity(),
+            ]);
+        } else {
+            $addressStmt = $this->db->prepare("CALL update_address(:postal_code, :house_number, :street_name, :city);");
+            $addressStmt->execute([
+                ':postal_code' => $user->getAddresses()[0]->getPostalCode(),
+                ':house_number' => $user->getAddresses()[0]->getHouseNumber(),
+                ':street_name' => $user->getAddresses()[0]->getStreet(),
+                ':city' => $user->getAddresses()[0]->getCity(),
+            ]);
+        }
+        $userStmt = $this->db->prepare("CALL update_user(:id, :postal_code, :house_number, :email, :name, :role, :pass);");
+        $userStmt->execute([
             ':id' => $user->getId(),
-            ':postal_code' => null,
-            ':house_number' => null,
+            ':postal_code' => $user->getAddresses()[0]->getPostalCode(),
+            ':house_number' => $user->getAddresses()[0]->getHouseNumber(),
             ':email' => $user->getEmail(),
+            ':name' => $user->getName(),
             ':role' => $user->getRole()->value,
             ':pass' => $user->getPassword(),
         ]);

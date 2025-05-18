@@ -2,7 +2,7 @@
 
 class Address
 {
-    public function __construct(private string $postalCode, private int $houseNumber, private string $street, private string $city) {}
+    public function __construct(private string $postalCode, private string $houseNumber, private string $street, private string $city) {}
 
     public function getPostalCode(): string
     {
@@ -14,12 +14,12 @@ class Address
         $this->postalCode = $postalCode;
     }
 
-    public function getHouseNumber(): int
+    public function getHouseNumber(): string
     {
         return $this->houseNumber;
     }
 
-    public function setHouseNumber(int $houseNumber): void
+    public function setHouseNumber(string $houseNumber): void
     {
         $this->houseNumber = $houseNumber;
     }
