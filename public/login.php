@@ -52,7 +52,7 @@ if (isset($_GET['error'])) {
 			</div>
 
 			<div class="send-message pt-30">
-				<a href="register.php">Registreren</a>
+				<a href="registreer.php">Registreren</a>
 			</div>
 		</div>
 	</form>
