@@ -19,14 +19,12 @@ class User
      */
     public function __construct(
         string $email,
-        string $id,
         string $name,
         string $password,
         UserRole $role = UserRole::CUSTOMER, // zet default
         array $addresses = [] // niet meegegeven = leeg
     ) {
         $this->email = $email;
-        $this->id = $id;
         $this->name = $name;
         $this->role = $role;
         $this->addresses = $addresses;

@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Maak Address en User objecten aan
     $addressObj = new Address($postalcode, $housenumber, $streetname, $city);
-    $user = new User($email, uniqid(), $fullName, $hashedPassword, UserRole::CUSTOMER, [$addressObj]);
+    $user = new User($email, $fullName, $hashedPassword, UserRole::CUSTOMER, [$addressObj]);
 
     $controller = new UserController();
     $controller->register($user);
