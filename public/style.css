@@ -533,11 +533,61 @@ ul {
 #profile-container .button.active {
 	background-color: var(--primary);
 }
+
+.webshop-container {
+	display: flex;
+	gap: 16px;
+	padding: 16px;
+	background-color: var(--background);
+}
+
+.productfilter {
+	display: flex;
+	gap: 16px;
+	padding: 16px;
+	background-color: var(--background);
+	border: 1px solid var(--accent);
+	border-radius: 8px;
+	height: 70vh;
+}
+
+.productlijst {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Verdeel in drie kolommen */
+    gap: 16px;
+    padding: 16px;
+	border: 1px solid var(--accent);
+	border-radius: 8px;
+	background-color: var(--background);
+	height: 70vh;
+}
+
+.game-card {
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+    padding: 16px;
+	background-color: var(--background);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.paginanav {
+	display: flex;
+	justify-content: center;
+	margin-top: 5000px;
+	text-align: center;
+}
+
+
 @media only screen and (min-width: 768px) {
 	/* columns subtract the width of the gap specified by .flex from their own width */
 
 	.col {
 		width: calc(8.33% - 1vw);
+	}
+
+	.col-2 {
+		width: calc(16.66% - 1vw);
 	}
 
 	.col-3 {
@@ -689,6 +739,19 @@ ul {
 		transform: scale(1.2);
 		transition: transform 0.5s ease;
 	}
+
+	@media (max-width: 768px) {
+    .productlijst {
+        grid-template-columns: repeat(2, 1fr); /* Toon 2 kaarten naast elkaar op tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .productlijst {
+        grid-template-columns: 1fr; /* Toon 1 kaart per rij op mobiele apparaten */
+    }
+}
+
 }
 
 /*
