@@ -306,6 +306,12 @@ a {
 	border: 2px solid #ff0000;
 }
 
+/*Success Messages*/
+.success-message {
+	background-color: #202020;
+	border: 2px solid #00ff00;
+}
+
 /* Header */
 header {
 	position: sticky;

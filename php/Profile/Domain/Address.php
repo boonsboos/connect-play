@@ -9,6 +9,7 @@ class Address
         private string $city
     ) {}
 
+
     public function setPostalCode(string $postalCode): void
     {
         $this->postalCode = $postalCode;

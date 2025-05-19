@@ -127,21 +127,24 @@ class UserController extends Controller
         }
     }
 
-    public function updateUser($userId, array $data): void
+    public function updateUserInfo($userId, array $data): void
     {
         try {
             $user = $this->userRepository->getUser($userId);
 
-            if ($user) {
-                $user->setName($data['name']);
-                $user->setEmail($data['email']);
-                if (isset($data['password']) && !empty($data['password'])) {
-                    $user->setPassword(password_hash($data['password'], PASSWORD_DEFAULT));
-                }
-                $this->userRepository->updateUser($user);
-            } else {
-                throw new Exception("User not found.");
+            $user->setName($data['name']);
+            $user->setEmail($data['email']);
+            $user->getAddresses()[0]->setPostalCode($data['postal-code']);
+            $user->getAddresses()[0]->setHouseNumber($data['house-number']);
+            $user->getAddresses()[0]->setStreet($data['street-name']);
+            $user->getAddresses()[0]->setCity($data['city']);
+            if (isset($data['password']) && !empty($data['password'])) {
+                $user->setPassword(password_hash($data['password'], PASSWORD_DEFAULT));
             }
+
+            $this->userRepository->updateUser($user);
+            header("Location: /profiel/aanpassen.php?success=" . urlencode("Profiel succesvol aangepast"), true, 303);
+            die();
         } catch (Exception $e) {
             header("Location: /profiel/aanpassen.php?error=" . urlencode($e->getMessage()), true, 303);
             die();

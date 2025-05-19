@@ -5,6 +5,7 @@ require_once '/var/www/php/Shop/Domain/Game.php';
 
 // om PHPUnit te kunnen gebruiken moet eerst de TESTCase worden geïmporteerd
 use PHPUnit\Framework\TestCase;
+use Shop\Domain\CartEntry;
 
 class CartEntryTest extends TestCase {
 

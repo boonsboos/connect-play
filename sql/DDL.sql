@@ -758,6 +758,7 @@ CREATE PROCEDURE update_user(
     IN p_postal_code VARCHAR(6),
     IN p_house_number VARCHAR(6),
     IN p_email VARCHAR(320),
+    IN p_name VARCHAR(150),
     IN p_role VARCHAR(15),
     IN p_password VARCHAR(120)
 )
@@ -771,6 +772,7 @@ BEGIN
         `postal_code` = COALESCE(p_postal_code, `postal_code`),
         `house_number` = COALESCE(p_house_number, `house_number`),
         `email` = COALESCE(p_email, `email`),
+        `name` = COALESCE(p_name, `name`),
         `role` = COALESCE(p_role, `role`),
         `password` = COALESCE(p_password, `password`)
     WHERE
