@@ -2,18 +2,12 @@
 
 class Address
 {
-    private $postalCode;
-    private $houseNumber;
-    private $streetName;
-    private $city;
-
-    public function __construct(string $postalCode, string $houseNumber, string $streetName, string $city)
-    {
-        $this->postalCode = $postalCode;
-        $this->houseNumber = $houseNumber;
-        $this->streetName = $streetName;
-        $this->city = $city;
-    }
+    public function __construct(
+        private string $postalCode,
+        private string $houseNumber,
+        private string $streetName,
+        private string $city
+    ) {}
 
     public function setPostalCode(string $postalCode): void
     {

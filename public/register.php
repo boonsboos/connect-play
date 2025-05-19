@@ -26,9 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $controller = new UserController();
     $controller->register($user);
-
-    header("Location: login.php?message=" . urlencode("Registratie succesvol!"));
-    exit();
 }
 ?>
 <script src="js/userValidation.js"></script>
