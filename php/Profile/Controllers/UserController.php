@@ -3,6 +3,7 @@
 require_once '/var/www/php/Shared/Controller.php';
 require_once '/var/www/php/Profile/DataAccess/UserRepository.php';
 require_once '/var/www/php/Profile/Domain/User.php';
+require_once '/var/www/php/Profile/Domain/Address.php';
 
 class UserController extends Controller
 {
@@ -11,6 +12,64 @@ class UserController extends Controller
     public function __construct()
     {
         $this->userRepository = new UserRepository();
+    }
+
+    public function register(User $user): void
+    {
+        try {
+            $name = $user->getName();
+            $email = $user->getEmail();
+            $password = $user->getPassword();
+
+            $address = $user->getAddresses()[0];
+
+            $streetname = $address->getStreetName();
+            $postalcode = $address->getPostalCode();
+            $housenumber = $address->getHouseNumber();
+            $city = $address->getCity();
+
+            /**
+             * Backend Validatie
+             */
+
+            // Controleer of gebruiker al bestaat
+            try {
+                $this->userRepository->getUser($user->getEmail());
+                // Als bovenstaande niet faalt, bestaat de gebruiker al
+                throw new Exception("E-mailadres is al in gebruik.");
+            } catch (Exception $e) {
+                if ($e->getMessage() !== "Gebruiker niet gevonden.") {
+                    // Als het een andere exception is dan "gebruiker niet gevonden", gooi die door
+                    throw $e;
+                }
+
+                if (empty($name)) throw new Exception("Naam is verplicht.");
+
+                // Controller of het een valide e-mailadres is
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    throw new Exception("Voer een geldig e-mailadres in.");
+                }
+
+                if (strlen($password) < 8) {
+                    throw new Exception("Wachtwoord moet minstens 8 tekens bevatten.");
+                }
+
+                if (empty($streetname)) throw new Exception("Straatnaam is verplicht.");
+
+                if (!preg_match('/^\d{4}[A-Z]{2}$/', $postalcode)) {
+                    throw new Exception("Voer een geldige Nederlandse postcode in (bijv. 1234AB).");
+                }
+
+                if (empty($housenumber)) throw new Exception("Huisnummer is verplicht.");
+                if (empty($city)) throw new Exception("Plaats is verplicht.");
+
+                // Als alle validatie is gedaan wordt de gebruiker toegevoegd aan de database hier:
+                $this->userRepository->addUser($user);
+            }
+        } catch (Exception $e) {
+            header("Location: /registreer.php?error=" . urlencode($e->getMessage()), true, 303);
+            die();
+        }
     }
 
     public function login(string $email, string $enteredPassword): void

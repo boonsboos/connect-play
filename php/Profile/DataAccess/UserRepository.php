@@ -18,18 +18,63 @@ class UserRepository
         }
     }
 
+    public function addUser(User $user)
+    {
+        // Gebruik de prepare() ipv query() om sql injectie voorkomen. Zo komt de invoer niet direct in de query
+        $address = $user->getAddresses()[0];
+
+        // 1. Kijkt of address bestaat
+        $addressStmt = $this->db->prepare("CALL get_address(:postal_code, :house_number);");
+        $addressStmt->execute([
+            ':postal_code' => $address->getPostalCode(),
+            ':house_number' => $address->getHouseNumber(),
+        ]);
+
+        // 2. Als address nog niet bestaat voeg toe
+        if (!$addressStmt->fetch()) {
+            $StmtAddress = $this->db->prepare("CALL add_address(:postal_code, :house_number, :street_name, :city)");
+            $StmtAddress->execute([
+                ':postal_code' => $address->getPostalCode(),
+                ':house_number' => $address->getHouseNumber(),
+                ':street_name' => $address->getStreetName(),
+                ':city' => $address->getCity()
+            ]);
+        } else {
+            $addressStmt = $this->db->prepare("CALL update_address(:postal_code, :house_number, :street_name, :city);");
+            $addressStmt->execute([
+                ':postal_code' => $address->getPostalCode(),
+                ':house_number' => $address->getHouseNumber(),
+                ':street_name' => $address->getStreetName(),
+                ':city' => $address->getCity(),
+            ]);
+        }
+
+        // 3. Voeg gebruiker toe
+        $stmtUser = $this->db->prepare("CALL add_user(:postal_code, :house_number, :email, :name, :role, :password)");
+        $stmtUser->execute([
+            ':postal_code' => $address->getPostalCode(),
+            ':house_number' => $address->getHouseNumber(),
+            ':email' => $user->getEmail(),
+            ':name' => $user->getName(),
+            ':role' => $user->getRole()->value,
+            ':password' => $user->getPassword(),
+        ]);
+    }
+
     /**
      * @throws Exception
      */
     public function getUser($emailOrId): User
     {
-        if ($emailOrId) {
-            $sql = $this->db->prepare("CALL get_user(:id, :email);");
-            $sql->execute([
-                ':id' => (int)$emailOrId,
-                ':email' => $emailOrId,
-            ]);
+        if (!$emailOrId) {
+            throw new Exception("Email of Id niet meegegeven");
         }
+
+        $sql = $this->db->prepare("CALL get_user(:id, :email);");
+        $sql->execute([
+            ':id' => (int)$emailOrId,
+            ':email' => $emailOrId,
+        ]);
         $user = $sql->fetch();
         if (!$user) {
             throw new Exception("Gebruiker niet gevonden."); // gooit een error als de gebruiker niet gevonden is
@@ -45,7 +90,6 @@ class UserRepository
 
         return new User(
             $user['email'],
-            $user['user_id'],
             $user['name'],
             $user['password'],
             UserRole::from($user['role']),

@@ -134,6 +134,17 @@ a {
 	border: 2px solid #ff0000;
 }
 
+.error-message {
+    background-color: #ffe5e5;
+    color: #b10000;
+    border: 1px solid #f5c2c2;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: none; /* standaard verborgen */
+}
+
 /* spacing and alignment classes */
 .flex {
 	display: flex;
