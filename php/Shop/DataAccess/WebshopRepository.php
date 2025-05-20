@@ -6,7 +6,7 @@
 require_once '../php/Shared/Database.php';
 require_once '../php/Shop/Domain/Game.php';
 
-class webshopRepository {
+class WebshopRepository {
     private PDO $db;
 
     // Constructor die de databaseverbinding initialiseert
@@ -40,17 +40,17 @@ class webshopRepository {
         // maakt een array van Game-objecten aan
         // De fetch methode haalt alle resultaten op als een array van objecten.
         $games = [];
-        while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             // Maak een nieuw Game-object voor elke rij in de resultaten.
             $game = new Game(
-            (int) $row->game_id,
-            (int) $row->players,
-            (float) $row->price,
-            (int) $row->duration,
-            (string) $row->name,
-            (string) $row->description,
-            (string) $row->difficulty,
-            (int) $row->left_In_Stock
+            (int) $row['game_id'],
+            (int) $row['players'],
+            (float) $row['price'],
+            (int) $row['duration'],
+            (string) $row['name'],
+            (string) $row['description'],
+            (string) $row['difficulty'],
+            (int) $row['left_In_Stock']
             );
             // Voeg het Game-object toe aan de array van spellen.
             $games[] = $game;
