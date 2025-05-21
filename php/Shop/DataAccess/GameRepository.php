@@ -39,9 +39,9 @@ class GameRepository
 
         } catch (PDOException $e) {
             if ($e->getCode() === '23000') { // Code 23000 betekent "Integrity constraint violation". je probeert iets toe te voegen dat de db verbied, zoals dubbele game namen
-                throw new Exception("Game naam bestaat al!");
+                throw new Exception("Game naam bestaat al!");  // hier maak je een Exception voor ALLEEN de foutcode 23000 zo worden andere foutmeldingen niet stilgezet
             }
-            throw $e;
+            throw $e; // hier wordt de Exception gegooit voor alle andere fouten
         }
     }
 
