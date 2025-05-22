@@ -8,10 +8,8 @@ class ContactRepository
     public function __construct()
     {
         try {
-            // Maak een nieuwe databaseverbinding
             $this->db = Database::connect();
         } catch (PDOException $e) {
-            // Log de foutmelding of geef een foutmelding weer
             echo "Fout bij het verbinden met de database: " . $e->getMessage();
             exit;
         }
