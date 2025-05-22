@@ -2,17 +2,18 @@
 
 class Game
 {
-
     // met constructor property promotion hoef je de properties niet apart te declareren bovenaan de klasse
     public function __construct(
-        private int $id,
         private int $players,
         private float $price,
         private int $duration,
         private string $name,
         private string $description,
         private string $difficulty,
-        private int $leftInStock
+        private int $leftInStock,
+        // optioneel, wordt pas gebruikt na aanmaken game
+        // een optionele variabele zet je altijd als laatste (sinds php 8.0)
+        private ?int $id = null 
     ) {}
 
     public function getId(): int
@@ -60,4 +61,7 @@ class Game
         // geeft het id aan het game object nadat deze is opgeslagen in de database
         $this->id = $gameId;
     }
+
 }
+
+?>
