@@ -4,7 +4,6 @@ require_once '/var/www/php/Profile/Controllers/ContactController.php';
 
 $controller = new ContactController();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	// Als de gebruiker zijn gegevens aanpast, haal de gegevens uit de $_POST en maak er een variabele van.
 	$controller->sendContactForm($_POST);
 }
 $error = null;
