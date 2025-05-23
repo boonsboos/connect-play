@@ -2,6 +2,14 @@
 // Inclusie van noodzakelijke bestanden
 require_once '../php/Shared/header.php';
 require_once '../php/Shop/controllers/GameController.php';
+
+$controller = new GameController();
+$game = $controller->getGame();
+
+if (!$game instanceof Game) {
+    echo "<p>Er is iets misgegaan bij het ophalen van de game.</p>";
+    exit;
+}
 ?>
 
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
@@ -16,13 +24,13 @@ require_once '../php/Shop/controllers/GameController.php';
 
 		<!-- Rechterkant: Details + prijs + button -->
 		<div class="col-6 flex flex-col px-15">
-			<h3 class="pb-10">Product Naam</h3>
+			<h3 class="pb-10"><?= $game->getName(); ?></h3>
 			<p class="pb-15">
-				Dit is een voorbeeld van een beschrijving van het product. Hier geef je informatie over het spel, de kenmerken en wat de speler kan verwachten.
+				<?= $game->getDescription(); ?>
 			</p>
 
 			<div class="flex flex-row align-center pb-15" style="gap: 1rem;">
-				<h4>€ 49,99</h4>
+				<h4>€ <?= $game->getPrice(); ?></h4>
 				<button class="button px-10" style="width: auto;">Toevoegen</button>
 			</div>
 
@@ -39,15 +47,15 @@ require_once '../php/Shop/controllers/GameController.php';
 				</tr>
 				<tr>
 					<td style="padding: 10px;">Moeilijkheidsgraat</td>
-					<td style="padding: 10px;">Makkelijk</td>
+					<td style="padding: 10px;"><?= $game->getDifficulty(); ?></td>
 				</tr>
 				<tr>
 					<td style="padding: 10px;">Duur</td>
-					<td style="padding: 10px;">45min</td>
+					<td style="padding: 10px;"><?= $game->getDuration(); ?> minuten</td>
 				</tr>
 				<tr>
 					<td style="padding: 10px;">Spelers</td>
-					<td style="padding: 10px;">1-4 (coöp)</td>
+					<td style="padding: 10px;">Maximaal <?= $game->getPlayers(); ?> spelers</td>
 				</tr>
 			</table>
 

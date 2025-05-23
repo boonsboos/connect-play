@@ -71,14 +71,27 @@ class GameRepository
         return $allGames;
     }
 
-    public function getGame($id) {
-        $stmt = $this->db->prepare("CALL get_game($id)");
+    public function getGame(int $id) {
+        $stmt = $this->db->prepare("CALL get_game(id)");
 
-        $stmt->execute();
+        $stmt->execute([$id]);
 
-        $game = $stmt->fetch();
+        $gameData = $stmt->fetch();
+
+        if(!gameData) {
+            return null;
+        }
         
-        return $game;
+        return new Game(
+            players: $gameData['players'],
+            price: $gameData['price'],
+            duration: $gameData['duration'],
+            name: $gameData['name'],
+            description: $gameData['description'],
+            difficulty: $gameData['difficulty'],
+            leftInStock: $gameData['leftInStock'],
+            id: $gameData['id']
+        );
     }
 
 }

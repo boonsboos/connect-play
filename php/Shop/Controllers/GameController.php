@@ -18,7 +18,26 @@ class GameController extends Controller
     }
 
     public function getGame() {
-        return $this->gameRepository->getGame();
+        // Haalt het ID uit de url, anders staat die op null
+        $id = $_GET['id'] ?? null;
+        
+        // Check of het id leeg is of niet een nummer is:
+        if(!$id || !is_numeric($id)) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Invalid or missing ID']);
+            return;
+        }
+
+        $game = $this->gameRepository->getGame($id);
+
+        // Check of de game leeg is
+        if(!game) {
+            http_response_code(404);
+            echo json_encode(['error' => 'Game not found']);
+            return;
+        }
+
+        return $game;
     }
 
     public function addGame(Game $game): void {
