@@ -71,6 +71,16 @@ class GameRepository
         return $allGames;
     }
 
+    public function getGame($id) {
+        $stmt = $this->db->prepare("CALL get_game($id)");
+
+        $stmt->execute();
+
+        $game = $stmt->fetch();
+        
+        return $game;
+    }
+
 }
 
 ?>

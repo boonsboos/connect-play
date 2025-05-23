@@ -17,6 +17,10 @@ class GameController extends Controller
         return $this->gameRepository->getGames();
     }
 
+    public function getGame() {
+        return $this->gameRepository->getGame();
+    }
+
     public function addGame(Game $game): void {
         $this->gameRepository->addGame($game);
     }
