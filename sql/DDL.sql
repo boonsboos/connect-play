@@ -255,6 +255,39 @@ ALTER TABLE `workshop`
   ADD CONSTRAINT `workshop_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `game` (`game_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
+-- tabel voor contactformulieren
+
+CREATE TABLE `contact` (
+   `id` int(11) NOT NULL,
+   `first_name` VARCHAR(255) NOT NULL,
+   `last_name` VARCHAR(255) NOT NULL,
+   `email` VARCHAR(255) NOT NULL,
+   `message` TEXT(3000) NOT NULL,
+   `status` INT NOT NULL,
+   `created_at` TIMESTAMP NOT NULL
+);
+
+--
+-- Indexen voor geëxporteerde tabellen
+--
+
+--
+-- Indexen voor tabel `contact`
+--
+ALTER TABLE `contact`
+    ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT voor geëxporteerde tabellen
+--
+
+--
+-- AUTO_INCREMENT voor een tabel `contact`
+--
+ALTER TABLE `contact`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
@@ -989,4 +1022,63 @@ BEGIN
 
 END //
 
+-- contact toevoegen aan de database
+CREATE PROCEDURE add_contact(
+    IN p_first_name VARCHAR(255),
+    IN p_last_name VARCHAR(255),
+    IN p_email VARCHAR(255),
+    IN p_message TEXT(3000)
+)
+BEGIN
+    INSERT INTO contact (
+        `first_name`,
+        `last_name`,
+        `email`,
+        `message`,
+        `created_at`,
+        `message_handled`
+    )
+    VALUES (
+        p_first_name,
+        p_last_name,
+        p_email,
+        p_message,
+        CURRENT_TIMESTAMP(),
+        0
+    );
+END//
+
+-- Contact ophalen uit de database op basis van het e-mailadres of id
+CREATE PROCEDURE get_contact(
+    IN p_id INT,
+    IN p_email VARCHAR(255)
+)
+BEGIN
+    SELECT *
+    FROM `contact`
+    WHERE `id` = p_id OR `email` = p_email;
+END//
+
+-- Contact ophalen uit de database op basis van het e-mailadres of id
+CREATE PROCEDURE get_unresolved_contacts()
+BEGIN
+    SELECT *
+    FROM `contact`
+    WHERE `message_handled` < 2; -- 2 == klaar
+END//
+
+CREATE PROCEDURE set_contact_reply_status(
+    IN p_id INT,
+    IN p_status INT
+)
+BEGIN
+    UPDATE `contact`
+    SET
+        `status` = p_status
+    WHERE
+        `id` = p_id;
+END//
+
+-- We verwijderen de contact NIET uit de database
+-- want we willen de contactgegevens bewaren
 DELIMITER ;

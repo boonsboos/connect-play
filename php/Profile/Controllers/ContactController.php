@@ -1,6 +1,8 @@
 <?php
 require_once '/var/www/php/Shared/Controller.php';
+
 require_once '/var/www/php/Profile/DataAccess/ContactRepository.php';
+require_once "/var/www/php/Profile/Domain/ContactReplyStatus.php";
 
 class ContactController extends Controller
 {
@@ -18,7 +20,7 @@ class ContactController extends Controller
         $email = htmlspecialchars($data['email']);
         $message = htmlspecialchars($data['message']);
 
-        $contact = new Contact(0, $firstname, $lastname, $email, $message);
+        $contact = new Contact(0, $firstname, $lastname, $email, $message, ContactReplyStatus::Unread);
 
         $this->contactRepository->addContact($contact);
 

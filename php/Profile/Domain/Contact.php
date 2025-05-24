@@ -1,14 +1,17 @@
 <?php
 
+require_once "/var/www/php/Profile/Domain/ContactReplyStatus.php";
+
 class Contact
 {
     public function __construct(
-        private int $id,
-        private string $firstName,
-        private string $lastName,
-        private string $email,
-        private string $message,
-        private ?string $createdAt = null,
+        private int                $id,
+        private string             $firstName,
+        private string             $lastName,
+        private string             $email,
+        private string             $message,
+        private ContactReplyStatus $status,
+        private ?string            $createdAt = "Date unknown",
     ) {}
 
     public function setId(int $id): void
@@ -59,6 +62,16 @@ class Contact
     public function getMessage(): string
     {
         return $this->message;
+    }
+
+    public function getStatus(): ContactReplyStatus
+    {
+        return $this->status;
+    }
+
+    public function setStatus(ContactReplyStatus $status): void
+    {
+        $this->status = $status;
     }
 
     public function setCreatedAt(string $createdAt): void
