@@ -146,29 +146,29 @@ a {
 }
 
 .error-message {
-    background-color: #ffe5e5;
-    color: #b10000;
-    border: 1px solid #f5c2c2;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-weight: 500;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    display: none; /* standaard verborgen */
+	background-color: #ffe5e5;
+	color: #b10000;
+	border: 1px solid #f5c2c2;
+	padding: 12px 16px;
+	border-radius: 8px;
+	font-weight: 500;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	display: none; /* standaard verborgen */
 }
-
 
 .table-head {
 	border-bottom: 1px solid var(--box-1);
+}
 
 .success-message {
-    background-color: #e5ffe5;
-    color: #00b100;
-    border: 1px solid #c2f5c2;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-weight: 500;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    display: none; /* standaard verborgen */
+	background-color: #e5ffe5;
+	color: #00b100;
+	border: 1px solid #c2f5c2;
+	padding: 12px 16px;
+	border-radius: 8px;
+	font-weight: 500;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	display: none; /* standaard verborgen */
 }
 
 /* spacing and alignment classes */
