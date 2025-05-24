@@ -1036,7 +1036,7 @@ BEGIN
         `email`,
         `message`,
         `created_at`,
-        `message_handled`
+        `status`
     )
     VALUES (
         p_first_name,
