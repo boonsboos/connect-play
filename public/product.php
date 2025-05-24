@@ -18,7 +18,7 @@ if (!$game instanceof Game) {
 	<div class="container flex justify-center py-30">
 		<div class="col-10 flex flex-row">
 			<div class="col-6 flex flex-col align-center pl-30">
-				<img src="images/dienst_3.jpg" alt="Product afbeelding" style="width: 100%; object-fit: cover; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);" />
+				<img src="images/dienst_3.jpg" class="product-img" alt="Product afbeelding" />
 
 			</div>
 
@@ -30,7 +30,7 @@ if (!$game instanceof Game) {
 				</p>
 
 				<!-- De functie number_format() vervangd de punt naar een komma  -->
-				<div class="flex flex-row align-center pb-15" style="gap: 1rem;">
+				<div class="flex flex-row align-center pb-15">
 					<h4>€ <?= number_format($game->getPrice(), 2, ',', ''); ?></h4>
 					<button class="button px-10" style="width: auto;">Toevoegen</button>
 				</div>
@@ -41,22 +41,22 @@ if (!$game instanceof Game) {
 				</div>
 
 				<!-- Specificaties tabel -->
-				<table style="width: 100%; border-collapse: collapse;">
+				<table style="border-collapse: collapse;">
 					<tr>
-						<th style="text-align: left; padding: 10px; border-bottom: 1px solid var(--box-1);">Specificatie</th>
-						<th style="text-align: left; padding: 10px; border-bottom: 1px solid var(--box-1);">Waarde</th>
+						<th class="p-10 text-left table-head">Specificatie</th>
+						<th class="p-10 text-left table-head">Waarde</th>
 					</tr>
 					<tr>
-						<td style="padding: 10px;">Moeilijkheidsgraat</td>
-						<td style="padding: 10px;"><?= $game->getDifficulty(); ?></td>
+						<td class="p-10">Moeilijkheidsgraat</td>
+						<td class="p-10"><?= $game->getDifficulty(); ?></td>
 					</tr>
 					<tr>
-						<td style="padding: 10px;">Duur</td>
-						<td style="padding: 10px;"><?= $game->getDuration(); ?> minuten</td>
+						<td class="p-10">Duur</td>
+						<td class="p-10"><?= $game->getDuration(); ?> minuten</td>
 					</tr>
 					<tr>
-						<td style="padding: 10px;">Spelers</td>
-						<td style="padding: 10px;">Maximaal <?= $game->getPlayers(); ?> spelers</td>
+						<td class="p-10">Spelers</td>
+						<td class="p-10">Maximaal <?= $game->getPlayers(); ?> spelers</td>
 					</tr>
 				</table>
 
