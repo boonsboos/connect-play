@@ -96,10 +96,10 @@ class UserRepository
             UserRole::from($user['role']),
             $address ? [
                 new Address(
-                    $address['postal_code'],
-                    $address['house_number'],
-                    $address['street_name'],
-                    $address['city'],
+                    $address['postal_code'] ?? '',
+                    $address['house_number'] ?? '',
+                    $address['street_name'] ?? '',
+                    $address['city'] ?? '',
                 )
             ] : []
         );
