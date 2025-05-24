@@ -36,7 +36,6 @@ class GameRepository
             if ($gameRow && isset($gameRow['game_id'])) {
                 $game->setId((int) $gameRow['game_id']);
             }
-
         } catch (PDOException $e) {
             if ($e->getCode() === '23000') { // Code 23000 betekent "Integrity constraint violation". je probeert iets toe te voegen dat de db verbied, zoals dubbele game namen
                 throw new Exception("Game naam bestaat al!");  // hier maak je een Exception voor ALLEEN de foutcode 23000 zo worden andere foutmeldingen niet stilgezet
@@ -45,7 +44,8 @@ class GameRepository
         }
     }
 
-    public function getGames(): array  {
+    public function getGames(): array
+    {
         $allGames = [];
 
         $stmtGame = $this->db->prepare("SELECT * FROM `game`");
@@ -71,6 +71,26 @@ class GameRepository
         return $allGames;
     }
 
-}
+    public function getGame(int $id)
+    {
+        $stmt = $this->db->prepare("CALL get_game(:id)");
 
-?>
+        $stmt->execute(['id' => $id]);
+
+        $gameData = $stmt->fetch();
+
+        if (!$gameData) {
+            return null;
+        }
+
+        return new Game(
+            players: $gameData['players'],
+            price: $gameData['price'],
+            duration: $gameData['duration'],
+            name: $gameData['name'],
+            description: $gameData['description'],
+            difficulty: $gameData['difficulty'],
+            leftInStock: $gameData['left_in_stock'],
+        );
+    }
+}
