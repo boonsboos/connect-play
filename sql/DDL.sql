@@ -527,9 +527,9 @@ CREATE PROCEDURE get_game(
 )
 BEGIN
     SELECT 
-        `game_id`
+        `game_id`,
         `players`,
-        `price`
+        `price`,
         `duration`,
         `name`,
         `description`,
