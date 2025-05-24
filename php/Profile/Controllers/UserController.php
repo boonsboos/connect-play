@@ -134,9 +134,12 @@ class UserController extends Controller
 
             $user->setName($data['name']);
             $user->setEmail($data['email']);
+            if (count($user->getAddresses()) === 0) {
+                $user->setAddresses([new Address('', '', '', '')]);
+            }
             $user->getAddresses()[0]->setPostalCode($data['postal-code']);
             $user->getAddresses()[0]->setHouseNumber($data['house-number']);
-            $user->getAddresses()[0]->setStreet($data['street-name']);
+            $user->getAddresses()[0]->setStreetName($data['street-name']);
             $user->getAddresses()[0]->setCity($data['city']);
             if (isset($data['password']) && !empty($data['password'])) {
                 $user->setPassword(password_hash($data['password'], PASSWORD_DEFAULT));

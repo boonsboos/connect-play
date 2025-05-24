@@ -89,18 +89,19 @@ class UserRepository
         $address = $sql->fetch(); // haal het adres op
 
         return new User(
+            $user['user_id'],
             $user['email'],
             $user['name'],
             $user['password'],
             UserRole::from($user['role']),
-            [
+            $address ? [
                 new Address(
-                    $address['postal_code'],
-                    $address['house_number'],
-                    $address['street_name'],
-                    $address['city'],
-                ),
-            ]
+                    $address['postal_code'] ?? '',
+                    $address['house_number'] ?? '',
+                    $address['street_name'] ?? '',
+                    $address['city'] ?? '',
+                )
+            ] : []
         );
     }
 
@@ -116,7 +117,7 @@ class UserRepository
             $addressStmt->execute([
                 ':postal_code' => $user->getAddresses()[0]->getPostalCode(),
                 ':house_number' => $user->getAddresses()[0]->getHouseNumber(),
-                ':street_name' => $user->getAddresses()[0]->getStreet(),
+                ':street_name' => $user->getAddresses()[0]->getStreetName(),
                 ':city' => $user->getAddresses()[0]->getCity(),
             ]);
         } else {
@@ -124,7 +125,7 @@ class UserRepository
             $addressStmt->execute([
                 ':postal_code' => $user->getAddresses()[0]->getPostalCode(),
                 ':house_number' => $user->getAddresses()[0]->getHouseNumber(),
-                ':street_name' => $user->getAddresses()[0]->getStreet(),
+                ':street_name' => $user->getAddresses()[0]->getStreetName(),
                 ':city' => $user->getAddresses()[0]->getCity(),
             ]);
         }
