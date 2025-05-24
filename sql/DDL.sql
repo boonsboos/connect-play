@@ -1064,7 +1064,7 @@ CREATE PROCEDURE get_unresolved_contacts()
 BEGIN
     SELECT *
     FROM `contact`
-    WHERE `message_handled` < 2; -- 2 == klaar
+    WHERE `status` < 2; -- 2 == klaar
 END//
 
 CREATE PROCEDURE set_contact_reply_status(
