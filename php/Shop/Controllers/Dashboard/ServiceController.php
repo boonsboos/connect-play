@@ -18,14 +18,18 @@ class ServiceController
         return $this->contactRepository->getUnresolvedContacts();
     }
 
-    public function markInquiryAsAnswered(int $ticketId) {
+    public function markInquiryAsAnswered(int $ticketId): void {
         $contact = $this->updateContactStatusById($ticketId, ContactReplyStatus::Answered);
+        // laat de browser een e-mail prompt openen zodat het bericht gelijk beantwoord kan worden
         header("Location: mailto:" . $contact->getEmail());
         die();
     }
 
-    public function markInquiryAsResolved(int $ticketId) {
+    public function markInquiryAsResolved(int $ticketId): void {
         $this->updateContactStatusById($ticketId, ContactReplyStatus::Resolved);
+        // ververs de pagina, nu zal de contactpoging verdwijnen.
+        header("Location: service.php");
+        die();
     }
 
     private function updateContactStatusById(int $ticketId, ContactReplyStatus $status): Contact {

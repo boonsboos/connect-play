@@ -14,8 +14,15 @@ require_once "/var/www/php/Shop/Controllers/Dashboard/ServiceController.php";
 
 $controller = new ServiceController();
 
-if (isset($_GET["resolved"]))
-	$controller->resolveTicket($_GET["resolved"]);
+// de ID van de opgeloste contactpoging
+if (isset($_GET["resolved"]) && is_numeric($_GET["resolved"])) {
+	$controller->markInquiryAsResolved($_GET["resolved"]);
+}
+
+// de ID van de beantwoorde contactpoging
+if (isset($_GET["answered"]) && is_numeric($_GET["answered"])) {
+	$controller->markInquiryAsAnswered($_GET["answered"]);
+}
 ?>
 
     <img class="banner-img" src="/images/bannerImg.jpg" alt="Banner afbeelding" />
@@ -26,23 +33,15 @@ if (isset($_GET["resolved"]))
 			<hr>
 			<?php foreach ($controller->getServiceInquiries() as $contact): ?>
 				<details class="col-12 py-10">
-					<summary> <?php echo $contact->getFirstName() . ' ' . $contact->getLastName() ?> | <?php echo $contact->getStatus()->asString()?></summary>
-                    <p>
-						<b>From: <?php echo $contact->getEmail() ?></b>
-					</p>
-					<p>
-						<b>At: <?php echo $contact->getCreatedAt() ?></b>
-					</p>
-					<p>
-						<b>Ticket ID:<?php echo $contact->getId() ?></b>
-					</p>
-					<p>
-						<?php echo $contact->getMessage() ?>
-					</p>
+					<summary><?php echo $contact->getFirstName() . ' ' . $contact->getLastName() ?> | <b><?php echo $contact->getStatus()->asString()?></b></summary>
+                    <p><b>Van: <?php echo $contact->getEmail() ?></b></p>
+					<p><b>Op: <?php echo $contact->getCreatedAt() ?></b></p>
+					<p><b>Contactpoging ID:<?php echo $contact->getId() ?></b></p>
+					<p><?php echo $contact->getMessage() ?></p>
 					<div class="flex">
 						<div class="col-2 py-30">
 							<?php if ($contact->getStatus() == ContactReplyStatus::Unread):?>
-								<a class="button" href="?answer=<?php echo $contact->getEmail()?>">Beantwoorden</a>
+								<a class="button" href="?answered=<?php echo $contact->getEmail()?>">Beantwoorden</a>
         					<?php elseif ($contact->getStatus() == ContactReplyStatus::Answered):?>
 								<a class="button" href="?resolved=<?php echo $contact->getId() ?>">Markeer als opgelost</a>
 							<?php endif; ?>

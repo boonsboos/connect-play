@@ -9,9 +9,9 @@ enum ContactReplyStatus: int
     public function asString(): string
     {
         return match ($this->value) {
-            0 => 'Unread',
-            1 => 'Answered',
-            2 => 'Resolved',
+            0 => 'Ongelezen',
+            1 => 'Beantwoord',
+            2 => 'Opgelost',
             default => '',
         };
     }
