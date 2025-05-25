@@ -2,6 +2,8 @@
 require_once '/var/www/php/Profile/Domain/Contact.php';
 require_once '/var/www/php/Shared/Database.php';
 
+require_once "/var/www/php/Profile/Domain/ContactReplyStatus.php";
+
 class ContactRepository
 {
     private PDO $db;
@@ -39,10 +41,63 @@ class ContactRepository
                 $contact['last_name'],
                 $contact['email'],
                 $contact['message'],
+                ContactReplyStatus::from($contact['status']),
                 $contact['created_at']
             );
         }
 
+        $stmt->closeCursor();
+
         return null;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getUnresolvedContacts(): ?array
+    {
+        $stmt = $this->db->prepare("CALL get_unresolved_contacts()");
+
+        $stmt->execute();
+
+        $contacts = [];
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $contacts[] = new Contact(
+                $row['id'],
+                $row['first_name'],
+                $row['last_name'],
+                $row['email'],
+                $row['message'],
+                ContactReplyStatus::from($row['status']),
+                $row['created_at']
+            );
+        }
+
+        $stmt->closeCursor();
+
+        return $contacts;
+    }
+
+    /**
+     * Updatet de status van een contactpoging naar of beantwoord of opgelost
+     * @param Contact $contact de contactpoging
+     * @return bool als de query slaagt
+     */
+    public function updateContactStatus(Contact $contact): bool
+    {
+        // kan niet updaten naar ongelezen
+        if ($contact->getStatus() == ContactReplyStatus::Unread) {
+            return false;
+        }
+
+        $stmt = $this->db->prepare("CALL update_contact(:id, :status)");
+        $success = $stmt->execute([
+            ':id' => $contact->getId(),
+            ':status' => $contact->getStatus()->value
+        ]);
+
+        $stmt->closeCursor();
+        return $success;
     }
 }
