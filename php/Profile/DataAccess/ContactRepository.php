@@ -41,6 +41,7 @@ class ContactRepository
                 $contact['last_name'],
                 $contact['email'],
                 $contact['message'],
+                ContactReplyStatus::from($contact['status']),
                 $contact['created_at']
             );
         }
@@ -90,10 +91,10 @@ class ContactRepository
             return false;
         }
 
-        $stmt = $this->db->prepare("CALL update_contact_status(:id, :status)");
+        $stmt = $this->db->prepare("CALL update_contact(:id, :status)");
         $success = $stmt->execute([
             ':id' => $contact->getId(),
-            ':status' => $contact->getStatus()
+            ':status' => $contact->getStatus()->value
         ]);
 
         $stmt->closeCursor();

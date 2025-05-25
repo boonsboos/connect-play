@@ -41,7 +41,7 @@ if (isset($_GET["answered"]) && is_numeric($_GET["answered"])) {
 					<div class="flex">
 						<div class="col-2 py-30">
 							<?php if ($contact->getStatus() == ContactReplyStatus::Unread):?>
-								<a class="button" href="?answered=<?php echo $contact->getEmail()?>">Beantwoorden</a>
+								<a class="button" href="?answered=<?php echo $contact->getId()?>">Beantwoorden</a>
         					<?php elseif ($contact->getStatus() == ContactReplyStatus::Answered):?>
 								<a class="button" href="?resolved=<?php echo $contact->getId() ?>">Markeer als opgelost</a>
 							<?php endif; ?>
