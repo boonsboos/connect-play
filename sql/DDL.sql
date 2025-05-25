@@ -1067,7 +1067,7 @@ BEGIN
     WHERE `status` < 2; -- 2 == klaar
 END//
 
-CREATE PROCEDURE set_contact_reply_status(
+CREATE PROCEDURE update_contact(
     IN p_id INT,
     IN p_status INT
 )
