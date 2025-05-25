@@ -2,8 +2,8 @@
 require_once "/var/www/php/Shared/Guards/EmployeeGuard.php";
 
 // check of de gebruiker toestemming heeft
-//$employeeGuard = new EmployeeGuard();
-//$employeeGuard->redirectIfNotAllowed();
+$employeeGuard = new EmployeeGuard();
+$employeeGuard->redirectIfNotAllowed();
 
 require_once "/var/www/php/Shared/header.php";
 
