@@ -11,7 +11,6 @@ if (isset($user)): ?>
             <div class="flex gap-20 flex-row align-center">
                 <a href="/profiel.php" class="button active">Mijn profiel</a>
                 <a href="/profiel/bestellingen.php" class="button">Bestellingen</a>
-                <a href="/profiel/facturen.php" class="button">Facturen</a>
                 <a href="/profiel/aanpassen.php" class="button">Profiel aanpassen</a>
             </div>
             <div class="col-6 flex justify-center">
