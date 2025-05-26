@@ -2,27 +2,49 @@
 
 require_once '../php/Shop/DataAccess/WebshopRepository.php';
 
-// Aanmaken van een instantie van de WebshopRepository class om databaseoperaties uit te voeren
-$controller = new webshopRepository();
+class WebshopController {
 
-try {
-    // Ophalen van de huidige pagina uit de URL-querystring (met een standaardwaarde van 1 als 'page' niet is ingesteld)
-    $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    private WebshopRepository $webshopRepository;
 
-    // Aantal spellen per pagina instellen
-    $limit = 6;
+    /**
+     * Aantal spellen per pagina
+     */
+    private int $gamesPerPage = 6;
 
-    // Ophalen van de spellenlijst voor de huidige pagina met de gedefinieerde limiet
-    $games = $controller->getAllGames($currentPage, $limit);
+    public function __construct() {
+        // Aanmaken van een instantie van de WebshopRepository class om databaseoperaties uit te voeren
+        $this->webshopRepository = new WebshopRepository();
+    }
 
-    // Ophalen van het totale aantal spellen om paginering te berekenen
-    $totalGames = $controller->getTotalGames();
+    /**
+     * Ophalen van de huidige pagina uit de URL-querystring (met een standaardwaarde van 1 als 'page' niet is ingesteld)
+     * @return int de huidige pagina
+     */
+    public function getCurrentPage(): int {
+        return isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    }
 
-    // Totale aantal pagina's berekenen op basis van het totale aantal spellen en de limiet
-    // De functie ceil() rondt een getal altijd naar boven af naar het dichtstbijzijnde gehele getal
-    $totalPages = ceil($totalGames / $limit);
-} catch (Exception $e) {
-    // Handle the exception (log it, display an error message, etc.)
-    echo 'Error: ' . $e->getMessage();
+    public function getGames(int $amountOfGames = 0): array {
+        // Als er geen limiet wordt meegegeven, houd de standaard limiet aan van 6
+        if ($amountOfGames <= 0) {
+            $amountOfGames = $this->gamesPerPage;
+        } else /* if ($limit > 0) */ {
+            $this->gamesPerPage = $amountOfGames;
+        }
+
+        // Haal op op welke pagina we zitten
+        $currentPage = $this->getCurrentPage();
+
+        // Geef de juiste hoeveelheid games terug van de juiste pagina
+        return $this->webshopRepository->getAllGames($currentPage, $amountOfGames);
+    }
+
+    public function getTotalOfGames(): int {
+        return $this->webshopRepository->getTotalGames();
+    }
+
+    public function getTotalPages(): int {
+        return ceil($this->getTotalOfGames() / $this->gamesPerPage);
+    }
 }
 ?>

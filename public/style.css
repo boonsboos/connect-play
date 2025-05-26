@@ -591,7 +591,6 @@ ul {
 	background-color: var(--background);
 	border: 1px solid var(--accent);
 	border-radius: 8px;
-	height: 70vh;
 }
 
 .productlijst {
@@ -602,7 +601,6 @@ ul {
 	border: 1px solid var(--accent);
 	border-radius: 8px;
 	background-color: var(--background);
-	height: 70vh;
 }
 
 .game-card {
@@ -617,7 +615,6 @@ ul {
 .paginanav {
 	display: flex;
 	justify-content: center;
-	margin-top: 5000px;
 	text-align: center;
 }
 
