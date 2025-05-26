@@ -109,6 +109,9 @@ class WebshopController {
             return str_contains(
                 strtolower($game->getName()),
                 strtolower($this->searchQuery)
+            ) || str_contains(
+                strtolower($game->getDescription()),
+                strtolower($this->searchQuery)
             );
         });
 
