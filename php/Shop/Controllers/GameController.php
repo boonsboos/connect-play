@@ -42,7 +42,7 @@ class GameController extends Controller
     {
         $this->gameRepository->addGame($game);
     }
-    
+
 }
 
 ?>

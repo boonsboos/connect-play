@@ -16,7 +16,7 @@ class GameRepository
         }
     }
 
-    public function addGame(Game $game)
+    public function addGame(Game $game): void
     {
         try {
             $stmtGame = $this->db->prepare("CALL add_game(:players, :price, :duration, :name, :description, :difficulty, :left_in_stock)");
@@ -44,7 +44,8 @@ class GameRepository
         }
     }
 
-    public function getGames(): array  {
+    public function getGames(): array 
+    {
         $allGames = [];
 
         $stmtGame = $this->db->prepare("SELECT * FROM `game`");
