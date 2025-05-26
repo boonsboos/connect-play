@@ -27,7 +27,6 @@ if (isset($user)): ?>
             <div class="flex gap-20 flex-row align-center">
                 <a href="/profiel.php" class="button">Mijn profiel</a>
                 <a href="/profiel/bestellingen.php" class="button">Bestellingen</a>
-                <a href="/profiel/facturen.php" class="button">Facturen</a>
                 <a href="/profiel/aanpassen.php" class="button active">Profiel aanpassen</a>
             </div>
             <div id="error-box" class="mb-col-12 col-12 flex justify-center pt-10" <?php echo $error ? '' : 'style="display: none;"'; ?>>

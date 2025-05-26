@@ -198,6 +198,9 @@ a {
 .justify-center {
 	justify-content: center;
 }
+.justify-between {
+	justify-content: space-between;
+}
 
 .align-center {
 	align-items: center;
@@ -397,7 +400,8 @@ ul {
 	color: white;
 }
 
-.home-head-box .button, #service-container .button {
+.home-head-box .button,
+#service-container .button {
 	background-color: var(--primary);
 	color: #ffffff;
 	border: none;
@@ -406,7 +410,8 @@ ul {
 	padding: 10px;
 }
 
-.home-head-box .button:hover, #service-container .button:hover {
+.home-head-box .button:hover,
+#service-container .button:hover {
 	background-color: var(--accent);
 }
 
@@ -619,6 +624,56 @@ ul {
 	text-align: center;
 }
 
+#profile-container .order-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#profile-container .order-table thead {
+	background-color: var(--box-1);
+	color: var(--foreground);
+}
+
+#profile-container .order-table th,
+#profile-container .order-table td {
+	padding: 10px;
+	border: 1px solid var(--box-1);
+	text-align: center;
+}
+
+#profile-container .order-table tr:nth-child(even) td {
+	border-color: var(--background);
+}
+
+#profile-container .order-table tbody tr:nth-child(even) {
+	background-color: var(--box-2);
+}
+
+#profile-container .order-summary {
+	background: var(--box-1);
+	border-radius: 8px;
+	padding: 24px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+#profile-container .order-summary h2 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin-bottom: 16px;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+#profile-container .order-summary .row {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 12px;
+}
+
+#profile-container .order-summary .label {
+	color: #555;
+	font-weight: 500;
+}
 
 @media only screen and (min-width: 768px) {
 	/* columns subtract the width of the gap specified by .flex from their own width */

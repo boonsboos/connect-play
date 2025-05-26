@@ -267,56 +267,56 @@ CALL add_user('1225BC', '33', 'mariolima@hotmail.com', 'Mario Lima', 'Customer',
 -- vanwege realistische data wordt hier met de hand ge-insert
 
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (16, '2025-03-24', 'De bestelling wordt morgen bezorgd, past niet door de brievenbus', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (17, '2025-03-25', 'Dit bordspel wordt later geleverd vanwege vertraging bij de leverancier', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (17, '2025-03-25', 'Dit bordspel wordt later geleverd vanwege vertraging bij de leverancier', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (18, '2025-03-26', 'Bestelling is onderweg, verwacht levering binnen 2 dagen', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (19, '2025-03-27', 'Opmerking: pakket is te groot voor de brievenbus', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (20, '2025-03-28', 'Bezorging wordt een dag later verwacht, de koerier heeft vertraging', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (21, '2025-03-29', 'Levering van het kaartspel was vertraagd door een logisitieke fout', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (21, '2025-03-29', 'Levering van het kaartspel was vertraagd door een logisitieke fout', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (22, '2025-03-30', 'Opmerking: pakket past niet door de brievenbus, moet worden opgehaald bij postkantoor', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (23, '2025-03-31', 'De levering zal morgen plaatsvinden, er is een lichte vertraging', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (24, '2025-03-01', 'De levering van het bordspel is vertraagd door een voorraadprobleem', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (25, '2025-03-02', 'Het kaartspel wordt op de afgesproken datum geleverd, geen vertraging', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (26, '2025-03-03', 'Bestelling is nu onderweg, wordt de volgende dag afgeleverd', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (26, '2025-03-03', 'Bestelling is nu onderweg, wordt de volgende dag afgeleverd', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (27, '2025-03-03', 'Er is een probleem met de levering, de bezorging zal een dag later zijn', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (28, '2025-03-03', 'Pakket is onderweg, verwacht een levering binnen 2 dagen', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (29, '2025-03-06', 'De bestelling is vertraagd vanwege een probleem bij de leverancier', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (29, '2025-03-06', 'De bestelling is vertraagd vanwege een probleem bij de leverancier', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (30, '2025-03-07', 'Het spel wordt deze week nog geleverd, verwacht enige vertraging', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (31, '2025-03-08', 'Verwachting is dat het spel morgen aankomt, er zijn geen vertragingen', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (32, '2025-03-09', 'Vertraagde levering door technische problemen, pakket komt later', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (32, '2025-03-09', 'Vertraagde levering door technische problemen, pakket komt later', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (33, '2025-03-10', 'De bestelling is onderweg, verwacht binnen 3 dagen', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (34, '2025-03-11', 'Levering zal een dag later zijn door een storing bij de koerier', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (35, '2025-03-12', 'Het pakket is onderweg, wordt op 14 april geleverd', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `comment`, `status`) VALUES (35, '2025-03-12', 'Het pakket is onderweg, wordt op 14 april geleverd', 'DELIVERED');
 
 -- 30 orders zonder comment
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (36, '2025-03-13', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (37, '2025-03-14', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (37, '2025-03-14', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (38, '2025-03-15', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (39, '2025-03-16', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (40, '2025-03-17', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (41, '2025-03-18', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (41, '2025-03-18', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (42, '2025-03-19', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (43, '2025-03-20', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (44, '2025-03-21', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (45, '2025-03-22', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (45, '2025-03-22', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (46, '2025-03-23', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (47, '2025-03-24', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (47, '2025-03-24', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (48, '2025-03-25', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (49, '2025-03-26', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (50, '2025-03-27', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (50, '2025-03-27', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (51, '2025-03-28', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (52, '2025-03-29', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (53, '2025-03-30', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (53, '2025-03-30', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (54, '2025-03-01', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (55, '2025-03-02', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (55, '2025-03-02', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (56, '2025-03-03', 'UNDERWAY');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (57, '2025-03-03', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (58, '2025-03-03', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (58, '2025-03-03', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (59, '2025-03-06', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (60, '2025-03-07', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (60, '2025-03-07', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (61, '2025-03-08', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (62, '2025-03-09', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (62, '2025-03-09', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (63, '2025-03-10', 'UNDERWAY');
-INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (64, '2025-03-11', 'COMPLETED');
+INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (64, '2025-03-11', 'DELIVERED');
 INSERT INTO `order` (`user_id`, `date`, `status`) VALUES (65, '2025-03-12', 'UNDERWAY');
 
 -- Reviews
