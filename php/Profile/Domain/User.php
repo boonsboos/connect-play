@@ -5,31 +5,18 @@ require_once 'UserRole.php';
 
 class User
 {
-    private $email;
-    private $id;
-    private $name;
-
-    private string $password;
-    private $role;
-    private $addresses;
-
     // zodat de editor het oppakt
     /**
      * @param Address[] $addresses
      */
     public function __construct(
-        string $email,
-        string $name,
-        string $password,
-        UserRole $role = UserRole::CUSTOMER, // zet default
-        array $addresses = [] // niet meegegeven = leeg
-    ) {
-        $this->email = $email;
-        $this->name = $name;
-        $this->role = $role;
-        $this->addresses = $addresses;
-        $this->password = $password;
-    }
+        private string $id,
+        private string $email,
+        private string $name,
+        private string $password,
+        private UserRole $role = UserRole::CUSTOMER, // zet default
+        private array $addresses = [] // niet meegegeven = leeg
+    ) {}
 
     public function getEmail(): string
     {

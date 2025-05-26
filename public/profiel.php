@@ -30,7 +30,7 @@ if (isset($user)): ?>
                         <ul>
                             <?php foreach ($user->getAddresses() as $address): ?>
                                 <li>
-                                    <?php echo $address->getStreet() . ' ' . $address->getHouseNumber() . ', ' . $address->getPostalCode() . ' ' . $address->getCity() ?>
+                                    <?php echo $address->getStreetName() . ' ' . $address->getHouseNumber() . ', ' . $address->getPostalCode() . ' ' . $address->getCity() ?>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
