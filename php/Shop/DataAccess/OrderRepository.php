@@ -75,12 +75,12 @@ class OrderRepository
                 $row['order_number'],
                 new Game(
                     $game['players'],
-                    $game['price'],
+                    (float)$game['price'],
                     $game['duration'],
                     $game['name'],
                     $game['description'],
                     $game['difficulty'],
-                    $game['left_in_stock'],
+                    (int)$game['left_in_stock'],
                     (int)$game['game_id']
                 ),
                 (int)$row['amount'],

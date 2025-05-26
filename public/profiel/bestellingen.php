@@ -29,7 +29,6 @@ function showErrorBox(string $message): void
         <div class="flex gap-20 flex-row align-center">
             <a href="/profiel.php" class="button">Mijn profiel</a>
             <a href="/profiel/bestellingen.php" class="button active">Bestellingen</a>
-            <a href="/profiel/facturen.php" class="button">Facturen</a>
             <a href="/profiel/aanpassen.php" class="button">Profiel aanpassen</a>
         </div>
 
