@@ -44,7 +44,7 @@ class GameRepository
         }
     }
 
-    public function getGames(): array 
+    public function getGames(): array
     {
         $allGames = [];
 
@@ -69,6 +69,29 @@ class GameRepository
             );
         }
         return $allGames;
+    }
+    
+    public function getGame(int $id): Game
+    {
+        $stmt = $this->db->prepare("CALL get_game(:id)");
+
+        $stmt->execute(['id' => $id]);
+
+        $gameData = $stmt->fetch();
+
+        if (!$gameData) {
+            return null;
+        }
+
+        return new Game(
+            players: $gameData['players'],
+            price: $gameData['price'],
+            duration: $gameData['duration'],
+            name: $gameData['name'],
+            description: $gameData['description'],
+            difficulty: $gameData['difficulty'],
+            leftInStock: $gameData['left_in_stock'],
+        );
     }
 
 }
