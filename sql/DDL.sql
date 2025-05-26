@@ -645,6 +645,24 @@ BEGIN
         `order_number` = p_order_number;
 END //
 
+CREATE PROCEDURE get_orders_by_user(
+    IN p_user_id INT
+)
+BEGIN
+    SELECT 
+        `order_number`,
+        `user_id`,
+        `date`,
+        `comment`,
+        `status`
+    FROM 
+        `order`
+    WHERE
+        `user_id` = p_user_id
+    ORDER BY
+        `date` DESC;
+END //
+
 -- We verwijderen NOOIT orders.
 DELIMITER;
 DELIMITER //
