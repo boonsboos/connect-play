@@ -663,6 +663,25 @@ BEGIN
         `date` DESC;
 END //
 
+CREATE PROCEDURE get_cart_entries_by_order(
+    IN p_order_number INT
+)
+BEGIN
+    SELECT
+        `cart_entry`.`order_number`,
+        `cart_entry`.`game_id`,
+        `cart_entry`.`amount`,
+        `cart_entry`.`when`,
+        `cart_entry`.`price_snapshot`,
+        `game`.`name` AS game_name
+    FROM
+        `cart_entry`
+    INNER JOIN
+        `game` ON `cart_entry`.`game_id` = `game`.`game_id`
+    WHERE
+        `cart_entry`.`order_number` = p_order_number;
+END //
+
 -- We verwijderen NOOIT orders.
 DELIMITER;
 DELIMITER //

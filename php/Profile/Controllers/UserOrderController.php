@@ -28,14 +28,41 @@ class UserOrderController extends Controller
 
             // Haal de bestellingen van de gebruiker op
             $orders = $this->orderRepository->getOrdersByUser($user->getId());
-            if (!$orders) {
-                return []; // Geen bestellingen gevonden
+            if (empty($orders)) {
+                throw new Exception("Geen bestellingen gevonden voor deze gebruiker");
+            }
+
+            foreach ($orders as $order) {
+                // Haal de details van elke bestelling op
+                $cartEntries = $this->orderRepository->getCartEntriesByOrderId($order->getId());
+                $order->setEntries($cartEntries);
             }
 
             return $orders;
         } catch (Exception $e) {
             // Log de fout of handel deze op een andere manier af
-            header("Location: /profiel/bestellingen.php?error=" . urlencode("onbekende fout"));
+            header("Location: /profiel/bestellingen.php?error=" . urlencode($e->getMessage()));
+            die;
+        }
+    }
+
+    public function getUserOrderById(int $orderId): ?Order
+    {
+        try {
+            // Haal de bestelling op
+            $order = $this->orderRepository->getOrderById($orderId);
+            if (!$order) {
+                throw new Exception("Bestelling niet gevonden");
+            }
+
+            // Haal de details van de bestelling op
+            $cartEntries = $this->orderRepository->getCartEntriesByOrderId($order->getId());
+            $order->setEntries($cartEntries);
+
+            return $order;
+        } catch (Exception $e) {
+            // Log de fout of handel deze op een andere manier af
+            header("Location: /profiel/bestellingen.php?error=" . urlencode($e->getMessage()));
             die;
         }
     }

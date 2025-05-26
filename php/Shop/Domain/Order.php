@@ -2,7 +2,6 @@
 
 class Order
 {
-
     // met constructor property promotion hoef je de properties niet apart te declareren bovenaan de klasse
     public function __construct(
         private int $id,
@@ -11,6 +10,7 @@ class Order
         private OrderStatus $status,
         private ?string $comment = '',
         private float $total = 0.0,
+        /** @var CartEntry[] */
         private array $entries = []
     ) {}
 
@@ -54,16 +54,28 @@ class Order
     {
         // wordt toegevoegd aan het einde van de array
         $this->entries[] = $entry;
+        // herbereken de totale prijs van de order
+        $this->total = $this->calculateTotal();
     }
 
+    /**
+     * @return CartEntry[]
+     */
     public function getEntries(): array
     {
         return $this->entries;
     }
 
+    // zet de entries array naar de nieuwe array
+    public function setEntries(array $entries): void
+    {
+        $this->entries = $entries;
+        // herbereken de totale prijs van de order
+        $this->total = $this->calculateTotal();
+    }
+
     public function removeEntry(int $entryNumber)
     {
-
         // controleer of het index nummer voorkomt in de array
         if (array_key_exists($entryNumber, $this->entries)) {
             // verwijder het item uit de array
@@ -71,5 +83,14 @@ class Order
             // om te voorkomen dat er gatenkaas ontstaat moet de array geherindext worden
             $this->entries = array_values($this->entries);
         }
+    }
+
+    private function calculateTotal(): float
+    {
+        $total = 0.0;
+        foreach ($this->entries as $entry) {
+            $total += $entry->getPriceSnapshot() * $entry->getCopies();
+        }
+        return $total;
     }
 }
