@@ -198,6 +198,7 @@ a {
 .justify-center {
 	justify-content: center;
 }
+
 .justify-between {
 	justify-content: space-between;
 }
@@ -618,10 +619,20 @@ ul {
     text-align: center;
 }
 
-.paginanav {
-	display: flex;
-	justify-content: center;
-	text-align: center;
+.game-card:hover {
+	border-color: var(--accent);
+	transition:
+			border-color 200ms;
+}
+
+#pagination a {
+	color: var(--foreground);
+	text-decoration: none;
+	padding-right: 10px;
+}
+
+#pagination a:hover {
+	text-decoration: underline;
 }
 
 #profile-container .order-table {
@@ -841,7 +852,6 @@ ul {
 		transition: transform 0.5s ease;
 	}
 
-	@media (max-width: 768px) {
     .productlijst {
         grid-template-columns: repeat(2, 1fr); /* Toon 2 kaarten naast elkaar op tablets */
     }
@@ -851,8 +861,6 @@ ul {
     .productlijst {
         grid-template-columns: 1fr; /* Toon 1 kaart per rij op mobiele apparaten */
     }
-}
-
 }
 
 /*
@@ -894,6 +902,14 @@ ul {
 	/* revers color img */
 	.invert-color-img {
 		filter: invert(100%);
+	}
+
+	.game-card:hover {
+		border-color: var(--accent);
+	}
+
+	.product-accent-border {
+		border: 1px solid var(--highlight);
 	}
 
 	.home-head-box,

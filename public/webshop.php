@@ -39,7 +39,7 @@ $controller->fetchGames();
             </form>
         </aside>
     </div>
-	<div class="product-accent-border mb-col-12 col-9">
+	<div class="product-accent-border mb-col-12 col-10">
 
         <?php if ($controller->getTotalOfGames() == 0): ?>
 		<div class="flex justify-center align-center py-50">
@@ -47,11 +47,11 @@ $controller->fetchGames();
 		</div>
         <?php endif;?>
 
-		<div class="productlijst mb-col-12 col-9 flex justify-center">
+		<div class="productlijst mb-col-12 col-12 flex justify-center">
 			 <!-- Productlijstweergave -->
 
-			<?php foreach ($controller->getGames() as $game): ?> <!-- // limit : 6 -->
-				<div class="game-card">
+			<?php foreach ($controller->getGames() as $game): ?>
+				<div class="game-card" onclick="window.location='/product.php?id=<?php echo $game->getId() ?>'">
 					<!-- Weergave van een individuele game-kaart -->
 					<h3><?php echo htmlspecialchars($game->getName()); ?></h3>
 					<p>Prijs: €<?php echo htmlspecialchars($game->getPrice()); ?></p>
@@ -66,16 +66,15 @@ $controller->fetchGames();
 			Elke link naar de volgende pagina moet de filter parameters meegeven
 		-->
 
-		<!-- Paginering -->
-		<div class="pagination py-10 px-10">
+		<div id="pagination" class="py-10 px-10 text-center">
 			<!-- Wanneer pagina groter dan 1 is, link naar vorige pagina-->
 			<?php if ($currentPage > 1): ?>
 				<a href="?page=<?php echo $currentPage - 1 . $controller->getFilterParams(); ?>">Vorige</a>
 			<?php endif; ?>
 			<!-- Berekenen van het aantal pagina's -->
 			<?php for ($i = 1; $i <= $controller->getTotalPages(); $i++): ?>
-				<a href="?page=<?php echo $i . $controller->getFilterParams(); ?>"
-				<!-- make current page bold-->
+				<a href="?page=<?php echo $i . $controller->getFilterParams(); ?>">
+				<!-- highlight de huidige pagina in bold-->
 				<?php if ($i === $currentPage): ?>
 					<b><u><?php echo $i; ?></u></b>
 				<?php else: ?>

@@ -32,6 +32,9 @@ class WebshopController {
         return isset($_GET['page']) ? (int)$_GET['page'] : 1;
     }
 
+    /**
+     * @return Game[]
+     */
     public function getGames(): array
     {
         // We moeten 1 aftrekken van de huidige pagina zodat de offset goed staat
