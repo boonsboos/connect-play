@@ -16,7 +16,7 @@ class GameRepository
         }
     }
 
-    public function addGame(Game $game)
+    public function addGame(Game $game): void
     {
         try {
             $stmtGame = $this->db->prepare("CALL add_game(:players, :price, :duration, :name, :description, :difficulty, :left_in_stock)");
@@ -70,8 +70,8 @@ class GameRepository
         }
         return $allGames;
     }
-
-    public function getGame(int $id)
+    
+    public function getGame(int $id): Game
     {
         $stmt = $this->db->prepare("CALL get_game(:id)");
 
@@ -93,4 +93,7 @@ class GameRepository
             leftInStock: $gameData['left_in_stock'],
         );
     }
+
 }
+
+?>
