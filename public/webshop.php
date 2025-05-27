@@ -18,27 +18,29 @@ $controller->fetchGames();
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
 <div id="webshopContainer" class="mb-flex-col flex flex-nowrap py-15 px-15">
     <div id="productfilter" class="col-2 product-accent-border flex justify-center">
-        <aside class="filter-sectie">
+        <aside class="filter-sectie mb-col-12">
             <h3>Filteren</h3>
-            <form class="flex flex-col">
-				<div>
+            <form class="flex mb-flex-col">
+				<div class="flex flex-col col-12">
 					<label for="zoekfunctie">Zoeken</label>
 					<input type="text" id="zoekfunctie" name="search" placeholder="Jouw spel" value="<?php echo $_GET["search"] ?? ""; ?>">
 				</div>
-				<div>
-					<label for="maxspelers">Max. Spelers</label>
+				<div class="flex flex-col col-12">
+					<label for="maxspelers">Max. Spelers: <span id="maxspelers-value"></span></label>
 					<input type="range" id="maxspelers" name="maxspelers" min="2" max="16" step="2" value="<?php echo $_GET["maxspelers"] ?? '16'; ?>">
 				</div>
-				<div>
-					<label for="minspelers">Min. Spelers</label>
+				<div class="flex flex-col col-12">
+					<label for="minspelers">Min. Spelers: <span id="minspelers-value"></span></label>
 					<input type="range" id="minspelers" name="minspelers" min="2" max="16" step="2" value="<?php echo $_GET["minspelers"] ?? '2'; ?>">
 				</div>
-				<div>
                 	<button class="button" type="submit">Filteren</button>
-				</div>
             </form>
         </aside>
     </div>
+
+	<!-- late include zodat deze na het inladen van de filters wordt uitgevoerd-->
+	<script src="js/playerFilters.js"></script>
+
 	<div class="product-accent-border mb-col-12 col-10">
 
         <?php if ($controller->getTotalOfGames() == 0): ?>
