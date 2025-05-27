@@ -1,10 +1,15 @@
 <?php
 require_once '/var/www/php/Shared/debug.php';
 require_once '/var/www/php/Profile/DataAccess/UserRepository.php';
+require_once '/var/www/php/Shared/Language/Language.php';
 
-// start de sessie om te kijken of de gebruiker is ingelogd
-// note: sessie moet gestart worden voordat er html wordt geprint
-session_start();
+$language = new Language();
+function __($key): string
+{
+    global $language;
+    return $language->translate($key);
+}
+
 
 // check of userId in de sessie zit
 if (isset($_SESSION["userId"])) {
@@ -49,17 +54,22 @@ if (isset($_SESSION["userId"])) {
             </a>
 
             <div id="page-links" class="flex offset mb-col-12">
-                <a href="/diensten.php">Diensten</a>
-                <a href="/over-ons.php">Over Ons</a>
-                <a href="/contact.php">Contact</a>
+                <a href="/diensten.php"><?= __('nav.services') ?></a>
+                <a href="/over-ons.php"><?= __('nav.about') ?></a>
+                <a href="/contact.php"><?= __('nav.contact') ?></a>
                 <?php if (isset($user)): ?>
-                        <?php if ($user->getRole() === UserRole::EMPLOYEE || $user->getRole() === UserRole::ADMINISTRATOR): ?>
-                        <a href="/dashboard.php">Dashboard</a>
+                    <?php if ($user->getRole() === UserRole::EMPLOYEE || $user->getRole() === UserRole::ADMINISTRATOR): ?>
+                        <a href="/dashboard.php"><?= __('nav.dashboard') ?></a>
                     <?php endif; ?>
-                    <a href="/profiel.php">Profiel</a>
-                    <a href="/logout.php">Logout</a>
+                    <a href="/profiel.php"><?= __('nav.profile') ?></a>
+                    <a href="/logout.php"><?= __('nav.logout') ?></a>
                 <?php else: ?>
-                    <a href="/login.php">Login</a>
+                    <a href="/login.php"><?= __('nav.login') ?></a>
+                <?php endif; ?>
+                <?php if($language->getLanguage() === 'nl'): ?>
+                    <a href="?lang=en">EN</a>
+                <?php else: ?>
+                    <a href="?lang=nl">NL</a>
                 <?php endif; ?>
             </div>
         </div>

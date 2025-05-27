@@ -5,13 +5,11 @@
 		<div class="home-head-box py-50 col-6 mb-col-12 flex justify-center">
 			<h1 class="heading pb-15">Connect & Play</h1>
 			<p class="text-center pb-10 col-12">
-				Klaar met van die saaie bedrijfuitjes of
-				teambuildingactiviteiten? Kijk niet verder dan Connect &
-				Play!
+				<?= __('home.banner.text') ?>
 			</p>
 			<div class="pt-10">
 				<a class="button p-10" href="contact.html">
-					Neem contact op
+					<?= __('home.banner.button') ?>
 				</a>
 			</div>
 		</div>
@@ -25,41 +23,37 @@
 			<img class="mb-col-12 col-12" src="images/dienst_1.jpg"
 				alt="Gamer achter computer die videogames speelt" />
 			<div class="px-10 pb-10 flex justify-center">
-				<h2 class="pt-10">Videogames</h2>
+				<h2 class="pt-10">
+					<?= __('home.services.videogames.title') ?>
+				</h2>
 				<p>
-					Duik in de wereld van videogames, waar strategie en
-					actie elkaar ontmoeten. Ontdek de nieuwste releases
-					en de klassieke favorieten, van singleplayer
-					avonturen tot multiplayer games voor alle
-					leeftijden.
+					<?= __('home.services.videogames.text') ?>
 				</p>
-				<a class="home-info-button" href="diensten.html">Lees meer...</a>
+				<a class="home-info-button" href="diensten.html"><?= __('home.services.read_more') ?></a>
 			</div>
 		</div>
 		<div class="mb-col-12 col-4 flex justify-center home-info-box">
 			<img class="mb-col-12 col-12" src="images/dienst_3.jpg" alt="Bordspel" />
 			<div class="px-10 pb-10 flex justify-center">
-				<h2 class="pt-10">Bordspellen</h2>
+				<h2 class="pt-10">
+					<?= __('home.services.board_games.title') ?>
+				</h2>
 				<p>
-					Verzamel je vrienden en familie voor een gezellige
-					spelavond! Van strategische bordspellen tot snelle
-					kaartspellen, er is voor ieder wat wils. Ontdek onze
-					topaanbevelingen.
+					<?= __('home.services.board_games.text') ?>
 				</p>
-				<a class="home-info-button" href="diensten.html">Lees meer...</a>
+				<a class="home-info-button" href="diensten.html"><?= __('home.services.read_more') ?></a>
 			</div>
 		</div>
 		<div class="mb-col-12 col-4 flex justify-center home-info-box">
 			<img class="mb-col-12 col-12" src="images/dienst_4.jpg" alt="Een trofee in een arena" />
 			<div class="px-10 pb-10 flex justify-center">
-				<h2 class="pt-10">Toernooien</h2>
+				<h2 class="pt-10">
+					<?= __('home.services.tournaments.title') ?>
+				</h2>
 				<p>
-					Test je vaardigheden in onze spannende toernooien!
-					Doe mee met videogame- of bordspelcompetities en
-					bewijs dat jij de kampioen bent. Iedereen is welkom,
-					van beginner tot expert.
+					<?= __('home.services.tournaments.text') ?>
 				</p>
-				<a class="home-info-button" href="diensten.html">Lees meer...</a>
+				<a class="home-info-button" href="diensten.html"><?= __('home.services.read_more') ?></a>
 			</div>
 		</div>
 	</div>
@@ -69,50 +63,53 @@
 <section class="usp-section flex justify-center py-50">
 	<div class="col-8 flex">
 		<div class="mb-col-6 col-3 text-center">
-			<h5 class="text-center">Snelheid & Gemak</h5>
+			<h5 class="text-center">
+				<?= __('home.usp.speed.title') ?>
+			</h5>
 			<ul class="usp">
 				<li>
 					<img class="invert-color-img py-15" src="images/iconTruck.svg" alt="Vrachtwagen" />
 					<p class="tiny-text">
-						Binnen 30 minuten geleverd, of het is
-						gratis—gegarandeerd.
+						<?= __('home.usp.speed.text') ?>
 					</p>
 				</li>
 			</ul>
 		</div>
 		<div class="mb-col-6 col-3 text-center">
-			<h5>Kwaliteitsgarantie</h5>
+			<h5>
+				<?= __('home.usp.quality.title') ?>
+			</h5>
 			<ul class="usp">
 				<li>
 					<img class="invert-color-img py-15" src="images/iconAward.svg" alt="Prijs" />
 					<p class="tiny-text">
-						We garanderen dat onze producten een leven lang
-						meegaan, of we vervangen ze gratis.
+						<?= __('home.usp.quality.text') ?>
 					</p>
 				</li>
 			</ul>
 		</div>
 		<div class="mb-col-6 col-3 text-center">
-			<h5>Milieuvriendelijk & Duurzaam</h5>
+			<h5>
+				<?= __('home.usp.environment.title') ?>
+			</h5>
 			<ul class="usp">
 				<li>
 					<img class="invert-color-img py-15" src="images/iconLeaf.svg" alt="Milieu" />
 					<p class="tiny-text">
-						100% milieuvriendelijke producten, duurzaam en
-						ethisch verantwoord geproduceerd.
+						<?= __('home.usp.environment.text') ?>
 					</p>
 				</li>
 			</ul>
 		</div>
 		<div class="mb-col-6 col-3 text-center">
-			<h5>Uitstekende klantenservice</h5>
+			<h5>
+				<?= __('home.usp.customer_service.title') ?>
+			</h5>
 			<ul class="usp">
 				<li>
 					<img class="invert-color-img py-15" src="images/iconHeadset.svg" alt="Klantenservice" />
 					<p class="tiny-text">
-						24/7 beschikbaar, met echte mensen die altijd
-						klaarstaan om je te helpen wanneer je ons nodig
-						hebt.
+						<?= __('home.usp.customer_service.text') ?>
 					</p>
 				</li>
 			</ul>
