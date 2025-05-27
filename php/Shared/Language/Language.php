@@ -39,7 +39,7 @@ class Language
      */
     public function getLanguage(): string
     {
-        return $_SESSION['language'] ?? $this->default;
+        return $_SESSION['language'] ?? $this->default; // Retourneert de taal uit de sessie of de standaardtaal
     }
 
     /**
@@ -50,7 +50,7 @@ class Language
     {
         // Controleer of het een geneste sleutel is
         if (str_contains($key, '.')) {
-            $parts = explode('.', $key);    // Splitst bijvoorbeeld "auth.login" in ['auth', 'login']
+            $parts = explode('.', $key);    // Splitst bijvoorbeeld "nav.services" in ['nav', 'services']
             $current = $this->translations; // Start bij de volledige vertalingsarray
 
             if (empty($parts)) {
@@ -81,14 +81,15 @@ class Language
     private function loadLanguageFile(): void
     {
         $language = $this->getLanguage();
-        if (!in_array($language, $this->languages)) {
+        if (!in_array($language, $this->languages)) { // Controleer of de taal geldig is
+            // Als de taal niet geldig is, gebruik de standaardtaal
             $language = $this->default;
         }
-        $filePath = __DIR__ . "/{$language}.php";
-        if (file_exists($filePath)) {
-            $this->translations = require $filePath;
+        $filePath = __DIR__ . "/{$language}.php"; // Pad naar het taalbestand
+        if (file_exists($filePath)) { // Controleer of het bestand bestaat
+            $this->translations = require $filePath; // Laad de vertalingen uit het bestand
         } else {
-            $this->translations = [];
+            $this->translations = []; // Als het bestand niet bestaat, gebruik een lege array
         }
     }
 }

@@ -4,10 +4,10 @@ require_once '/var/www/php/Profile/DataAccess/UserRepository.php';
 require_once '/var/www/php/Shared/Language/Language.php';
 
 $language = new Language();
-function __($key): string
+function __($key): string // verkorte versie voor de vertaal functie
 {
-    global $language;
-    return $language->translate($key);
+    global $language; // gebruik de globale $language variabele
+    return $language->translate($key); // vertaal de sleutel naar de huidige taal
 }
 
 
