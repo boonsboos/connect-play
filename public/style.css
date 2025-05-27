@@ -179,6 +179,10 @@ a {
 	row-gap: 1vh;
 }
 
+.flex-nowrap {
+	flex-wrap: nowrap;
+}
+
 .flex-col {
 	flex-direction: column;
 }
@@ -583,18 +587,10 @@ ul {
 	background-color: var(--primary);
 }
 
-.webshop-container {
+#productfilter {
 	display: flex;
 	gap: 16px;
 	padding: 16px;
-	background-color: var(--background);
-}
-
-.productfilter {
-	display: flex;
-	gap: 16px;
-	padding: 16px;
-	background-color: var(--background);
 }
 
 .product-accent-border {
@@ -602,27 +598,23 @@ ul {
 	border-radius: 8px;
 }
 
-.productlijst {
+#productlijst {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Verdeel in drie kolommen */
     gap: 16px;
-    padding: 16px;
-	background-color: var(--background);
+	border-radius: inherit; /* zo steekt de padding niet uit */
 }
 
 .game-card {
     border: 1px solid #ddd;
     border-radius: 8px; 
     padding: 16px;
-	background-color: var(--background);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 
 .game-card:hover {
 	border-color: var(--accent);
-	transition:
-			border-color 200ms;
+	transition: border-color 200ms;
 }
 
 #pagination a {
@@ -904,8 +896,13 @@ ul {
 		filter: invert(100%);
 	}
 
+	.game-card {
+		border-color: var(--box-2);
+		box-shadow: none;
+	}
+
 	.game-card:hover {
-		border-color: var(--accent);
+		border-color: var(--highlight);
 	}
 
 	.product-accent-border {

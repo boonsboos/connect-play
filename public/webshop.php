@@ -16,14 +16,14 @@ $controller->fetchGames();
 ?>
 
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
-<div class="webshop-container mb-flex-col">
-    <div class="col-2 productfilter product-accent-border flex justify-center">
+<div id="webshopContainer" class="mb-flex-col flex flex-nowrap py-15 px-15">
+    <div id="productfilter" class="col-2 product-accent-border flex justify-center">
         <aside class="filter-sectie">
             <h3>Filteren</h3>
             <form class="flex flex-col">
 				<div>
-					<label for="zoekfunctie">Zoek Product:</label>
-					<input type="text" id="zoekfunctie" name="search" placeholder="Zoek Product" value="<?php echo $_GET["search"] ?? ""; ?>">
+					<label for="zoekfunctie">Zoeken</label>
+					<input type="text" id="zoekfunctie" name="search" placeholder="Jouw spel" value="<?php echo $_GET["search"] ?? ""; ?>">
 				</div>
 				<div>
 					<label for="maxspelers">Max. Spelers</label>
@@ -34,7 +34,7 @@ $controller->fetchGames();
 					<input type="range" id="minspelers" name="minspelers" min="2" max="16" step="2" value="<?php echo $_GET["minspelers"] ?? '2'; ?>">
 				</div>
 				<div>
-                	<button class="button" type="submit">Filter nu</button>
+                	<button class="button" type="submit">Filteren</button>
 				</div>
             </form>
         </aside>
@@ -47,13 +47,13 @@ $controller->fetchGames();
 		</div>
         <?php endif;?>
 
-		<div class="productlijst mb-col-12 col-12 flex justify-center">
+		<div id="productlijst" class="mb-col-12 col-12 flex justify-center px-15 py-15">
 			 <!-- Productlijstweergave -->
 
 			<?php foreach ($controller->getGames() as $game): ?>
 				<div class="game-card" onclick="window.location='/product.php?id=<?php echo $game->getId() ?>'">
 					<!-- Weergave van een individuele game-kaart -->
-					<h3><?php echo htmlspecialchars($game->getName()); ?></h3>
+					<h3 class="text-center"><?php echo htmlspecialchars($game->getName()); ?></h3>
 					<p>Prijs: €<?php echo htmlspecialchars($game->getPrice()); ?></p>
 					<p>Spelers: <?php echo htmlspecialchars($game->getPlayers()); ?></p>
 					<p>Beschrijving: <?php echo htmlspecialchars($game->getDescription()); ?></p>
