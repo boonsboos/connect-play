@@ -17,17 +17,17 @@ class WorkshopRepository
         }
     }
     
-    public function createWorkshop(Game $game, Workshop $Workshop): void
+    public function createWorkshop(Game $game, Workshop $workshop): void
     {
         try {
             $stmtWorkshop = $this->db->prepare("CALL add_workshop(:game_id, :min_size, :max_size, :duration, :price)");
             
             $stmtWorkshop->execute([
                 ':game_id' => $game->getId(),
-                ':min_size' => $Workshop->getMinSize(),
-                ':max_size' => $Workshop->getMaxSize(),
-                ':duration' => $Workshop->getDuration(),
-                ':price' => $Workshop->getPrice(),
+                ':min_size' => $workshop->getMinSize(),
+                ':max_size' => $workshop->getMaxSize(),
+                ':duration' => $workshop->getDuration(),
+                ':price' => $workshop->getPrice(),
             ]);
 
         } catch (PDOException $e) {
@@ -60,6 +60,28 @@ class WorkshopRepository
         throw new Exception("Geen workshop gevonden voor deze game.");
     }
 
+    public function updateWorkshop(Workshop $workshop): void
+    {
+        $stmtNewGameInfo = $this->db->prepare("CALL update_workshop(:game_id, :min_size, :max_size, :duration, :price)");
+
+        $stmtNewGameInfo->execute([
+            ':game_id' => $workshop->getGameID(),
+            ':min_size' => $workshop->getMinSize(),
+            ':max_size' => $workshop->getMaxSize(),
+            ':duration' => $workshop->getDuration(),
+            ':price' => $workshop->getPrice(),
+        ]); 
+    }
+
+    public function removeWorkshop(int $gameId): void
+    {
+        $stmtNewGameInfo = $this->db->prepare("CALL delete_workshop(:game_id)");
+
+        $stmtNewGameInfo->execute([
+            ':game_id' => $gameId
+        ]);
+    }
+    
 }
 
 ?>

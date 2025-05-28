@@ -45,13 +45,9 @@ class GameController extends Controller
 
     public function updateGame(Game $game): void
     {
-        // Haal eerst de game op
-        $getGame = $this->gameRepository->getGame($game->getId());
-
-        // Bestaat de game niet, gooi een Exception
-        if (!$getGame) {
-            throw new Exception("Game bestaat niet!");
-        }
+        // Haal eerst de game op als deze bestaad
+        // Indien de game niet aanwezig is gooit de gameRepository een Exception
+        $this->gameRepository->getGame($game->getId());
 
         // Voer update op game uit
         $this->gameRepository->updateGame($game);
@@ -59,11 +55,7 @@ class GameController extends Controller
 
     public function removeGame(int $gameId): void
     {
-        $getGame = $this->gameRepository->getGame($gameId);
-
-        if (!$getGame) {
-            throw new Exception("Game bestaat niet!");
-        }
+        $this->gameRepository->getGame($gameId);
 
         $this->gameRepository->removeGame($gameId);
     }

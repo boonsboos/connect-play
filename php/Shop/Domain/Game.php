@@ -55,14 +55,8 @@ class Game
     {
         return $this->leftInStock;
     }
-
-    public function setId(int $gameId): void
-    {
-        // geeft het id aan het game object nadat deze is opgeslagen in de database
-        $this->id = $gameId;
-    }
-
-        public function setPlayers(int $players): void
+    
+    public function setPlayers(int $players): void
     {
         $this->players = $players;
     }
