@@ -179,6 +179,10 @@ a {
 	row-gap: 1vh;
 }
 
+.flex-nowrap {
+	flex-wrap: nowrap;
+}
+
 .flex-col {
 	flex-direction: column;
 }
@@ -198,6 +202,7 @@ a {
 .justify-center {
 	justify-content: center;
 }
+
 .justify-between {
 	justify-content: space-between;
 }
@@ -582,6 +587,46 @@ ul {
 	background-color: var(--primary);
 }
 
+#productfilter {
+	display: flex;
+	gap: 16px;
+	padding: 16px;
+}
+
+.product-accent-border {
+	border: 1px solid var(--accent);
+	border-radius: 8px;
+}
+
+#productlijst {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Verdeel in drie kolommen */
+    gap: 16px;
+	border-radius: inherit; /* zo steekt de padding niet uit */
+}
+
+.game-card {
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+    padding: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-card:hover {
+	border-color: var(--accent);
+	transition: border-color 200ms;
+}
+
+#pagination a {
+	color: var(--foreground);
+	text-decoration: none;
+	padding-right: 10px;
+}
+
+#pagination a:hover {
+	text-decoration: underline;
+}
+
 #profile-container .order-table {
 	width: 100%;
 	border-collapse: collapse;
@@ -632,11 +677,16 @@ ul {
 	color: #555;
 	font-weight: 500;
 }
+
 @media only screen and (min-width: 768px) {
 	/* columns subtract the width of the gap specified by .flex from their own width */
 
 	.col {
 		width: calc(8.33% - 1vw);
+	}
+
+	.col-2 {
+		width: calc(16.66% - 1vw);
 	}
 
 	.col-3 {
@@ -694,6 +744,11 @@ ul {
 
 /* mobile only classes */
 @media only screen and (max-width: 768px) {
+
+	.mb-flex-col {
+		flex-direction: column;
+	}
+
 	.mb-col {
 		width: calc((1 / 12) * 100% - 1vw);
 	}
@@ -788,6 +843,16 @@ ul {
 		transform: scale(1.2);
 		transition: transform 0.5s ease;
 	}
+
+    .productlijst {
+        grid-template-columns: repeat(2, 1fr); /* Toon 2 kaarten naast elkaar op tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .productlijst {
+        grid-template-columns: 1fr; /* Toon 1 kaart per rij op mobiele apparaten */
+    }
 }
 
 /*
@@ -829,6 +894,19 @@ ul {
 	/* revers color img */
 	.invert-color-img {
 		filter: invert(100%);
+	}
+
+	.game-card {
+		border-color: var(--box-2);
+		box-shadow: none;
+	}
+
+	.game-card:hover {
+		border-color: var(--highlight);
+	}
+
+	.product-accent-border {
+		border: 1px solid var(--highlight);
 	}
 
 	.home-head-box,
