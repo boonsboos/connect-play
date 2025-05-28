@@ -71,7 +71,7 @@ class GameRepository
         return $allGames;
     }
     
-    public function getGame(int $id): Game
+    public function getGame(int $id): ?Game // Omdat deze methode een Game object of null retouneer maak je gebruik van ? voor de ofwel
     {
         $stmt = $this->db->prepare("CALL get_game(:id)");
 
@@ -92,6 +92,31 @@ class GameRepository
             difficulty: $gameData['difficulty'],
             leftInStock: $gameData['left_in_stock'],
         );
+    }
+
+    public function updateGame(Game $game): void
+    {
+        // Voer update_game procedure uit
+        $stmtNewGameInfo = $this->db->prepare("CALL update_game(:id, :price, :duration, :name, :description, :difficulty, :left_in_stock)");
+
+        $stmtNewGameInfo->execute([
+            ':id' => $game->getId(),
+            ':price' => $game->getPrice(),
+            ':duration' => $game->getDuration(),
+            ':name' => $game->getName(),
+            ':description' => $game->getDescription(),
+            ':difficulty' => $game->getDifficulty(),
+            ':left_in_stock' => $game->getLeftInStock()
+        ]); 
+    }
+
+    public function removeGame(int $id): void
+    {
+        $stmtNewGameInfo = $this->db->prepare("CALL delete_game(:id)");
+
+        $stmtNewGameInfo->execute([
+            ':id' => $id
+        ]);
     }
 
 }

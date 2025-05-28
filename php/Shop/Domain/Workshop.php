@@ -36,6 +36,26 @@ class Workshop {
         return $this->price;
     }
 
+    public function setMinSize(int $minSize): void
+    {
+        $this->minSize = $minSize;
+    }
+
+    public function setMaxSize(int $maxSize): void
+    {
+       $this->maxSize = $maxSize;
+    }
+
+    public function setPrice(float $price): void
+    {
+        $this->price = $price;
+    }
+
+    public function setDuration(int $duration): void
+    {
+        $this->duration = $duration;
+    }
+
 }
 
 ?>

@@ -56,10 +56,45 @@ class Game
         return $this->leftInStock;
     }
 
-    public function setId(int $gameId)
+    public function setId(int $gameId): void
     {
         // geeft het id aan het game object nadat deze is opgeslagen in de database
         $this->id = $gameId;
+    }
+
+        public function setPlayers(int $players): void
+    {
+        $this->players = $players;
+    }
+
+    public function setPrice(float $price): void
+    {
+        $this->price = $price;
+    }
+
+    public function setDuration(int $duration): void
+    {
+        $this->duration = $duration;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    public function setDifficulty(string $difficulty): void
+    {
+        $this->difficulty = $difficulty;
+    }
+
+    public function setLeftInStock(int $leftInStock): void
+    {
+        $this->leftInStock = $leftInStock;
     }
 
 }
