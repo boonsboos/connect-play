@@ -74,16 +74,16 @@ class OrderRepository
             $cartEntries[] = new CartEntry(
                 $row['order_number'],
                 new Game(
+                    $game['game_id'],
                     $game['players'],
                     (float)$game['price'],
                     $game['duration'],
                     $game['name'],
                     $game['description'],
                     $game['difficulty'],
-                    (int)$game['left_in_stock'],
-                    (int)$game['game_id']
+                    $game['left_in_stock']
                 ),
-                (int)$row['amount'],
+                $row['amount'],
                 $row['when'],
                 (float)$row['price_snapshot']
             );
