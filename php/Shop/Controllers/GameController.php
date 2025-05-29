@@ -43,6 +43,23 @@ class GameController extends Controller
         $this->gameRepository->addGame($game);
     }
 
+    public function updateGame(Game $game): void
+    {
+        // Haal eerst de game op als deze bestaad
+        // Indien de game niet aanwezig is gooit de gameRepository een Exception
+        $this->gameRepository->getGame($game->getId());
+
+        // Voer update op game uit
+        $this->gameRepository->updateGame($game);
+    }
+
+    public function removeGame(int $gameId): void
+    {
+        $this->gameRepository->getGame($gameId);
+
+        $this->gameRepository->removeGame($gameId);
+    }
+    
 }
 
 ?>

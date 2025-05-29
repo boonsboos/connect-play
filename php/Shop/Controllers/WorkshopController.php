@@ -22,6 +22,23 @@ class WorkshopController extends Controller
         return $this->workshopRepository->getWorkshop($gameId);
     }
 
+    public function updateWorkshop(Workshop $workshop): void
+    {
+        // Controleer of er een workshop bestaat voor deze game
+        // Workshop niet aanwezig dan gooit de workshopRepository een Exception
+        $this->workshopRepository->getWorkshop($workshop->getGameId());
+        
+        // Voeg update op workshop uit
+        $this->workshopRepository->updateWorkshop($workshop);
+    }
+
+    public function removeWorkshop(int $gameId): void
+    {
+        $this->workshopRepository->getWorkshop($gameId);
+
+        $this->workshopRepository->removeWorkshop($gameId);
+    }
+
 }
 
 ?>

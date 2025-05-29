@@ -31,11 +31,6 @@ class GameRepository
                 ':left_in_stock' => $game->getLeftInStock()
             ]);
 
-            // haal het id op dat de stored procedure heeft teruggegeven (uit de storerd procedure SELECT LAST_INSERT_ID() AS id;)
-            $gameRow = $stmtGame->fetch(); // haalt de eerste rij op na uitvoer van procedure en maak een associatieve array
-            if ($gameRow && isset($gameRow['game_id'])) {
-                $game->setId((int) $gameRow['game_id']);
-            }
         } catch (PDOException $e) {
             if ($e->getCode() === '23000') { // Code 23000 betekent "Integrity constraint violation". je probeert iets toe te voegen dat de db verbied, zoals dubbele game namen
                 throw new Exception("Game naam bestaat al!");  // hier maak je een Exception voor ALLEEN de foutcode 23000 zo worden andere foutmeldingen niet stilgezet
@@ -71,7 +66,7 @@ class GameRepository
         return $allGames;
     }
     
-    public function getGame(int $id): Game
+    public function getGame(int $id): ?Game // Omdat deze methode een Game object of null retouneer maak je gebruik van ? voor de ofwel
     {
         $stmt = $this->db->prepare("CALL get_game(:id)");
 
@@ -90,8 +85,33 @@ class GameRepository
             name: $gameData['name'],
             description: $gameData['description'],
             difficulty: $gameData['difficulty'],
-            leftInStock: $gameData['left_in_stock'],
+            leftInStock: $gameData['left_in_stock']
         );
+    }
+
+    public function updateGame(Game $game): void
+    {
+        // Voer update_game procedure uit
+        $stmtNewGameInfo = $this->db->prepare("CALL update_game(:id, :price, :duration, :name, :description, :difficulty, :left_in_stock)");
+
+        $stmtNewGameInfo->execute([
+            ':id' => $game->getId(),
+            ':price' => $game->getPrice(),
+            ':duration' => $game->getDuration(),
+            ':name' => $game->getName(),
+            ':description' => $game->getDescription(),
+            ':difficulty' => $game->getDifficulty(),
+            ':left_in_stock' => $game->getLeftInStock()
+        ]); 
+    }
+
+    public function removeGame(int $id): void
+    {
+        $stmtNewGameInfo = $this->db->prepare("CALL delete_game(:id)");
+
+        $stmtNewGameInfo->execute([
+            ':id' => $id
+        ]);
     }
 
 }
