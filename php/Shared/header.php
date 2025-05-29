@@ -56,6 +56,7 @@ if (isset($_SESSION["userId"])) {
             <div id="page-links" class="flex offset mb-col-12">
                 <a href="/diensten.php"><?= __('nav.services') ?></a>
                 <a href="/over-ons.php"><?= __('nav.about') ?></a>
+                <a href="/webshop.php"><?= __('nav.webshop') ?></a>
                 <a href="/contact.php"><?= __('nav.contact') ?></a>
                 <?php if (isset($user)): ?>
                     <?php if ($user->getRole() === UserRole::EMPLOYEE || $user->getRole() === UserRole::ADMINISTRATOR): ?>
@@ -66,7 +67,7 @@ if (isset($_SESSION["userId"])) {
                 <?php else: ?>
                     <a href="/login.php"><?= __('nav.login') ?></a>
                 <?php endif; ?>
-                <?php if($language->getLanguage() === 'nl'): ?>
+                <?php if ($language->getLanguage() === 'nl'): ?>
                     <a href="?lang=en">EN</a>
                 <?php else: ?>
                     <a href="?lang=nl">NL</a>
