@@ -18,7 +18,7 @@ class GameController extends Controller
         return $this->gameRepository->getGames();
     }
 
-    public function getGame()
+    public function getGame(): Game
     {
         // Haalt het ID uit de url, anders staat die op null
         $id = $_GET['id'] ?? null;
@@ -28,20 +28,25 @@ class GameController extends Controller
             throw new Exception("Ongeldig of ontbrekend ID");
         }
 
-        $game = $this->gameRepository->getGame($id);
+        return $this->getGameById((int)$id); //de (int) forceert dat $id een integer wordt
+    }
 
-        // Check of de game leeg is
-        if (!$game) {
-            throw new Exception("Game niet gevonden", 404);
-        }
+    // met de methode getGameById heb je de mogelijheid om een game adhv een id op te halen
+    public function getGameById(int $id): Game
+    {
+        return $this->gameRepository->getGame($id);
+    }
 
-        return $game;
+    public function getGameByName(string $name): Game
+    {
+        return $this->gameRepository->getGameByName($name);
     }
 
     public function addGame(Game $game): void
     {
         $this->gameRepository->addGame($game);
     }
+    
 
     public function updateGame(Game $game): void
     {
