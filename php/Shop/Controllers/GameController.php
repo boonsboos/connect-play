@@ -37,11 +37,6 @@ class GameController extends Controller
         return $this->gameRepository->getGame($id);
     }
     
-    public function addGame(Game $game): void
-    {
-        $this->gameRepository->addGame($game);
-    }
-    
     public function updateGame(Game $game): void
     {
         // Haal eerst de game op als deze bestaad
@@ -58,7 +53,41 @@ class GameController extends Controller
 
         $this->gameRepository->removeGame($gameId);
     }
-    
+
+    public function addGame()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            throw new Exception("Ongeldige methode, alleen POST is toegestaan", 405);
+        }
+        
+        //Controlleren of alle velden zijn ingevuld
+        $velden = ['name', 'players', 'price', 'duration', 'description', 'difficulty', 'left_in_stock'];
+        foreach ($velden as $veld) {
+            if (empty($_POST[$veld])) {
+                throw new Exception("Veld '$veld' is verplicht");
+            }
+        }
+
+        $game = new Game(
+            players: (int)$_POST['players'],
+            price: (float)$_POST['price'],
+            duration: (int)$_POST['duration'],
+            name: (string)$_POST['name'],
+            description: (string)$_POST['description'],
+            difficulty: (string)$_POST['difficulty'],
+            leftInStock: (int)$_POST['left_in_stock']
+        );
+
+        try {
+            $this->gameRepository->addGame($game);
+        } catch (Exception $e) {
+            throw new Exception("Fout bij het toevoegen van het spel: " . $e->getMessage());
+        }
+
+            // Redirect terug naar formulier met succesmelding
+        header("Location: /dashboard/addgame.php?success=1");
+    exit;
+    }
 }
 
 ?>

@@ -72,7 +72,7 @@ class GameRepository
         return $allGames;
     }
     
-    public function getGame(int $id): Game 
+    public function getGame(int $id): ?Game
     {
         $stmtGame = $this->db->prepare("CALL get_game(:id)");
 
