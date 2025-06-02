@@ -11,7 +11,7 @@ class Workshop {
         private int $duration
     ) {}
 
-    public function getGameID(): int
+    public function getGameId(): int
     {
         return $this->gameID;
     }
