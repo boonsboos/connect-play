@@ -13,7 +13,6 @@ require_once "/var/www/php/Shared/header.php";
 
 <form action="savegame.php" method="post">
     <div>
-<form method="POST" action="addgame.php">
     <label for="name">Naam:</label>
     <input type="text" id="name" name="name" required>
     <br/>
@@ -31,9 +30,9 @@ require_once "/var/www/php/Shared/header.php";
     <br/>
     <label for="difficulty">Moeilijkheidsgraad:</label>
     <select id="difficulty" name="difficulty">
-        <option value="easy">Gemakkelijk</option>
-        <option value="medium">Gemiddeld</option>
-        <option value="hard">Moeilijk</option>
+        <option value="Gemakkelijk">Gemakkelijk</option>
+        <option value="Matig">Gemiddeld</option>
+        <option value="Moeilijk">Moeilijk</option>
     </select>
     <br/>
     <label for="left_in_stock">Aantal op voorraad:</label>
