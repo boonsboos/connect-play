@@ -1,5 +1,7 @@
 <?php
+
 require_once '/var/www/php/Shop/Domain/Game.php';
+
 class CartEntry
 {
     public function __construct(

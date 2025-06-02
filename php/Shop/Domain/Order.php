@@ -1,4 +1,6 @@
-<?php require_once '/var/www/php/Shop/Domain/CartEntry.php';
+<?php 
+
+require_once '/var/www/php/Shop/Domain/CartEntry.php';
 
 class Order
 {
