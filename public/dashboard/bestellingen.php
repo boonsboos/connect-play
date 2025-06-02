@@ -14,3 +14,4 @@ require_once "/var/www/php/Shared/header.php";
 
 <?php
 require_once "/var/www/php/Shared/footer.php";
+?>
