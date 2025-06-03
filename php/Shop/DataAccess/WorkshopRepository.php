@@ -17,13 +17,13 @@ class WorkshopRepository
         }
     }
     
-    public function createWorkshop(Game $game, Workshop $workshop): void
+    public function createWorkshop(Workshop $workshop): void
     {
         try {
             $stmtWorkshop = $this->db->prepare("CALL add_workshop(:game_id, :min_size, :max_size, :duration, :price)");
             
             $stmtWorkshop->execute([
-                ':game_id' => $game->getId(),
+                ':game_id' => $workshop->getGameId(),
                 ':min_size' => $workshop->getMinSize(),
                 ':max_size' => $workshop->getMaxSize(),
                 ':duration' => $workshop->getDuration(),
@@ -46,7 +46,7 @@ class WorkshopRepository
         
         $workshopRow = $stmtWorkshop->fetch();
 
-        if ($workshopRow != false ) {
+        if (!empty($workshopRow)) {
             // Retourneert een workshop object met opgehaalde data
             return new Workshop(
                 (int) $workshopRow['game_id'],
@@ -59,6 +59,34 @@ class WorkshopRepository
 
         throw new Exception("Geen workshop gevonden voor deze game.");
     }
+
+    public function getWorkshops(int $gameId): array 
+    {
+        $workshops = [];
+
+        $stmtWorkshop = $this->db->prepare("SELECT * FROM `wokrshop` WHERE `game_id` = :gameId");
+
+        $stmtWorkshop->execute(['gameId'=> $gameId]);
+        
+        $allWorkshops = $stmtWorkshop->fetchAll();
+
+        if (!empty($allWorkshops)) {
+            foreach ($allWorkshops AS $workshop) {
+                $workshops[] = new Workshop(
+                    (int) $workshop['game_id'],
+                    (int) $workshop['min_size'],
+                    (int) $workshop['max_size'],
+                    (float) $workshop['price'],
+                    (int) $workshop['duration']
+                );
+            }
+
+            return $workshops;
+        }
+        
+        throw new Exception("Geen workshop gevonden voor deze game.");
+    }
+
 
     public function updateWorkshop(Workshop $workshop): void
     {

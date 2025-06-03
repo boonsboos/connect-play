@@ -66,26 +66,51 @@ class GameRepository
         return $allGames;
     }
     
-    public function getGame(int $id): ?Game // Omdat deze methode een Game object of null retouneer maak je gebruik van ? voor de ofwel
+    public function getGame(int $id): Game 
     {
-        $stmt = $this->db->prepare("CALL get_game(:id)");
+        $stmtGame = $this->db->prepare("CALL get_game(:id)");
 
-        $stmt->execute(['id' => $id]);
+        $stmtGame->execute(['id' => $id]);
 
-        $gameData = $stmt->fetch();
+        $gameData = $stmtGame->fetch();
 
         if (!$gameData) {
-            return null;
+            throw new Exception("Game niet gevonden", 404);
         }
 
         return new Game(
-            players: $gameData['players'],
-            price: $gameData['price'],
-            duration: $gameData['duration'],
+            players: (int)$gameData['players'],
+            price: (float)$gameData['price'],
+            duration: (int)$gameData['duration'],
             name: $gameData['name'],
             description: $gameData['description'],
             difficulty: $gameData['difficulty'],
-            leftInStock: $gameData['left_in_stock']
+            leftInStock: (int)$gameData['left_in_stock'],
+            id: (int)$gameData['game_id']
+        );
+    }
+
+    public function getGameByName(string $name): ?Game
+    {
+        $stmtGame = $this->db->prepare("SELECT * FROM `game` WHERE name = :name");
+        
+        $stmtGame->execute(['name' => $name]);
+        
+        $gameData = $stmtGame->fetch();
+
+        if (!$gameData) {
+            throw new Exception("Game niet gevonden", 404);
+        }
+
+        return new Game(
+            players: (int)$gameData['players'],
+            price: (float)$gameData['price'],
+            duration: (int)$gameData['duration'],
+            name: $gameData['name'],
+            description: $gameData['description'],
+            difficulty: $gameData['difficulty'],
+            leftInStock: (int)$gameData['left_in_stock'],
+            id: (int)$gameData['game_id']
         );
     }
 
