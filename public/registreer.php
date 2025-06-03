@@ -20,12 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $fullName = trim("$firstname $infix $lastname");
 
-    // Maak Address en User objecten aan
-    $addressObj = new Address($postalcode, $housenumber, $streetname, $city);
-    $user = new User($email, $fullName, $hashedPassword, UserRole::CUSTOMER, [$addressObj]);
-
     $controller = new UserController();
-    $controller->register($user);
+    $controller->register([
+        'email' => $email,
+        'fullName' => $fullName,
+        'password' => $hashedPassword,
+        'postalcode' => $postalcode,
+        'housenumber' => $housenumber,
+        'streetname' => $streetname,
+        'city' => $city,
+    ]);
 }
 ?>
 <script src="js/userValidation.js"></script>
