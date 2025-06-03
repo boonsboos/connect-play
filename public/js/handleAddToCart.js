@@ -29,7 +29,7 @@ function handleAddToCart(gameId) {
         })
         .catch(err => {
             console.error(err);
-            alert('Netwerkfout bij aanmaken van order.');
+            alert('Netwerkfout bij aanmaken van order. 1');
         });
     } else {
         const order = JSON.parse(storedOrder);
@@ -43,7 +43,7 @@ function addGameToCart(gameId, orderNumber) {
     formData.append('gameId', gameId);
     formData.append('orderNumber', orderNumber);
 
-    fetch('shoppingCartRouter.php', {
+    fetch('product.php', {
         method: 'POST',
         body: formData
     })
@@ -70,6 +70,6 @@ function addGameToCart(gameId, orderNumber) {
     })
     .catch(err => {
         console.error(err);
-        alert('Netwerkfout bij toevoegen aan winkelwagen.');
+        alert('Netwerkfout bij toevoegen aan winkelwagen. 2');
     });
 }

@@ -18,10 +18,10 @@ class ShoppingCartController
 
     public function dispatch()
     {
+        header('Content-Type: application/json');
+
         $action = $_POST['action'] ?? null;
         $gameId = $_POST['gameId'] ?? null;
-
-        header('Content-Type: application/json');
 
         if (!isset($_SESSION['user_id'])) {
             echo json_encode(['success' => false, 'message' => 'Niet ingelogd.']);

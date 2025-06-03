@@ -6,14 +6,15 @@ class Order
 {
     // met constructor property promotion hoef je de properties niet apart te declareren bovenaan de klasse
     public function __construct(
-        private ?int $orderNumber = null,
+
         private int $userId,
         private string $date,
         private OrderStatus $status,
         private string $comment = '',
         private float $total = 0.0,
         /** @var CartEntry[] */
-        private array $entries = []
+        private array $entries = [],
+        private ?int $orderNumber = null
     ) {}
 
     public function getId(): int

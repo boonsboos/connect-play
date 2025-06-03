@@ -1,19 +1,21 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	require_once '../php/Shop/Controllers/ShoppingCartController.php';
+	$shoppingCartController = new ShoppingCartController();
+	$shoppingCartController->dispatch();
+	exit;
+}
 // Inclusie van noodzakelijke bestanden
 require_once '../php/Shared/header.php';
-require_once '../php/Shop/controllers/GameController.php';
-require_once '../php/Shop/Controllers/ShoppingCartController.php';
+require_once '../php/Shop/Controllers/GameController.php';
+
 
 $userId = $_SESSION['user_id'] ?? null;
 
 $gameController = new GameController();
 $game = $gameController->getGame();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$shoppingCartController = new ShoppingCartController();
-	$shoppingCartController->dispatch();
-	exit;
-}
+
 
 if (!$game instanceof Game) {
 	echo "<p>Er is iets misgegaan bij het ophalen van de game.</p>";
@@ -21,8 +23,6 @@ if (!$game instanceof Game) {
 }
 
 ?>
-
-<script src="js/handleAddToCart.js"></script>
 
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
 <div class="container flex justify-center">
@@ -78,6 +78,7 @@ if (!$game instanceof Game) {
 	</div>
 
 </div>
+<script src="js/handleAddToCart.js"></script>
 <?php
 require_once '../php/Shared/footer.php';
 ?>
