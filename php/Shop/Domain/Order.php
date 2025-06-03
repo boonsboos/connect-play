@@ -6,7 +6,6 @@ class Order
 {
     // met constructor property promotion hoef je de properties niet apart te declareren bovenaan de klasse
     public function __construct(
-
         private int $userId,
         private string $date,
         private OrderStatus $status,
