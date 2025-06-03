@@ -17,8 +17,6 @@ services:
     # database
     mariadb:
         image: "mariadb:latest"
-        depends_on:
-            - test-php
         environment:
             MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "1"
             MARIADB_ROOT_PASSWORD: "" # voor lokaal gebruik zetten we het root wachtwoord op leeg
@@ -35,6 +33,8 @@ services:
     test-php:
         build:
             dockerfile: "dockerfile-test" # gebruik de dockerfile-test als image
+        depends_on:
+            - mariadb
         develop:
             # Als er PHP verandert, wordt de container herstart, opnieuw gebuild
             # en worden de tests meteen opnieuw uitgevoerd
