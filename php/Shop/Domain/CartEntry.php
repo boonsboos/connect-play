@@ -6,9 +6,9 @@ class CartEntry
 {
     public function __construct(
         private string $orderNumber,
-        private ?Game $game,
-        private int $copies = 0,
-        private string $when = '',
+        private Game $game,
+        private int $amount = 1,
+        private string $when = "",
         private float $priceSnapshot = 0.0,
         private bool $workshopEnabled = false
     ) {}
@@ -33,21 +33,21 @@ class CartEntry
         return $this->priceSnapshot;
     }
 
-    public function addCopy()
+    public function addAmount()
     {
-        $this->copies++;
+        $this->amount++;
     }
 
-    public function removeCopy()
+    public function removeAmount()
     {
-        if ($this->copies > 0) {
-            $this->copies--;
+        if ($this->amount > 0) {
+            $this->amount--;
         }
     }
 
-    public function getCopies(): int
+    public function getAmount(): int
     {
-        return $this->copies;
+        return $this->amount;
     }
 
     public function toggleWorkshop(): void
