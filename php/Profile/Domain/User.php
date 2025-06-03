@@ -5,12 +5,12 @@ require_once 'UserRole.php';
 
 class User
 {
+    private int $id;
     // zodat de editor het oppakt
     /**
      * @param Address[] $addresses
      */
     public function __construct(
-        private string $id,
         private string $email,
         private string $name,
         private string $password,
@@ -23,7 +23,7 @@ class User
         return $this->email;
     }
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
