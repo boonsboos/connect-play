@@ -91,6 +91,11 @@ class Game
         $this->leftInStock = $leftInStock;
     }
 
+    // ik heb toch een setId nodig voor het ophalen en het setten van de gameId op het gameobjcet
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
 }
 
 ?>
