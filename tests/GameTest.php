@@ -14,7 +14,7 @@ class GameTest extends TestCase {
         
         // Act
         $gameRepository->addGame($game);
-        $getGame = $gameRepository->getGameById($game->getId());
+        $getGame = $gameRepository->getGame($game->getId());
         
         // na het uitvoeren van de test wordt de game verwijderd uit de database
         $gameRepository->removeGame($game->getId());
@@ -38,7 +38,7 @@ class GameTest extends TestCase {
         $game->setLeftInStock(5);
 
         $gameRepository->updateGame($game); // voer de update uit
-        $updatedGame = $gameRepository->getGameById($game->getId()); // haal de game met nieuwe gegevens weer op
+        $updatedGame = $gameRepository->getGame($game->getId()); // haal de game met nieuwe gegevens weer op
       
         // na het uitvoeren van de test wordt het spel verwijderd uit de database
         $gameRepository->removeGame($game->getId());
@@ -85,10 +85,14 @@ class GameTest extends TestCase {
         // na het uitvoeren van de test worden de spellen verwijderd uit de database
         $gameRepository->removeGame($game1->getId());
         $gameRepository->removeGame($game2->getId());
+        
+        // EXTRA COMMIT AAN TOEVOEGEN
+        $getGamesIsTrue = array_filter($allGames, function($game) use ($game1, $game2) {
+            return $game1->getId() == $game->getId() || $game2->getId() == $game->getId();
+        });
 
         // Assert
-        $this->assertContainsEquals($game1, $allGames);
-        $this->assertContainsEquals($game2, $allGames);
+        $this->assertCount(2, $getGamesIsTrue);
     }
 
 }

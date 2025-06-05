@@ -64,7 +64,7 @@ class WorkshopRepository
     {
         $workshops = [];
 
-        $stmtWorkshop = $this->db->prepare("SELECT * FROM `wokrshop` WHERE `game_id` = :gameId");
+        $stmtWorkshop = $this->db->prepare("SELECT * FROM `workshop` WHERE `game_id` = :gameId");
 
         $stmtWorkshop->execute(['gameId'=> $gameId]);
         
