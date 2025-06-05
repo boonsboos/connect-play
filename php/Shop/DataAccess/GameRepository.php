@@ -42,6 +42,9 @@ class GameRepository
         }
     }
 
+    /**
+    * @returns Game[]
+    */
     public function getGames(): array
     {
         $allGames = [];

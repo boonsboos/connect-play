@@ -21,7 +21,6 @@ class WorkshopTest extends TestCase {
         
         $getWorkshop = $workshopRepository->getWorkshop($workshop->getGameId());
         
-        $workshopRepository->removeWorkshop($game->getId());
         $gameRepository->removeGame($game->getId());        
         
         // Assert
@@ -51,7 +50,6 @@ class WorkshopTest extends TestCase {
         
         $getWorkshop = $workshopRepository->getWorkshop($workshop->getGameId());
         
-        $workshopRepository->removeWorkshop($game->getId());
         $gameRepository->removeGame($game->getId());
 
         // Assert 
@@ -100,17 +98,16 @@ class WorkshopTest extends TestCase {
         // Act
         $gameRepository->addGame($game);
 
-        
-        // maak 2 workshops aan om ze vervolgens beide op te halen
+        // maak workshop aan om ze vervolgens beide op te halen
         $workshop = new Workshop($game->getId(), 2, 4, 75.5, 120);
         $workshopRepository->createWorkshop($workshop);
 
         // na het uitvoeren van de test wordt de game en workshop verwijderd uit de database
+        $resultWorkshop = $workshopRepository->getWorkshops($game->getId()); // om te voorkomen dat gegevens verloren gaan door het verwijderen van de game worden deze opgeslagen in een variabele
         $gameRepository->removeGame($game->getId());
-        $workshopRepository->removeWorkshop($game->getId());
         
         // Assert
-        $this->assertCount(1, $workshopRepository->getWorkshops($game->getId()));
+        $this->assertCount(1, $resultWorkshop);
     }
     
 }
