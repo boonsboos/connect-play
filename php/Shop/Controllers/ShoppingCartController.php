@@ -1,5 +1,8 @@
 <?php
-
+require_once '/var/www/php/Shared/Debug.php';
+if(!isset($_SESSION)) {
+    session_start();
+}
 require_once '/var/www/php/Shared/Controller.php';
 require_once '/var/www/php/Shop/Controllers/GameController.php';
 require_once '/var/www/php/Shop/DataAccess/OrderRepository.php';
@@ -23,7 +26,7 @@ class ShoppingCartController
         $action = $_POST['action'] ?? null;
         $gameId = $_POST['gameId'] ?? null;
 
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['userId'])) {
             echo json_encode(['success' => false, 'message' => 'Niet ingelogd.']);
             return;
         }
@@ -43,10 +46,11 @@ class ShoppingCartController
     public function create(): void
     {
         // Zorg dat je een gebruiker hebt
-        $userId = $_SESSION['user_id'] ?? null;
+        $userId = $_SESSION['userId'] ?? null;
 
         if (!$userId) {
-            throw new Exception("Eerst inloggen voordat je iets kan toevoegen aan de winkelwagen.");
+            echo json_encode(['success' => false, 'message' => 'Niet ingelogd.']);
+            return;
         }
 
         try {
@@ -64,7 +68,7 @@ class ShoppingCartController
             echo json_encode([
                 'success' => true,
                 'orderNumber' => $order->getId(),
-                'userId' => $order->getUserId(),
+                'userId' => $order->getUserId()
             ]);
             return;
         } catch (Exception $e) {

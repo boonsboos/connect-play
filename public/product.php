@@ -5,17 +5,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$shoppingCartController->dispatch();
 	exit;
 }
-// Inclusie van noodzakelijke bestanden
 require_once '../php/Shared/header.php';
 require_once '../php/Shop/Controllers/GameController.php';
-
 
 $userId = $_SESSION['user_id'] ?? null;
 
 $gameController = new GameController();
 $game = $gameController->getGame();
-
-
 
 if (!$game instanceof Game) {
 	echo "<p>Er is iets misgegaan bij het ophalen van de game.</p>";

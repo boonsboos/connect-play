@@ -25,7 +25,7 @@ class UserController extends Controller
             );
 
             $user = new User(
-                '', // id komt pas na opslag
+                0, // id komt pas na opslag
                 $data['email'],
                 $data['fullName'],
                 $data['password'],
