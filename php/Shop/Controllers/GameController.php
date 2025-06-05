@@ -36,18 +36,12 @@ class GameController extends Controller
     {
         return $this->gameRepository->getGame($id);
     }
-
-    public function getGameByName(string $name): Game
-    {
-        return $this->gameRepository->getGameByName($name);
-    }
-
+    
     public function addGame(Game $game): void
     {
         $this->gameRepository->addGame($game);
     }
     
-
     public function updateGame(Game $game): void
     {
         // Haal eerst de game op als deze bestaad
