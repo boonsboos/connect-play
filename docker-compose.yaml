@@ -4,7 +4,6 @@ services:
         ports:
             - "8080:80" # de webserver runt op poort 8080
         depends_on:
-#            - test-php
             - mariadb
             - phpmyadmin
         volumes:
