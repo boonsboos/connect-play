@@ -15,16 +15,17 @@ class WorkshopTest extends TestCase {
         
         // Act
         $gameRepository->addGame($game);
+        
         $workshop = new Workshop($game->getId(), 2, 4, 75.5, 120); // na het aanmaken van de Game kan de workshop pas worden gemaakt omdat deze gekoppeld is aan het ID van de Game
         $workshopRepository->createWorkshop($workshop);
-
-        // Assert 
+        
         $getWorkshop = $workshopRepository->getWorkshop($workshop->getGameId());
-        $this->assertEquals($game->getId(), $getWorkshop->getGameId());
-
-        // na het uitvoeren van de test wordt de game en workshop verwijderd uit de database
+        
         $workshopRepository->removeWorkshop($game->getId());
-        $gameRepository->removeGame($game->getId());
+        $gameRepository->removeGame($game->getId());        
+        
+        // Assert
+        $this->assertEquals($game->getId(), $getWorkshop->getGameId());
     }
 
     public function testUpdateWorkshop()
@@ -35,7 +36,8 @@ class WorkshopTest extends TestCase {
         $workshopRepository = New WorkshopRepository();
         
         // Act
-        $gameRepository->addGame($game);
+        $gameRepository->addGame($game);        
+
         $workshop = new Workshop($game->getId(), 2, 4, 75.5, 120);
         $workshopRepository->createWorkshop($workshop);
         
@@ -46,17 +48,19 @@ class WorkshopTest extends TestCase {
         $workshop->setDuration(100);
        
         $workshopRepository->updateWorkshop($workshop);
+        
+        $getWorkshop = $workshopRepository->getWorkshop($workshop->getGameId());
+        
+        $workshopRepository->removeWorkshop($game->getId());
+        $gameRepository->removeGame($game->getId());
 
         // Assert 
         // Je checkt per eigenschap of de waarde overeenkomt met de geupdate workshop.
-        $getWorkshop = $workshopRepository->getWorkshop($workshop->getGameId());
         $this->assertEquals(4, $getWorkshop->getMinSize());
         $this->assertEquals(8, $getWorkshop->getMaxSize());
         $this->assertEquals(120, $getWorkshop->getPrice());
         $this->assertEquals(100, $getWorkshop->getDuration());
-
-        $workshopRepository->removeWorkshop($game->getId());
-        $gameRepository->removeGame($game->getId());
+      
     }
     
     public function testRemoveWorkshop() {
@@ -66,11 +70,15 @@ class WorkshopTest extends TestCase {
         $workshopRepository = New WorkshopRepository();
         
         // Act
-        $gameRepository->addGame($game);
+        $gameRepository->addGame($game);        
+
         $workshop = new Workshop($game->getId(), 2, 4, 75.5, 120);
         $workshopRepository->createWorkshop($workshop);
         $workshopRepository->removeWorkshop($game->getId()); // workshop wordt verwijderd en is dus niet meer beschikbaar in de database
 
+        // na het uitvoeren van de test wordt de game en workshop verwijderd uit de database
+        $gameRepository->removeGame($game->getId());
+        
         // Assert
         // omdat de getWorkshop een Exception gooit, moet je deze opvangen met een try catch
         try {
@@ -81,9 +89,6 @@ class WorkshopTest extends TestCase {
             // hij moet dus een Exception krijgen om de test te laten slagen
             $this->assertEquals("Geen workshop gevonden voor deze game.", $e->getMessage()); 
         }
-
-        // na het uitvoeren van de test wordt de game en workshop verwijderd uit de database
-        $gameRepository->removeGame($game->getId());
     }
 
     public function testGetWorkshopsForGame() {
@@ -100,12 +105,12 @@ class WorkshopTest extends TestCase {
         $workshop = new Workshop($game->getId(), 2, 4, 75.5, 120);
         $workshopRepository->createWorkshop($workshop);
 
-        // Assert
-        $this->assertCount(1, $workshopRepository->getWorkshops($game->getId()));
-
         // na het uitvoeren van de test wordt de game en workshop verwijderd uit de database
         $gameRepository->removeGame($game->getId());
         $workshopRepository->removeWorkshop($game->getId());
+        
+        // Assert
+        $this->assertCount(1, $workshopRepository->getWorkshops($game->getId()));
     }
     
 }
