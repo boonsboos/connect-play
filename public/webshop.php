@@ -59,6 +59,7 @@ $controller->fetchGames();
 					<p>Prijs: €<?php echo htmlspecialchars($game->getPrice()); ?></p>
 					<p>Spelers: <?php echo htmlspecialchars($game->getPlayers()); ?></p>
 					<p>Beschrijving: <?php echo htmlspecialchars($game->getDescription()); ?></p>
+					<img src="<?= htmlspecialchars($game->getImageUrl()) ?>" alt="Afbeelding<?= htmlspecialchars($game->getName()) ?>" style="width: 100px; height: 100px; object-fit: cover; margin: 10px;">
 					<hr/>
 				</div>
 			<?php endforeach; ?>

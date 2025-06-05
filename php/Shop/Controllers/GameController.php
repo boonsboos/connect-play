@@ -36,16 +36,6 @@ class GameController extends Controller
     {
         return $this->gameRepository->getGame($id);
     }
-    
-    public function updateGame(Game $game): void
-    {
-        // Haal eerst de game op als deze bestaad
-        // Indien de game niet aanwezig is gooit de gameRepository een Exception
-        $this->gameRepository->getGame($game->getId());
-
-        // Voer update op game uit
-        $this->gameRepository->updateGame($game);
-    }
 
     public function removeGame(int $gameId): void
     {
@@ -68,6 +58,17 @@ class GameController extends Controller
             }
         }
 
+        $imageUrl = $_POST['image_url']?? '';
+        if (!empty($imageUrl)) {
+            if (
+                // Controleren of imgurl een url is en een geldige extensie heeft
+                !filter_var($imageUrl, FILTER_VALIDATE_URL) ||
+                !preg_match('/\.(jpg|jpeg|png|gif|webp)$/i', $imageUrl)
+            ) {
+                throw new Exception("Ongeldige afbeeldings-URL");
+            }
+        }
+
         $game = new Game(
             players: (int)$_POST['players'],
             price: (float)$_POST['price'],
@@ -75,7 +76,9 @@ class GameController extends Controller
             name: (string)$_POST['name'],
             description: (string)$_POST['description'],
             difficulty: (string)$_POST['difficulty'],
-            leftInStock: (int)$_POST['left_in_stock']
+            leftInStock: (int)$_POST['left_in_stock'],
+            imageUrl: (string)$_POST['image_url'] ?? '',// Image URL is optioneel en wordt hier niet gebruikt
+            id: (int)$_POST['id']
         );
 
         try {
@@ -88,6 +91,56 @@ class GameController extends Controller
         header("Location: /dashboard/addgame.php?success=1");
     exit;
     }
-}
 
-?>
+    public function searchGamesByName(string $name): array
+    {
+        return $this->gameRepository->searchByName($name);
+    }
+
+    public function updateGame()
+    {
+        // Controleer of de request een POST is
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            throw new Exception("Ongeldige methode, alleen POST is toegestaan", 405);
+        }
+
+        // Controleren of verplichtte velden zijn ingevuld
+        $velden = ['id', 'name', 'players', 'price', 'duration', 'description', 'difficulty', 'left_in_stock'];
+        foreach ($velden as $veld) {
+            if (!isset($_POST[$veld]) || $_POST[$veld] === '') {
+                throw new Exception("Veld '$veld' is verplicht");
+            }
+        }
+        
+        // Controleren of imgurl gevuld is
+        $imageUrl = $_POST['image_url']?? '';
+        if (!empty($imageUrl)) {
+            if (
+                // Controleren of imgurl een url is en een geldige extensie heeft
+                !filter_var($imageUrl, FILTER_VALIDATE_URL) ||
+                !preg_match('/\.(jpg|jpeg|png|gif|webp)$/i', $imageUrl)
+            ) {
+                throw new Exception("Ongeldige afbeeldings-URL");
+            }
+        }
+
+        // Aanmaken van een Game object met de gegevens uit het formulier
+        // We gebruiken de id uit het formulier om de game te updaten
+        $game = new Game(
+            players: (int)$_POST['players'],
+            price: (float)$_POST['price'],
+            duration: (int)$_POST['duration'],
+            name: (string)$_POST['name'],
+            description: (string)$_POST['description'],
+            difficulty: (string)$_POST['difficulty'],
+            leftInStock: (int)$_POST['left_in_stock'],
+            imageUrl: (string)$_POST['image_url'] ?? '', // Image URL is optioneel en wordt hier niet gebruikt
+            id: (int)$_POST['id']
+        );
+
+        $this->gameRepository->updateGame($game);
+        // Redirect terug naar formulier met succesmelding
+        header("Location: /dashboard/editgame.php?id=" . $game->getId() . "&success=1");
+        exit;
+    }
+}

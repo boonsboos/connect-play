@@ -98,9 +98,9 @@ CREATE PROCEDURE `add_contact` (IN `p_first_name` VARCHAR(255), IN `p_last_name`
     );
 END$$
 
-CREATE PROCEDURE `add_game` (IN `p_price` DECIMAL(10,2), IN `p_players` INT, IN `p_duration` INT, IN `p_name` VARCHAR(150), IN `p_description` MEDIUMTEXT, IN `p_difficulty` VARCHAR(20), IN `p_left_in_stock` INT)   BEGIN
-    INSERT INTO game (`price`, `players`, `duration`, `name`, `description`, `difficulty`,`left_in_stock`)
-    VALUES (p_price, p_players, p_duration, p_name, p_description, p_difficulty, p_left_in_stock);
+CREATE PROCEDURE `add_game` (IN `p_price` DECIMAL(10,2), IN `p_players` INT, IN `p_duration` INT, IN `p_name` VARCHAR(150), IN `p_description` MEDIUMTEXT, IN `p_difficulty` VARCHAR(20), IN `p_left_in_stock` INT, IN p_image_url VARCHAR(255))   BEGIN
+    INSERT INTO game (`price`, `players`, `duration`, `name`, `description`, `difficulty`,`left_in_stock`, `image_url`)
+    VALUES (p_price, p_players, p_duration, p_name, p_description, p_difficulty, p_left_in_stock, p_image_url);
 
     -- om de id van de toegevoegde game te kunnen ophalen
     SELECT LAST_INSERT_ID() AS id;
@@ -282,7 +282,8 @@ CREATE PROCEDURE `get_game` (IN `p_game_id` INT)   BEGIN
         `name`,
         `description`,
         `difficulty`,
-        `left_in_stock`
+        `left_in_stock`,
+        `image_url`
     FROM 
         `game`
     WHERE
@@ -457,7 +458,7 @@ CREATE PROCEDURE `update_contact` (IN `p_id` INT, IN `p_status` INT)   BEGIN
         `id` = p_id;
 END$$
 
-CREATE PROCEDURE `update_game` (IN `p_game_id` INT, IN `p_price` DECIMAL(10,2), IN `p_duration` INT, IN `p_name` VARCHAR(150), IN `p_description` MEDIUMTEXT, IN `p_difficulty` VARCHAR(20), IN `p_left_in_stock` INT)   BEGIN
+CREATE PROCEDURE `update_game` (IN `p_game_id` INT, IN `p_price` DECIMAL(10,2), IN `p_duration` INT, IN `p_name` VARCHAR(150), IN `p_description` MEDIUMTEXT, IN `p_difficulty` VARCHAR(20), IN `p_left_in_stock` INT, IN p_image_url VARCHAR(255))   BEGIN
     UPDATE `game`
     SET 
         `price` = COALESCE(p_price, `price`),
@@ -466,6 +467,7 @@ CREATE PROCEDURE `update_game` (IN `p_game_id` INT, IN `p_price` DECIMAL(10,2), 
         `description` = COALESCE(p_description, `description`),
         `difficulty` = COALESCE(p_difficulty, `difficulty`), 
         `left_in_stock` = COALESCE(p_left_in_stock, `left_in_stock`)
+        `image_url` = p_image_url
     WHERE 
         `game_id` = p_game_id;
 
@@ -785,7 +787,8 @@ CREATE TABLE `game` (
   `name` varchar(150) NOT NULL,
   `description` mediumtext NOT NULL,
   `difficulty` varchar(20) NOT NULL,
-  `left_in_stock` int(11) NOT NULL
+  `left_in_stock` int(11) NOT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
 );
 
 --

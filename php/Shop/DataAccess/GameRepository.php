@@ -19,7 +19,7 @@ class GameRepository
     public function addGame(Game $game): void
     {
         try {
-            $stmtGame = $this->db->prepare("CALL add_game(:players, :price, :duration, :name, :description, :difficulty, :left_in_stock)");
+            $stmtGame = $this->db->prepare("CALL add_game(:players, :price, :duration, :name, :description, :difficulty, :left_in_stock, :image_url)");
 
             $stmtGame->execute([
                 ':players' => $game->getPlayers(),
@@ -28,7 +28,8 @@ class GameRepository
                 ':name' => $game->getName(),
                 ':description' => $game->getDescription(),
                 ':difficulty' => $game->getDifficulty(),
-                ':left_in_stock' => $game->getLeftInStock()
+                ':left_in_stock' => $game->getLeftInStock(),
+                ':image_url' => $game->getImageUrl() // image_url is optioneel, dus kan leeg zijn
             ]);
 
             $gameId = $stmtGame->fetchColumn(); // haalt 1 waarde op uit het resultaat van de query (dus SELECT LAST_INSERT_ID() AS id)
@@ -66,6 +67,7 @@ class GameRepository
                 (string) $row['description'],
                 (string) $row['difficulty'],
                 (int) $row['left_in_stock'],
+                (string) $row['image_url'] ?? '', // image_url is optioneel, dus gebruik een lege string als het niet bestaat
                 (int) $row['game_id']
             );
         }
@@ -91,25 +93,10 @@ class GameRepository
             name: $gameData['name'],
             description: $gameData['description'],
             difficulty: $gameData['difficulty'],
-            leftInStock: (int)$gameData['left_in_stock'],
-            id: (int)$gameData['game_id']
+            leftInStock: $gameData['left_in_stock'],
+            imageUrl: $gameData['image_url'] ?? '',
+            id: $gameData['game_id'] // image_url is optioneel, dus gebruik een lege string als het niet bestaat
         );
-    }
-    
-    public function updateGame(Game $game): void
-    {
-        // Voer update_game procedure uit
-        $stmtNewGameInfo = $this->db->prepare("CALL update_game(:id, :price, :duration, :name, :description, :difficulty, :left_in_stock)");
-
-        $stmtNewGameInfo->execute([
-            ':id' => $game->getId(),
-            ':price' => $game->getPrice(),
-            ':duration' => $game->getDuration(),
-            ':name' => $game->getName(),
-            ':description' => $game->getDescription(),
-            ':difficulty' => $game->getDifficulty(),
-            ':left_in_stock' => $game->getLeftInStock()
-        ]); 
     }
 
     public function removeGame(int $id): void
@@ -170,6 +157,68 @@ class GameRepository
 
         return $allGames;
     }
+
+    public function updateGame(Game $game): void
+    {
+        try {
+            $stmt = $this->db->prepare("CALL update_game(
+                :id,
+                :players,
+                :price,
+                :duration,
+                :name,
+                :description,
+                :difficulty,
+                :left_in_stock,
+                :image_url
+            )");
+
+            $stmt->execute([
+                ':id' => $game->getId(),
+                ':players' => $game->getPlayers(),
+                ':price' => $game->getPrice(),
+                ':duration' => $game->getDuration(),
+                ':name' => $game->getName(),
+                ':description' => $game->getDescription(),
+                ':difficulty' => $game->getDifficulty(),
+                ':left_in_stock' => $game->getLeftInStock(),
+                ':image_url' => $game->getImageUrl()
+            ]);
+        } catch (PDOException $e) {
+            if ($e->getCode() === '23000') {
+                throw new Exception("Update mislukt: Game-naam veroorzaakt een conflict.");
+            }
+            throw new Exception("Databasefout tijdens update: " . $e->getMessage());
+        }
+    }
+
+
+    public function searchByName(string $name): array
+    {
+        $stmt = $this->db->prepare("SELECT * FROM game WHERE name LIKE :name");
+        $stmt->execute([':name' => '%' . $name . '%']);
+
+        $rows = $stmt->fetchAll();
+        $games = [];
+
+        foreach ($rows as $row) {
+            $games[] = new Game(
+                (int)$row['players'],
+                (float)$row['price'],
+                (int)$row['duration'],
+                (string)$row['name'],
+                (string)$row['description'],
+                (string)$row['difficulty'],
+                (int)$row['left_in_stock'],
+                (string)$row['image_url'] ?? '',  // indien van toepassing
+                (int)$row['game_id']
+            );
+        }
+
+        return $games;
+    }
+
+
 }
 
 ?>

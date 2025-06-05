@@ -5,8 +5,10 @@ try {
     $controller = new GameController();
     $controller->addGame();
 } catch (Exception $e) {
-    // Redirect met foutmelding
+    // Als er een fout optreedt (bijv. ontbrekend veld of databasefout)
+    // Encodeer de foutmelding zodat die veilig in de URL gebruikt kan worden
     $message = urlencode($e->getMessage());
-    header("Location: add-game.php?error=$message");
+    // Redirect de gebruiker terug naar het formulier met de foutmelding in de querystring
+    header("Location: addgame.php?error=$message");
     exit;
 }
