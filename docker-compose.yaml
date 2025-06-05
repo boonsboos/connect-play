@@ -4,7 +4,7 @@ services:
         ports:
             - "8080:80" # de webserver runt op poort 8080
         depends_on:
-            - test-php
+#            - test-php
             - mariadb
             - phpmyadmin
         volumes:
@@ -31,6 +31,8 @@ services:
             PMA_HOST: mariadb # dit geeft aan dat dit de container is waarop de database runt.
 
     test-php:
+        profiles:
+            - test
         build:
             dockerfile: "dockerfile-test" # gebruik de dockerfile-test als image
         depends_on:

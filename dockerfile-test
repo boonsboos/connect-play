@@ -15,5 +15,8 @@ COPY ./public/composer.lock ./
 # installeer phpunit
 RUN composer install
 
+# Installeer PDO MySQL driver
+RUN docker-php-ext-install pdo_mysql
+
 #                       voer tests uit in map ./tests      en include deze map met onze code
 ENTRYPOINT ["composer", "exec", "phpunit", "./tests", "--", "--include-path", "\"/var/www\""]
