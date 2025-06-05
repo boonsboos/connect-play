@@ -36,8 +36,8 @@ class WorkshopTest extends TestCase {
         $workshopRepository = New WorkshopRepository();
         
         // Act
-        $gameRepository->addGame($game);
-        
+        $gameRepository->addGame($game);        
+
         $workshop = new Workshop($game->getId(), 2, 4, 75.5, 120);
         $workshopRepository->createWorkshop($workshop);
         
@@ -60,6 +60,7 @@ class WorkshopTest extends TestCase {
         $this->assertEquals(8, $getWorkshop->getMaxSize());
         $this->assertEquals(120, $getWorkshop->getPrice());
         $this->assertEquals(100, $getWorkshop->getDuration());
+      
     }
     
     public function testRemoveWorkshop() {
@@ -69,8 +70,8 @@ class WorkshopTest extends TestCase {
         $workshopRepository = New WorkshopRepository();
         
         // Act
-        $gameRepository->addGame($game);
-        
+        $gameRepository->addGame($game);        
+
         $workshop = new Workshop($game->getId(), 2, 4, 75.5, 120);
         $workshopRepository->createWorkshop($workshop);
         $workshopRepository->removeWorkshop($game->getId()); // workshop wordt verwijderd en is dus niet meer beschikbaar in de database
