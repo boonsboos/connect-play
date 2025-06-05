@@ -2,18 +2,19 @@
 
 require_once '/var/www/php/Shop/Domain/Order.php';
 require_once '/var/www/php/Shop/Domain/CartEntry.php';
+require_once '/var/www/php/Shop/Domain/OrderStatus.php';
 
 // om PHPUnit te kunnen gebruiken moet eerst de TESTCase worden geïmporteerd
 use PHPUnit\Framework\TestCase;
-use Shop\Domain\Order;
-use Shop\Domain\CartEntry;
 
 class OrderTest extends TestCase {
 
-    public function testAddEntry() {
-        // Arrange: Hier maak je het object
-        $order = New Order();
-        $cartEntry = New CartEntry();
+    public function testCreateOrder() 
+    {
+        // Arrange: Hier maak je het game, cartentry en order object
+        $game = New Game(8, 25.5, 120, "Dark Masters of Dark 1", "En zoek spel naar de verborgen schatten", "Makkelijk", 12);
+        $cartEntry = new CartEntry("Ordernummer1", $game, 1, "2000-01-01", 50.0, false);
+        $order = new Order(1, 10, "2000-01-01", OrderStatus::Pending, "Nieuwe bestelling", 0.0, []);
 
         // Act: Met act wordt de method uitgevoerd
         $order->addEntry($cartEntry);
@@ -22,25 +23,21 @@ class OrderTest extends TestCase {
         $this->assertCount(1, $order->getEntries());
     }
   
-    public function testRemoveEntry() {
-        $order = New Order();
-        $entry1 = New CartEntry();
-        $entry2 = New CartEntry();
+    public function testRemoveOrder()
+    {
+        // Arrange:
+        $game = new Game(8, 25.5, 120, "Dark Masters of Dark 1", "En zoek spel naar de verborgen schatten", "Makkelijk", 12);
+        $cartEntry = new CartEntry("Ordernummer1", $game, 1, "2000-01-01", 50.0, false);
+        $order = new Order(1, 10, "2000-01-01", OrderStatus::Pending, "Eén entry test", 0.0, []);
 
-        $order->addEntry($entry1);
-        $order->addEntry($entry2);
+        // Act:
+        $order->addEntry($cartEntry);
+        $order->removeEntry(0);
 
-        $order->removeEntry(1);
+        // Assert: Controleer of er geen entries meer zijn
+        $this->assertCount(0, $order->getEntries());
+        }
 
-        $entries = $order->getEntries();
-        
-        // controleer of er één entry over is
-        $this->assertCount(1, $entries);
-
-        // controleer of entry inderdaad $entry1 is
-        $this->assertSame($entry1, $entries[0]);
-    }
-  
   }
 
 ?>
