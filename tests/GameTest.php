@@ -15,12 +15,12 @@ class GameTest extends TestCase {
         // Act
         $gameRepository->addGame($game);
         $getGame = $gameRepository->getGameById($game->getId());
+        
+        // na het uitvoeren van de test wordt de game verwijderd uit de database
+        $gameRepository->removeGame($game->getId());
 
         // Assert 
         $this->assertEquals($game->getId(), $getGame->getId());
-
-        // na het uitvoeren van de test wordt de game verwijderd uit de database
-        $gameRepository->removeGame($game->getId());
     }
 
     public function testUpdateGame()
@@ -39,15 +39,15 @@ class GameTest extends TestCase {
 
         $gameRepository->updateGame($game); // voer de update uit
         $updatedGame = $gameRepository->getGameById($game->getId()); // haal de game met nieuwe gegevens weer op
+        
+        // na het uitvoeren van de test wordt het spel verwijderd uit de database
+        $gameRepository->removeGame($game->getId());
 
         // Assert
         $this->assertEquals("Masters of Dark", $updatedGame->getName());
         $this->assertEquals(35.5, $updatedGame->getPrice());
         $this->assertEquals(120, $updatedGame->getDuration());
         $this->assertEquals(5, $updatedGame->getLeftInStock());
-
-        // na het uitvoeren van de test wordt het spel verwijderd uit de database
-        $gameRepository->removeGame($game->getId());
     }
 
     public function testRemoveGame()
@@ -81,13 +81,13 @@ class GameTest extends TestCase {
         $gameRepository->addGame($game2);
         $allGames = $gameRepository->getGames(); // haal alle games op en sla dit op in array
 
+        // na het uitvoeren van de test worden de spellen verwijderd uit de database
+        $gameRepository->removeGame($game1->getId());
+        $gameRepository->removeGame($game2->getId());
+
         // Assert
         $this->assertContainsEquals($game1, $allGames);
         $this->assertContainsEquals($game2, $allGames);
-
-        // na het uitvoeren van de test wordne de spellen verwijderd uit de database
-        $gameRepository->removeGame($game1->getId());
-        $gameRepository->removeGame($game2->getId());
     }
 
 }
