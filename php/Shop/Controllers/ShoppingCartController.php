@@ -1,6 +1,6 @@
 <?php
 require_once '/var/www/php/Shared/Debug.php';
-if(!isset($_SESSION)) {
+if (!isset($_SESSION)) {
     session_start();
 }
 require_once '/var/www/php/Shared/Controller.php';
@@ -85,9 +85,15 @@ class ShoppingCartController
     {
 
         // Haal het huidige ordernummer uit POST (die frontend moet meesturen)
-        $currentOrderJson = $_POST['order'] ?? null;
-        $currentOrderData = json_decode($currentOrderJson, true);
-        $orderNumber = $currentOrderData['orderNumber'];
+        $orderNumber = $_POST['orderNumber'] ?? null;
+        if (!$orderNumber) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Ordernummer ontbreekt',
+                'action' => 'add'
+            ]);
+            return;
+        }
 
         $gameController = new GameController();
         $game = $gameController->getGameById($gameId);
@@ -101,11 +107,15 @@ class ShoppingCartController
 
         try {
             // Roep de repository aan om een CartEntry toe te voegen
-            $this->orderRepository->addCartEntry($cartEntry);
+            //$this->orderRepository->addCartEntry($cartEntry);
 
             echo json_encode([
                 'success' => true,
                 'message' => 'Game toegevoegd aan je winkelwagen.',
+                'cartEntry' => [
+                    'gameId' => $gameId,
+                    'amount' => 1
+                ],
                 'action' => 'add'
             ]);
             return;

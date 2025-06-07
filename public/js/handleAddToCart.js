@@ -1,6 +1,8 @@
+const url = "product.php";
+
 async function handleAddToCart(gameId) {
 	const storedOrder = localStorage.getItem("currentOrder")
-	const url = "product.php"
+	
 
 	if (!storedOrder) {
 		// Eerst de order aanmaken
@@ -39,43 +41,52 @@ async function handleAddToCart(gameId) {
 	}
 }
 
-function addGameToCart(gameId, orderNumber) {
-	const formData = new FormData()
-	formData.append("action", "add")
-	formData.append("gameId", gameId)
-	formData.append("orderNumber", orderNumber)
+async function addGameToCart(gameId, orderNumber) {
+	const formData = new FormData();
+	formData.append("action", "add");
+	formData.append("gameId", gameId);
+	formData.append("orderNumber", orderNumber);
 
-	fetch("product.php", {
+	console.log("Form Data: ", formData);
+
+	try {
+			const response = await fetch(url, {
 		method: "POST",
-		body: formData,
+		body: formData
 	})
-		.then((res) => res.json())
-		.then((data) => {
-			if (data.success) {
-				// Voeg CartEntry toe aan localStorage
-				const entry = data.cartEntry
-				const cartEntries = JSON.parse(
-					localStorage.getItem("cartEntries") || "[]"
-				)
 
-				// Check of deze game al in de cart zit
-				const existing = cartEntries.find(
-					(e) => e.gameId === entry.gameId
-				)
-				if (existing) {
-					existing.amount++
-				} else {
-					cartEntries.push(entry)
-				}
+	const text = await response.text()
+	console.log("Raw response: ", text)
 
-				localStorage.setItem("cartEntries", JSON.stringify(cartEntries))
-				alert("Game toegevoegd aan winkelwagen!")
-			} else {
-				alert("Fout bij toevoegen: " + (data.message ?? "Onbekend"))
-			}
-		})
-		.catch((err) => {
-			console.error(err)
-			alert("Netwerkfout bij toevoegen aan winkelwagen. 2")
-		})
+	let data;
+	try {
+		data = JSON.parse(text)
+	} catch (err) {
+		console.error("Kon JSON niet parsen:", err)
+		alert("Ongeldige serverresponse ontvangen.")
+		return;
+	}
+
+	if (data.success) {
+		const entry = data.cartEntry
+		const cartEntries = JSON.parse(
+			localStorage.getItem("cartEntries") || "[]"
+		)
+
+		const existing = cartEntries.find((e) => e.gameId === entry.gameId)
+		if (existing) {
+			existing.amount++
+		} else {
+			cartEntries.push(entry)
+		}
+		localStorage.setItem("cartEntries", JSON.stringify(cartEntries))
+		alert("Game toegevoegd aan winkelwagen!")
+		console.log(localStorage.getItem("cartEntries"))
+	} else {
+		alert("Fout bij toevoegen: " + (data.message ?? "Onbekend"))
+	}
+	} catch (e) {
+		console.error(e);
+		alert("Netwerkfout bij toevoegen aan winkelwagen. 2");
+	}
 }
