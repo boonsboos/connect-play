@@ -1,6 +1,7 @@
 <?php
 
 require_once '/var/www/php/Shop/DataAccess/GameRepository.php';
+require_once '/var/www/php/Shop/DataAccess/WebshopRepository.php';
 
 class WebshopController {
 
@@ -19,8 +20,9 @@ class WebshopController {
      */
     private int $gamesPerPage = 6;
 
-    public function __construct() {
-        // Aanmaken van een instantie van de WebshopRepository class om databaseoperaties uit te voeren
+    public function __construct() 
+    {
+        // Aanmaken van een instantie van de GameRepository class om databaseoperaties uit te voeren
         $this->gameRepository = new GameRepository();
     }
 
@@ -61,8 +63,14 @@ class WebshopController {
         // Sla de games voor deze pagina op
         $this->games = $this->gameRepository->getGames();
 
-        // Sla de gefilterde games op
+        // Sla de gefilterde games opmaar 
         $this->games = $this->filterGames($this->games);
+
+        if ($this->filterActive && count($this->games) == 0) { // $this->games is een array en je telt hier de opgeslagen waarden
+            $webshopRepository = New WebshopRepository;
+            $userId = isset($_SESSION["userId"]) ? $_SESSION["userId"] : null; // als er een session is waarbij de geset is dat wordt die toegevoegd anders null
+            $webshopRepository->saveEmptySearch($this->searchQuery, $userId, $_SERVER['REMOTE_ADDR']); // Zoekresultaten, userId en Ip-address wordt naar de repo verzonden
+        }
     }
 
     public function getTotalOfGames(): int {
@@ -130,5 +138,7 @@ class WebshopController {
 
         return "";
     }
+
 }
+
 ?>

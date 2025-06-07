@@ -4,6 +4,7 @@ return [
     'nav' => [
         'services' => 'Services',
         'about' => 'About Us',
+        "shop" => "Webshop",
         'contact' => 'Contact',
         'dashboard' => 'Dashboard',
         'profile' => 'Profile',
