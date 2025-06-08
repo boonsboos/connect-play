@@ -80,5 +80,12 @@ return [
         "title" => "Onze diensten",
         "text" => "Connect &amp; Play biedt verschillende diensten aan om teambuilding en plezier te stimuleren. Hieronder vind je een overzicht van onze diensten.",
         "cta" => "Neem contact op"
+    ],
+    "login" => [
+        "email" => "E-mail",
+        "password" => "Wachtwoord",
+        "forgot_password" => "Wachtwoord vergeten?",
+        "login" => "Inloggen",
+        "register" => "Registreren",
     ]
 ];

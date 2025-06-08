@@ -80,5 +80,12 @@ return [
         "title" => "Our Services",
         "text" => "Connect &amp; Play offers a variety of services to promote team building and fun. Below you will find an overview of our services.",
         "cta" => "Contact Us"
+    ],
+    "login" => [
+        "email" => "Email",
+        "password" => "Password",
+        "forgot_password" => "Forgot Password?",
+        "login" => "Login",
+        "register" => "Register",
     ]
 ];
