@@ -28,24 +28,24 @@ if (isset($_GET['success'])) {
 		</div>
 		<div class="full-name mb-col-8 col-9 flex">
 			<div class="mb-col-12 col-6 flex">
-				<label for="first-name">Voornaam:</label>
+				<label for="first-name"><?= __('contact.form.first_name') ?>:</label>
 				<input id="first-name" class="input" type="text" name="first-name" placeholder="John" required />
 			</div>
 			<div class="mb-col-12 col-6 flex">
-				<label for="last-name">Achternaam:</label>
+				<label for="last-name"><?= __('contact.form.last_name') ?>:</label>
 				<input id="last-name" class="input" type="text" name="last-name" placeholder="Doe" required />
 			</div>
 		</div>
 		<div class="mb-col-8 col-9 flex">
-			<label for="email">E-mail:</label>
+			<label for="email"><?= __('contact.form.email') ?>:</label>
 			<input id="email" class="input" type="email" name="email" placeholder="johndoe@doe.com" required>
 		</div>
 		<div class="mb-col-8 col-9 flex">
-			<label for="message">Bericht:</label>
+			<label for="message"><?= __('contact.form.message') ?>:</label>
 			<textarea id="message" class="input" name="message" required></textarea>
 		</div>
 		<div class="send-message mb-col-6 col-6 pt-30">
-			<button class="button" type="submit">Verzenden</button>
+			<button class="button" type="submit"><?= __('contact.form.submit') ?></button>
 		</div>
 	</form>
 
