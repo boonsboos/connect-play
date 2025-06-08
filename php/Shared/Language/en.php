@@ -66,5 +66,14 @@ return [
             "title" => "Mission &amp; Vision",
             "text" => "The goal of Connect &amp; Play is to provide an interactive experience for players of all levels. We want to create an environment where collaboration and social interaction are central. Our vision is to offer a space where all players have the opportunity to improve their skills, connect with others, and engage in challenging experiences at every level. We believe that by providing this gaming experience, it will not only contribute to personal growth but also to strong social bonds. <br /> In short: we want people to meet lifelong friends through our events."
         ]
+    ],
+    "contact" => [
+        "form" => [
+            "first_name" => "First Name",
+            "last_name" => "Last Name",
+            "email" => "Email",
+            "message" => "Message",
+            "submit" => "Submit"
+        ]
     ]
 ];

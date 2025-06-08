@@ -66,5 +66,14 @@ return [
             "title" => "Missie &amp; Visie",
             "text" => "Het doel van Connect &amp; Play is om een interactie ervaring te bieden voor spelers van alle niveaus. We willen een omgeving creëren waarin samenwerking en sociale interactie centraal staan. Onze visie is het aanbieden van een omgeving waar alle spelers de mogelijkheid hebben om hun vaardigheden te verbeteren, mensen met elkaar te verbinden en uitdagende ervaringen op elk niveau aan te gaan. Wij geloven doormiddel van deze spelervaring aan te bieden, dit niet alleen zal bijdragen aan persoonlijke groei maar ook aan sterke sociale banden. <br /> Kortom: wij willen mensen vrienden voor het leven laten ontmoeten met onze evenementen."
         ]
+    ],
+    "contact" => [
+        "form" => [
+            "first_name" => "Voornaam",
+            "last_name" => "Achternaam",
+            "email" => "E-mail",
+            "message" => "Bericht",
+            "submit" => "Verstuur"
+        ]
     ]
 ];
