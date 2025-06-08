@@ -56,5 +56,15 @@ return [
             "title" => "Maak een afspraak!",
             "cta" => "Neem contact"
         ]
+    ],
+    "about" => [
+        "who" => [
+            "title" => "Wie zijn wij?",
+            "text" => "Bij Connect &amp; Play geloven we dat het spelen van bordspellen, kaartspellen en games meer is dan alleen een spel. Het is een manier om elkaar te verbinden door middel van uitdagingen, competitief denken en samenwerking. Connect &amp; Play is in 2024 opgericht door een groep studenten aan Avans Hogeschool met een vurige passie voor spelletjes spelen met elkaar. Het doel is het organiseren van toernooien voor bordspellen, kaartspellen en interactieve gaming, waarbij de focus ligt op teambuilding en plezier."
+        ],
+        "mission" => [
+            "title" => "Missie &amp; Visie",
+            "text" => "Het doel van Connect &amp; Play is om een interactie ervaring te bieden voor spelers van alle niveaus. We willen een omgeving creëren waarin samenwerking en sociale interactie centraal staan. Onze visie is het aanbieden van een omgeving waar alle spelers de mogelijkheid hebben om hun vaardigheden te verbeteren, mensen met elkaar te verbinden en uitdagende ervaringen op elk niveau aan te gaan. Wij geloven doormiddel van deze spelervaring aan te bieden, dit niet alleen zal bijdragen aan persoonlijke groei maar ook aan sterke sociale banden. <br /> Kortom: wij willen mensen vrienden voor het leven laten ontmoeten met onze evenementen."
+        ]
     ]
 ];
