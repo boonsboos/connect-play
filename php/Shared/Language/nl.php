@@ -87,5 +87,9 @@ return [
         "forgot_password" => "Wachtwoord vergeten?",
         "login" => "Inloggen",
         "register" => "Registreren",
-    ]
+    ],
+    "forgot_password" => [
+        "email" => "E-mail",
+        "submit" => "Verstuur"
+    ],
 ];

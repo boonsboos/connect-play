@@ -87,5 +87,9 @@ return [
         "forgot_password" => "Forgot Password?",
         "login" => "Login",
         "register" => "Register",
-    ]
+    ],
+    "forgot_password" => [
+        "email" => "Email",
+        "submit" => "Submit"
+    ],
 ];
