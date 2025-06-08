@@ -75,5 +75,10 @@ return [
             "message" => "Bericht",
             "submit" => "Verstuur"
         ]
+    ],
+    "services" => [
+        "title" => "Onze diensten",
+        "text" => "Connect &amp; Play biedt verschillende diensten aan om teambuilding en plezier te stimuleren. Hieronder vind je een overzicht van onze diensten.",
+        "cta" => "Neem contact op"
     ]
 ];

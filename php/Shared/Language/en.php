@@ -75,5 +75,10 @@ return [
             "message" => "Message",
             "submit" => "Submit"
         ]
+    ],
+    "services" => [
+        "title" => "Our Services",
+        "text" => "Connect &amp; Play offers a variety of services to promote team building and fun. Below you will find an overview of our services.",
+        "cta" => "Contact Us"
     ]
 ];
