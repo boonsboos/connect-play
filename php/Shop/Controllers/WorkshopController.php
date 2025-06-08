@@ -3,13 +3,17 @@
 require_once '/var/www/php/Shared/Controller.php';
 require_once '/var/www/php/Shop/DataAccess/WorkshopRepository.php';
 require_once '/var/www/php/Shop/Domain/Workshop.php';
+require_once "/var/www/php/Shop/DataAccess/GameRepository.php";
+require_once "/var/www/php/Shop/Domain/Game.php";
 
 class WorkshopController extends Controller
 {
     private WorkshopRepository $workshopRepository;
+    private GameRepository $gameRepository;
 
     public function __construct() {
-        $this->workshopRepository = new WorkshopRepository;
+        $this->workshopRepository = new WorkshopRepository();
+        $this->gameRepository = new GameRepository();
     }
 
     public function createWorkshop(Game $game, Workshop $workshop): void
@@ -44,6 +48,20 @@ class WorkshopController extends Controller
         $this->workshopRepository->removeWorkshop($gameId);
     }
 
+    /**
+     * @return Game[]
+     */
+    public function getGamesWithoutWorkshops(): array {
+        return $this->gameRepository->getGamesWithoutWorkshops();
+    }
+
+    public function gameProvided(): bool {
+        return isset($_GET['gameId']) && is_numeric($_GET['gameId']);
+    }
+
+    public function getGame(int $gameId): Game {
+        return $this->gameRepository->getGame($gameId);
+    }
 }
 
 ?>
