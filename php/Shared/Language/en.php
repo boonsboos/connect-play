@@ -48,5 +48,13 @@ return [
                 "text" => "24/7 available, with real people always ready to help you when you need us."
             ]
         ]
+    ],
+    "footer" => [
+        "contact" => "Contact",
+        "about" => "About us",
+        "appointment" => [
+            "title" => "Make an appointment!",
+            "cta" => "Get in touch"
+        ]
     ]
 ];

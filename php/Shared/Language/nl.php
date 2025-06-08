@@ -48,5 +48,13 @@ return [
                 "text" => "24/7 beschikbaar, met echte mensen die altijd klaarstaan om je te helpen wanneer je ons nodig hebt. "
             ]
         ]
+    ],
+    "footer" => [
+        "contact" => "Contact",
+        "about" => "Over ons",
+        "appointment" => [
+            "title" => "Maak een afspraak!",
+            "cta" => "Neem contact"
+        ]
     ]
 ];
