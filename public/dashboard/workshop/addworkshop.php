@@ -1,10 +1,10 @@
 <?php
+require_once "/var/www/php/Shared/header.php";
+
 require_once "/var/www/php/Shared/Guards/AdminGuard.php";
 
 $adminGuard = new AdminGuard();
 $adminGuard->redirectIfNotAllowed();
-
-require_once "/var/www/php/Shared/header.php";
 
 require_once "/var/www/php/Shop/Controllers/WorkshopController.php";
 require_once "/var/www/php/Shop/Domain/Game.php";
@@ -19,15 +19,22 @@ $workshopController = new WorkshopController();
 	<?php if ($_GET["status"] == "success"): ?>
 		<div class="status-success col-12 flex flex-col">
 			<h2 class="text-center">Gelukt!</h2>
-			<p class="text-center">Workshop is aangemaakt</p>
+			<p class="text-center">
+				Workshop is
+				<?php if ($workshopController->gameProvided()): ?>
+					aangemaakt voor <?= $workshopController->getGame((int) $_GET["gameId"])->getName() ?>
+				<?php else: ?>
+					aangemaakt!
+				<?php endif; ?>
+			</p>
 		</div>
 	<?php else: ?>
 		<div class="status-error col-12 flex flex-col">
 			<h2 class="text-center">Helaas</h2>
 			<p class="text-center">Het is niet gelukt om een workshop toe te voegen voor
 				<!-- als de game is meegegeven, laat de naam zien -->
-				<?php if (isset($_GET["gameId"]) && $_GET["gameId"] != ""): ?>
-					 <?= $workshopController->getGame((int) $_GET["gameId"])->getName() ?>
+				<?php if ($workshopController->gameProvided()): ?>
+					 <?= $workshopController->getGame((int) $_GET["gameId"])->getName() ?>...
 				<?php else: ?>
 					deze game.
 				<?php endif; ?>
@@ -45,13 +52,13 @@ $workshopController = new WorkshopController();
 			<!-- lege optie als default -->
 			<option value="">Kiezen</option>
 			<?php foreach ($workshopController->getGamesWithoutWorkshops() as $game):?>
-                <option value="<?= $game->getId() ?>"><?= $game->getName()?> (<?= $game->getPlayers()?> spelers)</option>
-            <?php endforeach; ?>
+				<option value="<?= $game->getId() ?>"><?= $game->getName()?> (<?= $game->getPlayers()?> spelers)</option>
+			<?php endforeach; ?>
 		</select>
 
-    <?php if($workshopController->gameProvided()): ?>
+	<?php if($workshopController->gameProvided()): ?>
 		<label for="minplayers">Min. spelers</label>
-        <input name="minplayers" id="minplayers" type="number" min="2" step="2" required>
+		<input name="minplayers" id="minplayers" type="number" min="2" step="2" required>
 
 		<label for="maxplayers">Max. spelers</label>
 		<input name="maxplayers" id="maxplayers" type="number" min="2" step="2" required>
