@@ -62,7 +62,7 @@ class WorkshopRepository
 
     /**
      * @param int $gameId
-     * @return Game[]
+     * @return Workshop[]
      */
     public function getWorkshops(int $gameId): array 
     {
