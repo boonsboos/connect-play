@@ -67,6 +67,18 @@ if (isset($_SESSION["userId"])) {
                 <?php else: ?>
                     <a href="/login.php"><?= __('nav.login') ?></a>
                 <?php endif; ?>
+                <!-- Winkelwagen icoon -->
+                <div id="cart-icon-container" class="flex align-center relative">
+                    <button id="cart-button" class="cart-icon-button">
+                        <img src="/images/shopping-cart.svg" class="invert-color-img cart-icon-image" alt="Winkelwagen" />
+                        <span id="cart-count" class="cart-count-badge">0</span>
+                    </button>
+                    <div id="cart-dropdown" class="cart-dropdown hidden">
+                        <p class="cart-title">Winkelwagen</p>
+                        <ul id="cart-items"></ul>
+                        <a href="/checkout.php" class="checkout-button">Afrekenen</a>
+                    </div>
+                </div>
                 <?php if ($language->getLanguage() === 'nl'): ?>
                     <a href="?lang=en">EN</a>
                 <?php else: ?>

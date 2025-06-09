@@ -25,6 +25,7 @@ if (!$game instanceof Game) {
 
 	<div class="container flex justify-center py-30">
 		<div class="col-10 flex flex-row">
+			<div id="error-box" class="mb-col-12 col-12 success-message"></div>
 			<div class="col-6 flex flex-col align-center pl-30">
 				<img src="images/dienst_3.jpg" class="product-img" alt="Product afbeelding" />
 
