@@ -3,8 +3,8 @@
 $locationHeader = "Location: /dashboard/workshop/addworkshop.php?gameId=" . $_POST["gameId"] . "&status=";
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-    header($locationHeader . "invalid");
-    die(400); // 400: bad request
+    header("Location: /dashboard/workshop/addworkshop.php?status=invalid");
+    die();
 }
 
 require_once "/var/www/php/Shared/header.php"; // voor de sessie
