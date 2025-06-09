@@ -1,8 +1,8 @@
 <?php
-require_once "/var/www/php/Shared/Guards/EmployeeGuard.php";
+require_once "/var/www/php/Shared/Guards/AdminGuard.php";
 
-//$employeeGuard = new EmployeeGuard();
-//$employeeGuard->redirectIfNotAllowed();
+$adminGuard = new AdminGuard();
+$adminGuard->redirectIfNotAllowed();
 
 require_once "/var/www/php/Shared/header.php";
 

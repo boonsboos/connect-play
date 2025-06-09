@@ -1,15 +1,15 @@
 <?php
 
-//if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-//    die(400); // 400: bad request
-//}
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    die(400); // 400: bad request
+}
 
-require_once "/var/www/php/Shared/Guards/EmployeeGuard.php";
+require_once "/var/www/php/Shared/Guards/AdminGuard.php";
 
-//$employeeGuard = new EmployeeGuard();
-//if (!$employeeGuard->allowed()) {
-//    die(403); // 403: unauthorized
-//}
+$adminGuard = new AdminGuard();
+if (!$adminGuard->allowed()) {
+    die(403); // 403: unauthorized
+}
 
 require_once "/var/www/php/Shop/Controllers/WorkshopController.php";
 
