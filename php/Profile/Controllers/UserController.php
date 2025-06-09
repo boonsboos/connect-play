@@ -17,29 +17,13 @@ class UserController extends Controller
     public function register(array $data): void
     {
         try {
-            $address = new Address(
-                $data['postalcode'],
-                $data['housenumber'],
-                $data['streetname'],
-                $data['city']
-            );
-
-            $user = new User(
-                0, // id komt pas na opslag
-                $data['email'],
-                $data['fullName'],
-                $data['password'],
-                UserRole::CUSTOMER,
-                [$address]
-            );
-
             /**
              * Backend Validatie
              */
 
             // Controleer of gebruiker al bestaat
             try {
-                $this->userRepository->getUser($user->getEmail());
+                $this->userRepository->getUser($data['email']);
                 // Als bovenstaande niet faalt, bestaat de gebruiker al
                 throw new Exception("E-mailadres is al in gebruik.");
             } catch (Exception $e) {
@@ -67,6 +51,22 @@ class UserController extends Controller
 
                 if (empty($data['housenumber'])) throw new Exception("Huisnummer is verplicht.");
                 if (empty($data['city'])) throw new Exception("Plaats is verplicht.");
+
+                $address = new Address(
+                    $data['postalcode'],
+                    $data['housenumber'],
+                    $data['streetname'],
+                    $data['city']
+                );
+
+                $user = new User(
+                    0, // id komt pas na opslag
+                    $data['email'],
+                    $data['fullName'],
+                    $data['password'],
+                    UserRole::CUSTOMER,
+                    [$address]
+                );
 
                 // Als alle validatie is gedaan wordt de gebruiker toegevoegd aan de database hier:
                 $this->userRepository->addUser($user);

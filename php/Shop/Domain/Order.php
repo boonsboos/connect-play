@@ -1,6 +1,7 @@
 <?php
 
 require_once '/var/www/php/Shop/Domain/CartEntry.php';
+require_once '/var/www/php/Shop/Domain/OrderStatus.php';
 
 class Order
 {

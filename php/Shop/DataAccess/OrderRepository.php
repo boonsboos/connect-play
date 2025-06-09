@@ -86,7 +86,15 @@ class OrderRepository
 
         $orders = [];
         while ($row = $stmt->fetch()) {
-            $orders[] = new Order($row['order_number'], $row['user_id'], $row["date"], $row['status'], $row['comment']);
+            $orders[] = new Order(
+                $row['user_id'],
+                $row["date"],
+                Orderstatus::from($row['status']),
+                $row['comment'],
+                $row['total'] = 0.0,
+                $row['entries'] = [],
+                $row['order_number']
+            );
         }
 
         return $orders;
@@ -154,11 +162,13 @@ class OrderRepository
 
         if ($row = $stmt->fetch()) {
             return new Order(
-                $row['order_number'],
                 $row['user_id'],
-                $row["date"],
-                $row['status'],
-                $row['comment']
+                $row['date'],
+                OrderStatus::from($row['status']),
+                $row['comment'],
+                $row['total'] = 0.0,
+                $row['entries'] = [],
+                $row['order_number']
             );
         }
 
