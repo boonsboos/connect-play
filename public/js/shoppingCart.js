@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	const cartItemsList = document.getElementById("cart-items");
 	const cartCount = document.getElementById("cart-count");
 
-    
-
 	// Toggle dropdown tonen/verbergen
 	cartButton.addEventListener("click", function (e) {
 		e.stopPropagation(); // voorkomt sluiten direct bij klikken
@@ -22,6 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	function updateCartDropdown() {
 		const cartEntries = JSON.parse(localStorage.getItem("cartEntries") || "[]");
+
+		console.log(cartEntries);
+
 		cartItemsList.innerHTML = "";
 
 		if (cartEntries.length === 0) {
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			});
 		}
 
-		// Update badge
+		// Update de badge en toont totaal aantal producten in winkelwagen
 		const totalItems = cartEntries.reduce((sum, e) => sum + e.amount, 0);
 		cartCount.textContent = totalItems;
 		cartCount.style.display = totalItems > 0 ? "inline-block" : "none";
