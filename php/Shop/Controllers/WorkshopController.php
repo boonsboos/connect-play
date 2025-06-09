@@ -21,6 +21,46 @@ class WorkshopController extends Controller
      */
     public function createWorkshop(): bool
     {
+        if (!$this->validateWorkshop()){
+            return false;
+        }
+
+        $this->workshopRepository->createWorkshop(new Workshop(
+            (int) $_POST['gameId'],
+            (int) $_POST['minplayers'],
+            (int) $_POST['maxplayers'],
+            (float) $_POST['price'],
+            (int) $_POST['duration']
+        ));
+        return true;
+    }
+
+    public function getWorkshop(int $gameId): ?Workshop
+    {
+        return $this->workshopRepository->getWorkshop($gameId);
+    }
+
+    public function getGamesWithWorkshops(): array
+    {
+        return $this->gameRepository->getGamesWithWorkshops();
+    }
+
+    public function updateWorkshop(): bool
+    {
+        if (!$this->validateWorkshop()){
+            return false;
+        }
+
+        return $this->workshopRepository->updateWorkshop(new Workshop(
+            (int) $_POST['gameId'],
+            (int) $_POST['minplayers'],
+            (int) $_POST['maxplayers'],
+            (float) $_POST['price'],
+            (int) $_POST['duration']
+        ));
+    }
+
+    private function validateWorkshop() {
         // valideer dat alle data beschikbaar is en het juiste formaat heeft
         if (!isset($_POST['gameId']) || !is_numeric($_POST['gameId'])
             || !isset($_POST['minplayers']) || !is_numeric($_POST['minplayers'])
@@ -51,34 +91,7 @@ class WorkshopController extends Controller
             return false;
         }
 
-        $this->workshopRepository->createWorkshop(new Workshop(
-            (int) $_POST['gameId'],
-            (int) $_POST['minplayers'],
-            (int) $_POST['maxplayers'],
-            (float) $_POST['price'],
-            (int) $_POST['duration']
-        ));
         return true;
-    }
-
-    public function getWorkshop(int $gameId): ?Workshop
-    {
-        return $this->workshopRepository->getWorkshop($gameId);
-    }
-
-    public function getWorkshops(int $gameId): array
-    {
-        return $this->workshopRepository->getWorkshops($gameId);
-    }
-
-    public function updateWorkshop(Workshop $workshop): void
-    {
-        // Controleer of er een workshop bestaat voor deze game
-        // Workshop niet aanwezig dan gooit de workshopRepository een Exception
-        $this->workshopRepository->getWorkshop($workshop->getGameId());
-        
-        // Voeg update op workshop uit
-        $this->workshopRepository->updateWorkshop($workshop);
     }
 
     public function removeWorkshop(int $gameId): void
