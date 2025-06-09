@@ -38,7 +38,7 @@ class WorkshopRepository
         }
     }
 
-    public function getWorkshop(int $gameId): Workshop 
+    public function getWorkshop(int $gameId): ?Workshop
     {
         $stmtWorkshop = $this->db->prepare("CALL get_workshop(:gameId)");
 
@@ -57,9 +57,13 @@ class WorkshopRepository
             );
         }
 
-        throw new Exception("Geen workshop gevonden voor deze game.");
+        return null;
     }
 
+    /**
+     * @param int $gameId
+     * @return Workshop[]
+     */
     public function getWorkshops(int $gameId): array 
     {
         $workshops = [];
@@ -70,29 +74,27 @@ class WorkshopRepository
         
         $allWorkshops = $stmtWorkshop->fetchAll();
 
-        if (!empty($allWorkshops)) {
-            foreach ($allWorkshops AS $workshop) {
-                $workshops[] = new Workshop(
-                    (int) $workshop['game_id'],
-                    (int) $workshop['min_size'],
-                    (int) $workshop['max_size'],
-                    (float) $workshop['price'],
-                    (int) $workshop['duration']
-                );
-            }
-
-            return $workshops;
+        // als er geen resultaat is, blijft de array leeg
+        // omdat de loop niet uitgevoerd wordt
+        foreach ($allWorkshops AS $workshop) {
+            $workshops[] = new Workshop(
+                (int) $workshop['game_id'],
+                (int) $workshop['min_size'],
+                (int) $workshop['max_size'],
+                (float) $workshop['price'],
+                (int) $workshop['duration']
+            );
         }
-        
-        throw new Exception("Geen workshop gevonden voor deze game.");
+
+        return $workshops;
     }
 
 
-    public function updateWorkshop(Workshop $workshop): void
+    public function updateWorkshop(Workshop $workshop): bool
     {
         $stmtNewGameInfo = $this->db->prepare("CALL update_workshop(:game_id, :min_size, :max_size, :duration, :price)");
 
-        $stmtNewGameInfo->execute([
+        return $stmtNewGameInfo->execute([
             ':game_id' => $workshop->getGameID(),
             ':min_size' => $workshop->getMinSize(),
             ':max_size' => $workshop->getMaxSize(),

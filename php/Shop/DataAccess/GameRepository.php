@@ -121,6 +121,30 @@ class GameRepository
         ]);
     }
 
+    /**
+     * @return Game[]
+     */
+    public function getGamesWithoutWorkshops(): array {
+        $allGames = [];
+
+        $stmtGame = $this->db->prepare("SELECT * FROM `game` WHERE `game_id` NOT IN (SELECT `game_id` FROM `workshop`);");
+        $stmtGame->execute();
+        $gameRows = $stmtGame->fetchAll();
+        foreach ($gameRows as $row) {
+            $allGames[] = new Game(
+                (int) $row['players'],
+                (float) $row['price'],
+                (int) $row['duration'],
+                (string) $row['name'],
+                (string) $row['description'],
+                (string) $row['difficulty'],
+                (string) $row['left_in_stock'],
+                (int) $row['game_id']
+            );
+        }
+
+        return $allGames;
+    }
 }
 
 ?>

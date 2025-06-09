@@ -678,6 +678,18 @@ ul {
 	font-weight: 500;
 }
 
+.status-error {
+	border: 2px dashed var(--accent);
+	border-radius: 8px;
+	padding: 30px;
+}
+
+.status-success {
+	border: 2px solid var(--accent);
+	border-radius: 8px;
+	padding: 30px;
+}
+
 @media only screen and (min-width: 768px) {
 	/* columns subtract the width of the gap specified by .flex from their own width */
 
@@ -711,6 +723,14 @@ ul {
 
 	.col-9 {
 		width: calc(75% - 1vw);
+	}
+
+	.col-10 {
+		width: calc(83.333% - 1vw);
+	}
+
+	.col-11 {
+		width: calc(91.66% - 1vw);
 	}
 
 	.col-12 {
@@ -913,5 +933,13 @@ ul {
 	.home-info-box > div,
 	.usp-section {
 		border-color: var(--highlight);
+	}
+
+	.status-error {
+		border: 2px dashed var(--highlight);
+	}
+
+	.status-success {
+		border: 2px solid var(--highlight);
 	}
 }
