@@ -920,6 +920,87 @@ i.trash {
 	padding: 30px;
 }
 
+.search-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.search-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  border-right: 2px solid #4b006e;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  background: #fdfaff;
+  height: 100%;
+  overflow: hidden;
+  position: sticky;
+}
+
+.search-results-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  box-sizing: border-box;
+  background: #fdfaff;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.result-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+  border: 1px solid #4b006e;
+  border-radius: 8px;
+  padding: 1rem;
+  height: 100%;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.game-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.game-info {
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.card-button {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.search-button {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  background: linear-gradient(to right, #7a1ea1, #4b006e);
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 @media only screen and (min-width: 768px) {
 	/* columns subtract the width of the gap specified by .flex from their own width */
 
