@@ -78,15 +78,8 @@ class WorkshopTest extends TestCase {
         $gameRepository->removeGame($game->getId());
         
         // Assert
-        // omdat de getWorkshop een Exception gooit, moet je deze opvangen met een try catch
-        try {
-            $workshopRepository->getWorkshop($game->getId());
-            // lukt het ophalen van een workshop? Dan is de test gefaald
-            $this->fail("Workshop is niet verwijderd.");
-        } catch (Exception $e) {
-            // hij moet dus een Exception krijgen om de test te laten slagen
-            $this->assertEquals("Geen workshop gevonden voor deze game.", $e->getMessage()); 
-        }
+        // workshop moet null zijn.
+        $this->assertNull($workshopRepository->getWorkshop($game->getId()));
     }
 
     public function testGetWorkshopsForGame() {
