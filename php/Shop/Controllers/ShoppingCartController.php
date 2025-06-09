@@ -102,7 +102,7 @@ class ShoppingCartController
             orderNumber: $orderNumber,
             game: $game,
             amount: 1,
-            when: date('Y-m-d H:i:s'),
+            when: date('Y-m-d'),
         );
 
         try {
@@ -113,7 +113,9 @@ class ShoppingCartController
                 'success' => true,
                 'message' => 'Game toegevoegd aan je winkelwagen.',
                 'cartEntry' => [
-                    'gameId' => $gameId,
+                    'gameId' => (int) $gameId,
+                    'name' => $game->getName(),
+                    'price' => $game->getPrice(),
                     'amount' => 1
                 ],
                 'action' => 'add'

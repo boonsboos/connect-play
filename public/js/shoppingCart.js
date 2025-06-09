@@ -4,44 +4,85 @@ document.addEventListener("DOMContentLoaded", function () {
 	const cartItemsList = document.getElementById("cart-items");
 	const cartCount = document.getElementById("cart-count");
 
-	// Toggle dropdown tonen/verbergen
+	// Toon/verberg dropdown
 	cartButton.addEventListener("click", function (e) {
-		e.stopPropagation(); // voorkomt sluiten direct bij klikken
+		e.stopPropagation();
 		cartDropdown.classList.toggle("hidden");
 		updateCartDropdown();
 	});
 
-	// Sluit dropdown als je ergens anders klikt
+	// Sluit dropdown buiten klikken
 	document.addEventListener("click", function (e) {
-		if (!cartDropdown.classList.contains("hidden")) {
+		const cartContainer = document.getElementById("cart-icon-container");
+		if (!cartContainer.contains(e.target)) {
 			cartDropdown.classList.add("hidden");
 		}
 	});
 
-	function updateCartDropdown() {
-		const cartEntries = JSON.parse(localStorage.getItem("cartEntries") || "[]");
-
-		console.log(cartEntries);
-
-		cartItemsList.innerHTML = "";
-
-		if (cartEntries.length === 0) {
-			cartItemsList.innerHTML = "<li>Je winkelwagen is leeg.</li>";
-		} else {
-			cartEntries.forEach((entry) => {
-				const li = document.createElement("li");
-				li.textContent = `Game ID: ${entry.gameId} — aantal: ${entry.amount}`;
-				cartItemsList.appendChild(li);
-			});
-		}
-
-		// Update de badge en toont totaal aantal producten in winkelwagen
-		const totalItems = cartEntries.reduce((sum, e) => sum + e.amount, 0);
-		cartCount.textContent = totalItems;
-		cartCount.style.display = totalItems > 0 ? "inline-block" : "none";
-	}
-
-	// Init bij laden van pagina
 	updateCartDropdown();
 });
 
+function updateCartDropdown() {
+	const cartEntries = JSON.parse(localStorage.getItem("cartEntries") || "[]");
+	const cartItemsList = document.getElementById("cart-items");
+	const cartCount = document.getElementById("cart-count");
+
+	cartItemsList.innerHTML = "";
+
+	if (cartEntries.length === 0) {
+		cartItemsList.innerHTML = "<li>Je winkelwagen is leeg.</li>";
+	} else {
+		cartEntries.forEach((entry) => {
+			const li = document.createElement("li");
+			li.classList.add("cart-item");
+			li.innerHTML = `
+				<span class="cart-item-name">${entry.name}</span>
+				<div class="cart-item-details">
+					<span class="cart-item-price">€ ${entry.price}</span>
+					<span class="cart-item-amount">${entry.amount} x</span>
+					<button class="remove-item-button cart-icon-button" data-id="${entry.gameId}">
+						<img src="/images/trash.svg" alt="Verwijder" class="invert-color-img cart-icon-image" />
+					</button>
+				</div>
+			`;
+			cartItemsList.appendChild(li);
+		});
+
+		cartItemsList.querySelectorAll(".remove-item-button").forEach((button) => {
+			button.addEventListener("click", function (e) {
+				e.stopPropagation();
+				const gameId = this.getAttribute("data-id");
+				removeItemFromCart(gameId);
+			});
+		});
+	}
+
+	// Update badge
+	const totalItems = cartEntries.reduce((sum, e) => sum + e.amount, 0);
+	cartCount.textContent = totalItems;
+	cartCount.style.display = totalItems > 0 ? "inline-block" : "none";
+}
+
+
+
+function removeItemFromCart(gameId) {
+	gameId = parseInt(gameId, 10); // Zorgt dat het een integer is
+	const cartEntries = JSON.parse(localStorage.getItem("cartEntries") || "[]");
+
+	//const entry = cartEntries.find((e) => e.gameId === gameId);
+	const entryIndex = cartEntries.findIndex((e) => parseInt(e.gameId, 10) === gameId);
+
+	//if (!entry) return;
+	if (entryIndex === -1) return;
+
+	if (cartEntries[entryIndex].amount > 1) {
+		cartEntries[entryIndex].amount--;
+	} else {
+		// Verwijder de hele entry
+		cartEntries.splice(entryIndex, 1);
+	}
+
+	localStorage.setItem("cartEntries", JSON.stringify(cartEntries));
+
+	updateCartDropdown();
+}

@@ -1,43 +1,41 @@
 const url = "product.php";
 
 async function handleAddToCart(gameId) {
-	const storedOrder = localStorage.getItem("currentOrder")
-	
+	const storedOrder = localStorage.getItem("currentOrder");
 
 	if (!storedOrder) {
 		// Eerst de order aanmaken
-		const createForm = new FormData()
-		createForm.append("action", "create")
+		const createForm = new FormData();
+		createForm.append("action", "create");
 
 		try {
 			const data = await fetch(url, {
 				method: "POST",
 				body: createForm,
 			}).then((res) => res.json())
-			console.log({ data })
 			if (data.success && data.orderNumber) {
 				// Order opslaan in localStorage
 				const newOrder = {
 					orderNumber: data.orderNumber,
 					userId: data.userId,
 				}
-				localStorage.setItem("currentOrder", JSON.stringify(newOrder))
+				localStorage.setItem("currentOrder", JSON.stringify(newOrder));
 
 				// Daarna opnieuw: game toevoegen
-				addGameToCart(gameId, newOrder.orderNumber)
+				addGameToCart(gameId, newOrder.orderNumber);
 			} else {
 				alert(
 					"Fout bij aanmaken van winkelwagen: " +
 						(data.message ?? "Onbekend")
-				)
+				);
 			}
 		} catch (err) {
-			console.error(err)
-			alert("Netwerkfout bij aanmaken van order. 1")
+			console.error(err);
+			alert("Netwerkfout bij aanmaken van order. 1");
 		}
 	} else {
-		const order = JSON.parse(storedOrder)
-		addGameToCart(gameId, order.orderNumber)
+		const order = JSON.parse(storedOrder);
+		addGameToCart(gameId, order.orderNumber);
 	}
 }
 
@@ -47,20 +45,18 @@ async function addGameToCart(gameId, orderNumber) {
 	formData.append("gameId", gameId);
 	formData.append("orderNumber", orderNumber);
 
-	console.log("Form Data: ", formData);
-
 	try {
-			const response = await fetch(url, {
+		const response = await fetch(url, {
 		method: "POST",
 		body: formData
-	})
+	});
 
-	const text = await response.text()
-	console.log("Raw response: ", text)
-
+	const text = await response.text();
 	let data;
+
 	try {
-		data = JSON.parse(text)
+		
+		data = JSON.parse(text);
 	} catch (err) {
 		console.error("Kon JSON niet parsen:", err)
 		alert("Ongeldige serverresponse ontvangen.")
@@ -68,22 +64,22 @@ async function addGameToCart(gameId, orderNumber) {
 	}
 
 	if (data.success) {
-		const entry = data.cartEntry
+		const entry = data.cartEntry;
 		const cartEntries = JSON.parse(
 			localStorage.getItem("cartEntries") || "[]"
-		)
+		);
 
-		const existing = cartEntries.find((e) => e.gameId === entry.gameId)
+		const existing = cartEntries.find((e) => e.gameId === entry.gameId);
+
 		if (existing) {
 			existing.amount++
 		} else {
-			cartEntries.push(entry)
+			cartEntries.push(entry);
 		}
-		localStorage.setItem("cartEntries", JSON.stringify(cartEntries))
-		alert("Game toegevoegd aan winkelwagen!")
-		console.log(localStorage.getItem("cartEntries"))
+		localStorage.setItem("cartEntries", JSON.stringify(cartEntries));
+		alert("Game toegevoegd aan winkelwagen!");
 	} else {
-		alert("Fout bij toevoegen: " + (data.message ?? "Onbekend"))
+		alert("Fout bij toevoegen: " + (data.message ?? "Onbekend"));
 	}
 	} catch (e) {
 		console.error(e);
