@@ -7,9 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 require_once "/var/www/php/Shared/Guards/AdminGuard.php";
 
 $adminGuard = new AdminGuard();
-if (!$adminGuard->allowed()) {
-    die(403); // 403: unauthorized
-}
+$adminGuard->redirectIfNotAllowed("/dashboard.php");
 
 require_once "/var/www/php/Shop/Controllers/WorkshopController.php";
 
@@ -25,3 +23,5 @@ try {
 } catch (Exception $exception) {
     header("Location: /dashboard/workshop/addworkshop.php?gameId=" . $_POST["gameId"] . "&status=error");
 }
+
+die();

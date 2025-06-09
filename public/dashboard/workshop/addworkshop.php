@@ -56,7 +56,7 @@ $workshopController = new WorkshopController();
 		<label for="maxplayers">Max. spelers</label>
 		<input name="maxplayers" id="maxplayers" type="number" min="2" step="2" required>
 
-		<label for="duration">Duur (minuten)</label>
+		<label for="duration">Duur in stappen van 30 minuten</label>
 		<input name="duration" id="duration" type="number" min="30" step="30" required>
 
 		<label for="price">Prijs</label>

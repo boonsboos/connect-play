@@ -21,23 +21,19 @@ class WorkshopController extends Controller
      */
     public function createWorkshop(): bool
     {
-        // valideer formulier
+        // valideer dat alle data beschikbaar is en het juiste formaat heeft
         if (!isset($_POST['gameId']) || !is_numeric($_POST['gameId'])
             || !isset($_POST['minplayers']) || !is_numeric($_POST['minplayers'])
             || !isset($_POST['maxplayers']) || !is_numeric($_POST['maxplayers'])
             || !isset($_POST["price"]) || !preg_match("/\d+(([.,])\d{2})?/", $_POST["price"])
             || !isset($_POST["duration"]) || !is_numeric($_POST['duration']))
         {
-            var_dump($_POST);
             return false;
         }
 
         // check of de game al een workshop heeft
-        try {
-            $this->getWorkshop($_POST["gameId"]);
+        if (!is_null($this->getWorkshop($_POST["gameId"]))) {
             return false;
-        } catch (Exception) {
-            // continue, exception betekent dat er geen workshop is
         }
 
         // minimum aantal spelers moet groter zijn dan 0
@@ -50,8 +46,8 @@ class WorkshopController extends Controller
             return false;
         }
 
-        // duration moet groter zijn dan 0
-        if ($_POST["duration"] <= 0) {
+        // duration moet minstens 30 minutesn zijn en deelbaar door 30
+        if ($_POST["duration"] < 30 || $_POST["duration"] % 30 != 0) {
             return false;
         }
 
@@ -65,7 +61,7 @@ class WorkshopController extends Controller
         return true;
     }
 
-    public function getWorkshop(int $gameId): Workshop
+    public function getWorkshop(int $gameId): ?Workshop
     {
         return $this->workshopRepository->getWorkshop($gameId);
     }
