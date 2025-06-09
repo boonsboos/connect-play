@@ -56,6 +56,9 @@ class OrderRepository
         }
     }
 
+    /**
+     * WORDT NOG NIET GEBRUIKT!!!
+     */
     public function addCartEntry(CartEntry $cartEntry): void
     {
         // Verbind met database
