@@ -49,17 +49,19 @@ function updateCartDropdown() {
 					<div class="cart-item-controls">
 						${
 							entry.amount > 1
-								? `<button class="remove-item-button cart-button" data-id="${entry.gameId}">-</button>`
-								: `<button class="remove-item-button cart-icon-button" data-id="${entry.gameId}">
-								<img src="/images/trash.svg" alt="Verwijder" class="invert-color-img cart-icon-image" />
+								? `<button class="remove-item-button cart-button" data-id="${entry.gameId}">
+								<i class="minus"></i>
+								</button>`
+								: `<button class="remove-item-button cart-button" data-id="${entry.gameId}">
+								<i class="trash"></i>
 								</button>`
 						}
 						<span class="cart-item-amount">${entry.amount}</span>
-						<button class="add-item-button cart-button" data-id="${entry.gameId}">+</button>
+						<button class="add-item-button cart-button" data-id="${entry.gameId}">
+							<i class="plus"></i>
+						</button>
 					</div>
-					<span class="cart-item-price">${formatPrice(
-						entry.price * entry.amount
-					)}</span>
+					<span class="cart-item-price">${formatPrice(entry.price * entry.amount)}</span>
 				</div>
 			`
 			cartItemsList.appendChild(li) // Voegt het <li> element toe als child aan de bestaande DOM-element
@@ -193,4 +195,7 @@ const calculateShipping = (subtotal) => (subtotal >= 50 ? 0 : 6.95)
  * @param {number} price
  * @returns {string} - De geformatteerde prijs met euro-teken en twee decimalen
  */
-const formatPrice = (price) => `<span class="cart-price-indicator">€</span> ${price.toFixed(2).replace(".", ",")}`
+const formatPrice = (price) =>
+	`<span class="cart-price-indicator">€</span> ${price
+		.toFixed(2)
+		.replace(".", ",")}`
