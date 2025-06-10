@@ -599,17 +599,17 @@ ul {
 }
 
 #productlijst {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Verdeel in drie kolommen */
-    gap: 16px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr); /* Verdeel in drie kolommen */
+	gap: 16px;
 	border-radius: inherit; /* zo steekt de padding niet uit */
 }
 
 .game-card {
-    border: 1px solid #ddd;
-    border-radius: 8px; 
-    padding: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 16px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .game-card:hover {
@@ -678,37 +678,67 @@ ul {
 	font-weight: 500;
 }
 
+/* toevoegen aan winkelwagen knop */
+#add-to-cart {
+	display: flex;
+	border: none;
+	gap: 0.5rem;
+}
+
+#add-to-cart.added {
+	background-color: var(--accent);
+	color: var(--foreground);
+}
+
+#add-to-cart > i.check {
+	-webkit-mask: url(/images/check.svg) no-repeat center;
+	mask: url(/images/check.svg) no-repeat center;
+	background: var(--highlight);
+	width: 16px;
+	height: 16px;
+	object-fit: cover;
+	object-position: center;
+}
+
 /* Winkelwagen */
 
 .cart-icon-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    padding: 0;
+	background: none;
+	border: none;
+	cursor: pointer;
+	position: relative;
+	padding: 0;
+}
+
+.cart-button {
+	color: var(--foreground);
+	background: var(--accent);
+	padding: 4px 5px;
+	border-radius: 2px;
+	border: none;
 }
 
 .cart-count-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: crimson;
-    color: white;
-    border-radius: 50%;
-    font-size: 0.75rem;
-    padding: 2px 6px;
+	position: absolute;
+	top: -5px;
+	right: -5px;
+	background-color: crimson;
+	color: white;
+	border-radius: 50%;
+	font-size: 0.75rem;
+	padding: 2px 6px;
 }
 
 .cart-dropdown {
-    position: absolute;
-    top: 5rem;
-    right: 1rem;
-    border: 1px solid var(--primary);
+	position: absolute;
+	top: 5rem;
+	right: 1rem;
+	border: 1px solid var(--primary);
 	background-color: var(--background);
-    padding: 1rem;
-    width: 500px;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	padding: 1rem;
+	width: 500px;
+	z-index: 1000;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 5px;
 }
 
@@ -727,39 +757,69 @@ ul {
 .cart-item-details {
 	display: flex;
 	align-items: center;
-	gap: 0.75rem;
+	gap: 1rem;
+}
+
+.cart-item-controls {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 }
 
 .cart-item-price,
 .cart-item-amount {
-	min-width: 50px;
-	text-align: right;
+	/* min-width: 50px; */
+	text-align: center;
 }
 
-.remove-item-button {
+.cart-item-price:has(.cart-price-indicator),
+.cart-price:has(.cart-price-indicator) > span {
+	display: flex;
+	min-width: 75px;
+}
+
+.cart-item-price:has(.cart-price-indicator) .cart-price-indicator,
+.cart-price:has(.cart-price-indicator) .cart-price-indicator {
+	flex: 1;
+	text-align: left;
+}
+
+/* duplicated styling van de .cart-icon-button?!? */
+/* .remove-item-button {
 	background: none;
 	border: none;
 	cursor: pointer;
 	padding: 0;
-}
+} */
 
 .cart-dropdown.hidden {
-    display: none;
+	display: none;
 }
 
 .cart-title {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+}
+
+.cart-price {
+	display: flex;
+	justify-content: space-between;
+	font-weight: bold;
+	color: var(--foreground);
+}
+
+.cart-price > span {
+	font-weight: normal;
 }
 
 .checkout-button {
-    display: block;
-    text-align: center;
+	display: block;
+	text-align: center;
 	margin-top: 0.5rem;
 	color: var(--foreground);
-    background-color: var(--accent);
-    text-decoration: none;
-    border-radius: 5px;
+	background-color: var(--accent);
+	text-decoration: none;
+	border-radius: 5px;
 }
 
 .cart-icon-image {
@@ -853,7 +913,6 @@ ul {
 
 /* mobile only classes */
 @media only screen and (max-width: 768px) {
-
 	.mb-flex-col {
 		flex-direction: column;
 	}
@@ -953,15 +1012,18 @@ ul {
 		transition: transform 0.5s ease;
 	}
 
-    .productlijst {
-        grid-template-columns: repeat(2, 1fr); /* Toon 2 kaarten naast elkaar op tablets */
-    }
+	.productlijst {
+		grid-template-columns: repeat(
+			2,
+			1fr
+		); /* Toon 2 kaarten naast elkaar op tablets */
+	}
 }
 
 @media (max-width: 480px) {
-    .productlijst {
-        grid-template-columns: 1fr; /* Toon 1 kaart per rij op mobiele apparaten */
-    }
+	.productlijst {
+		grid-template-columns: 1fr; /* Toon 1 kaart per rij op mobiele apparaten */
+	}
 }
 
 /*
