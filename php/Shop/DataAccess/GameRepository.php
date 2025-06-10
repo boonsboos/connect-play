@@ -31,6 +31,9 @@ class GameRepository
                 ':left_in_stock' => $game->getLeftInStock()
             ]);
 
+            $gameId = $stmtGame->fetchColumn(); // haalt 1 waarde op uit het resultaat van de query (dus SELECT LAST_INSERT_ID() AS id)
+            $game->setId((int)$gameId);
+
         } catch (PDOException $e) {
             if ($e->getCode() === '23000') { // Code 23000 betekent "Integrity constraint violation". je probeert iets toe te voegen dat de db verbied, zoals dubbele game namen
                 throw new Exception("Game naam bestaat al!");  // hier maak je een Exception voor ALLEEN de foutcode 23000 zo worden andere foutmeldingen niet stilgezet
@@ -39,6 +42,9 @@ class GameRepository
         }
     }
 
+    /**
+    * @returns Game[]
+    */
     public function getGames(): array
     {
         $allGames = [];
@@ -75,7 +81,7 @@ class GameRepository
         $gameData = $stmtGame->fetch();
 
         if (!$gameData) {
-            throw new Exception("Game niet gevonden", 404);
+            throw new Exception("Game niet gevonden.", 404);
         }
 
         return new Game(
@@ -89,31 +95,7 @@ class GameRepository
             id: (int)$gameData['game_id']
         );
     }
-
-    public function getGameByName(string $name): ?Game
-    {
-        $stmtGame = $this->db->prepare("SELECT * FROM `game` WHERE name = :name");
-        
-        $stmtGame->execute(['name' => $name]);
-        
-        $gameData = $stmtGame->fetch();
-
-        if (!$gameData) {
-            throw new Exception("Game niet gevonden", 404);
-        }
-
-        return new Game(
-            players: (int)$gameData['players'],
-            price: (float)$gameData['price'],
-            duration: (int)$gameData['duration'],
-            name: $gameData['name'],
-            description: $gameData['description'],
-            difficulty: $gameData['difficulty'],
-            leftInStock: (int)$gameData['left_in_stock'],
-            id: (int)$gameData['game_id']
-        );
-    }
-
+    
     public function updateGame(Game $game): void
     {
         // Voer update_game procedure uit
@@ -139,6 +121,55 @@ class GameRepository
         ]);
     }
 
+    /**
+     * @return Game[]
+     */
+    public function getGamesWithoutWorkshops(): array {
+        $allGames = [];
+
+        $stmtGame = $this->db->prepare("SELECT * FROM `game` WHERE `game_id` NOT IN (SELECT `game_id` FROM `workshop`) ORDER BY `name` ASC;");
+        $stmtGame->execute();
+        $gameRows = $stmtGame->fetchAll();
+        foreach ($gameRows as $row) {
+            $allGames[] = new Game(
+                (int) $row['players'],
+                (float) $row['price'],
+                (int) $row['duration'],
+                (string) $row['name'],
+                (string) $row['description'],
+                (string) $row['difficulty'],
+                (string) $row['left_in_stock'],
+                (int) $row['game_id']
+            );
+        }
+
+        return $allGames;
+    }
+
+    /**
+     * @return Game[]
+     */
+    public function getGamesWithWorkshops(): array {
+        $allGames = [];
+
+        $stmtGame = $this->db->prepare("SELECT * FROM `game` WHERE `game_id` IN (SELECT `game_id` FROM `workshop`) ORDER BY `name` ASC;");
+        $stmtGame->execute();
+        $gameRows = $stmtGame->fetchAll();
+        foreach ($gameRows as $row) {
+            $allGames[] = new Game(
+                (int) $row['players'],
+                (float) $row['price'],
+                (int) $row['duration'],
+                (string) $row['name'],
+                (string) $row['description'],
+                (string) $row['difficulty'],
+                (string) $row['left_in_stock'],
+                (int) $row['game_id']
+            );
+        }
+
+        return $allGames;
+    }
 }
 
 ?>

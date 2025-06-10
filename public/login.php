@@ -29,30 +29,30 @@ if (isset($_GET['error'])) {
 		<?php endif; ?>
 		<div class="mb-col-12 col-12 flex justify-center pb-30">
 			<div class="mb-col-12 col-5">
-				<label for="email">E-mail:</label>
+				<label for="email"><?= __("login.email") ?>:</label>
 				<input id="email" class="input" type="text" name="email" placeholder="email@example.com" />
 			</div>
 		</div>
 
 		<div class="mb-col-12 col-12 flex justify-center">
 			<div class="mb-col-12 col-5">
-				<label for="password">Wachtwoord:</label>
-				<input id="password" class="input" type="password" name="password" placeholder="Wachtwoord" />
+				<label for="password"><?= __("login.password") ?>:</label>
+				<input id="password" class="input" type="password" name="password" placeholder="<?= __("login.password") ?>" />
 			</div>
 		</div>
 		<div class="mb-col-12 col-12 flex justify-center">
 			<div class="mb-col-12 col-5">
-				<a href="/wachtwoord-vergeten.php">Wachtwoord vergeten?</a>
+				<a href="/wachtwoord-vergeten.php"><?= __("login.forgot_password") ?></a>
 			</div>
 		</div>
 
 		<div class="mb-col-6 col-5">
 			<div class="send-message pt-30">
-				<button class="button" type="submit">Inloggen</button>
+				<button class="button" type="submit"><?= __("login.login") ?></button>
 			</div>
 
 			<div class="send-message pt-30">
-				<a href="registreer.php">Registreren</a>
+				<a href="registreer.php"><?= __("login.register") ?></a>
 			</div>
 		</div>
 	</form>
