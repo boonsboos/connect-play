@@ -42,6 +42,7 @@
         </p>
     </div>
 </footer>
+<script src="/js/shoppingCart.js"></script>
 </body>
 
 </html>

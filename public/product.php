@@ -1,10 +1,17 @@
 <?php
-// Inclusie van noodzakelijke bestanden
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	require_once '../php/Shop/Controllers/ShoppingCartController.php';
+	$shoppingCartController = new ShoppingCartController();
+	$shoppingCartController->dispatch();
+	exit;
+}
 require_once '../php/Shared/header.php';
-require_once '../php/Shop/controllers/GameController.php';
+require_once '../php/Shop/Controllers/GameController.php';
 
-$controller = new GameController();
-$game = $controller->getGame();
+$userId = $_SESSION['user_id'] ?? null;
+
+$gameController = new GameController();
+$game = $gameController->getGame();
 
 if (!$game instanceof Game) {
 	echo "<p>Er is iets misgegaan bij het ophalen van de game.</p>";
@@ -32,7 +39,7 @@ if (!$game instanceof Game) {
 				<!-- De functie number_format() vervangd de punt naar een komma  -->
 				<div class="flex flex-row align-center pb-15">
 					<h4>€ <?= number_format($game->getPrice(), 2, ',', ''); ?></h4>
-					<button class="button px-10" style="width: auto;">Toevoegen</button>
+					<button onclick="handleAddToCart(<?= $game->getId(); ?>)" class="button px-10" style="width: auto;">Toevoegen</button>
 				</div>
 
 				<div class="flex py-10">
@@ -66,6 +73,7 @@ if (!$game instanceof Game) {
 	</div>
 
 </div>
+<script src="js/handleAddToCart.js"></script>
 <?php
 require_once '../php/Shared/footer.php';
 ?>
