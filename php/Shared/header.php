@@ -76,6 +76,10 @@ if (isset($_SESSION["userId"])) {
                     <div id="cart-dropdown" class="cart-dropdown hidden">
                         <p class="cart-title">Winkelwagen</p>
                         <ul id="cart-items"></ul>
+                        <p class="cart-price">Subtotaal: <span id="cart-subtotal">€0,00</span></p>
+                        <p class="cart-price">Verzendkosten: <span id="cart-shipping">€0,00</span></p>
+                        <p class="cart-price">BTW (21%): <span id="cart-tax">€0,00</span></p>
+                        <p class="cart-price">Totaal: <span id="cart-total">€0,00</span></p>
                         <a href="/checkout.php" class="checkout-button">Afrekenen</a>
                     </div>
                 </div>
