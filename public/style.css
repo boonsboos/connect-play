@@ -306,33 +306,33 @@ a {
 
 /* Default padding styles for 40px paddings */
 .p-40 {
-	padding: 30px;
+	padding: 40px;
 }
 
 .pt-40 {
-	padding-top: 30px;
+	padding-top: 40px;
 }
 
 .pb-40 {
-	padding-bottom: 30px;
+	padding-bottom: 40px;
 }
 
 .pl-40 {
-	padding-left: 30px;
+	padding-left: 40px;
 }
 
 .pr-40 {
-	padding-right: 30px;
+	padding-right: 40px;
 }
 
 .py-40 {
-	padding-top: 30px;
-	padding-bottom: 30px;
+	padding-top: 40px;
+	padding-bottom: 40px;
 }
 
 .px-40 {
-	padding-left: 30px;
-	padding-right: 30px;
+	padding-left: 40px;
+	padding-right: 40px;
 }
 
 /* Default padding styles for 50px paddings */
