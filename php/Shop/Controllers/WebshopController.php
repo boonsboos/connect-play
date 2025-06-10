@@ -6,6 +6,7 @@ require_once '/var/www/php/Shop/DataAccess/WebshopRepository.php';
 class WebshopController {
 
     private GameRepository $gameRepository;
+    private WebshopRepository $webshopRepository;
 
     private string $searchQuery;
     private int $maxPlayers = 16;
@@ -14,6 +15,7 @@ class WebshopController {
     private bool $filterActive = false;
 
     private array $games = [];
+    private array $emptySearchResults = [];
 
     /**
      * Aantal spellen per pagina
@@ -22,8 +24,9 @@ class WebshopController {
 
     public function __construct() 
     {
-        // Aanmaken van een instantie van de GameRepository class om databaseoperaties uit te voeren
+        // Aanmaken van een instantie van de GameRepository en WebshopRepository class om databaseoperaties uit te voeren
         $this->gameRepository = new GameRepository();
+        $this->webshopRepository = new WebshopRepository();
     }
 
     /**
@@ -63,12 +66,12 @@ class WebshopController {
         // Sla de games voor deze pagina op
         $this->games = $this->gameRepository->getGames();
 
-        // Sla de gefilterde games opmaar 
+        // Sla de gefilterde games op
         $this->games = $this->filterGames($this->games);
 
         if ($this->filterActive && count($this->games) == 0) { // $this->games is een array en je telt hier de opgeslagen waarden
             $webshopRepository = New WebshopRepository;
-            $userId = isset($_SESSION["userId"]) ? $_SESSION["userId"] : null; // als er een session is waarbij de geset is dat wordt die toegevoegd anders null
+            $userId = isset($_SESSION["userId"]) ? $_SESSION["userId"] : null; // als er een session is waarbij die geset, is dat wordt die toegevoegd anders is de waar de null
             $webshopRepository->saveEmptySearch($this->searchQuery, $userId, $_SERVER['REMOTE_ADDR']); // Zoekresultaten, userId en Ip-address wordt naar de repo verzonden
         }
     }
@@ -128,8 +131,7 @@ class WebshopController {
 
         return $games;
     }
-
-
+    
     public function getFilterParams(): string
     {
         if ($this->filterActive) {
@@ -137,6 +139,11 @@ class WebshopController {
         }
 
         return "";
+    }
+
+    public function getEmptySearchResults()
+    {
+         return $this->webshopRepository->getEmptySearchResults();
     }
 
 }

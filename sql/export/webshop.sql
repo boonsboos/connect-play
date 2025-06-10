@@ -394,6 +394,15 @@ CREATE PROCEDURE `get_workshop` (IN `p_game_id` INT)   BEGIN
         `game_id` = p_game_id;
 END$$
 
+CREATE PROCEDURE `get_no_search_result` ()
+BEGIN
+    SELECT `no_search_result`.`search_term`, `no_search_result`.`ip_address`, `no_search_result`.`posted_on`, `user`.`name`
+    FROM `no_search_result`
+    LEFT JOIN `user`
+    ON `no_search_result`.`user_id` = `user`.`user_id`
+    ORDER BY `no_search_result`.`posted_on` DESC;
+END$$
+
 CREATE PROCEDURE `update_address` (IN `p_postal_code` VARCHAR(6), IN `p_house_number` VARCHAR(6), IN `p_street_name` VARCHAR(80), IN `p_city` VARCHAR(70))   BEGIN
     UPDATE `address`
     SET

@@ -56,7 +56,6 @@ if (isset($_SESSION["userId"])) {
             <div id="page-links" class="flex offset mb-col-12">
                 <a href="/diensten.php"><?= __('nav.services') ?></a>
                 <a href="/over-ons.php"><?= __('nav.about') ?></a>
-                <a href="/webshop.php"><?= __('nav.shop') ?></a>
                 <a href="/contact.php"><?= __('nav.contact') ?></a>
                 <?php if (isset($user)): ?>
                     <?php if ($user->getRole() === UserRole::EMPLOYEE || $user->getRole() === UserRole::ADMINISTRATOR): ?>
