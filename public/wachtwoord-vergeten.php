@@ -29,13 +29,13 @@ if (isset($_GET['error'])) {
         <?php endif; ?>
         <div class="mb-col-12 col-12 flex justify-center pb-30">
             <div class="mb-col-12 col-5">
-                <label for="email">E-mail:</label>
+                <label for="email"><?= __("forgot_password.email") ?>:</label>
                 <input id="email" class="input" type="text" name="email" placeholder="email@example.com" />
             </div>
         </div>
 
         <div class="send-message mb-col-6 col-5 pt-30">
-            <button class="button" type="submit">Verstuur</button>
+            <button class="button" type="submit"><?= __("forgot_password.submit") ?></button>
         </div>
     </form>
 </section>

@@ -4,6 +4,7 @@ return [
     "nav" => [
         "services" => "Diensten",
         "about" => "Over Ons",
+        "webshop" => "Webshop",
         "contact" => "Contact",
         "dashboard" => "Dashboard",
         "profile" => "Profiel",
@@ -48,5 +49,48 @@ return [
                 "text" => "24/7 beschikbaar, met echte mensen die altijd klaarstaan om je te helpen wanneer je ons nodig hebt. "
             ]
         ]
-    ]
+    ],
+    "footer" => [
+        "contact" => "Contact",
+        "about" => "Over ons",
+        "appointment" => [
+            "title" => "Maak een afspraak!",
+            "cta" => "Neem contact"
+        ]
+    ],
+    "about" => [
+        "who" => [
+            "title" => "Wie zijn wij?",
+            "text" => "Bij Connect &amp; Play geloven we dat het spelen van bordspellen, kaartspellen en games meer is dan alleen een spel. Het is een manier om elkaar te verbinden door middel van uitdagingen, competitief denken en samenwerking. Connect &amp; Play is in 2024 opgericht door een groep studenten aan Avans Hogeschool met een vurige passie voor spelletjes spelen met elkaar. Het doel is het organiseren van toernooien voor bordspellen, kaartspellen en interactieve gaming, waarbij de focus ligt op teambuilding en plezier."
+        ],
+        "mission" => [
+            "title" => "Missie &amp; Visie",
+            "text" => "Het doel van Connect &amp; Play is om een interactie ervaring te bieden voor spelers van alle niveaus. We willen een omgeving creëren waarin samenwerking en sociale interactie centraal staan. Onze visie is het aanbieden van een omgeving waar alle spelers de mogelijkheid hebben om hun vaardigheden te verbeteren, mensen met elkaar te verbinden en uitdagende ervaringen op elk niveau aan te gaan. Wij geloven doormiddel van deze spelervaring aan te bieden, dit niet alleen zal bijdragen aan persoonlijke groei maar ook aan sterke sociale banden. <br /> Kortom: wij willen mensen vrienden voor het leven laten ontmoeten met onze evenementen."
+        ]
+    ],
+    "contact" => [
+        "form" => [
+            "first_name" => "Voornaam",
+            "last_name" => "Achternaam",
+            "email" => "E-mail",
+            "message" => "Bericht",
+            "submit" => "Verstuur"
+        ]
+    ],
+    "services" => [
+        "title" => "Onze diensten",
+        "text" => "Connect &amp; Play biedt verschillende diensten aan om teambuilding en plezier te stimuleren. Hieronder vind je een overzicht van onze diensten.",
+        "cta" => "Neem contact op"
+    ],
+    "login" => [
+        "email" => "E-mail",
+        "password" => "Wachtwoord",
+        "forgot_password" => "Wachtwoord vergeten?",
+        "login" => "Inloggen",
+        "register" => "Registreren",
+    ],
+    "forgot_password" => [
+        "email" => "E-mail",
+        "submit" => "Verstuur"
+    ],
 ];

@@ -29,6 +29,7 @@ class UserRepository
             ':postal_code' => $address->getPostalCode(),
             ':house_number' => $address->getHouseNumber(),
         ]);
+        $addressStmt->closeCursor();
 
         // 2. Als address nog niet bestaat voeg toe
         if (!$addressStmt->fetch()) {
@@ -39,6 +40,7 @@ class UserRepository
                 ':street_name' => $address->getStreetName(),
                 ':city' => $address->getCity()
             ]);
+            $StmtAddress->closeCursor();
         } else {
             $addressStmt = $this->db->prepare("CALL update_address(:postal_code, :house_number, :street_name, :city);");
             $addressStmt->execute([
@@ -47,6 +49,7 @@ class UserRepository
                 ':street_name' => $address->getStreetName(),
                 ':city' => $address->getCity(),
             ]);
+            $addressStmt->closeCursor();
         }
 
         // 3. Voeg gebruiker toe
@@ -59,6 +62,7 @@ class UserRepository
             ':role' => $user->getRole()->value,
             ':password' => $user->getPassword(),
         ]);
+        $stmtUser->closeCursor();
     }
 
     /**

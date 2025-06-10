@@ -14,27 +14,16 @@ class UserController extends Controller
         $this->userRepository = new UserRepository();
     }
 
-    public function register(User $user): void
+    public function register(array $data): void
     {
         try {
-            $name = $user->getName();
-            $email = $user->getEmail();
-            $password = $user->getPassword();
-
-            $address = $user->getAddresses()[0];
-
-            $streetname = $address->getStreetName();
-            $postalcode = $address->getPostalCode();
-            $housenumber = $address->getHouseNumber();
-            $city = $address->getCity();
-
             /**
              * Backend Validatie
              */
 
             // Controleer of gebruiker al bestaat
             try {
-                $this->userRepository->getUser($user->getEmail());
+                $this->userRepository->getUser($data['email']);
                 // Als bovenstaande niet faalt, bestaat de gebruiker al
                 throw new Exception("E-mailadres is al in gebruik.");
             } catch (Exception $e) {
@@ -43,25 +32,41 @@ class UserController extends Controller
                     throw $e;
                 }
 
-                if (empty($name)) throw new Exception("Naam is verplicht.");
+                if (empty($data['fullName'])) throw new Exception("Naam is verplicht.");
 
                 // Controller of het een valide e-mailadres is
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                     throw new Exception("Voer een geldig e-mailadres in.");
                 }
 
-                if (strlen($password) < 8) {
+                if (strlen($data['password']) < 8) {
                     throw new Exception("Wachtwoord moet minstens 8 tekens bevatten.");
                 }
 
-                if (empty($streetname)) throw new Exception("Straatnaam is verplicht.");
+                if (empty($data['streetname'])) throw new Exception("Straatnaam is verplicht.");
 
-                if (!preg_match('/^\d{4}[A-Z]{2}$/', $postalcode)) {
+                if (!preg_match('/^\d{4}[A-Z]{2}$/', $data['postalcode'])) {
                     throw new Exception("Voer een geldige Nederlandse postcode in (bijv. 1234AB).");
                 }
 
-                if (empty($housenumber)) throw new Exception("Huisnummer is verplicht.");
-                if (empty($city)) throw new Exception("Plaats is verplicht.");
+                if (empty($data['housenumber'])) throw new Exception("Huisnummer is verplicht.");
+                if (empty($data['city'])) throw new Exception("Plaats is verplicht.");
+
+                $address = new Address(
+                    $data['postalcode'],
+                    $data['housenumber'],
+                    $data['streetname'],
+                    $data['city']
+                );
+
+                $user = new User(
+                    0, // id komt pas na opslag
+                    $data['email'],
+                    $data['fullName'],
+                    $data['password'],
+                    UserRole::CUSTOMER,
+                    [$address]
+                );
 
                 // Als alle validatie is gedaan wordt de gebruiker toegevoegd aan de database hier:
                 $this->userRepository->addUser($user);

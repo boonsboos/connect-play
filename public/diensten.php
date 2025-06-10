@@ -3,15 +3,15 @@
 <section class="home-banner flex justify-center align-center">
 	<div class="mb-col-12 col-9 flex justify-center">
 		<div class="home-head-box py-50 col-6 mb-col-12 flex justify-center">
-			<h1 class="heading pb-15">Onze diensten</h1>
+			<h1 class="heading pb-15">
+				<?= __('services.title'); ?>
+			</h1>
 			<p class="text-center pb-10 col-12 px-10">
-				Connect & Play biedt verschillende diensten aan om
-				teambuilding en plezier te stimuleren. Hieronder vind je
-				een overzicht van onze diensten.
+				<?= __('services.text'); ?>	
 			</p>
 			<div class="pt-10">
 				<a class="button p-10" href="contact.html">
-					Neem contact op
+					<?= __('services.cta'); ?>
 				</a>
 			</div>
 		</div>

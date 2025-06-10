@@ -8,7 +8,7 @@
 				<?= __('home.banner.text') ?>
 			</p>
 			<div class="pt-10">
-				<a class="button p-10" href="contact.html">
+				<a class="button p-10" href="contact.php">
 					<?= __('home.banner.button') ?>
 				</a>
 			</div>
@@ -29,7 +29,7 @@
 				<p>
 					<?= __('home.services.videogames.text') ?>
 				</p>
-				<a class="home-info-button" href="diensten.html"><?= __('home.services.read_more') ?></a>
+				<a class="home-info-button" href="diensten.php"><?= __('home.services.read_more') ?></a>
 			</div>
 		</div>
 		<div class="mb-col-12 col-4 flex justify-center home-info-box">
@@ -41,7 +41,7 @@
 				<p>
 					<?= __('home.services.board_games.text') ?>
 				</p>
-				<a class="home-info-button" href="diensten.html"><?= __('home.services.read_more') ?></a>
+				<a class="home-info-button" href="diensten.php"><?= __('home.services.read_more') ?></a>
 			</div>
 		</div>
 		<div class="mb-col-12 col-4 flex justify-center home-info-box">
@@ -53,7 +53,7 @@
 				<p>
 					<?= __('home.services.tournaments.text') ?>
 				</p>
-				<a class="home-info-button" href="diensten.html"><?= __('home.services.read_more') ?></a>
+				<a class="home-info-button" href="diensten.php"><?= __('home.services.read_more') ?></a>
 			</div>
 		</div>
 	</div>

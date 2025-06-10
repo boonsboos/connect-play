@@ -10,7 +10,7 @@ class User
      * @param Address[] $addresses
      */
     public function __construct(
-        private string $id,
+        private int $id,
         private string $email,
         private string $name,
         private string $password,
@@ -23,7 +23,7 @@ class User
         return $this->email;
     }
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }

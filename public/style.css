@@ -741,6 +741,106 @@ ul {
 	font-weight: bold;
 }
 
+/* Winkelwagen */
+.cart-icon-button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	position: relative;
+	padding: 0;
+}
+
+.cart-count-badge {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+	background-color: crimson;
+	color: white;
+	border-radius: 50%;
+	font-size: 0.75rem;
+	padding: 2px 6px;
+}
+
+.cart-dropdown {
+	position: absolute;
+	top: 5rem;
+	right: 1rem;
+	border: 1px solid var(--primary);
+	background-color: var(--background);
+	padding: 1rem;
+	width: 500px;
+	z-index: 1000;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+}
+
+.cart-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+	padding: 0.25rem 0;
+}
+
+.cart-item-name {
+	flex: 1;
+}
+
+.cart-item-details {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.cart-item-price,
+.cart-item-amount {
+	min-width: 50px;
+	text-align: right;
+}
+
+.remove-item-button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+}
+
+.cart-dropdown.hidden {
+	display: none;
+}
+
+.cart-title {
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+}
+
+.checkout-button {
+	display: block;
+	text-align: center;
+	margin-top: 0.5rem;
+	color: var(--foreground);
+	background-color: var(--accent);
+	text-decoration: none;
+	border-radius: 5px;
+}
+
+.cart-icon-image {
+	width: 24px;
+	height: 24px;
+}
+
+.status-error {
+	border: 2px dashed var(--accent);
+	border-radius: 8px;
+	padding: 30px;
+}
+
+.status-success {
+	border: 2px solid var(--accent);
+	border-radius: 8px;
+	padding: 30px;
+}
+
 @media only screen and (min-width: 768px) {
 	/* columns subtract the width of the gap specified by .flex from their own width */
 
@@ -774,6 +874,14 @@ ul {
 
 	.col-9 {
 		width: calc(75% - 1vw);
+	}
+
+	.col-10 {
+		width: calc(83.333% - 1vw);
+	}
+
+	.col-11 {
+		width: calc(91.66% - 1vw);
 	}
 
 	.col-12 {
@@ -987,5 +1095,13 @@ ul {
 	#zoekTermBox {
 		background-color: #4b006e;
 		color: var(--foreground);
+	}
+
+	.status-error {
+		border: 2px dashed var(--highlight);
+	}
+
+	.status-success {
+		border: 2px solid var(--highlight);
 	}
 }
