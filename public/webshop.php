@@ -1,7 +1,7 @@
 <?php
+
 // Inclusie van noodzakelijke bestanden
 require_once '../php/Shared/header.php';
-
 require_once '../php/Shop/controllers/WebshopController.php';
 
 $controller = new WebshopController();

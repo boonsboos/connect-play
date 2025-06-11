@@ -28,7 +28,7 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`%` PROCEDURE `add_address` (IN `p_postal_code` VARCHAR(6), IN `p_house_number` VARCHAR(6), IN `p_street_name` VARCHAR(80), IN `p_city` VARCHAR(70))   BEGIN
+CREATE PROCEDURE `add_address` (IN `p_postal_code` VARCHAR(6), IN `p_house_number` VARCHAR(6), IN `p_street_name` VARCHAR(80), IN `p_city` VARCHAR(70))   BEGIN
     INSERT INTO `address` (
         `postal_code`,
         `house_number`,
@@ -44,7 +44,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `add_address` (IN `p_postal_code` VARCHAR(6)
 
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `add_cart_entry` (IN `p_order_number` INT, IN `p_game_id` INT, IN `p_amount` INT, IN `p_when` DATE)   BEGIN
+CREATE PROCEDURE `add_cart_entry` (IN `p_order_number` INT, IN `p_game_id` INT, IN `p_amount` INT, IN `p_when` DATE)   BEGIN
     DECLARE price_snapshot DECIMAL(10,2);
 
     SELECT
@@ -79,7 +79,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `add_cart_entry` (IN `p_order_number` INT, I
     );
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `add_contact` (IN `p_first_name` VARCHAR(255), IN `p_last_name` VARCHAR(255), IN `p_email` VARCHAR(255), IN `p_message` TEXT(3000))   BEGIN
+CREATE PROCEDURE `add_contact` (IN `p_first_name` VARCHAR(255), IN `p_last_name` VARCHAR(255), IN `p_email` VARCHAR(255), IN `p_message` TEXT(3000))   BEGIN
     INSERT INTO contact (
         `first_name`,
         `last_name`,
@@ -98,7 +98,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `add_contact` (IN `p_first_name` VARCHAR(255
     );
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `add_game` (IN `p_price` DECIMAL(10,2), IN `p_players` INT, IN `p_duration` INT, IN `p_name` VARCHAR(150), IN `p_description` MEDIUMTEXT, IN `p_difficulty` VARCHAR(20), IN `p_left_in_stock` INT)   BEGIN
+CREATE PROCEDURE `add_game` (IN `p_price` DECIMAL(10,2), IN `p_players` INT, IN `p_duration` INT, IN `p_name` VARCHAR(150), IN `p_description` MEDIUMTEXT, IN `p_difficulty` VARCHAR(20), IN `p_left_in_stock` INT)   BEGIN
     INSERT INTO game (`price`, `players`, `duration`, `name`, `description`, `difficulty`,`left_in_stock`)
     VALUES (p_price, p_players, p_duration, p_name, p_description, p_difficulty, p_left_in_stock);
 
@@ -106,7 +106,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `add_game` (IN `p_price` DECIMAL(10,2), IN `
     SELECT LAST_INSERT_ID() AS id;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `add_order` (IN `p_user_id` INT)   BEGIN
+CREATE PROCEDURE `add_order` (IN `p_user_id` INT)   BEGIN
     INSERT INTO `order` (
         `user_id`,
         `date`,
@@ -119,7 +119,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `add_order` (IN `p_user_id` INT)   BEGIN
     );
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `add_review` (IN `p_game_id` INT, IN `p_user_id` INT, IN `p_comment` VARCHAR(280), IN `p_score` TINYINT, IN `p_username` VARCHAR(150))   BEGIN
+CREATE PROCEDURE `add_review` (IN `p_game_id` INT, IN `p_user_id` INT, IN `p_comment` VARCHAR(280), IN `p_score` TINYINT, IN `p_username` VARCHAR(150))   BEGIN
     INSERT INTO review (
         `game_id`, 
         `user_id`, 
@@ -136,12 +136,12 @@ CREATE DEFINER=`root`@`%` PROCEDURE `add_review` (IN `p_game_id` INT, IN `p_user
     );
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `add_user` (IN `p_postal_code` VARCHAR(6), IN `p_house_number` VARCHAR(6), IN `p_email` VARCHAR(320), IN `p_name` VARCHAR(150), IN `p_role` VARCHAR(15), IN `p_password` VARCHAR(120))   BEGIN
+CREATE PROCEDURE `add_user` (IN `p_postal_code` VARCHAR(6), IN `p_house_number` VARCHAR(6), IN `p_email` VARCHAR(320), IN `p_name` VARCHAR(150), IN `p_role` VARCHAR(15), IN `p_password` VARCHAR(120))   BEGIN
     INSERT INTO user (`postal_code`, `house_number`, `email`, `name`, `role`, `password`)
     VALUES (p_postal_code, p_house_number, p_email, p_name, p_role, p_password);
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `add_workshop` (IN `p_game_id` INT, IN `p_min_size` INT, IN `p_max_size` INT, IN `p_duration` INT, IN `p_price` DECIMAL(10,2))   BEGIN
+CREATE PROCEDURE `add_workshop` (IN `p_game_id` INT, IN `p_min_size` INT, IN `p_max_size` INT, IN `p_duration` INT, IN `p_price` DECIMAL(10,2))   BEGIN
     INSERT INTO `workshop` (
         `game_id`,
         `min_size`,
@@ -158,7 +158,20 @@ CREATE DEFINER=`root`@`%` PROCEDURE `add_workshop` (IN `p_game_id` INT, IN `p_mi
     );
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `delete_address` (IN `p_postal_code` VARCHAR(6), IN `p_house_number` VARCHAR(6))   BEGIN
+CREATE PROCEDURE `add_no_search_result` (IN `p_search_term` VARCHAR(250), `p_user_id` INT, `p_ip_address` VARCHAR(45))   BEGIN
+    INSERT INTO `no_search_result` (
+        `search_term`,
+        `user_id`,
+        `ip_address`
+    )
+    VALUES (
+        p_search_term,
+        p_user_id,
+        p_ip_address
+    );
+END$$
+
+CREATE PROCEDURE `delete_address` (IN `p_postal_code` VARCHAR(6), IN `p_house_number` VARCHAR(6))   BEGIN
     DELETE FROM `address`
     WHERE
         `postal_code` = p_postal_code
@@ -166,7 +179,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `delete_address` (IN `p_postal_code` VARCHAR
         `house_number` = p_house_number;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `delete_cart_entry` (IN `p_order_number` INT, IN `p_game_id` INT)   BEGIN
+CREATE PROCEDURE `delete_cart_entry` (IN `p_order_number` INT, IN `p_game_id` INT)   BEGIN
     DECLARE cart_amount INT;
 
     SELECT
@@ -196,26 +209,26 @@ CREATE DEFINER=`root`@`%` PROCEDURE `delete_cart_entry` (IN `p_order_number` INT
         `game_id` = p_game_id;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `delete_game` (IN `p_game_id` INT)   BEGIN
+CREATE PROCEDURE `delete_game` (IN `p_game_id` INT)   BEGIN
     DELETE FROM `game`
     WHERE 
         `game_id` = p_game_id;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `delete_user` (IN `p_user_id` INT)   BEGIN
+CREATE PROCEDURE `delete_user` (IN `p_user_id` INT)   BEGIN
     DELETE FROM
         `user`
     WHERE
         `user_id` = p_user_id;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `delete_workshop` (IN `p_game_id` INT)   BEGIN
+CREATE PROCEDURE `delete_workshop` (IN `p_game_id` INT)   BEGIN
     DELETE FROM `workshop`
     WHERE
         `game_id` = p_game_id;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `get_address` (IN `p_postal_code` VARCHAR(6), IN `p_house_number` VARCHAR(6))   BEGIN
+CREATE PROCEDURE `get_address` (IN `p_postal_code` VARCHAR(6), IN `p_house_number` VARCHAR(6))   BEGIN
     SELECT
         `postal_code`,
         `house_number`,
@@ -229,7 +242,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `get_address` (IN `p_postal_code` VARCHAR(6)
         `house_number` = p_house_number;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `get_avg_review` (IN `p_game_id` INT)   BEGIN
+CREATE PROCEDURE `get_avg_review` (IN `p_game_id` INT)   BEGIN
     SELECT
         CAST(AVG(`score`) AS DECIMAL(3,1)) AS score
     FROM
@@ -238,7 +251,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `get_avg_review` (IN `p_game_id` INT)   BEGI
         `game_id` = p_game_id;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `get_cart_entries_by_order` (IN `p_order_number` INT)   BEGIN
+CREATE PROCEDURE `get_cart_entries_by_order` (IN `p_order_number` INT)   BEGIN
     SELECT
         `cart_entry`.`order_number`,
         `cart_entry`.`game_id`,
@@ -254,13 +267,13 @@ CREATE DEFINER=`root`@`%` PROCEDURE `get_cart_entries_by_order` (IN `p_order_num
         `cart_entry`.`order_number` = p_order_number;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `get_contact` (IN `p_id` INT, IN `p_email` VARCHAR(255))   BEGIN
+CREATE PROCEDURE `get_contact` (IN `p_id` INT, IN `p_email` VARCHAR(255))   BEGIN
     SELECT *
     FROM `contact`
     WHERE `id` = p_id OR `email` = p_email;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `get_game` (IN `p_game_id` INT)   BEGIN
+CREATE PROCEDURE `get_game` (IN `p_game_id` INT)   BEGIN
     SELECT 
         `game_id`,
         `players`,
@@ -276,7 +289,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `get_game` (IN `p_game_id` INT)   BEGIN
         `game_id` = p_game_id;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `get_order` (IN `p_order_number` INT)   BEGIN
+CREATE PROCEDURE `get_order` (IN `p_order_number` INT)   BEGIN
     SELECT 
         `order_number`,
         `user_id`,
@@ -289,7 +302,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `get_order` (IN `p_order_number` INT)   BEGI
         `order_number` = p_order_number;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `get_orders_by_user` (IN `p_user_id` INT)   BEGIN
+CREATE PROCEDURE `get_orders_by_user` (IN `p_user_id` INT)   BEGIN
     SELECT 
         `order_number`,
         `user_id`,
@@ -304,7 +317,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `get_orders_by_user` (IN `p_user_id` INT)   
         `date` DESC;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `get_reviews_by_game_id` (IN `p_game_id` INT)   BEGIN
+CREATE PROCEDURE `get_reviews_by_game_id` (IN `p_game_id` INT)   BEGIN
     SELECT 
         review.game_id,
         game.name AS game_name,
@@ -325,7 +338,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `get_reviews_by_game_id` (IN `p_game_id` INT
         review.posted_on DESC;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `get_reviews_by_user` (IN `p_user_name` VARCHAR(150))   BEGIN
+CREATE PROCEDURE `get_reviews_by_user` (IN `p_user_name` VARCHAR(150))   BEGIN
     SELECT 
         review.game_id,
         game.name AS game_name,
@@ -346,13 +359,13 @@ CREATE DEFINER=`root`@`%` PROCEDURE `get_reviews_by_user` (IN `p_user_name` VARC
         review.posted_on DESC;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `get_unresolved_contacts` ()   BEGIN
+CREATE PROCEDURE `get_unresolved_contacts` ()   BEGIN
     SELECT *
     FROM `contact`
     WHERE `status` < 2; -- 2 == klaar
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `get_user` (IN `p_user_id` INT, IN `p_email` VARCHAR(320))   BEGIN
+CREATE PROCEDURE `get_user` (IN `p_user_id` INT, IN `p_email` VARCHAR(320))   BEGIN
     SELECT 
         `user_id`,
         `postal_code`,
@@ -369,7 +382,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `get_user` (IN `p_user_id` INT, IN `p_email`
         `email` = p_email;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `get_workshop` (IN `p_game_id` INT)   BEGIN
+CREATE PROCEDURE `get_workshop` (IN `p_game_id` INT)   BEGIN
     SELECT
         `game_id`,
         `min_size`,
@@ -381,7 +394,16 @@ CREATE DEFINER=`root`@`%` PROCEDURE `get_workshop` (IN `p_game_id` INT)   BEGIN
         `game_id` = p_game_id;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `update_address` (IN `p_postal_code` VARCHAR(6), IN `p_house_number` VARCHAR(6), IN `p_street_name` VARCHAR(80), IN `p_city` VARCHAR(70))   BEGIN
+CREATE PROCEDURE `get_no_search_result` ()
+BEGIN
+    SELECT `no_search_result`.`search_term`, `no_search_result`.`ip_address`, `no_search_result`.`posted_on`, `user`.`name`
+    FROM `no_search_result`
+    LEFT JOIN `user`
+    ON `no_search_result`.`user_id` = `user`.`user_id`
+    ORDER BY `no_search_result`.`posted_on` DESC;
+END$$
+
+CREATE PROCEDURE `update_address` (IN `p_postal_code` VARCHAR(6), IN `p_house_number` VARCHAR(6), IN `p_street_name` VARCHAR(80), IN `p_city` VARCHAR(70))   BEGIN
     UPDATE `address`
     SET
         `postal_code` = COALESCE(p_postal_code, `postal_code`),
@@ -394,7 +416,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `update_address` (IN `p_postal_code` VARCHAR
         `house_number` = p_house_number;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `update_cart_entry` (IN `p_order_number` INT, IN `p_game_id` INT, IN `p_new_amount` INT, IN `p_new_when` DATE)   BEGIN
+CREATE PROCEDURE `update_cart_entry` (IN `p_order_number` INT, IN `p_game_id` INT, IN `p_new_amount` INT, IN `p_new_when` DATE)   BEGIN
     DECLARE current_amount INT;
 
     -- fetch the current amount
@@ -427,7 +449,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `update_cart_entry` (IN `p_order_number` INT
         `game_id` = p_game_id;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `update_contact` (IN `p_id` INT, IN `p_status` INT)   BEGIN
+CREATE PROCEDURE `update_contact` (IN `p_id` INT, IN `p_status` INT)   BEGIN
     UPDATE `contact`
     SET
         `status` = p_status
@@ -435,7 +457,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `update_contact` (IN `p_id` INT, IN `p_statu
         `id` = p_id;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `update_game` (IN `p_game_id` INT, IN `p_price` DECIMAL(10,2), IN `p_duration` INT, IN `p_name` VARCHAR(150), IN `p_description` MEDIUMTEXT, IN `p_difficulty` VARCHAR(20), IN `p_left_in_stock` INT)   BEGIN
+CREATE PROCEDURE `update_game` (IN `p_game_id` INT, IN `p_price` DECIMAL(10,2), IN `p_duration` INT, IN `p_name` VARCHAR(150), IN `p_description` MEDIUMTEXT, IN `p_difficulty` VARCHAR(20), IN `p_left_in_stock` INT)   BEGIN
     UPDATE `game`
     SET 
         `price` = COALESCE(p_price, `price`),
@@ -449,7 +471,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `update_game` (IN `p_game_id` INT, IN `p_pri
 
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `update_order` (IN `p_order_number` INT, IN `p_status` VARCHAR(20), IN `p_comment` VARCHAR(280))   BEGIN
+CREATE PROCEDURE `update_order` (IN `p_order_number` INT, IN `p_status` VARCHAR(20), IN `p_comment` VARCHAR(280))   BEGIN
     UPDATE `order`
     SET
         `status` = COALESCE(p_status, `status`),
@@ -457,7 +479,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `update_order` (IN `p_order_number` INT, IN 
     WHERE `order_number` = p_order_number;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `update_review` (IN `p_game_id` INT, IN `p_user_id` INT, IN `p_new_comment` VARCHAR(280), IN `p_new_score` TINYINT)   BEGIN
+CREATE PROCEDURE `update_review` (IN `p_game_id` INT, IN `p_user_id` INT, IN `p_new_comment` VARCHAR(280), IN `p_new_score` TINYINT)   BEGIN
     UPDATE 
         `reviews`
     SET
@@ -470,7 +492,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `update_review` (IN `p_game_id` INT, IN `p_u
         `user_id` = p_user_id;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `update_user` (IN `p_user_id` INT, IN `p_postal_code` VARCHAR(6), IN `p_house_number` VARCHAR(6), IN `p_email` VARCHAR(320), IN `p_name` VARCHAR(150), IN `p_role` VARCHAR(15), IN `p_password` VARCHAR(120))   BEGIN
+CREATE PROCEDURE `update_user` (IN `p_user_id` INT, IN `p_postal_code` VARCHAR(6), IN `p_house_number` VARCHAR(6), IN `p_email` VARCHAR(320), IN `p_name` VARCHAR(150), IN `p_role` VARCHAR(15), IN `p_password` VARCHAR(120))   BEGIN
     -- COALESCE pakt de eerste waarde die niet NULL is
     -- hiermee kan je de procedure aanroepen met NULL-waardes of 
     -- de huidige waarde meegeven, maar het attribuut blijft hetzelfde
@@ -487,7 +509,7 @@ CREATE DEFINER=`root`@`%` PROCEDURE `update_user` (IN `p_user_id` INT, IN `p_pos
         `user_id` = p_user_id;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `update_workshop` (IN `p_game_id` INT, IN `p_min_size` INT, IN `p_max_size` INT, IN `p_duration` INT, IN `p_price` DECIMAL(10,2))   BEGIN
+CREATE PROCEDURE `update_workshop` (IN `p_game_id` INT, IN `p_min_size` INT, IN `p_max_size` INT, IN `p_duration` INT, IN `p_price` DECIMAL(10,2))   BEGIN
     UPDATE `workshop`
     SET
         `min_size` = COALESCE(p_min_size, `min_size`),
@@ -511,7 +533,7 @@ CREATE TABLE `address` (
   `house_number` varchar(6) NOT NULL,
   `street_name` varchar(80) NOT NULL,
   `city` varchar(70) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 --
 -- Gegevens worden geëxporteerd voor tabel `address`
@@ -633,7 +655,7 @@ CREATE TABLE `audit_order` (
   `comment_new` varchar(280) DEFAULT NULL,
   `comment_old` varchar(280) DEFAULT NULL,
   `who` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 -- --------------------------------------------------------
 
@@ -648,7 +670,7 @@ CREATE TABLE `audit_prices` (
   `price_old` decimal(10,2) NOT NULL,
   `who` varchar(40) NOT NULL,
   `table` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 -- --------------------------------------------------------
 
@@ -662,7 +684,7 @@ CREATE TABLE `cart_entry` (
   `amount` int(11) NOT NULL,
   `when` date DEFAULT NULL,
   `price_snapshot` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 --
 -- Gegevens worden geëxporteerd voor tabel `cart_entry`
@@ -747,7 +769,7 @@ CREATE TABLE `contact` (
   `message` text NOT NULL,
   `status` int(11) NOT NULL,
   `created_at` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 -- --------------------------------------------------------
 
@@ -764,7 +786,7 @@ CREATE TABLE `game` (
   `description` mediumtext NOT NULL,
   `difficulty` varchar(20) NOT NULL,
   `left_in_stock` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 --
 -- Gegevens worden geëxporteerd voor tabel `game`
@@ -839,7 +861,7 @@ CREATE TABLE `order` (
   `date` date DEFAULT curdate(),
   `comment` text DEFAULT NULL,
   `status` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 --
 -- Gegevens worden geëxporteerd voor tabel `order`
@@ -934,7 +956,7 @@ CREATE TABLE `review` (
   `comment` text DEFAULT NULL,
   `score` tinyint(4) NOT NULL CHECK (`score` > 0 and `score` <= 10),
   `posted_on` date DEFAULT curdate()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 --
 -- Gegevens worden geëxporteerd voor tabel `review`
@@ -981,7 +1003,7 @@ CREATE TABLE `user` (
   `name` varchar(150) NOT NULL,
   `role` varchar(15) NOT NULL,
   `password` varchar(120) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 --
 -- Gegevens worden geëxporteerd voor tabel `user`
@@ -1101,7 +1123,7 @@ CREATE TABLE `workshop` (
   `max_size` int(11) NOT NULL,
   `duration` int(11) NOT NULL CHECK (`duration` > 0),
   `price` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 --
 -- Gegevens worden geëxporteerd voor tabel `workshop`
@@ -1154,6 +1176,19 @@ CREATE TRIGGER `audit_workshop_price_update` AFTER UPDATE ON `workshop` FOR EACH
 END
 $$
 DELIMITER ;
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `no_search_result`
+--
+
+CREATE TABLE `no_search_result` (
+  `id` int(11) NOT NULL,
+  `search_term` varchar(150) NOT NULL,
+  `user_id` int(11),
+  `ip_address` varchar(45) NOT NULL,
+  `posted_on` DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -1214,6 +1249,12 @@ ALTER TABLE `workshop`
   ADD PRIMARY KEY (`game_id`);
 
 --
+-- Indexen voor tabel `no_search_result`
+--
+ALTER TABLE `no_search_result`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
@@ -1240,6 +1281,12 @@ ALTER TABLE `order`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT voor een tabel `no_result_searches`
+--
+ALTER TABLE `no_search_result`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- Beperkingen voor geëxporteerde tabellen

@@ -25,7 +25,7 @@ class DashboardRepository
             ],
             [
                 'nameButton' => 'Niet Gevonden Artikelen',
-                'url' => 'volgt',
+                'url' => '/dashboard/no_search_result.php',
                 'role' => 'ADMINISTRATOR',
             ],
         ];

@@ -304,6 +304,37 @@ a {
 	padding-right: 30px;
 }
 
+/* Default padding styles for 40px paddings */
+.p-40 {
+	padding: 40px;
+}
+
+.pt-40 {
+	padding-top: 40px;
+}
+
+.pb-40 {
+	padding-bottom: 40px;
+}
+
+.pl-40 {
+	padding-left: 40px;
+}
+
+.pr-40 {
+	padding-right: 40px;
+}
+
+.py-40 {
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.px-40 {
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
 /* Default padding styles for 50px paddings */
 .p-50 {
 	padding: 50px;
@@ -332,6 +363,21 @@ a {
 .px-50 {
 	padding-left: 50px;
 	padding-right: 50px;
+}
+
+/* Border radius utilities */
+
+/* border-radius: 8px */
+.br-8 {
+	border-radius: 8px;
+}
+
+/* Grid layout utilities */
+
+/* display: grid; 3 columns */
+.grid-col-3 {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr); /* Verdeel in drie kolommen */
 }
 
 /*Error Messages*/
@@ -539,7 +585,8 @@ ul {
 }
 
 #form-box,
-#dashboardBox {
+#dashboardBox,
+#noSearchResultBox {
 	background-color: color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
@@ -678,6 +725,22 @@ ul {
 	font-weight: 500;
 }
 
+/* Mislukte zoek resultaten pagina */
+#zoekTermBox {
+	color: var(--foreground);
+	border: 1px solid #2d2d2d;
+	box-shadow: 0 4px 12px #0000004d;
+}
+
+#zoekTermBox p {
+	gap: 10px;
+}
+
+#zoekTermBox .label {
+	min-width: 100px;
+	font-weight: bold;
+}
+
 /* toevoegen aan winkelwagen knop */
 #add-to-cart {
 	display: flex;
@@ -699,7 +762,6 @@ ul {
 }
 
 /* Winkelwagen */
-
 .cart-icon-button {
 	background: none;
 	border: none;
@@ -992,6 +1054,10 @@ i.trash {
 		height: 300px;
 	}
 
+	.grid-col-3 {
+		grid-template-columns: 1fr;
+	}
+
 	.banner-img {
 		height: 100px;
 	}
@@ -1103,6 +1169,11 @@ i.trash {
 	.home-info-box > div,
 	.usp-section {
 		border-color: var(--highlight);
+	}
+
+	#zoekTermBox {
+		background-color: #4b006e;
+		color: var(--foreground);
 	}
 
 	.status-error {
