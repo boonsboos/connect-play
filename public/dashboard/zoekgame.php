@@ -19,7 +19,7 @@ try {
 }
 ?>
 
-<div class="mb-col-12 search-layout flex justify-center">
+<div class="mb-col-12 search-layout flex justify-center PT-50 PB-30">
   <!-- ZOEKEN LINKS -->
   <aside class="search-sidebar col-2 mb-col-12 flex-column">
     <h2>Zoek een game</h2>

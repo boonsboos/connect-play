@@ -12,7 +12,7 @@ try {
 }
 ?>
 
-<div class="flex justify-center pt-10">
+<div class="flex justify-center pt-50 pb-30">
   <h1>Game bewerken</h1>
 </div>
 
@@ -93,6 +93,7 @@ function updatePreview() {
   }
 }
 
+// Toon een popup met een bericht
 function toonPopup(tekst) {
   const popup = document.getElementById("popup");
   const message = document.getElementById("popup-message");
@@ -100,6 +101,7 @@ function toonPopup(tekst) {
   popup.style.display = "flex";
 }
 
+// Sluit de popup
 function sluitPopup() {
   document.getElementById("popup").style.display = "none";
 }
@@ -107,6 +109,12 @@ function sluitPopup() {
 <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
   window.addEventListener('DOMContentLoaded', function () {
     toonPopup("✅ Game succesvol opgeslagen!");
+  });
+<?php endif;
+
+if (isset($_GET['error'])): ?>
+  window.addEventListener('DOMContentLoaded', function () {
+    toonPopup("❌ <?= htmlspecialchars(urldecode($_GET['error'])) ?>");
   });
 <?php endif; ?>
 </script>

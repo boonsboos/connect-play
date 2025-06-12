@@ -138,22 +138,27 @@ class GameController extends Controller
             id: (int)$_POST['id']
         );
 
+        // Controleren of spelers tussen 1 en 100 liggen
         if ($game->getPlayers() < 1 || $game->getPlayers() > 100) {
             throw new Exception("Aantal spelers moet tussen 1 en 100 liggen.");
         }
-
+        
+        // Controleren of de prijs een positief nummer is
         if ($game->getPrice() < 0) {
             throw new Exception("Prijs mag niet negatief zijn.");
         }
-
+    
+        // Controleren of de duur tussen 1 minuut en 24 uur ligt
         if ($game->getDuration() < 1 || $game->getDuration() > 1440) {
             throw new Exception("Duur moet tussen 1 minuut en 24 uur liggen.");
         }
 
+        // Controleren of voorraad positief nummer is
         if ($game->getLeftInStock() < 0) {
-            throw new Exception("Op voorraad mag niet negatief zijn.");
+            throw new Exception("Voorraad mag niet negatief zijn.");
         }
 
+        // Updaten van de game in de database
         $this->gameRepository->updateGame($game);
         // Redirect terug naar formulier met succesmelding
         header("Location: /dashboard/editgame.php?id=" . $game->getId() . "&success=1");
