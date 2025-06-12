@@ -41,7 +41,7 @@ if (isset($_GET['code']) && isset($_GET['email'])) {
         <div class="mb-col-12 col-12 flex justify-center pb-30">
             <div class="mb-col-12 col-5">
                 <label for="new-password">Nieuw wachtwoord:</label>
-                <input id="new-password" class="input" type="text" name="new-password" placeholder="Nieuw wachtwoord" />
+                <input id="new-password" class="input" type="password" name="new-password" placeholder="Nieuw wachtwoord" />
             </div>
         </div>
 

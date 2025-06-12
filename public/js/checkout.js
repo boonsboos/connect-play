@@ -3,13 +3,14 @@ document
 	.addEventListener("click", checkoutOrder)
 
 async function checkoutOrder() {
-	const currentOrder = JSON.parse(localStorage.getItem("currentOrder"))
+	const currentOrder = JSON.parse(localStorage.getItem("currentOrder") ?? {})
 
 	// maak een leeg pakketje die je meestuur naar de server (POST)
 	const checkoutData = new FormData()
 
 	// vul het pakketje met gegevens die je mee wilt sturen
 	checkoutData.append("action", "setCurrentOrderNumber")
+
 	checkoutData.append("currentOrder", currentOrder["orderNumber"])
 
 	try {
@@ -21,7 +22,7 @@ async function checkoutOrder() {
 		})
 
 		const checkoutResponse = await response.json()
-		console.log(checkoutResponse)
+
 		if (checkoutResponse.success) {
 			window.location.href = "/checkout.php"
 		} else {

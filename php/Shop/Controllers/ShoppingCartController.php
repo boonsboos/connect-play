@@ -33,7 +33,7 @@ class ShoppingCartController
 
         switch ($action) {
             case 'create':
-                $this->create();
+                // $this->create();
                 break;
             case 'add':
                 $this->addCartEntry($gameId);

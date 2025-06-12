@@ -30,6 +30,7 @@ function updateCartDropdown() {
 	const cartEntries = JSON.parse(localStorage.getItem("cartEntries") || "[]") // Haalt winkelwagenitems op
 	const cartItemsList = document.getElementById("cart-items")
 	const cartCount = document.getElementById("cart-count")
+	const checkoutButton = document.getElementById("checkout-button")
 
 	cartItemsList.innerHTML = "" // Maakt de lijst eerst leeg
 
@@ -37,6 +38,7 @@ function updateCartDropdown() {
 	if (cartEntries.length === 0) {
 		// Als de winkelwagen leeg is, toon dit
 		cartItemsList.innerHTML = "<li>Je winkelwagen is leeg.</li>"
+		checkoutButton.style.display = "none" // toon de afreken button
 	} else {
 		// Voor elke item in de winkelwagen, voeg een <li> toe
 		cartEntries.forEach((entry) => {
@@ -65,6 +67,7 @@ function updateCartDropdown() {
 				</div>
 			`
 			cartItemsList.appendChild(li) // Voegt het <li> element toe als child aan de bestaande DOM-element
+			checkoutButton.style.display = "block" // hidden de afreken button
 		})
 
 		// Voegt event listeners toe aan de verwijderknoppen en de toevoegenknoppen
@@ -118,7 +121,11 @@ function removeItemFromCart(gameId) {
 	}
 
 	// Sla bijgewerkte winkelwagen op
-	localStorage.setItem("cartEntries", JSON.stringify(cartEntries))
+	if (cartEntries.length === 0) {
+		localStorage.removeItem("cartEntries")
+	} else {
+		localStorage.setItem("cartEntries", JSON.stringify(cartEntries))
+	}
 
 	// Update het dropdown-menu
 	updateCartDropdown()

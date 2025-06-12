@@ -5,7 +5,7 @@ const url = "product.php" // De server endpoint waar alle cart-gerelateerde acti
  * @param {number} gameId - ID van het spel dat moet worden toegevoegd
  */
 async function handleAddToCart(gameId) {
-	const storedOrder = localStorage.getItem("currentOrder")
+	const storedOrder = localStorage.getItem("currentOrder") ?? 0
 	const addToCartButton = document.getElementById("add-to-cart")
 	// Checkt of er al een order gemaakt is
 	if (!storedOrder) {
