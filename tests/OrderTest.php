@@ -14,7 +14,7 @@ class OrderTest extends TestCase {
         // Arrange: Hier maak je het game, cartentry en order object
         $game = New Game(8, 25.5, 120, "Dark Masters of Dark 1", "En zoek spel naar de verborgen schatten", "Makkelijk", 12);
         $cartEntry = new CartEntry("Ordernummer1", $game, 1, "2000-01-01", 50.0, false);
-        $order = new Order(1, 10, "2000-01-01", OrderStatus::Pending, "Nieuwe bestelling", 0.0, []);
+        $order = new Order(1, "2000-01-01", OrderStatus::Pending, "Nieuwe bestelling", 0.0, []);
 
         // Act: Met act wordt de method uitgevoerd
         $order->addEntry($cartEntry);
@@ -28,7 +28,7 @@ class OrderTest extends TestCase {
         // Arrange:
         $game = new Game(8, 25.5, 120, "Dark Masters of Dark 1", "En zoek spel naar de verborgen schatten", "Makkelijk", 12);
         $cartEntry = new CartEntry("Ordernummer1", $game, 1, "2000-01-01", 50.0, false);
-        $order = new Order(1, 10, "2000-01-01", OrderStatus::Pending, "Eén entry test", 0.0, []);
+        $order = new Order(1, "2000-01-01", OrderStatus::Pending, "Nieuwe bestelling 2", 0.0, []);
 
         // Act:
         $order->addEntry($cartEntry);

@@ -43,6 +43,7 @@
     </div>
 </footer>
 <script src="/js/shoppingCart.js"></script>
+<script src="/js/checkout.js"></script>
 </body>
 
 </html>
