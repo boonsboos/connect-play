@@ -4,61 +4,62 @@ require_once '/var/www/php/Shop/Controllers/GameController.php';
 
 $controller = new GameController();
 
-// Array waarin zoekresultaten worden opgeslagen
 $searchResults = [];
-
-// Haal de zoekterm op uit de querystring (bijv. ?q=zoekterm), of gebruik een lege string als er niets is opgegeven
 $results = $_GET['q'] ?? '';
 
-// Als er een zoekterm is ingevoerd, voer dan de zoekactie ui
-if (!empty($results)) {
-    try {
+try {
+    if (!empty($results)) {
         $searchResults = $controller->searchGamesByName($results);
-    } catch (Exception $e) {
-        // Toon een foutmelding als de zoekactie mislukt
-        echo "<p style='color:red;'>Fout bij zoeken: " . $e->getMessage() . "</p>";
+    } else {
+        // Geen zoekterm opgegeven: laad alle games
+        $searchResults = $controller->getGames();
     }
+} catch (Exception $e) {
+    echo "<p style='color:red;'>Fout bij het ophalen van games: " . $e->getMessage() . "</p>";
 }
 ?>
 
-<div class="search-layout">
+<div class="mb-col-12 search-layout flex justify-center">
   <!-- ZOEKEN LINKS -->
-  <aside class="search-sidebar">
-    <h1>Zoek een game</h1>
+  <aside class="search-sidebar col-2 mb-col-12 flex-column">
+    <h2>Zoek een game</h2>
     <form method="get" action="">
-      <input type="text" name="q" value="<?= htmlspecialchars($results) ?>" placeholder="Zoek op naam...">
+      <input type="text" name="q" value="<?= htmlspecialchars($results) ?>" 
+      placeholder="Zoek op naam...">
       <button type="submit">Zoeken</button>
     </form>
   </aside>
 
   <!-- RESULTATEN RECHTS -->
-  <main class="search-results-area">
+  <main class="search-results-area col-9 mb-col-12">
     <?php if (!empty($searchResults)): ?>
       <h2>Resultaten</h2>
       <div class="results-grid">
-        <?php foreach ($searchResults as $game): ?>
-        <?php
+        <?php foreach ($searchResults as $game):
+            if (!($game instanceof Game)) {
+                continue; // Zorg ervoor dat we alleen Game objecten verwerken
+            } 
             $imageUrl = trim($game->getImageUrl() ?? '');
-            $validImage = (!empty($imageUrl) && filter_var($imageUrl, FILTER_VALIDATE_URL));
-            $finalImage = $validImage
+            $finalImage = (!empty($imageUrl) && filter_var($imageUrl, FILTER_VALIDATE_URL))
                 ? htmlspecialchars($imageUrl)
-                : 'https://via.placeholder.com/80x80?text=Geen+afbeelding';
+                : 'https://firstbenefits.org/wp-content/uploads/2017/10/placeholder-1024x1024.png';
         ?>
           <div class="result-card">
             <div class="card-content">
               <img src="<?= $finalImage ?>" class="game-image" alt="Afbeelding van <?= htmlspecialchars($game->getName()) ?>">
-              <div class="game-info">
+              <div class="game-info"><ul class="game-details">
                 <strong><?= htmlspecialchars($game->getName()) ?></strong><br/>
-                - Beschrijving: <?= $game->getDescription() ?><br/>
-                - Prijs: €<?= number_format($game->getPrice(), 2) ?><br/>
-                - Duur: <?= $game->getDuration() ?> minuten<br/>
-                - Moeilijkheid: <?= htmlspecialchars($game->getDifficulty()) ?><br/>
-                - Op voorraad: <?= $game->getLeftInStock() ?> stuks<br/>
-                - Spelers: <?= $game->getPlayers() ?>
+                <li>Beschrijving: <?= htmlspecialchars($game->getDescription()) ?></li>
+                <li>Prijs: €<?= htmlspecialchars(number_format($game->getPrice(), 2)) ?></li>
+                <li>Duur: <?= htmlspecialchars($game->getDuration()) ?> minuten</li>
+                <li>Moeilijkheid: <?= htmlspecialchars($game->getDifficulty()) ?></li>
+                <li>Op voorraad: <?= htmlspecialchars($game->getLeftInStock()) ?> stuks</li>
+                <li>Spelers: <?= htmlspecialchars($game->getPlayers()) ?></li>
+                </ul>
               </div>
             </div>
             <div class="card-button">
-              <a href="/dashboard/editgame.php?id=<?= $game->getId() ?>" class="search-button">Bewerken</a>
+              <a href="/dashboard/editgame.php?id=<?= htmlspecialchars($game->getId()) ?>" class="search-button">Bewerken</a>
             </div>
           </div>
         <?php endforeach; ?>
