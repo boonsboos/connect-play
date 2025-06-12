@@ -1,6 +1,6 @@
 <?php
 
-class DashboardRepository
+class DashboardController
 {
     private array $employeeButtons;
     private array $adminButtons;
