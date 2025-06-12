@@ -2,38 +2,40 @@
 
 class DashboardRepository
 {
-    private $alleButtons = [];
+    private array $employeeButtons;
+    private array $adminButtons;
 
     public function __construct()
     {
-        // de urlen in de array MOETEN nog worden aangepast!
-        $this->alleButtons = [
+        $this->employeeButtons = [
             [
-                'nameButton' => "dashboard.products.name",
-                'url' =>  '/dashboard/producten.php',
-                'role' => 'EMPLOYEE'
+                'name' => "dashboard.products.name",
+                'url' =>  '/dashboard/producten.php'
             ],
             [
-                'nameButton' => 'dashboard.orders.name',
-                'url' => 'volgt',
-                'role' => 'EMPLOYEE',
+                'name' => 'dashboard.orders.name',
+                'url' => 'volgt'
             ],         
             [
-                'nameButton' => 'dashboard.servicedesk.name',
-                'url' =>  '/dashboard/service.php',
-                'role' => 'EMPLOYEE'  
-            ],
+                'name' => 'dashboard.servicedesk.name',
+                'url' =>  '/dashboard/service.php'
+            ]
+        ];
+        $this->adminButtons = [
             [
-                'nameButton' => 'dashboard.searches.name',
-                'url' => '/dashboard/no_search_result.php',
-                'role' => 'ADMINISTRATOR',
+                'name' => 'dashboard.searches.name',
+                'url' => '/dashboard/no_search_result.php'
             ],
         ];
     }
 
     // je maakt altijd nog een functie voor het ophalen van je gegevens
-    public function getButtons(){
-        return $this->alleButtons;
+    public function getAdminButtons(): array {
+        return $this->adminButtons;
+    }
+
+    public function getEmployeeButtons(): array {
+        return $this->employeeButtons;
     }
 }
 
