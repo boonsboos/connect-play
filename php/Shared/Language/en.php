@@ -113,6 +113,10 @@ return [
         ],
         "searches" => [
             "name" => "Not found articles"
+        ],
+        "priceupdater" => [
+            "name" => "Update price list",
+            "description" => "Upload a .csv file to update the price list."
         ]
     ]
 ];

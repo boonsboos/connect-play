@@ -26,6 +26,10 @@ class DashboardController
                 'name' => 'dashboard.searches.name',
                 'url' => '/dashboard/no_search_result.php'
             ],
+            [
+                'name' => 'dashboard.priceupdater.name',
+                'url' => '/dashboard/priceupdater.php'
+            ]
         ];
     }
 

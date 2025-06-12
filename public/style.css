@@ -113,6 +113,13 @@ a {
 	resize: none;
 }
 
+.lineBetweenRoles {
+	color: var(--primary);
+	background: var(--primary);
+	border: 0;
+	height: 1px;
+}
+
 .dashboardButton {
 	color: #ffffff;
 	font-weight: bold;
@@ -120,9 +127,8 @@ a {
 	text-decoration: none;
 	width: 100%;
 	padding: 30px 0;
-	border: 1px solid #c3c3c3;
+	border: 1px solid var(--background);
 	border-radius: 5px;
-	box-shadow: 0 1px 1px var(--primary);
 	background: linear-gradient(
 		90deg,
 		rgba(75, 0, 110, 0.48),
@@ -580,6 +586,8 @@ ul {
 #form-box,
 #dashboardBox,
 #noSearchResultBox {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 	background-color: color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
@@ -1183,6 +1191,15 @@ i.trash {
 
 	.status-success {
 		border: 2px solid var(--highlight);
+	}
+
+	.lineBetweenRoles {
+		background: var(--highlight);
+		color: var(--highlight);
+	}
+
+	.dashboardButton {
+		border-color: var(--primary);
 	}
 
 	.dashboardButton:hover {
