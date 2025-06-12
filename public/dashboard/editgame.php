@@ -118,3 +118,5 @@ if (isset($_GET['error'])): ?>
   });
 <?php endif; ?>
 </script>
+
+<?php require_once '/var/www/php/Shared/footer.php'; ?>
