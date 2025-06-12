@@ -9,22 +9,22 @@ class DashboardRepository
         // de urlen in de array MOETEN nog worden aangepast!
         $this->alleButtons = [
             [
-                'nameButton' => 'Producten',
-                'url' =>  'volgt',
-                'role' => 'EMPLOYEE'  
+                'nameButton' => "dashboard.products.name",
+                'url' =>  '/dashboard/producten.php',
+                'role' => 'EMPLOYEE'
             ],
             [
-                'nameButton' => 'Bestellingen',
+                'nameButton' => 'dashboard.orders.name',
                 'url' => 'volgt',
                 'role' => 'EMPLOYEE',
             ],         
             [
-                'nameButton' => 'ServiceDesk',
-                'url' =>  'volgt',
+                'nameButton' => 'dashboard.servicedesk.name',
+                'url' =>  '/dashboard/service.php',
                 'role' => 'EMPLOYEE'  
             ],
             [
-                'nameButton' => 'Niet Gevonden Artikelen',
+                'nameButton' => 'dashboard.searches.name',
                 'url' => '/dashboard/no_search_result.php',
                 'role' => 'ADMINISTRATOR',
             ],

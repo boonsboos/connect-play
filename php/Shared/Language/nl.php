@@ -93,4 +93,26 @@ return [
         "email" => "E-mail",
         "submit" => "Verstuur"
     ],
+    "dashboard" => [
+        "products" => [
+            "workshop" => [
+                "add" => "Workshop toevoegen",
+                "edit" => "Workshop bewerken",
+            ],
+            "game" => [
+                "add" => "Game toevoegen",
+                "search" => "Game zoeken",
+            ],
+            "name" => "Producten"
+        ],
+        "orders" => [
+            "name" => "Bestellingen",
+        ],
+        "servicedesk" => [
+            "name" => "ServiceDesk"
+        ],
+        "searches" => [
+            "name" => "Niet Gevonden Artikelen"
+        ]
+    ]
 ];

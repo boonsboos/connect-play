@@ -20,7 +20,7 @@ $allButtons = $controller->getButtons();
                 <p class="dasboardSectionTitel col-12 pb-30">EMPLOYEE</p>
                 <?php foreach($allButtons as $button) {
                     if ($button['role'] === "EMPLOYEE") {
-                        echo '<a class="dashboardButton col-3 text-center" href="'.$button['url'].'">' .$button['nameButton']. '</a>';
+                        echo '<a class="dashboardButton col-3 text-center" href="'.$button['url'].'">' . __($button['nameButton']) . '</a>';
                     }
                 }?>
             </div>
@@ -34,7 +34,7 @@ $allButtons = $controller->getButtons();
                 <p class="dasboardSectionTitel col-12 pb-30">ADMINISTRATOR</p>
                 <?php foreach($allButtons as $button) {
                     if ($button['role'] === "ADMINISTRATOR") {
-                        echo '<a class="dashboardButton col-3 text-center" href="'.$button['url'].'">' .$button['nameButton']. '</a>';
+                        echo '<a class="dashboardButton col-3 text-center" href="'.$button['url'].'">' .__($button['nameButton']) . '</a>';
                     }
                 }?>
             </div>

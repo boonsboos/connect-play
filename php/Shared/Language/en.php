@@ -93,4 +93,26 @@ return [
         "email" => "Email",
         "submit" => "Submit"
     ],
+    "dashboard" => [
+        "products" => [
+            "workshop" => [
+                "add" => "Add workshop",
+                "edit" => "Edit workshop",
+            ],
+            "game" => [
+                "add" => "Add game",
+                "search" => "Search game",
+            ],
+            "name" => "Products"
+        ],
+        "orders" => [
+            "name" => "Orders",
+        ],
+        "servicedesk" => [
+            "name" => "ServiceDesk"
+        ],
+        "searches" => [
+            "name" => "Not found articles"
+        ]
+    ]
 ];
