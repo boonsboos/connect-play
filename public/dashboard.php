@@ -1,7 +1,12 @@
 <?php
+require_once '/var/www/php/Shared/header.php';
 
-require_once '../php/Shared/header.php'; 
-require_once '../php/Shop/Controllers/DashboardController.php';
+require_once 'var/www/php/Shared/Guards/EmployeeGuard.php';
+
+$guard = new EmployeeGuard();
+$guard->redirectIfNotAllowed();
+
+require_once '/var/www/php/Shop/Controllers/DashboardController.php';
 
 $controller = new DashboardController();
 ?>
