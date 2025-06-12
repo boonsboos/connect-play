@@ -80,7 +80,7 @@ if (isset($_SESSION["userId"])) {
                         <p class="cart-price">Verzendkosten: <span id="cart-shipping">€0,00</span></p>
                         <p class="cart-price">BTW (21%): <span id="cart-tax">€0,00</span></p>
                         <p class="cart-price">Totaal: <span id="cart-total">€0,00</span></p>
-                        <a href="/checkout.php" class="checkout-button">Afrekenen</a>
+                        <button id="checkout-button" class="checkout-button">Afrekenen</button>
                     </div>
                 </div>
                 <?php if ($language->getLanguage() === 'nl'): ?>

@@ -72,7 +72,7 @@ async function addGameToCart(gameId, orderNumber) {
 		let data
 
 		try {
-			data = JSON.parse(text) // Probee te parsen als JSON
+			data = JSON.parse(text) // Probeer te parsen als JSON
 		} catch (err) {
 			console.error("Kon JSON niet parsen:", err)
 			alert("Ongeldige serverresponse ontvangen.")
