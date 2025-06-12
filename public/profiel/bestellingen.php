@@ -13,12 +13,11 @@ if (!isset($user)) {
 function showErrorBox(string $message): void
 {
 	echo <<<HTML
-    <div id="error-box" class="mb-col-12 col-12 flex justify-center pt-10">
-        <p class="error-message text-center p-10">{$message}</p>
-    </div>
-    HTML;
-}
-?>
+		<div id='error-box' class='mb-col-12 col-12 flex justify-center pt-10'>
+			<p class='error-message text-center p-10' style='display: block;'> $message </p>
+		</div>
+		HTML;
+} ?>
 
 <img class="banner-img" src="/images/bannerImg.jpg" alt="Banner afbeelding" />
 
@@ -37,7 +36,7 @@ function showErrorBox(string $message): void
 				$orderId = $_GET['orderId'];
 				$order = $userOrderController->getUserOrderById($orderId);
 				if (!$order) {
-					showErrorBox("Bestelling niet gevonden.");
+					echo showErrorBox("Bestelling niet gevonden.");
 				} else { ?>
 					<div class="order-details flex mb-col-12 col-12 flex-col align-center text-center">
 						<div class="order-summary col-6">
@@ -65,35 +64,40 @@ function showErrorBox(string $message): void
 					</div>
 
 					<h3>Producten</h3>
-					<table class="order-table">
-						<thead>
-							<tr>
-								<th>Game</th>
-								<th>Aantal</th>
-								<th>Prijs per stuk</th>
-								<th>Subtotaal</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php foreach ($order->getEntries() as $entry): ?>
+					<?php
+					if (empty($order->getEntries()) || !is_array($order->getEntries())) {
+						showErrorBox("Nog geen producten gevonden voor deze bestelling.");
+					} else { ?>
+						<table class="order-table">
+							<thead>
 								<tr>
-									<td><?= htmlspecialchars($entry->getGame()->getName()) ?></td>
-									<td><?= htmlspecialchars($entry->getAmount()) ?></td>
-									<td>&euro; <?= number_format($entry->getPriceSnapshot(), 2, ',', '.') ?></td>
-									<td>&euro; <?= number_format($entry->getPriceSnapshot() * $entry->getAmount(), 2, ',', '.') ?></td>
+									<th>Game</th>
+									<th>Aantal</th>
+									<th>Prijs per stuk</th>
+									<th>Subtotaal</th>
 								</tr>
-							<?php endforeach; ?>
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
 
+								<?php foreach ($order->getEntries() as $entry): ?>
+									<tr>
+										<td><?= htmlspecialchars($entry->getGame()->getName()) ?></td>
+										<td><?= htmlspecialchars($entry->getAmount()) ?></td>
+										<td>&euro; <?= number_format($entry->getPriceSnapshot(), 2, ',', '.') ?></td>
+										<td>&euro; <?= number_format($entry->getPriceSnapshot() * $entry->getAmount(), 2, ',', '.') ?></td>
+									</tr>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+					<?php } ?>
 					<div class="pt-30">
 						<a href="/profiel/bestellingen.php" class="button">Terug naar bestellingen</a>
 					</div>
 				<?php }
 			} else {
 				$orders = $userOrderController->getUserOrders();
-				if (empty($orders)) {
-					showErrorBox("Geen bestellingen gevonden.");
+				if (!is_array($orders) || count($orders) === 0) {
+					echo showErrorBox("Geen bestellingen gevonden.");
 				} else {
 				?>
 					<table class="order-table w-full">
