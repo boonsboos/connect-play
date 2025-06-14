@@ -7,33 +7,38 @@
 if (isset($user)): ?>
     <section id="profile-container" class="flex justify-center py-15">
         <div class="col-12 flex align-center flex-col">
-            <h1 class="heading text-center">Profiel</h1>
-            <div class="flex gap-20 flex-row align-center">
+            <h1 class="heading text-center">Hallo <?= explode(' ', trim($user->getName()))[0] ?></h1>
+            <div class="flex flex-row align-center">
                 <a href="/profiel.php" class="button active">Mijn profiel</a>
                 <a href="/profiel/bestellingen.php" class="button">Bestellingen</a>
                 <a href="/profiel/aanpassen.php" class="button">Profiel aanpassen</a>
             </div>
             <div class="col-6 flex justify-center">
-                <div class="col-6 flex flex-col gap-20 p-30 border rounded shadow-md bg-white">
-                    <div class="flex flex-col gap-10">
-                        <p><strong>Username:</strong> <?php echo $user->getName() ?></p>
-                        <p><strong>Email:</strong> <?php echo $user->getEmail() ?></p>
-                        <p><strong>Role:</strong> <?php echo $user->getRole()->value ?></p>
+                <div class="col-12 flex p-30">
+                    <div class="flex col-12">
+                        <table style="border-collapse: collapse;">
+                            <tr>
+                                <td class="p-10">Naam:</td>
+                                <td class="p-10"><?= $user->getName() ?></td>
+                            </tr>
+                            <tr>
+                                <td class="p-10"><strong>Email-adres:</strong></td>
+                                <td class="p-10"><?= $user->getEmail() ?></td>
+                            </tr>
+                            <tr>
+                                <td class="p-10"><strong>Adres:</strong></td>
+                                <td class="p-10">
+                                    <?php if (empty($user->getAddresses())): ?>
+                                        Geen adressen gevonden.
+                                    <?php else: ?>
+                                        <?php foreach ($user->getAddresses() as $address): ?>
+                                            <?= $address->getStreetName() . ' ' . $address->getHouseNumber() . ', ' . $address->getPostalCode() . ' ' . $address->getCity() ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                </div>
-                <div class="col-6 flex flex-col gap-20 p-30 border rounded shadow-md bg-white mt-20">
-                    <p><strong>Adres</strong></p>
-                    <?php if (empty($user->getAddresses())): ?>
-                        <p>Geen adressen gevonden.</p>
-                    <?php else: ?>
-                        <ul>
-                            <?php foreach ($user->getAddresses() as $address): ?>
-                                <li>
-                                    <?php echo $address->getStreetName() . ' ' . $address->getHouseNumber() . ', ' . $address->getPostalCode() . ' ' . $address->getCity() ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    <?php endif; ?>
                 </div>
             </div>
         </div>

@@ -5,6 +5,10 @@
 		width: calc(8.33% - 1vw);
 	}
 
+	.col-1 {
+		width: calc(8.33% - 1vw);
+	}
+
 	.col-2 {
 		width: calc(16.66% - 1vw);
 	}
@@ -23,6 +27,10 @@
 
 	.col-6 {
 		width: calc(50% - 1vw);
+	}
+
+	.col-7 {
+		width: calc(58.33% - 1vw);
 	}
 
 	.col-8 {
@@ -80,6 +88,14 @@
 		width: calc((1 / 12) * 100% - 1vw);
 	}
 
+	.mb-col-1 {
+		width: calc(8.33% - 1vw);
+	}
+
+	.mb-col-2 {
+		width: calc(16.66% - 1vw);
+	}
+
 	.mb-col-3 {
 		width: calc(25% - 1vw);
 	}
@@ -88,8 +104,16 @@
 		width: calc(33.33% - 1vw);
 	}
 
+	.mb-col-5 {
+		width: calc(41.66% - 1vw);
+	}
+
 	.mb-col-6 {
 		width: calc(50% - 1vw);
+	}
+
+	.mb-col-7 {
+		width: calc(58.33% - 1vw);
 	}
 
 	.mb-col-8 {
@@ -100,9 +124,18 @@
 		width: calc(75% - 1vw);
 	}
 
+	.mb-col-10 {
+		width: calc(83.33% - 1vw);
+	}
+
+	.mb-col-11 {
+		width: calc(91.66% - 1vw);
+	}
+
 	.mb-col-12 {
 		width: calc(100% - 1vw);
 	}
+
 
 	.mb-offset {
 		margin-left: calc((1 / 12) * 100%);

@@ -395,7 +395,6 @@ ul {
 #productfilter {
 	display: flex;
 	gap: 16px;
-	padding: 16px;
 }
 
 .product-accent-border {
@@ -411,10 +410,9 @@ ul {
 }
 
 .game-card {
-	border: 1px solid #ddd;
+	border: 1px solid var(--box-2);
 	border-radius: 8px;
-	padding: 16px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .game-card:hover {
@@ -481,6 +479,16 @@ ul {
 #profile-container .order-summary .label {
 	color: #555;
 	font-weight: 500;
+}
+
+.product-score {
+	color: var(--primary);
+	font-size: 1.25rem;
+}
+
+.product-price {
+	color: var(--primary);
+	font-weight: 700;
 }
 
 /* Mislukte zoek resultaten pagina */
@@ -719,7 +727,7 @@ i.trash {
 		transition: transform 0.5s ease;
 	}
 
-	.productlijst {
+	#productlijst {
 		grid-template-columns: repeat(
 			2,
 			1fr
@@ -728,7 +736,7 @@ i.trash {
 }
 
 @media (max-width: 480px) {
-	.productlijst {
+	#productlijst {
 		grid-template-columns: 1fr; /* Toon 1 kaart per rij op mobiele apparaten */
 	}
 }
@@ -755,6 +763,10 @@ i.trash {
 		color: #fff;
 	}
 
+	a:visited {
+		color: #fff;
+	}
+
 	header,
 	footer {
 		background-color: #000;
@@ -775,7 +787,6 @@ i.trash {
 	}
 
 	.game-card {
-		border-color: var(--box-2);
 		box-shadow: none;
 	}
 
@@ -785,6 +796,14 @@ i.trash {
 
 	.product-accent-border {
 		border: 1px solid var(--highlight);
+	}
+
+	.product-score {
+		color: var(--highlight);
+	}
+
+	.product-price {
+		color: var(--highlight);
 	}
 
 	.home-head-box,

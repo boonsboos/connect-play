@@ -38,76 +38,72 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <section id="register-container" class="flex justify-center">
     <form id="form-box" class="mb-col-12 col-6 flex justify-center" method="post">
+
         <div id="error-box" class="mb-col-12 col-12 error-message"></div>
 
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-9 col-8">
-                <label>Voornaam</label>
+        <div class="mb-col-10 col-8 flex justify-center">
+            <div class="mb-col-12 col-12">
+                <label for="firstname">Voornaam</label>
                 <input type="text" class="input" name="firstname" value="" required />
             </div>
 
-            <div class="mb-col-3 col-2">
-                <label>Tussenvoegsel</label>
+            <div class="mb-col-12 col-12">
+                <label for="infix">Tussenvoegsel</label>
                 <input type="text" class="input" name="infix" value="" />
             </div>
-        </div>
 
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-12 col-9">
-                <label>Achternaam</label>
+            <div class="mb-col-12 col-12">
+                <label for="lastname">Achternaam</label>
                 <input type="text" class="input" name="lastname" value="" required />
             </div>
         </div>
 
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-12 col-5">
+        <div class="mb-col-10 col-8 flex justify-center py-15">
+            <div class="mb-col-12 col-12">
                 <label for="email">E-mail:</label>
                 <input class="input" type="email" name="email" placeholder="email@example.com" />
             </div>
 
-            <div class="mb-col-12 col-5">
-                <label>Herhaal Email</label>
+            <div class="mb-col-12 col-12">
+                <label for="repeat_email">Herhaal Email</label>
                 <input type="email" class="input" name="repeat_email" value="" required />
             </div>
-        </div>
 
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-12 col-5">
-                <label>Wachtwoord</label>
+            <div class="mb-col-12 col-12">
+                <label for="password">Wachtwoord</label>
                 <input type="password" class="input" name="password" required />
             </div>
 
-            <div class="mb-col-12 col-5">
-                <label>Herhaal wachtwoord</label>
+            <div class="mb-col-12 col-12">
+                <label for="repeat_password">Herhaal wachtwoord</label>
                 <input type="password" class="input" name="repeat_password" required />
             </div>
         </div>
 
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-12 col-9">
-                <label>Straat</label>
+        <div class="mb-col-10 col-8 flex justify-center">
+            <div class="mb-col-12 col-12">
+                <label for="streetname">Straat</label>
                 <input type="text" class="input" name="streetname" required />
             </div>
-        </div>
 
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-5 col-2">
-                <label>Postcode</label>
+            <div class="mb-col-12 col-12">
+                <label for="postalcode">Postcode</label>
                 <input type="text" class="input" name="postalcode" placeholder="1234AB" value="" required />
             </div>
 
-            <div class="mb-col-5 col-2">
-                <label>Huisnummer</label>
+            <div class="mb-col-12 col-12">
+                <label for="housenumber">Huisnummer</label>
                 <input type="text" class="input" name="housenumber" value="" required />
             </div>
 
-            <div class="mb-col-12 col-6">
-                <label>Plaats</label>
+            <div class="mb-col-12 col-12">
+                <label for="city">Plaats</label>
                 <input type="text" class="input" name="city" value="" required />
             </div>
         </div>
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-6 col-6">
+
+        <div class="mb-col-10 col-8 flex justify-center pt-15">
+            <div class="mb-col-8 col-8">
                 <button class="button" type="submit">Registreer</button>
             </div>
         </div>
