@@ -19,30 +19,6 @@ class ShoppingCartController
         $this->orderRepository = new OrderRepository();
     }
 
-    public function dispatch()
-    {
-        header('Content-Type: application/json');
-
-        $action = $_POST['action'] ?? null;
-        $gameId = $_POST['gameId'] ?? null;
-
-        if (!isset($_SESSION['userId'])) {
-            echo json_encode(['success' => false, 'message' => 'Niet ingelogd.']);
-            return;
-        }
-
-        switch ($action) {
-            case 'create':
-                // $this->create();
-                break;
-            case 'add':
-                $this->addCartEntry($gameId);
-                break;
-            default:
-                echo json_encode(['success' => false, 'message' => 'Ongeldige actie.']);
-        }
-    }
-
     public function create(): void
     {
         // Zorg dat je een gebruiker hebt
@@ -83,32 +59,18 @@ class ShoppingCartController
 
     public function addCartEntry(int $gameId)
     {
+        // Zorg dat je een gebruiker hebt
+        $userId = $_SESSION['userId'] ?? null;
 
-        // Haal het huidige ordernummer uit POST (die frontend moet meesturen)
-        $orderNumber = $_POST['orderNumber'] ?? null;
-        if (!$orderNumber) {
-            echo json_encode([
-                'success' => false,
-                'message' => 'Ordernummer ontbreekt',
-                'action' => 'add'
-            ]);
+        if (!$userId) {
+            echo json_encode(['success' => false, 'message' => 'Niet ingelogd.']);
             return;
         }
 
         $gameController = new GameController();
         $game = $gameController->getGameById($gameId);
 
-        $cartEntry = new CartEntry(
-            orderNumber: $orderNumber,
-            game: $game,
-            amount: 1,
-            when: date('Y-m-d'),
-        );
-
         try {
-            // Roep de repository aan om een CartEntry toe te voegen
-            //$this->orderRepository->addCartEntry($cartEntry);
-
             echo json_encode([
                 'success' => true,
                 'message' => 'Game toegevoegd aan je winkelwagen.',

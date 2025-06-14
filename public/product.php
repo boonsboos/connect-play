@@ -2,13 +2,13 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	require_once '../php/Shop/Controllers/ShoppingCartController.php';
 	$shoppingCartController = new ShoppingCartController();
-	$shoppingCartController->dispatch();
+	$shoppingCartController->addCartEntry($_POST['gameId']);
 	exit;
 }
 require_once '../php/Shared/header.php';
 require_once '../php/Shop/Controllers/GameController.php';
 
-$userId = $_SESSION['user_id'] ?? null;
+$userId = $_SESSION['userId'] ?? null;
 
 $gameController = new GameController();
 $game = $gameController->getGame();
@@ -39,7 +39,7 @@ if (!$game instanceof Game) {
 				<!-- De functie number_format() vervangd de punt naar een komma  -->
 				<div class="flex flex-row align-center pb-15">
 					<h4>€ <?= number_format($game->getPrice(), 2, ',', ''); ?></h4>
-					<button id="add-to-cart" onclick="handleAddToCart(<?= $game->getId(); ?>)" class="button px-10" style="width: auto;">Toevoegen</button>
+					<button id="add-to-cart" onclick="addGameToCart(<?= $game->getId() ?>)" class="button px-10" style="width: auto;">Toevoegen</button>
 				</div>
 
 				<div class="flex py-10">
