@@ -1,0 +1,91 @@
+/* flex.css */
+
+/* Flex Container */
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 1vw;
+	row-gap: 1vh;
+}
+
+/* Flex Wrap Alternatives */
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+.flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+/* Flex Direction*/
+.flex-col {
+	flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col-reverse {
+	flex-direction: column-reverse;
+}
+
+.flex-row-reverse {
+	flex-direction: row-reverse;
+}
+
+/* Justify Content */
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+/* Align Items */
+.align-start {
+  align-items: flex-start;
+}
+.align-center {
+  align-items: center;
+}
+.align-end {
+  align-items: flex-end;
+}
+.align-stretch {
+  align-items: stretch;
+}
+.align-baseline {
+  align-items: baseline;
+}
+
+/* Align Content */
+.content-start {
+  align-content: flex-start;
+}
+.content-center {
+  align-content: center;
+}
+.content-end {
+  align-content: flex-end;
+}
+.content-between {
+  align-content: space-between;
+}
+.content-around {
+  align-content: space-around;
+}
+.content-evenly {
+  align-content: space-evenly;
+}

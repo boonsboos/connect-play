@@ -1,4 +1,27 @@
 <?php
+//                   _ooOoo_
+//                  o8888888o
+//                  88" . "88
+//                  (| -_- |)
+//                  O\  =  /O
+//               ____/`---'\____
+//             .'  \\|     |//  `.
+//            /  \\|||  :  |||//  \
+//           /  _||||| -:- |||||-  \
+//           |   | \\\  -  /// |   |
+//           | \_|  ''\---/''  |   |
+//           \  .-\__  `-`  ___/-. /
+//         ___`. .'  /--.--\  `. . __
+//      ."" '<  `.___\_<|>_/___.'  >'"".
+//     | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+//     \  \ `-.   \_ __\ /__ _/   .-` /  /
+//======`-.____`-.___\_____/___.-`____.-'======
+//                   `=---='
+//
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//          佛祖保佑           永无BUG
+//         God Bless        Never Crash
+
 require_once '/var/www/php/Shared/debug.php';
 require_once '/var/www/php/Profile/DataAccess/UserRepository.php';
 require_once '/var/www/php/Shared/Language/Language.php';
@@ -40,6 +63,11 @@ if (isset($_SESSION["userId"])) {
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/grid.css" />
+    <link rel="stylesheet" href="/css/spacing.css" />
+    <link rel="stylesheet" href="/css/flex.css" />
+    <link rel="stylesheet" href="/css/text.css" />
+
 </head>
 
 <body>
