@@ -33,7 +33,6 @@ class GameRepository
 
             $gameId = $stmtGame->fetchColumn(); // haalt 1 waarde op uit het resultaat van de query (dus SELECT LAST_INSERT_ID() AS id)
             $game->setId((int)$gameId);
-
         } catch (PDOException $e) {
             if ($e->getCode() === '23000') { // Code 23000 betekent "Integrity constraint violation". je probeert iets toe te voegen dat de db verbied, zoals dubbele game namen
                 throw new Exception("Game naam bestaat al!");  // hier maak je een Exception voor ALLEEN de foutcode 23000 zo worden andere foutmeldingen niet stilgezet
@@ -43,8 +42,8 @@ class GameRepository
     }
 
     /**
-    * @returns Game[]
-    */
+     * @returns Game[]
+     */
     public function getGames(): array
     {
         $allGames = [];
@@ -71,8 +70,8 @@ class GameRepository
         }
         return $allGames;
     }
-    
-    public function getGame(int $id): Game 
+
+    public function getGame(int $id): Game
     {
         $stmtGame = $this->db->prepare("CALL get_game(:id)");
 
@@ -95,7 +94,7 @@ class GameRepository
             id: (int)$gameData['game_id']
         );
     }
-    
+
     public function updateGame(Game $game): void
     {
         // Voer update_game procedure uit
@@ -109,7 +108,25 @@ class GameRepository
             ':description' => $game->getDescription(),
             ':difficulty' => $game->getDifficulty(),
             ':left_in_stock' => $game->getLeftInStock()
-        ]); 
+        ]);
+    }
+
+    public function updateGameOptional(array $data): void
+    {
+        // Voer update_game procedure uit
+        $stmt = $this->db->prepare("CALL update_game(:id, :price, :duration, :name, :description, :difficulty, :left_in_stock)");
+
+        $stmt->execute([
+            ':id' => $data["game_id"],
+            ':price' => $data["price"] ?? null,
+            ':duration' => $data["duration"] ?? null,
+            ':name' => $data["name"] ?? null,
+            ':description' => $data["description"] ?? null,
+            ':difficulty' => $data["difficulty"] ?? null,
+            ':left_in_stock' => $data["left_in_stock"] ?? null
+        ]);
+
+        $stmt->closeCursor();
     }
 
     public function removeGame(int $id): void
@@ -124,7 +141,8 @@ class GameRepository
     /**
      * @return Game[]
      */
-    public function getGamesWithoutWorkshops(): array {
+    public function getGamesWithoutWorkshops(): array
+    {
         $allGames = [];
 
         $stmtGame = $this->db->prepare("SELECT * FROM `game` WHERE `game_id` NOT IN (SELECT `game_id` FROM `workshop`) ORDER BY `name` ASC;");
@@ -149,7 +167,8 @@ class GameRepository
     /**
      * @return Game[]
      */
-    public function getGamesWithWorkshops(): array {
+    public function getGamesWithWorkshops(): array
+    {
         $allGames = [];
 
         $stmtGame = $this->db->prepare("SELECT * FROM `game` WHERE `game_id` IN (SELECT `game_id` FROM `workshop`) ORDER BY `name` ASC;");
@@ -171,5 +190,3 @@ class GameRepository
         return $allGames;
     }
 }
-
-?>
