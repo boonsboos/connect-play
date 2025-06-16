@@ -118,5 +118,23 @@ return [
             "name" => "DataHub",
             "description" => "Upload een .csv-bestand om de prijslijst bij te werken."
         ]
+    ],
+    "webshop" => [
+        "search" => [
+            "label" => "Zoeken",
+            "placeholder" => "Jouw spel"
+        ],
+        "maxplayers" => "Max. Spelers",
+        "minplayers" => "Min. Spelers",
+        "filter" => [
+            "button" => "Filteren",
+            "heading" => "Filters"
+        ],
+        "notfound" => "We hebben het product dat je zoekt niet kunnen vinden... :(",
+        "price" => "Prijs",
+        "players" => "Spelers",
+        "description" => "Beschrijving",
+        "previous" => "Vorige",
+        "next" => "Volgende",
     ]
 ];
