@@ -7,11 +7,12 @@ class CSVLoader
     /**
      * Laad een CSV-bestand vanuit een geüpload bestand
      * @param array $file Een array met 'tmp_name' en 'name' sleutels van het geüploade bestand
+     * @return ?string[] Een array met de originele bestandsnaam en de tijdelijke bestandsnaam, of null als het bestand ongeldig is
      */
-    public static function load($file): ?string
+    public static function load($file): ?array
     {
         $tmpName = $file['tmp_name'] ?? null;
-        $originalName = $file['name'] ?? '';
+        $originalName = $file['name'] ?? null;
 
         // Controleer of het bestand bestaat, leesbaar is en een CSV-bestand is.
         // "tmp_name" is de tijdelijke locatie van het geüploade bestand, en "name" is de originele bestandsnaam.
@@ -19,7 +20,7 @@ class CSVLoader
             return null; // Retourneer null als het bestand niet geldig is
         }
 
-        return $tmpName; // Retourneer de tijdelijke bestandsnaam voor verdere verwerking
+        return array($originalName, $tmpName); // Retourneer de originele en tijdelijke bestandsnaam voor verdere verwerking
     }
 
     /**

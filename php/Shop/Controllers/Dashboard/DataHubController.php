@@ -5,8 +5,13 @@ require_once "/var/www/php/Shop/DataAccess/GameRepository.php";
 class DataHubController
 {
     private GameRepository $gameRepository;
-    public function __construct(private array $data = [], private array $headers = [], private ?string $uploaded = null, private int $max = 250, private ?string $error = null)
-    {
+    public function __construct(
+        private array $data = [],
+        private array $headers = [],
+        private ?string $fileName = null,
+        private int $max = 250,
+        private ?string $error = null
+    ) {
         $this->gameRepository = new GameRepository();
     }
 
@@ -15,16 +20,17 @@ class DataHubController
      */
     public function uploadCSVFile($file): bool
     {
-        $this->uploaded = CSVLoader::load($file); // Laad het CSV-bestand via de CSVLoader
-        $_data = CSVLoader::read($this->uploaded); // Lees de CSV-gegevens met de CSVLoader
-        $this->headers = $_data[0]; // Verwijder de eerste rij (headers) van de data
+        // Laad het CSV-bestand met de CSVLoader 
+        [$this->fileName, $tmpName] = CSVLoader::load($file); // destructureer de array om de originele bestandsnaam en de tijdelijke bestandsnaam te krijgen 
+        $_data = CSVLoader::read($tmpName); // Lees de CSV-gegevens met de CSVLoader
+        $this->headers = $_data[0] ?? []; // Neem de eerste rij als headers
         $this->data = array_slice($_data, 1); // Verwijder de eerste rij (headers) van de data
 
-        if (count($this->headers) === 0) {
+        if (empty($this->headers)) {
             $this->setError("Het CSV-bestand bevat geen geldige headers.");
             return false;
         }
-        if(!$this->validateHeaders($this->headers)) {
+        if (!$this->validateHeaders($this->headers)) {
             $this->setError("De headers komen niet overeen met de verwachte kolommen in de database.");
             return false;
         }
@@ -54,6 +60,14 @@ class DataHubController
     public function getHeaders(): array
     {
         return $this->headers;
+    }
+
+    /**
+     * Retourneer de bestandsnaam van het geüploade CSV-bestand.
+     */
+    public function getFileName(): ?string
+    {
+        return $this->fileName;
     }
 
     private function validateHeaders(array $headers): bool
@@ -103,8 +117,8 @@ class DataHubController
             $this->gameRepository->updateGameOptional($assoc);
         }
         // Reset de status na het bijwerken van de database
-        $this->uploaded = null; 
-        $this->data = []; 
+        $this->fileName = null;
+        $this->data = [];
         $this->headers = [];
         $this->setError(null);
         return true; // Als alles goed is gegaan, retourneer true
@@ -115,6 +129,6 @@ class DataHubController
      */
     public function isUploaded(): bool
     {
-        return $this->uploaded !== null && !empty($this->uploaded);
+        return $this->fileName !== null && !empty($this->fileName);
     }
 }
