@@ -1,7 +1,11 @@
 <?php
 require_once '/var/www/php/Shared/header.php';
 require_once '/var/www/php/Shop/Controllers/GameController.php';
+?>
 
+<img class="banner-img" src="/images/bannerImg.jpg" alt="Banner afbeelding" />
+
+<?php
 try {
     $controller = new GameController();
     $game = $controller->getGame();
@@ -12,13 +16,13 @@ try {
 }
 ?>
 
-<div class="flex justify-center pt-50 pb-30">
+<div class="flex justify-center pt-50 pb-30 bewerken-header">
   <h1>Game bewerken</h1>
 </div>
 
-<form method="POST" action="updategame.php" class="edit-game-form">
+<form method="POST" action="updategame.php" class="edit-game-form justify-center">
   <div class="form-columns">
-    <div class="form-left">
+    <div class="form-left justify-center">
       <input type="hidden" name="id" value="<?= htmlspecialchars($game->getId()) ?>">
 
       <label for="name">Naam:</label>

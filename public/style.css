@@ -24,6 +24,7 @@ body {
 	font-family: "Inter", "Verdana", sans-serif;
 	background-color: var(--background);
 	color: var(--foreground);
+	min-height: 100%;
 }
 
 /* text style classes */
@@ -923,9 +924,12 @@ i.trash {
 }
 
 .search-layout {
+	display: flex;
+	flex: 1;
 	background: var(--background);
 	overflow: hidden;
 	position: relative;
+	min-height: 100%;
 }
 
 .search-sidebar {
@@ -933,12 +937,11 @@ i.trash {
 	padding: 25px;
 	box-sizing: border-box;
 	background: var(--background);
-	height: fit-content;
 	position: fixed;
 	overflow: hidden;
 	left:0;
 	height: calc(100% - 71px);
-	border-right: 1px solid var(--primary);
+	border-right: 1px solid var(--accent);
 }
 
 
@@ -948,6 +951,8 @@ i.trash {
 	padding: 40px;
 	box-sizing: border-box;
 	margin-left:280px;
+	height: fit-content;
+	height: calc(100% - 71px);
 }
 
 .results-grid {
@@ -958,10 +963,11 @@ i.trash {
 
 .result-card {
 	justify-content: space-between;
-	background: --background;
+	background: var(--background);
 	border: 1px var(--primary) solid;
 	border-radius: 8px;
 	padding: 10px;
+	box-shadow: #4b006e 0px 0px 10px;
 }
 
 .card-content {
@@ -1031,48 +1037,59 @@ i.trash {
 }
 
 .edit-game-form {
-	display: flex;
-	flex-direction: column;
-	gap: 36px;
-	max-width: 100%;
-	padding-left: 20px;
-	margin: auto;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center; /* centraal uitlijnen */
+  	gap: 36px;
+	margin-left: 1px;
+	margin-right: 1px;
+	margin-bottom: 5px ;
+  	padding: 40px;
+	border: var(--accent) 1px solid;
+	border-radius: 10px;
+	background: var(--accent);
 }
 
 .form-columns {
-	display: flex;
-  	gap: 50px;
-  	flex-wrap: wrap;
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+  align-items: stretch;
+  min-height: 400px;
 }
 
 .form-left {
-  	flex: 2;
-  	display: flex;
-  	flex-direction: column;
-	justify-content: center;
-  	gap: 10px;
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
+
 
 .form-left input,
 .form-left select,
 .form-left textarea {
-  	padding: 8px;
-  	width: 100%;
-  	box-sizing: border-box;
+  padding: 8px;
+  width: 100%; /* volledig binnen de container */
+  box-sizing: border-box;
 }
 
+
 .form-right {
-  	flex: 1;
-  	display: flex;
-  	justify-content: center;
-  	align-items: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-right img {
-  	width: 400px;
+  	width: 1000px;
   	height: auto;
   	border: 1px solid #ccc;
-  	border-radius: 6px;
+  	border-radius: 6px;;
+	align-items: center;
 }
 
 .form-buttons {
@@ -1093,7 +1110,8 @@ i.trash {
 }
 
 .form-buttons button:hover {
-  	background: var(--accent);
+	border: var(--highlight) 3px solid;
+	color: var(--highlight);
 }
 
 .modal-overlay {
@@ -1432,5 +1450,9 @@ i.trash {
 
 	.status-success {
 		border: 2px solid var(--highlight);
+	}
+	
+	.search-sidebar {
+		border-right-color: var(--highlight);
 	}
 }
