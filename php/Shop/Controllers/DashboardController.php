@@ -27,8 +27,8 @@ class DashboardController
                 'url' => '/dashboard/no_search_result.php'
             ],
             [
-                'name' => 'dashboard.priceupdater.name',
-                'url' => '/dashboard/priceupdater.php'
+                'name' => 'dashboard.datahub.name',
+                'url' => '/dashboard/data-hub.php'
             ]
         ];
     }
