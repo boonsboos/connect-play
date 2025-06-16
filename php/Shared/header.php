@@ -67,7 +67,6 @@ if (isset($_SESSION["userId"])) {
     <link rel="stylesheet" href="/css/spacing.css" />
     <link rel="stylesheet" href="/css/flex.css" />
     <link rel="stylesheet" href="/css/text.css" />
-
 </head>
 
 <body>
