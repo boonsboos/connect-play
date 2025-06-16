@@ -120,6 +120,26 @@ a {
 	resize: none;
 }
 
+.form-group:has(.input[type="file"]) {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+}
+
+.form-group:has(.input[type="file"]) .input[type="file"] {
+	display: none;
+}
+.form-group:has(.input[type="file"]) label {
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--primary);
+	color: #ffffff;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
 .dashboardButton {
 	width: 100%;
 	padding: 30px 0;
@@ -365,6 +385,16 @@ a {
 	padding-right: 50px;
 }
 
+/* Gap utilities */
+
+.gap-1 {
+	gap: 1rem; /* 16px */
+}
+
+.gap-2 {
+	gap: 2rem; /* 32px */
+}
+
 /* Border radius utilities */
 
 /* border-radius: 8px */
@@ -452,7 +482,8 @@ ul {
 }
 
 .home-head-box .button,
-#service-container .button {
+#service-container .button,
+#data-hub-container .button {
 	background-color: var(--primary);
 	color: #ffffff;
 	border: none;
@@ -462,7 +493,8 @@ ul {
 }
 
 .home-head-box .button:hover,
-#service-container .button:hover {
+#service-container .button:hover,
+#data-hub-container .button:hover {
 	background-color: var(--accent);
 }
 
@@ -571,6 +603,28 @@ ul {
 
 .over-ons-img {
 	object-fit: cover;
+}
+/* Data Hub page */
+#data-hub-container .table {
+	width: 100%;
+	border: 1px solid var(--box-1);
+	border-spacing: 0;
+}
+#data-hub-container .table tr {
+	background-color: var(--box-1);
+	color: var(--foreground);
+}
+#data-hub-container .table th,
+#data-hub-container .table td {
+	padding: 5px;
+	text-align: center;
+	border: none;
+}
+#data-hub-container .table tbody tr:nth-child(odd) {
+	background-color: color-mix(in srgb, var(--box-1) 50%, var(--background));
+}
+#data-hub-container .button {
+	width: fit-content;
 }
 
 /* Contactpage */

@@ -28,6 +28,11 @@ class DashboardRepository
                 'url' => '/dashboard/no_search_result.php',
                 'role' => 'ADMINISTRATOR',
             ],
+            [
+                'nameButton' => 'DataHub',
+                'url' => '/dashboard/data-hub.php',
+                'role' => 'ADMINISTRATOR',
+            ]
         ];
     }
 
