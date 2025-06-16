@@ -112,7 +112,7 @@ class OrderRepository
 
         $cartEntryResult = $stmtCartEntry->fetch();
 
-        if (isset($cartEntryResult)) {
+        if ($cartEntryResult) {
             return true;
         }
 
