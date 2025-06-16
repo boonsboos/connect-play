@@ -74,16 +74,9 @@ a {
 	text-align: left;
 }
 
-#dashboardBox > div > a {
-	color: #ffffff;
-	font-weight: bold;
-	font-size: 18px;
-	text-decoration: none;
-}
-
 /* img style classes */
 .home-banner {
-	background-image: url("images/header.jpg");
+	background-image: url("/images/header.jpg");
 	background-size: cover;
 	width: 100%;
 	height: 500px;
@@ -140,12 +133,22 @@ a {
 	cursor: pointer;
 }
 
+.lineBetweenRoles {
+	color: var(--primary);
+	background: var(--primary);
+	border: 0;
+	height: 1px;
+}
+
 .dashboardButton {
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 18px;
+	text-decoration: none;
 	width: 100%;
 	padding: 30px 0;
-	border: 1px solid #c3c3c3;
+	border: 1px solid var(--background);
 	border-radius: 5px;
-	box-shadow: 0 1px 1px var(--primary);
 	background: linear-gradient(
 		90deg,
 		rgba(75, 0, 110, 0.48),
@@ -154,11 +157,7 @@ a {
 }
 
 .dashboardButton:hover {
-	background: linear-gradient(
-		90deg,
-		rgba(128, 128, 128, 0.48),
-		rgba(128, 128, 128, 1)
-	);
+	border: 1px solid var(--primary)
 }
 
 .emptyField {
@@ -641,6 +640,8 @@ ul {
 #form-box,
 #dashboardBox,
 #noSearchResultBox {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 	background-color: color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
@@ -1025,6 +1026,10 @@ i.trash {
 		margin-left: 8.33%;
 	}
 
+	.offset-2 {
+		margin-left: 16.66%;
+	}
+
 	.offset-3 {
 		margin-left: 25%;
 	}
@@ -1082,6 +1087,10 @@ i.trash {
 
 	.mb-offset {
 		margin-left: calc((1 / 12) * 100%);
+	}
+
+	.mb-offset-2 {
+		margin-left: 16.66%;
 	}
 
 	.mb-offset-3 {
@@ -1236,5 +1245,18 @@ i.trash {
 
 	.status-success {
 		border: 2px solid var(--highlight);
+	}
+
+	.lineBetweenRoles {
+		background: var(--highlight);
+		color: var(--highlight);
+	}
+
+	.dashboardButton {
+		border-color: var(--primary);
+	}
+
+	.dashboardButton:hover {
+		border: 1px solid var(--highlight);
 	}
 }
