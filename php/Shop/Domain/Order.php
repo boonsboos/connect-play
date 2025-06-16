@@ -47,6 +47,7 @@ class Order
         return $this->total;
     }
 
+    // dit is de id van order
     public function setOrderNumber(int $orderNumber): void
     {
         $this->orderNumber = $orderNumber;
