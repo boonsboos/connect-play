@@ -31,9 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'city' => $city,
     ]);
 }
-$success = null;
+$successKey = '';
 if (isset($_GET['success']) && $_GET['success'] == 1) {
-    $success = "Je bent succesvol geregistreerd! Je kunt nu inloggen.";
+    $successKey = "register.success";
 }
 ?>
 <script src="js/userValidation.js"></script>
@@ -43,77 +43,77 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 <section id="register-container" class="flex justify-center">
     <form id="form-box" class="mb-col-12 col-6 flex justify-center" method="post">
         <div id="error-box" class="mb-col-12 col-12 error-message"></div>
-        <div id="success-box" class="mb-col-12 col-12 success-message" style="display: <?php echo $success ? 'block' : 'none'; ?>;"><?php echo $success; ?></div>
+        <div id="success-box" class="mb-col-12 col-12 success-message" style="display: <?php echo $successKey ? 'block' : 'none'; ?>;"><?= __($successKey); ?></div>
 
         <div class="mb-col-12 col-12 flex justify-center pb-30">
             <div class="mb-col-9 col-8">
-                <label>Voornaam</label>
+                <label><?= __('register.firstname'); ?></label>
                 <input type="text" class="input" name="firstname" value="" required />
             </div>
 
             <div class="mb-col-3 col-2">
-                <label>Tussenvoegsel</label>
+                <label><?= __('register.infix'); ?></label>
                 <input type="text" class="input" name="infix" value="" />
             </div>
         </div>
 
         <div class="mb-col-12 col-12 flex justify-center pb-30">
             <div class="mb-col-12 col-9">
-                <label>Achternaam</label>
+                <label><?= __('register.lastname'); ?></label>
                 <input type="text" class="input" name="lastname" value="" required />
             </div>
         </div>
 
         <div class="mb-col-12 col-12 flex justify-center pb-30">
             <div class="mb-col-12 col-5">
-                <label for="email">E-mail:</label>
+                <label for="email"><?= __('register.email'); ?>:</label>
                 <input class="input" type="email" name="email" placeholder="email@example.com" />
             </div>
 
             <div class="mb-col-12 col-5">
-                <label>Herhaal Email</label>
+                <label><?= __('register.repeat_email'); ?>:</label>
                 <input type="email" class="input" name="repeat_email" value="" required />
             </div>
         </div>
 
         <div class="mb-col-12 col-12 flex justify-center pb-30">
             <div class="mb-col-12 col-5">
-                <label>Wachtwoord</label>
+                <label><?= __('register.password'); ?>:</label>
                 <input type="password" class="input" name="password" required />
             </div>
 
             <div class="mb-col-12 col-5">
-                <label>Herhaal wachtwoord</label>
+                <label><?= __('register.repeat_password'); ?>:</label>
                 <input type="password" class="input" name="repeat_password" required />
             </div>
         </div>
 
         <div class="mb-col-12 col-12 flex justify-center pb-30">
             <div class="mb-col-12 col-9">
-                <label>Straat</label>
+                <label><?= __('register.streetname'); ?>:</label>
                 <input type="text" class="input" name="streetname" required />
             </div>
         </div>
 
         <div class="mb-col-12 col-12 flex justify-center pb-30">
             <div class="mb-col-5 col-2">
-                <label>Postcode</label>
+                <label><?= __('register.postalcode'); ?>:</label>
                 <input type="text" class="input" name="postalcode" placeholder="1234AB" value="" required />
             </div>
 
             <div class="mb-col-5 col-2">
-                <label>Huisnummer</label>
+                <label><?= __('register.housenumber'); ?>:</label>
                 <input type="text" class="input" name="housenumber" value="" required />
             </div>
 
             <div class="mb-col-12 col-6">
-                <label>Plaats</label>
+                <label><?= __('register.city'); ?>:</label>
                 <input type="text" class="input" name="city" value="" required />
             </div>
         </div>
         <div class="mb-col-12 col-12 flex justify-center pb-30">
             <div class="mb-col-6 col-6">
-                <button class="button" type="submit">Registreer</button>
+                <button class="button" type="submit"><?= __('register.submit'); ?></button>
             </div>
         </div>
     </form>
