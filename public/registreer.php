@@ -31,6 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'city' => $city,
     ]);
 }
+$success = null;
+if (isset($_GET['success']) && $_GET['success'] == 1) {
+    $success = "Je bent succesvol geregistreerd! Je kunt nu inloggen.";
+}
 ?>
 <script src="js/userValidation.js"></script>
 
@@ -39,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <section id="register-container" class="flex justify-center">
     <form id="form-box" class="mb-col-12 col-6 flex justify-center" method="post">
         <div id="error-box" class="mb-col-12 col-12 error-message"></div>
+        <div id="success-box" class="mb-col-12 col-12 success-message" style="display: <?php echo $success ? 'block' : 'none'; ?>;"><?php echo $success; ?></div>
 
         <div class="mb-col-12 col-12 flex justify-center pb-30">
             <div class="mb-col-9 col-8">
