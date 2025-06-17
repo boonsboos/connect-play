@@ -15,10 +15,10 @@ if (isset($user)): ?>
             </div>
             <div class="col-6 flex justify-center">
                 <div class="col-12 flex p-30">
-                    <div class="flex col-12">
+                    <div class="flex col-12 justify-center">
                         <table style="border-collapse: collapse;">
                             <tr>
-                                <td class="p-10">Naam:</td>
+                                <td class="p-10"><strong>Naam:</strong></td>
                                 <td class="p-10"><?= $user->getName() ?></td>
                             </tr>
                             <tr>
