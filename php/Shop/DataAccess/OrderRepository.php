@@ -86,14 +86,13 @@ class OrderRepository
         $stmt->execute([
             ':userId' => $userId
         ]);
-
         $orders = [];
         while ($row = $stmt->fetch()) {
             $orders[] = new Order(
                 $row['user_id'],
                 $row["date"],
                 Orderstatus::from($row['status']),
-                $row['comment'],
+                $row['comment'] ?? '',
                 $row['total'] = 0.0,
                 $row['entries'] = [],
                 $row['order_number']
@@ -137,17 +136,17 @@ class OrderRepository
             $cartEntries[] = new CartEntry(
                 $row['order_number'],
                 new Game(
-                    $game['game_id'],
                     $game['players'],
                     (float)$game['price'],
                     $game['duration'],
                     $game['name'],
                     $game['description'],
                     $game['difficulty'],
-                    $game['left_in_stock']
+                    $game['left_in_stock'],
+                    $game['game_id'],
                 ),
                 $row['amount'],
-                $row['when'],
+                $row['when'] ?? "",
                 (float)$row['price_snapshot']
             );
         }
@@ -168,7 +167,7 @@ class OrderRepository
                 $row['user_id'],
                 $row['date'],
                 OrderStatus::from($row['status']),
-                $row['comment'],
+                $row['comment'] ?? '',
                 $row['total'] = 0.0,
                 $row['entries'] = [],
                 $row['order_number']

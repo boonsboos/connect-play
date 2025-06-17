@@ -77,11 +77,14 @@ body {
 }
 
 .dashboardButton {
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 18px;
+	text-decoration: none;
 	width: 100%;
 	padding: 30px 0;
-	border: 1px solid #c3c3c3;
+	border: 1px solid var(--background);
 	border-radius: 5px;
-	box-shadow: 0 1px 1px var(--primary);
 	background: linear-gradient(
 		90deg,
 		rgba(75, 0, 110, 0.48),
@@ -90,11 +93,7 @@ body {
 }
 
 .dashboardButton:hover {
-	background: linear-gradient(
-		90deg,
-		rgba(128, 128, 128, 0.48),
-		rgba(128, 128, 128, 1)
-	);
+	border: 1px solid var(--primary)
 }
 
 .emptyField {
@@ -199,7 +198,8 @@ ul {
 }
 
 .home-head-box .button,
-#service-container .button {
+#service-container .button,
+#data-hub-container .button {
 	background-color: var(--primary);
 	color: #ffffff;
 	border: none;
@@ -209,7 +209,8 @@ ul {
 }
 
 .home-head-box .button:hover,
-#service-container .button:hover {
+#service-container .button:hover,
+#data-hub-container .button:hover {
 	background-color: var(--accent);
 }
 
@@ -319,6 +320,28 @@ ul {
 .over-ons-img {
 	object-fit: cover;
 }
+/* Data Hub page */
+#data-hub-container .table {
+	width: 100%;
+	border: 1px solid var(--box-1);
+	border-spacing: 0;
+}
+#data-hub-container .table tr {
+	background-color: var(--box-1);
+	color: var(--foreground);
+}
+#data-hub-container .table th,
+#data-hub-container .table td {
+	padding: 5px;
+	text-align: center;
+	border: none;
+}
+#data-hub-container .table tbody tr:nth-child(odd) {
+	background-color: color-mix(in srgb, var(--box-1) 50%, var(--background));
+}
+#data-hub-container .button {
+	width: fit-content;
+}
 
 /* Contactpage */
 #contact-container,
@@ -334,6 +357,8 @@ ul {
 #form-box,
 #dashboardBox,
 #noSearchResultBox {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 	background-color: color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
@@ -812,5 +837,18 @@ i.trash {
 
 	.status-success {
 		border: 2px solid var(--highlight);
+	}
+
+	.lineBetweenRoles {
+		background: var(--highlight);
+		color: var(--highlight);
+	}
+
+	.dashboardButton {
+		border-color: var(--primary);
+	}
+
+	.dashboardButton:hover {
+		border: 1px solid var(--highlight);
 	}
 }

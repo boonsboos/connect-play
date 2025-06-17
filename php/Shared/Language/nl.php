@@ -93,4 +93,48 @@ return [
         "email" => "E-mail",
         "submit" => "Verstuur"
     ],
+    "dashboard" => [
+        "products" => [
+            "workshop" => [
+                "add" => "Workshop toevoegen",
+                "edit" => "Workshop bewerken",
+            ],
+            "game" => [
+                "add" => "Game toevoegen",
+                "search" => "Game zoeken",
+            ],
+            "name" => "Producten"
+        ],
+        "orders" => [
+            "name" => "Bestellingen",
+        ],
+        "servicedesk" => [
+            "name" => "ServiceDesk"
+        ],
+        "searches" => [
+            "name" => "Niet Gevonden Artikelen"
+        ],
+        "datahub" => [
+            "name" => "DataHub",
+            "description" => "Upload een .csv-bestand om de prijslijst bij te werken."
+        ]
+    ],
+    "webshop" => [
+        "search" => [
+            "label" => "Zoeken",
+            "placeholder" => "Jouw spel"
+        ],
+        "maxplayers" => "Max. Spelers",
+        "minplayers" => "Min. Spelers",
+        "filter" => [
+            "button" => "Filteren",
+            "heading" => "Filters"
+        ],
+        "notfound" => "We hebben het product dat je zoekt niet kunnen vinden... :(",
+        "price" => "Prijs",
+        "players" => "Spelers",
+        "description" => "Beschrijving",
+        "previous" => "Vorige",
+        "next" => "Volgende",
+    ]
 ];
