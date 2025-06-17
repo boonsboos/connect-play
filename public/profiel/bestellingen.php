@@ -112,15 +112,17 @@ function showErrorBox(string $message): void
 						</thead>
 						<tbody>
 							<?php foreach ($orders as $order): ?>
-								<tr>
-									<td><?= htmlspecialchars($order->getId()) ?></td>
-									<td><?= htmlspecialchars($order->getDate()) ?></td>
-									<td><?= htmlspecialchars($order->getStatus()->asString()) ?></td>
-									<td>&euro; <?= number_format($order->getTotal(), 2, ',', '.') ?></td>
-									<td>
-										<a href="/profiel/bestellingen.php?orderId=<?= urlencode($order->getId()) ?>">Bekijk details</a>
-									</td>
-								</tr>
+								<?php if ($order->getStatus() === OrderStatus::Paid) : ?>
+									<tr>
+										<td><?= htmlspecialchars($order->getId()) ?></td>
+										<td><?= htmlspecialchars($order->getDate()) ?></td>
+										<td><?= htmlspecialchars($order->getStatus()->asString()) ?></td>
+										<td>&euro; <?= number_format($order->getTotal(), 2, ',', '.') ?></td>
+										<td>
+											<a href="/profiel/bestellingen.php?orderId=<?= urlencode($order->getId()) ?>">Bekijk details</a>
+										</td>
+									</tr>
+								<?php endif; ?>
 							<?php endforeach; ?>
 						</tbody>
 					</table>
