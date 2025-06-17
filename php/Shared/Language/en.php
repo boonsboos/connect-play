@@ -118,5 +118,23 @@ return [
             "name" => "DataHub",
             "description" => "Upload a .csv file to update the price list."
         ]
+    ],
+    "webshop" => [
+        "search" => [
+            "label" => "Search",
+            "placeholder" => "Your game"
+        ],
+        "maxplayers" => "Max. players",
+        "minplayers" => "Min. players",
+        "filter" => [
+            "button" => "Filter",
+            "heading" => "Filters"
+        ],
+        "notfound" => "We couldn't find the product you're looking for... :(",
+        "price" => "Price",
+        "players" => "players",
+        "description" => "description",
+        "previous" => "Previous",
+        "next" => "Next",
     ]
 ];
