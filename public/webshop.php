@@ -56,8 +56,8 @@ $controller->fetchGames();
 				<div class="game-card p-15" onclick="window.location='/product.php?id=<?php echo $game->getId() ?>'">
 					<!-- Weergave van een individuele game-kaart -->
 					<h3 class="text-center"><?= $game->getName(); ?></h3>
-					<p><?= __("webshop.price") ?>: €<?= htmlspecialchars($game->getPrice()); ?></p>
-					<p><?= __("webshop.description") ?>: <?= htmlspecialchars($game->getDescription()); ?></p>
+					<p>€<?= htmlspecialchars($game->getPrice()); ?></p>
+					<p><?= htmlspecialchars($game->getDescription()); ?></p>
 					<hr />
 				</div>
 			<?php endforeach; ?>

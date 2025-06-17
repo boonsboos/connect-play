@@ -131,9 +131,6 @@ return [
             "heading" => "Filters"
         ],
         "notfound" => "We hebben het product dat je zoekt niet kunnen vinden... :(",
-        "price" => "Prijs",
-        "players" => "Spelers",
-        "description" => "Beschrijving",
         "previous" => "Vorige",
         "next" => "Volgende",
     ]
