@@ -22,8 +22,8 @@ $controller->fetchGames();
             <h3><?= __("webshop.filter.heading") ?></h3>
             <form class="flex mb-flex-col">
 				<div class="flex flex-col col-12">
-					<label for="zoekfunctie"><?= __("webshop.search") ?></label>
-					<input type="text" id="zoekfunctie" name="search" placeholder="Jouw spel" value="<?= $_GET["search"] ?? ""; ?>">
+					<label for="zoekfunctie"><?= __("webshop.search.label") ?></label>
+					<input type="text" id="zoekfunctie" name="search" placeholder="<?= __("webshop.search.placeholder") ?>" value="<?= $_GET["search"] ?? ""; ?>">
 				</div>
 				<div class="flex flex-col col-12">
 					<label for="maxspelers"><?= __("webshop.maxplayers") ?>: <span id="maxspelers-value"></span></label>
