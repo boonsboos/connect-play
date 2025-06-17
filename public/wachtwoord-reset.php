@@ -29,7 +29,7 @@ if (isset($_GET['code']) && isset($_GET['email'])) {
     <form id="form-box" class="mb-col-12 col-6 flex justify-center" method="post">
         <?php if (isset($error)): ?>
             <div class="mb-col-12 col-12 flex justify-center pb-30">
-                <p class="error-message text-center p-10"><?php echo $error ?></p>
+                <p class="error-message text-center"><?php echo $error ?></p>
             </div>
         <?php endif; ?>
         <?php if (isset($code)): ?>

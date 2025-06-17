@@ -30,10 +30,10 @@ if (isset($user)): ?>
                 <a href="/profiel/aanpassen.php" class="button active">Profiel aanpassen</a>
             </div>
             <div id="error-box" class="mb-col-12 col-12 flex justify-center pt-10" <?php echo $error ? '' : 'style="display: none;"'; ?>>
-                <p class="error-message text-center p-10" <?php echo $error ? 'style="display: block;"' : 'style="display: none;"'; ?>><?php echo $error ?></p>
+                <p class="error-message text-center" <?php echo $error ? 'style="display: block;"' : 'style="display: none;"'; ?>><?php echo $error ?></p>
             </div>
             <div id="success-box" class="mb-col-12 col-12 flex justify-center pt-10" <?php echo $success ? '' : 'style="display: none;"'; ?>>
-                <p class="success-message text-center p-10" <?php echo $success ? 'style="display: block;"' : 'style="display: none;"'; ?>><?php echo $success ?></p>
+                <p class="success-message text-center" <?php echo $success ? 'style="display: block;"' : 'style="display: none;"'; ?>><?php echo $success ?></p>
             </div>
         </div>
     </section>

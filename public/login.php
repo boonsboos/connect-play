@@ -24,7 +24,7 @@ if (isset($_GET['error'])) {
 	<form id="form-box" class="mb-col-12 col-10 flex justify-center" method="post">
 		<?php if (isset($loginError)): ?>
 			<div class="mb-col-12 col-12 flex justify-center">
-				<p class="error-message text-center p-15"><?php echo $loginError ?></p>
+				<p class="error-message text-center"><?php echo $loginError ?></p>
 			</div>
 		<?php endif; ?>
 		<div class="mb-col-10 col-8 flex justify-center pb-15">
