@@ -44,17 +44,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="mb-col-10 col-8 flex justify-center">
             <div class="mb-col-12 col-12">
                 <label for="firstname">Voornaam</label>
-                <input type="text" class="input" name="firstname" value="" required />
+                <input type="text" class="input" name="firstname" required />
             </div>
 
             <div class="mb-col-12 col-12">
                 <label for="infix">Tussenvoegsel</label>
-                <input type="text" class="input" name="infix" value="" />
+                <input type="text" class="input" name="infix" />
             </div>
 
             <div class="mb-col-12 col-12">
                 <label for="lastname">Achternaam</label>
-                <input type="text" class="input" name="lastname" value="" required />
+                <input type="text" class="input" name="lastname" required />
             </div>
         </div>
 
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="mb-col-12 col-12">
                 <label for="repeat_email">Herhaal Email</label>
-                <input type="email" class="input" name="repeat_email" value="" required />
+                <input type="email" class="input" name="repeat_email" required />
             </div>
 
             <div class="mb-col-12 col-12">
@@ -88,17 +88,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="mb-col-12 col-12">
                 <label for="postalcode">Postcode</label>
-                <input type="text" class="input" name="postalcode" placeholder="1234AB" value="" required />
+                <input type="text" class="input" name="postalcode" placeholder="1234AB" required />
             </div>
 
             <div class="mb-col-12 col-12">
                 <label for="housenumber">Huisnummer</label>
-                <input type="text" class="input" name="housenumber" value="" required />
+                <input type="text" class="input" name="housenumber" required />
             </div>
 
             <div class="mb-col-12 col-12">
                 <label for="city">Plaats</label>
-                <input type="text" class="input" name="city" value="" required />
+                <input type="text" class="input" name="city" required />
             </div>
         </div>
 

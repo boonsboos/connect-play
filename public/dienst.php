@@ -19,7 +19,7 @@
 </section>
 
 <section class="flex justify-center py-15">
-    <div id="dienstDetails" class="flex justify-center col-6 mb-col-12 px-30">
+    <div id="dienstDetails" class="flex flex-col justify-center col-6 mb-col-8 px-30">
         <!-- Here will the 'dienst' be placed -->
     </div>
 </section>

@@ -77,11 +77,11 @@ function dienstDetails() {
 	const dienstDetails = document.getElementById("dienstDetails")
 	if (dienst) {
 		dienstDetails.innerHTML = `
-			<h1>${dienst.title}</h1>
-			<div class="flex justify-center">
-				<img src="${dienst.image}" alt="${dienst.title}" class="product-img" />
+			<h1 class="text-center">${dienst.title}</h1>
+			<div class="flex justify-center col-12 mb-col-12">
+				<img src="${dienst.image}" alt="${dienst.title}" />
 			</div>
-			<h5 class="pb-30">${dienst.description}</h5>
+			<p class="pb-30">${dienst.description}</p>
 		`
 	} else {
 		dienstDetails.innerHTML = "<p>Dienst niet gevonden.</p>"

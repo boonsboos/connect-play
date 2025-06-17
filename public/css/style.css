@@ -303,6 +303,13 @@ ul {
 	padding: 0;
 }
 
+#dienstDetails img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 /* Over Ons page */
 #over-ons-container h1 {
 	padding-top: 50px;
