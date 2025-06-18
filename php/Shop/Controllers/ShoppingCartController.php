@@ -9,6 +9,7 @@ require_once '/var/www/php/Shop/DataAccess/OrderRepository.php';
 require_once '/var/www/php/Shop/Domain/Order.php';
 require_once '/var/www/php/Shop/Domain/CartEntry.php';
 require_once '/var/www/php/Shop/Domain/OrderStatus.php';
+require_once '/var/www/php/Profile/DataAccess/UserRepository.php';
 
 class ShoppingCartController
 {
@@ -40,6 +41,52 @@ class ShoppingCartController
         }
     }
 
+    /**
+     * De getCheckoutOrder wordt gebruikt om een array met de benodigde informatie te sturen naar de checkoutpagina
+     *
+     * @return array
+     */
+    public function getCheckoutOrder(): array
+    {
+        $userId = $_SESSION['userId'] ?? null;
+        
+        // controller of gebruiker is ingelogd anders return een false message
+        if (!$userId) {
+            return ['success' => false, 'message' => 'Niet ingelogd.'];
+        }
+
+        // Haal de order op die gekoppeld is aan de user uit de database
+        $order = $this->orderRepository->getOrderForUser($userId);
+
+        // Controleer of er ene order aanwezig is
+        if (!$order) {
+            return ['success' => false, 'message' => 'Geen bestelling gevonden.'];
+        }
+
+        // Indien order aanwezig haal alle cartEntries op die gekoppeld zijn aan de order
+        $cartEntries = $this->orderRepository->getCartEntriesByOrderId($order->getId());
+
+        // Voor het ophalen van de user en adres maken we een userRepo aan
+        $userRepository = new UserRepository();
+
+        try {
+            $user = $userRepository->getUser((int)$userId);
+            $username = $user->getName();
+            $address = $user->getAddresses()[0];
+        } catch (Exception $e) {
+            $username = 'Onbekend';
+            $address = null;
+        }
+        
+        return [
+            'success' => true,
+            'orderId' => $order->getId(),
+            'username' => $username,
+            'address' => $address,
+            'cartEntries' => $cartEntries
+        ];
+    }
+    
     public function createOrder(): void
     {
         // Zorg dat je een gebruiker hebt
@@ -50,7 +97,7 @@ class ShoppingCartController
             exit;
         }
 
-        $foundOrder = $this->orderRepository->getOrderForUser($userId); // haal de openstaande (PENDING) van de gebruiker op
+        $foundOrder = $this->orderRepository->getOrderForUser($userId); // Haal de openstaande (PENDING) van de gebruiker op
 
         if ($foundOrder) {
             $_SESSION["currentOrderNumber"] = $foundOrder->getId();
@@ -92,23 +139,23 @@ class ShoppingCartController
             }
         }
     }
-
-    public function addCartEntries(): void
     
+    public function addCartEntries(): void
     {
-        // de waardes in de $_POST komen vanuit de checktout.js het FormData object
+        // de waardes in de $_POST komen vanuit de checkout.js, het FormData object
         $orderNumber = $_POST['orderNumber'] ?? null;
-        $cartEntriesJson = $_POST['cartEntries'] ?? null; // dit is een string, geen array
+        $cartEntriesJson = $_POST['cartEntries'] ?? null;
 
-        // het ordernummer en minimaal één cartentry is nodig om verder te gaan
+          // het ordernummer en minimaal één cartentry is nodig om verder te gaan
         if (!$orderNumber || !$cartEntriesJson) {
             echo json_encode(['success' => false, 'message' => 'Geen order of cartentries gevonden.']);
             exit;
         }
 
-        // zet JSON-objecten om naar een associatieve array
+        // zet JSON string om naar een associatieve array
         $cartEntries = json_decode($cartEntriesJson, true);
 
+        // controleer of $cartEntries een array is
         if (!is_array($cartEntries)) {
             echo json_encode([
                 'success' => false,
@@ -119,34 +166,32 @@ class ShoppingCartController
 
         $gameController = new GameController();
 
-        // $allCartEntriesFromOrder = $this->orderRepository->getCartEntriesByOrderId($orderNumber);
-        // $vardump = var_dump($allCartEntriesFromOrder);
+        // haal alle bestaande cartEntries op uit de database adhv ordernummer
+        $allCartEntriesFromOrder = $this->orderRepository->getCartEntriesByOrderId($orderNumber);
 
-        // // zet alle gameIds uit localStorage in een lijst
-        // $allGameIds = array_map(fn($entry) => (int)$entry["gameId"], $cartEntries);
+        // haal de gameids uit de database en localstorage
+        $allCartEntriesGameIds = array_map(fn($entry) => $entry->getGame()->getId(), $allCartEntriesFromOrder);
+        $gameIdsFromlocalStorage = array_map(fn($entry) => (int)$entry['gameId'], $cartEntries);
 
-        // // verwijder alle cartentries uit de database die niet meer in localStorage zitten
-        // foreach ($allCartEntriesFromOrder as $cartEntry) {
-        //     $game = $cartEntry->getGame();
-        //     if (!$game) continue;
+        // verwijder entries in de database die niet meer aanwezig zijn in localStorage
+        $gameIdsToDelete = array_diff($allCartEntriesGameIds, $gameIdsFromlocalStorage);
+        foreach ($gameIdsToDelete as $gameId) {
+            $this->orderRepository->deleteCartEntry($orderNumber, $gameId);
+        }
 
-        //     if (!in_array($game->getId(), $allGameIds, true)) {
-        //         $this->orderRepository->deleteCartEntry($orderNumber, $game->getId());
-        //     }
-        // }
-
-        foreach ($cartEntries AS $cartEntry) {
+        // voeg cartEntry toe of werk deze bij in de database
+        foreach ($cartEntries as $entry) {
             // een game object is nodig voor cartEntry object
-            $game = $gameController->getGameById($cartEntry["gameId"]);
+            $game = $gameController->getGameById($entry["gameId"]);
+
             $cartEntry = new CartEntry(
                 $orderNumber,
                 $game,
-                $cartEntry["amount"],
+                $entry["amount"],
                 date('Y-m-d'),
-                $cartEntry["price"]
+                $entry["price"]
             );
 
-            // controleert of er in de database een match is tussen het ordernummer en het gameId
             if ($this->orderRepository->cartEntryExists($orderNumber, $game->getId())) {
                 $this->orderRepository->updateCartEntry($cartEntry);
             } else {
@@ -154,17 +199,16 @@ class ShoppingCartController
             }
         }
 
-        // na de afhandeling van de entries, success response terug sturen
         echo json_encode([
-            'success' => true, 
-            'message' => 'De cartEntries zijn toegevoegd aan de database.',
+            'success' => true,
+            'message' => 'De cartEntries zijn toegevoegd aan de database.'
         ]);
         exit;
     }
 
     public function addCartEntry(int $gameId)
     {
-        // Zorg dat je een gebruiker hebt
+        // zorg dat je een gebruiker hebt
         $userId = $_SESSION['userId'] ?? null;
 
         if (!$userId) {

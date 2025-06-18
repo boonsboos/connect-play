@@ -159,46 +159,44 @@ class OrderRepository
     {
         $query = "CALL get_cart_entries_by_order(:orderId)";
         $stmt = $this->db->prepare($query);
-        $stmt->execute([
-            ':orderId' => $orderId
-        ]);
-        $stmt->closeCursor(); // Sluit de cursor om de volgende query te kunnen uitvoeren!
-
+        $stmt->execute([':orderId' => $orderId]);
+        
         $cartEntries = [];
         $rows = $stmt->fetchAll();
-        foreach ($rows as $row) {
-            $stmt->closeCursor(); // Sluit de cursor om de volgende query te kunnen uitvoeren!
+        $stmt->closeCursor();
+        
+        error_log('Cart entries uit DB: ' . json_encode($rows));
 
+        foreach ($rows as $row) {
             // haal de game details op
             $query = "CALL get_game(:gameId)";
-            $stmt = $this->db->prepare($query);
-            $stmt->execute([
-                ':gameId' => $row['game_id']
-            ]);
+            $gameStmt = $this->db->prepare($query);
+            $gameStmt->execute([':gameId' => $row['game_id']]);
 
-            $game = $stmt->fetch();
+            $game = $gameStmt->fetch();
             if (!$game) {
                 continue; // Als de game niet gevonden is, sla deze entry over
             }
+            $gameStmt->closeCursor();
 
             $cartEntries[] = new CartEntry(
                 $row['order_number'],
                 new Game(
-                    $game['game_id'],
-                    $game['players'],
+                    (int)$game['players'],
                     (float)$game['price'],
-                    $game['duration'],
-                    $game['name'],
-                    $game['description'],
-                    $game['difficulty'],
-                    $game['left_in_stock']
+                    (string)$game['duration'],
+                    (string)$game['name'],
+                    (string)$game['description'],
+                    (string)$game['difficulty'],
+                    (int)$game['left_in_stock'],
+                    (int)$game['game_id']
                 ),
-                $row['amount'],
-                $row['when'],
+                (int)$row['amount'],
+                (int)$row['when'],
                 (float)$row['price_snapshot']
             );
         }
-
+error_log('DB game IDs: ' . json_encode($cartEntries));
         return $cartEntries;
     }
 
