@@ -409,6 +409,15 @@ ul {
 	padding: 10px 15px;
 }
 
+#checkout-container .button {
+	width: fit-content;
+	cursor: pointer;
+}
+
+#checkout-container .button:hover {
+	background-color: var(--primary);
+}
+
 #profile-container .button.active {
 	background-color: var(--primary);
 }

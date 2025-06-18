@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
 <div id="profile-container" class="mb-flex-col flex py-50">
     <?php if ($success): ?>
-        <div class="mb-col-12 col-12 flex flex-col justify-center align-center py-10">
+        <div class="mb-col-12 col-12 flex flex-col justify-center align-center py-15">
             <h1 class="text-center pb-15">Betaling succesvol!</h1>
             <a href="/webshop.php" class="button">Terug naar webshop</a>
         </div>
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             </p>
         </div>
 
-        <form method="post" class="mb-col-12 col-12 flex justify-center align-center">
+        <form method="post" class="mb-col-12 col-12 flex justify-center align-center pb-15">
             <input type="hidden" name="success" value="1">
             <button class="button" type="submit" name="confirm_payment">Betaal</button>
         </form>

@@ -64,7 +64,9 @@ if (empty($checkoutOrder) && !isset($_GET["error"])) {
 			</div>
 		</div>
 		<input type="hidden" id="hidden-checkout-total" name="total" value="">
-		<button type="submit" class="button">Ga verder naar betalen</button>
+		<div class="flex justify-center">
+			<button type="submit" class="button">Ga verder naar betalen</button>
+		</div>
 	</form>
 
 </section>
