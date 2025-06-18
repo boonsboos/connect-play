@@ -93,7 +93,7 @@ body {
 }
 
 .dashboardButton:hover {
-	border: 1px solid var(--primary)
+	border: 1px solid var(--primary);
 }
 
 .emptyField {
@@ -136,7 +136,6 @@ body {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr); /* Verdeel in drie kolommen */
 }
-
 
 /* Header */
 header {
@@ -306,10 +305,10 @@ ul {
 }
 
 #dienstDetails img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+	max-width: 100%;
+	height: auto;
+	display: block;
+	margin: 0 auto;
 }
 
 /* Over Ons page */
@@ -410,6 +409,15 @@ ul {
 	background-color: var(--accent);
 	color: var(--foreground);
 	padding: 10px 15px;
+}
+
+#checkout-container .button {
+	width: fit-content;
+	cursor: pointer;
+}
+
+#checkout-container .button:hover {
+	background-color: var(--primary);
 }
 
 #profile-container .button.active {
@@ -687,10 +695,13 @@ i.trash {
 	display: block;
 	text-align: center;
 	margin-top: 0.5rem;
+	padding: 0.5rem 1rem;
 	color: var(--foreground);
 	background-color: var(--accent);
 	text-decoration: none;
+	border: none;
 	border-radius: 5px;
+	font-size: medium;
 }
 
 .cart-icon-image {

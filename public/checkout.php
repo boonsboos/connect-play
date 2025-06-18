@@ -14,13 +14,13 @@ if (empty($checkoutOrder) && !isset($_GET["error"])) {
 
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
 
-<section id="checkout-container" class="col-12 mb-col-12 justify-center flex">
+<section id="checkout-container" class="col-12 mb-col-12 justify-center flex py-30">
 	<form action="/payment.php" method="post" class="checkout-box flex flex-col col-4">
-		<div class="box order-box">
+		<div class="box order-box p-15">
 			<h2>Bestelling van: <?php echo htmlspecialchars($checkoutOrder["username"]); ?> </h2>
 			<h3>Ordernummer: #<?php echo htmlspecialchars($checkoutOrder["orderId"]); ?> </h3>
 		</div>
-		<div class="box checkout-entry-box flex flex-col gap-2">
+		<div class="box checkout-entry-box flex flex-col gap-2 p-15">
 			<h3>Artikelen</h3>
 			<?php if (!isset($_GET["error"])): ?>
 				<div>
@@ -39,14 +39,14 @@ if (empty($checkoutOrder) && !isset($_GET["error"])) {
 				<p class="error-message" style="display: block;"><?= htmlspecialchars($_GET["error"]) ?></p>
 			<?php endif; ?>
 		</div>
-		<div class="box address-box">
+		<div class="box address-box p-15">
 			<h3>Afleveradres</h3>
 			<?php if ($checkoutOrder["address"]): ?>
 				<p><?= htmlspecialchars($checkoutOrder["address"]->getStreetName()); ?> <?= htmlspecialchars($checkoutOrder["address"]->getHouseNumber()); ?></p>
 				<p><?= htmlspecialchars($checkoutOrder["address"]->getPostalCode()); ?> <?= htmlspecialchars($checkoutOrder["address"]->getCity()); ?></p>
 			<?php endif; ?>
 		</div>
-		<div class="box bank-button">
+		<div class="box bank-button p-15">
 			<h3>Kies uw bank</h3>
 			<div class="flex flex-col">
 				<div>
@@ -64,7 +64,9 @@ if (empty($checkoutOrder) && !isset($_GET["error"])) {
 			</div>
 		</div>
 		<input type="hidden" id="hidden-checkout-total" name="total" value="">
-		<button type="submit" class="button">Ga verder naar betalen</button>
+		<div class="flex justify-center">
+			<button type="submit" class="button">Ga verder naar betalen</button>
+		</div>
 	</form>
 
 </section>
