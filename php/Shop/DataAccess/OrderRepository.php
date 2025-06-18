@@ -185,6 +185,7 @@ class OrderRepository
                     (string)$game['description'],
                     (string)$game['difficulty'],
                     (int)$game['left_in_stock'],
+                    (string)$game['image_url'],
                     (int)$game['game_id']
                 ),
                 (int)$row['amount'],

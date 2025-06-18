@@ -11,7 +11,7 @@ class Order
         private int $userId,
         private string $date,
         private OrderStatus $status,
-        private ?string $comment,
+        private ?string $comment = null,
         private float $total = 0.0,
         private array $entries = [],
         private ?int $orderNumber = null
