@@ -89,8 +89,64 @@ return [
         "login" => "Inloggen",
         "register" => "Registreren",
     ],
+    "register" => [
+        "email" => "E-mail",
+        "repeat_email" => "Herhaal E-mail",
+        "password" => "Wachtwoord",
+        "repeat_password" => "Herhaal wachtwoord",
+        "firstname" => "Voornaam",
+        "infix" => "Tussenvoegsel",
+        "lastname" => "Achternaam",
+        "streetname" => "Straatnaam",
+        "postalcode" => "Postcode",
+        "housenumber" => "Huisnummer",
+        "city" => "Woonplaats",
+        "submit" => "Registreren",
+        "success" => "Je bent succesvol geregistreerd! Je kunt nu inloggen.",
+    ],
     "forgot_password" => [
         "email" => "E-mail",
         "submit" => "Verstuur"
     ],
+    "dashboard" => [
+        "products" => [
+            "workshop" => [
+                "add" => "Workshop toevoegen",
+                "edit" => "Workshop bewerken",
+            ],
+            "game" => [
+                "add" => "Game toevoegen",
+                "search" => "Game zoeken",
+            ],
+            "name" => "Producten"
+        ],
+        "orders" => [
+            "name" => "Bestellingen",
+        ],
+        "servicedesk" => [
+            "name" => "ServiceDesk"
+        ],
+        "searches" => [
+            "name" => "Niet Gevonden Artikelen"
+        ],
+        "datahub" => [
+            "name" => "DataHub",
+            "description" => "Upload een .csv-bestand om de prijslijst bij te werken."
+        ]
+    ],
+    "webshop" => [
+        "search" => [
+            "label" => "Zoeken",
+            "placeholder" => "Jouw spel"
+        ],
+        "maxplayers" => "Max. Spelers",
+        "minplayers" => "Min. Spelers",
+        "filter" => [
+            "button" => "Filteren",
+            "heading" => "Filters"
+        ],
+        "notfound" => "We hebben het product dat je zoekt niet kunnen vinden... :(",
+        "previous" => "Vorige",
+        "next" => "Volgende",
+    ]
 ];

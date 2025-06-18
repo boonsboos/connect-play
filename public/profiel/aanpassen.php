@@ -24,20 +24,24 @@ if (isset($user)): ?>
     <section id="profile-container" class="flex justify-center py-15">
         <div class="col-12 flex align-center flex-col">
             <h1 class="heading text-center">Profiel - Aanpassen</h1>
-            <div class="flex gap-20 flex-row align-center">
+            <div class="flex flex-row align-center">
                 <a href="/profiel.php" class="button">Mijn profiel</a>
                 <a href="/profiel/bestellingen.php" class="button">Bestellingen</a>
                 <a href="/profiel/aanpassen.php" class="button active">Profiel aanpassen</a>
             </div>
             <div id="error-box" class="mb-col-12 col-12 flex justify-center pt-10" <?php echo $error ? '' : 'style="display: none;"'; ?>>
-                <p class="error-message text-center p-10" <?php echo $error ? 'style="display: block;"' : 'style="display: none;"'; ?>><?php echo $error ?></p>
+                <p class="error-message text-center" <?php echo $error ? 'style="display: block;"' : 'style="display: none;"'; ?>><?php echo $error ?></p>
             </div>
             <div id="success-box" class="mb-col-12 col-12 flex justify-center pt-10" <?php echo $success ? '' : 'style="display: none;"'; ?>>
-                <p class="success-message text-center p-10" <?php echo $success ? 'style="display: block;"' : 'style="display: none;"'; ?>><?php echo $success ?></p>
+                <p class="success-message text-center" <?php echo $success ? 'style="display: block;"' : 'style="display: none;"'; ?>><?php echo $success ?></p>
             </div>
+        </div>
+    </section>
+    <section id="profile-container" class="flex justify-center px-15">
+        <div class="col-12 flex align-center flex-col">
             <form action="/profiel/aanpassen.php" method="post">
-                <div class="col-12 flex flex-row gap-20">
-                    <div class="col-6 flex flex-col">
+                <div class="col-12 flex flex-row">
+                    <div class="col-6 mb-col-12 flex flex-col">
                         <h2 class="text-center">Info</h2>
                         <input type="hidden" name="userId" value="<?php echo $user->getId() ?>">
                         <div>
@@ -57,7 +61,7 @@ if (isset($user)): ?>
                             <input type="password" id="password-repeat" name="password-repeat" class="input">
                         </div>
                     </div>
-                    <div class="col-6 flex flex-col">
+                    <div class="col-6 mb-col-12 flex flex-col">
                         <h2 class="text-center">Adres</h2>
                         <div>
                             <label for="postal-code">Postcode:</label>
@@ -76,7 +80,9 @@ if (isset($user)): ?>
                             <input type="text" id="city" name="city" value="<?php echo count($user->getAddresses()) > 0 ? htmlspecialchars($user->getAddresses()[0]->getCity()) : "" ?>" class="input" required>
                         </div>
                     </div>
-                    <button type="submit" class="button">Opslaan</button>
+                    <div class="py-15">
+                        <button type="submit" class="button">Opslaan</button>
+                    </div>
                 </div>
             </form>
         </div>

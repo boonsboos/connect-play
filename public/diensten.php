@@ -7,10 +7,10 @@
 				<?= __('services.title'); ?>
 			</h1>
 			<p class="text-center pb-10 col-12 px-10">
-				<?= __('services.text'); ?>	
+				<?= __('services.text'); ?>
 			</p>
 			<div class="pt-10">
-				<a class="button p-10" href="contact.html">
+				<a class="button p-10" href="contact.php">
 					<?= __('services.cta'); ?>
 				</a>
 			</div>

@@ -10,7 +10,6 @@ if (empty($checkoutOrder) && !isset($_GET["error"])) {
 	header("Location: /checkout.php?error=" . urlencode("Geen artikelen gevonden"), true, 308);
 	die();
 }
-// debug($checkoutOrder);
 ?>
 
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />

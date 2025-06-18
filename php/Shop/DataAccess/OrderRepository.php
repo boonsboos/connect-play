@@ -35,15 +35,14 @@ class OrderRepository
              * -- Status => 'PENDING'           --
              * -----------------------------------
              */
-            $stmtOrder ->execute([':userId' => $userId]);
+            $stmtOrder->execute([':userId' => $userId]);
 
             // 2. Haalt het orderNumber op
-            $orderId = $stmtOrder ->fetchColumn();
+            $orderId = $stmtOrder->fetchColumn();
             $order->setOrderNumber((int)$orderId);
-            
-             // 3. sluit de cursor van de procedure voordat een nieuwe query begint
-            $stmtOrder ->closeCursor();
-            
+
+            // 3. sluit de cursor van de procedure voordat een nieuwe query begint
+            $stmtOrder->closeCursor();
         } catch (PDOException $e) {
             if ($e->getCode() === '23000') { // Code 23000 betekent "Integrity constraint violation". je probeert iets toe te voegen dat de db verbied, zoals dubbele orders
                 throw new Exception("Ordernummer bestaat al!");  // hier maak je een Exception voor ALLEEN de foutcode 23000 zo worden andere foutmeldingen niet stilgezet
@@ -53,13 +52,13 @@ class OrderRepository
     }
 
     public function getOrderForUser($userId): ?Order // return type betekend order of een null
-    {   
+    {
         // haal alle orders op die gekoppeld zijn aan de gebruiker
         $allOrders = $this->getOrdersByUser($userId);
 
         // we willen alleen maar de order die op pending staat terug geven zodat deze afgehandeld kan worden
-        foreach($allOrders AS $order) {
-            if($order->getStatus() === OrderStatus::Pending) {
+        foreach ($allOrders as $order) {
+            if ($order->getStatus() === OrderStatus::Pending) {
                 return $order;
             }
         }
@@ -94,7 +93,7 @@ class OrderRepository
     public function deleteCartEntry(int $orderNumber, int $gameId): void
     {
         $stmtCartEntry = $this->db->prepare("CALL delete_cart_entry(:orderNumber, :gameId)");
-        
+
         $stmtCartEntry->execute([
             ':orderNumber' => $orderNumber,
             ':gameId' => $gameId
@@ -132,7 +131,6 @@ class OrderRepository
         $stmt->execute([
             ':userId' => $userId
         ]);
-
         $orders = [];
         while ($row = $stmt->fetch()) {
             $orders[] = new Order(
@@ -160,7 +158,7 @@ class OrderRepository
         $query = "CALL get_cart_entries_by_order(:orderId)";
         $stmt = $this->db->prepare($query);
         $stmt->execute([':orderId' => $orderId]);
-        
+
         $cartEntries = [];
         $rows = $stmt->fetchAll();
         $stmt->closeCursor();
@@ -211,7 +209,7 @@ class OrderRepository
                 $row['user_id'],
                 $row['date'],
                 OrderStatus::from($row['status']),
-                $row['comment'],
+                $row['comment'] ?? '',
                 $row['total'] = 0.0,
                 $row['entries'] = [],
                 $row['order_number']

@@ -3,7 +3,7 @@
     <div id="footer-container" class="flex justify-center pb-15">
         <div id="footer-sections" class="col-9 flex text-center">
             <div class="contact-ons-footer mb-col-12 col-4">
-                <a href="contact.html">
+                <a href="contact.php">
                     <h3 id="contact" class="pb-10"><?= __('footer.contact') ?></h3>
                 </a>
                 <ul>
@@ -16,7 +16,7 @@
                 </ul>
             </div>
             <div class="over-ons-footer mb-col-12 col-4">
-                <a href="over-ons.html">
+                <a href="over-ons.php">
                     <h3 id="over-ons" class="pb-10"><?= __('footer.about') ?></h3>
                 </a>
                 <ul>
@@ -31,7 +31,7 @@
             <div class="maak-afspraak-footer mb-offset-3 mb-col-4 col-4">
                 <h3 class="pb-15"><?= __('footer.appointment.title') ?></h3>
                 <div class="flex justify-center">
-                    <a href="contact.html" class="button col-6"><?= __('footer.appointment.cta') ?></a>
+                    <a href="contact.php" class="button col-6"><?= __('footer.appointment.cta') ?></a>
                 </div>
             </div>
         </div>
