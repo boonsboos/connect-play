@@ -1076,10 +1076,6 @@ i.trash {
 	}
 
 	.results-grid {
-		grid-template-columns: repeat(1, 1fr); /* Toon 1 kaart per rij op mobiele apparaten */
-	}
-}
-	.results-grid {
 		grid-template-columns: repeat(2, 1fr);
 		height: auto; /* Toon 2 kaarten naast elkaar op tablets */
 	}
