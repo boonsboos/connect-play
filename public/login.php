@@ -21,38 +21,38 @@ if (isset($_GET['error'])) {
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
 
 <section id="login-container" class="flex justify-center">
-	<form id="form-box" class="mb-col-12 col-6 flex justify-center" method="post">
+	<form id="form-box" class="mb-col-12 col-10 flex justify-center" method="post">
 		<?php if (isset($loginError)): ?>
-			<div class="mb-col-12 col-12 flex justify-center pb-30">
-				<p class="error-message text-center p-10"><?php echo $loginError ?></p>
+			<div class="mb-col-12 col-12 flex justify-center">
+				<p class="error-message text-center"><?php echo $loginError ?></p>
 			</div>
 		<?php endif; ?>
-		<div class="mb-col-12 col-12 flex justify-center pb-30">
-			<div class="mb-col-12 col-5">
+		<div class="mb-col-10 col-8 flex justify-center pb-15">
+			<div class="mb-col-12 col-8">
 				<label for="email"><?= __("login.email") ?>:</label>
 				<input id="email" class="input" type="text" name="email" placeholder="email@example.com" />
 			</div>
 		</div>
 
-		<div class="mb-col-12 col-12 flex justify-center">
-			<div class="mb-col-12 col-5">
+		<div class="mb-col-10 col-8 flex justify-center">
+			<div class="mb-col-12 col-8">
 				<label for="password"><?= __("login.password") ?>:</label>
 				<input id="password" class="input" type="password" name="password" placeholder="<?= __("login.password") ?>" />
 			</div>
 		</div>
-		<div class="mb-col-12 col-12 flex justify-center">
-			<div class="mb-col-12 col-5">
+		<div class="mb-col-10 col-8 flex justify-center">
+			<div class="mb-col-12 col-8">
 				<a href="/wachtwoord-vergeten.php"><?= __("login.forgot_password") ?></a>
 			</div>
 		</div>
 
-		<div class="mb-col-6 col-5">
-			<div class="send-message pt-30">
+		<div class="mb-col-10 col-8 flex justify-center">
+			<div class="mb-col-8 col-7 pt-30">
 				<button class="button" type="submit"><?= __("login.login") ?></button>
 			</div>
 
-			<div class="send-message pt-30">
-				<a href="registreer.php"><?= __("login.register") ?></a>
+			<div class="mb-col-8 col-7 pt-30">
+				<button class="button" type="button" onclick="window.location='/registreer.php'"><?= __("login.register") ?></button>
 			</div>
 		</div>
 	</form>
