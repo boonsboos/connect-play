@@ -27,9 +27,13 @@ document.addEventListener("DOMContentLoaded", function () {
  * en werkt ook de cart count badge bij
  */
 function updateCartDropdown() {
-	const cartEntries = JSON.parse(localStorage.getItem("cartEntries") || "[]") // Haalt winkelwagenitems op
+	const cartEntries = JSON.parse(
+		localStorage.getItem(`cartEntries_${userId}`) || "[]"
+	) // Haalt winkelwagenitems op
+
 	const cartItemsList = document.getElementById("cart-items")
 	const cartCount = document.getElementById("cart-count")
+	const checkoutButton = document.getElementById("checkout-button")
 
 	cartItemsList.innerHTML = "" // Maakt de lijst eerst leeg
 
@@ -37,6 +41,7 @@ function updateCartDropdown() {
 	if (cartEntries.length === 0) {
 		// Als de winkelwagen leeg is, toon dit
 		cartItemsList.innerHTML = "<li>Je winkelwagen is leeg.</li>"
+		checkoutButton.style.display = "none" // toon de afreken button
 	} else {
 		// Voor elke item in de winkelwagen, voeg een <li> toe
 		cartEntries.forEach((entry) => {
@@ -65,6 +70,7 @@ function updateCartDropdown() {
 				</div>
 			`
 			cartItemsList.appendChild(li) // Voegt het <li> element toe als child aan de bestaande DOM-element
+			checkoutButton.style.display = "block" // hidden de afreken button
 		})
 
 		// Voegt event listeners toe aan de verwijderknoppen en de toevoegenknoppen
@@ -99,7 +105,9 @@ function updateCartDropdown() {
  */
 function removeItemFromCart(gameId) {
 	gameId = parseInt(gameId, 10) // Zorgt dat gameId een integer is
-	const cartEntries = JSON.parse(localStorage.getItem("cartEntries") || "[]")
+	const cartEntries = JSON.parse(
+		localStorage.getItem(`cartEntries_${userId}`) || "[]"
+	)
 
 	// Zoekt index van de entry met dit gameId
 	const entryIndex = cartEntries.findIndex(
@@ -118,7 +126,15 @@ function removeItemFromCart(gameId) {
 	}
 
 	// Sla bijgewerkte winkelwagen op
-	localStorage.setItem("cartEntries", JSON.stringify(cartEntries))
+	if (cartEntries.length === 0) {
+		localStorage.removeItem(`cartEntries_${userId}`)
+		localStorage.removeItem(`currentOrder`)
+	} else {
+		localStorage.setItem(
+			`cartEntries_${userId}`,
+			JSON.stringify(cartEntries)
+		)
+	}
 
 	// Update het dropdown-menu
 	updateCartDropdown()
@@ -129,7 +145,9 @@ function removeItemFromCart(gameId) {
  */
 function addItemToCart(gameId) {
 	gameId = parseInt(gameId, 10) // Zorgt dat gameId een integer is
-	const cartEntries = JSON.parse(localStorage.getItem("cartEntries") || "[]")
+	const cartEntries = JSON.parse(
+		localStorage.getItem(`cartEntries_${userId}`) || "[]"
+	)
 
 	// Zoekt index van de entry met dit gameId
 	const entryIndex = cartEntries.findIndex(
@@ -143,7 +161,7 @@ function addItemToCart(gameId) {
 	cartEntries[entryIndex].amount++
 
 	// Sla bijgewerkte winkelwagen op
-	localStorage.setItem("cartEntries", JSON.stringify(cartEntries))
+	localStorage.setItem(`cartEntries_${userId}`, JSON.stringify(cartEntries))
 
 	// Update het dropdown-menu
 	updateCartDropdown()

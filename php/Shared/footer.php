@@ -42,6 +42,9 @@
         </p>
     </div>
 </footer>
+<script>
+    const userId = <?= json_encode($userId) ?>;
+</script>
 <script src="/js/shoppingCart.js"></script>
 <script src="/js/checkout.js"></script>
 </body>

@@ -33,7 +33,6 @@ function __($key): string // verkorte versie voor de vertaal functie
     return $language->translate($key); // vertaal de sleutel naar de huidige taal
 }
 
-
 // check of userId in de sessie zit
 if (isset($_SESSION["userId"])) {
     $userId = $_SESSION["userId"];
@@ -46,6 +45,8 @@ if (isset($_SESSION["userId"])) {
         header("Location: /login.php", true, 303);
         die();
     }
+} else {
+    $userId = 0;
 }
 
 ?>

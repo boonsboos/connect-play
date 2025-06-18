@@ -11,7 +11,7 @@ class Order
         private int $userId,
         private string $date,
         private OrderStatus $status,
-        private string $comment = '',
+        private ?string $comment,
         private float $total = 0.0,
         private array $entries = [],
         private ?int $orderNumber = null
@@ -47,6 +47,7 @@ class Order
         return $this->total;
     }
 
+    // dit is de id van order
     public function setOrderNumber(int $orderNumber): void
     {
         $this->orderNumber = $orderNumber;

@@ -1,6 +1,8 @@
 <?php
-
-require_once '../php/Shop/Controllers/CheckoutController.php';
+/*
+    checkout-action.php is de tussenpersoon tussen JS en PHP
+*/
+require_once '../php/Shop/Controllers/shoppingCartController.php';
 
 if (!isset($_SESSION)) {
     session_start();
@@ -11,5 +13,5 @@ if (!isset($_SESSION['userId'])) {
     return;
 }
 
-$checkoutController = new CheckoutController();
-$checkoutController->dispatch();
+$ShoppingCartController = new ShoppingCartController();
+$ShoppingCartController->dispatch();
