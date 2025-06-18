@@ -927,7 +927,7 @@ i.trash {
 	background: var(--background);
 	overflow: hidden;
 	position: relative;
-	min-height:calc(100vh - 290px);
+	min-height:calc(100vh - 288px);
 }
 
 .search-sidebar {
@@ -1394,6 +1394,14 @@ i.trash {
 			1fr
 		); /* Toon 2 kaarten naast elkaar op tablets */
 	}
+
+		.results-grid {
+		grid-template-columns: repeat(
+			2,
+			1fr
+		);
+		height: auto; /* Toon 2 kaarten naast elkaar op tablets */
+	}
 }
 
 @media (max-width: 480px) {
@@ -1486,6 +1494,6 @@ i.trash {
 	.form-left input:focus,
 	.form-left textarea:focus,
 	.form-left select:focus {
-		box-shadow: var(--accent) 0px 0px 10px;
+		box-shadow: var(--highlight) 0px 0px 10px;
 	}
 }

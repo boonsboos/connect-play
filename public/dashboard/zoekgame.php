@@ -21,7 +21,7 @@ try {
 
 <div class="mb-col-12 search-layout flex justify-center PT-50 PB-30">
   <!-- ZOEKEN LINKS -->
-  <aside class="search-sidebar col-2 mb-col-12 flex-column">
+  <aside class="search-sidebar col-2 mb-col-12">
     <h2>Zoek een game</h2>
     <form method="get" action="">
       <input type="text" name="q" value="<?= htmlspecialchars($results) ?>" 
