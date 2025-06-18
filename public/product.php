@@ -22,29 +22,32 @@ if (!$game instanceof Game) {
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
 <div class="container flex justify-center">
 
-	<div class="container flex justify-center py-30">
+	<div class="container flex justify-center p-15">
 		<div class="col-10 flex flex-row">
-			<div class="col-6 flex flex-col align-center pl-30">
+			<h2 class="pb-10"><?= $game->getName(); ?></h2>
+		</div>
+		<div class="col-10 flex flex-row">
+			<div class="col-6 flex flex-col align-center">
 				<img src="images/dienst_3.jpg" class="product-img" alt="Product afbeelding" />
-
 			</div>
 
 			<!-- Rechterkant: Details + prijs + button -->
-			<div class="col-6 flex flex-col px-15">
-				<h3 class="pb-10"><?= $game->getName(); ?></h3>
+			<div class="col-6 flex flex-col">
+				<h3>Productbeschrijving</h3>
+
 				<p class="pb-15">
 					<?= $game->getDescription(); ?>
 				</p>
 
 				<!-- De functie number_format() vervangd de punt naar een komma  -->
-				<div class="flex flex-row align-center pb-15">
-					<h4>€ <?= number_format($game->getPrice(), 2, ',', ''); ?></h4>
+				<div class="flex flex-row">
+					<h4 class="product-price">€ <?= number_format($game->getPrice(), 2, ',', ''); ?></h4>
 					<button id="add-to-cart" onclick="handleAddToCart(<?= $game->getId(); ?>)" class="button px-10" style="width: auto;">Toevoegen</button>
 				</div>
 
-				<div class="flex py-10">
-					<p>Score:</p>
-					<span style="color: gold;">★ ★ ★ ★ ☆</span>
+				<div class="flex py-15">
+					<h4>Score:</h4>
+					<span class="product-score">★ ★ ★ ★ ☆</span>
 				</div>
 
 				<!-- Specificaties tabel -->

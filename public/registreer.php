@@ -42,77 +42,75 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 
 <section id="register-container" class="flex justify-center">
     <form id="form-box" class="mb-col-12 col-6 flex justify-center" method="post">
+
         <div id="error-box" class="mb-col-12 col-12 error-message"></div>
         <div id="success-box" class="mb-col-12 col-12 success-message" style="display: <?php echo $successKey ? 'block' : 'none'; ?>;"><?= __($successKey); ?></div>
 
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-9 col-8">
-                <label><?= __('register.firstname'); ?></label>
-                <input type="text" class="input" name="firstname" value="" required />
+        <div class="mb-col-10 col-8 flex justify-center">
+            <div class="mb-col-12 col-12">
+                <label for="firstname"><?= __('register.firstname'); ?></label>
+                <input type="text" class="input" name="firstname" required />
             </div>
 
-            <div class="mb-col-3 col-2">
-                <label><?= __('register.infix'); ?></label>
-                <input type="text" class="input" name="infix" value="" />
+            <div class="mb-col-12 col-12">
+                <label for="infix"><?= __('register.infix'); ?></label>
+                <input type="text" class="input" name="infix" />
             </div>
-        </div>
 
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-12 col-9">
-                <label><?= __('register.lastname'); ?></label>
-                <input type="text" class="input" name="lastname" value="" required />
+            <div class="mb-col-12 col-12">
+                <label for="lastname"><?= __('register.lastname'); ?></label>
+                <input type="text" class="input" name="lastname" required />
             </div>
         </div>
 
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-12 col-5">
-                <label for="email"><?= __('register.email'); ?>:</label>
+        <div class="mb-col-10 col-8 flex justify-center py-15">
+            <div class="mb-col-12 col-12">
+                <label for="email"><?= __('register.email'); ?></label>
                 <input class="input" type="email" name="email" placeholder="email@example.com" />
             </div>
 
-            <div class="mb-col-12 col-5">
-                <label><?= __('register.repeat_email'); ?>:</label>
-                <input type="email" class="input" name="repeat_email" value="" required />
-            </div>
-        </div>
+            <div class="mb-col-12 col-12">
+                <label for="repeat_email"><?= __('register.repeat_email'); ?></label>
+                <input type="email" class="input" name="repeat_email" required />
 
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-12 col-5">
-                <label><?= __('register.password'); ?>:</label>
+            </div>
+
+            <div class="mb-col-12 col-12">
+                <label for="password"><?= __('register.password'); ?></label>
                 <input type="password" class="input" name="password" required />
             </div>
 
-            <div class="mb-col-12 col-5">
-                <label><?= __('register.repeat_password'); ?>:</label>
+            <div class="mb-col-12 col-12">
+                <label for="repeat_password"><?= __('register.repeat_password'); ?></label>
+
                 <input type="password" class="input" name="repeat_password" required />
             </div>
         </div>
 
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-12 col-9">
-                <label><?= __('register.streetname'); ?>:</label>
+        <div class="mb-col-10 col-8 flex justify-center">
+            <div class="mb-col-12 col-12">
+                <label for="streetname"><?= __('register.streetname'); ?></label>
                 <input type="text" class="input" name="streetname" required />
             </div>
-        </div>
 
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-5 col-2">
-                <label><?= __('register.postalcode'); ?>:</label>
-                <input type="text" class="input" name="postalcode" placeholder="1234AB" value="" required />
+            <div class="mb-col-12 col-12">
+                <label for="postalcode"><?= __('register.postalcode'); ?></label>
+                <input type="text" class="input" name="postalcode" placeholder="1234AB" required />
             </div>
 
-            <div class="mb-col-5 col-2">
-                <label><?= __('register.housenumber'); ?>:</label>
-                <input type="text" class="input" name="housenumber" value="" required />
+            <div class="mb-col-12 col-12">
+                <label for="housenumber"><?= __('register.housenumber'); ?></label>
+                <input type="text" class="input" name="housenumber" required />
             </div>
 
-            <div class="mb-col-12 col-6">
-                <label><?= __('register.city'); ?>:</label>
-                <input type="text" class="input" name="city" value="" required />
+            <div class="mb-col-12 col-12">
+                <label for="city"><?= __('register.city'); ?></label>
+                <input type="text" class="input" name="city" required />
             </div>
         </div>
-        <div class="mb-col-12 col-12 flex justify-center pb-30">
-            <div class="mb-col-6 col-6">
+
+        <div class="mb-col-10 col-8 flex justify-center pt-15">
+            <div class="mb-col-8 col-8">
                 <button class="button" type="submit"><?= __('register.submit'); ?></button>
             </div>
         </div>

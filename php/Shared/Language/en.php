@@ -146,9 +146,6 @@ return [
             "heading" => "Filters"
         ],
         "notfound" => "We couldn't find the product you're looking for... :(",
-        "price" => "Price",
-        "players" => "players",
-        "description" => "description",
         "previous" => "Previous",
         "next" => "Next",
     ]
