@@ -55,11 +55,13 @@ $controller->fetchGames();
 			<?php foreach ($controller->getGames() as $game): ?>
 				<div class="game-card p-15" onclick="window.location='/product.php?id=<?= $game->getId() ?>'">
 					<!-- Weergave van een individuele game-kaart -->
-					<img src="<?= htmlspecialchars($game->getImageUrl()) ?>" alt="Afbeelding<?= htmlspecialchars($game->getName()) ?>" class="game-card-image">
-					<h3 class="text-center"><?= htmlspecialchars($game->getName()); ?></h3>
-					<hr/>
-					<p><?= htmlspecialchars($game->getDescription()); ?></p>
-					<p>€<?= htmlspecialchars($game->getPrice()); ?></p>
+					<div class="flex align-center">
+						<img src="<?= htmlspecialchars(empty($game->getImageUrl()) ? 'https://firstbenefits.org/wp-content/uploads/2017/10/placeholder-1024x1024.png' : $game->getImageUrl()) ?>" alt="Afbeelding <?= htmlspecialchars($game->getName()) ?>" class="game-card-image pb-10">
+						<h3 class="text-center"><?= htmlspecialchars($game->getName()); ?></h3>
+					</div>
+					<hr />
+					<p class="py-10"><?= htmlspecialchars($game->getDescription()); ?></p>
+					<p>€ <?= htmlspecialchars(number_format($game->getPrice(), 2, ',', '.')); ?></p>
 				</div>
 			<?php endforeach; ?>
 		</div>

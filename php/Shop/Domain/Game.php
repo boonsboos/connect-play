@@ -11,7 +11,7 @@ class Game
         private string $description,
         private string $difficulty,
         private int $leftInStock,
-        private ?string $imageUrl = "",
+        private string $imageUrl = '',
         // optioneel, wordt pas gebruikt na aanmaken game
         // een optionele variabele zet je altijd als laatste (sinds php 8.0)
         private ?int $id = null 
@@ -62,7 +62,7 @@ class Game
         return $this->imageUrl;
     }
 
-    public function setImageUrl(string $url = "")
+    public function setImageUrl(string $url = '')
     {
         // geeft de image url aan het game object nadat deze is opgeslagen in de database
         $this->imageUrl = $url;
