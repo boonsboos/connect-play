@@ -41,7 +41,7 @@ if (!$game instanceof Game) {
 
 				<!-- De functie number_format() vervangd de punt naar een komma  -->
 				<div class="flex flex-row align-center pb-15">
-					<h4 class="product-price">€ <?= number_format($game->getPrice(), 2, ',', ''); ?></h4>
+					<h4 class="product-price">€ <?= number_format($game->getPrice(), 2, ',', ''); ?> <small>excl. BTW</small></h4>
 					<button id="add-to-cart" onclick="addGameToCart(<?= $game->getId() ?>)" class="button px-10" style="width: auto;">Toevoegen</button>
 				</div>
 
