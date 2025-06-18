@@ -484,7 +484,7 @@ CREATE PROCEDURE `update_game` (IN `p_game_id` INT, IN `p_price` DECIMAL(10,2), 
         `name` = COALESCE(p_name, `name`),
         `description` = COALESCE(p_description, `description`),
         `difficulty` = COALESCE(p_difficulty, `difficulty`), 
-        `left_in_stock` = COALESCE(p_left_in_stock, `left_in_stock`)
+        `left_in_stock` = COALESCE(p_left_in_stock, `left_in_stock`),
         `image_url` = p_image_url
     WHERE 
         `game_id` = p_game_id;
