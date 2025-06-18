@@ -29,10 +29,11 @@ class UserRepository
             ':postal_code' => $address->getPostalCode(),
             ':house_number' => $address->getHouseNumber(),
         ]);
-        $addressStmt->closeCursor();
 
+        $existingAddress = $addressStmt->fetch();
+        $addressStmt->closeCursor();
         // 2. Als address nog niet bestaat voeg toe
-        if (!$addressStmt->fetch()) {
+        if (!$existingAddress) {
             $StmtAddress = $this->db->prepare("CALL add_address(:postal_code, :house_number, :street_name, :city)");
             $StmtAddress->execute([
                 ':postal_code' => $address->getPostalCode(),
@@ -41,15 +42,6 @@ class UserRepository
                 ':city' => $address->getCity()
             ]);
             $StmtAddress->closeCursor();
-        } else {
-            $addressStmt = $this->db->prepare("CALL update_address(:postal_code, :house_number, :street_name, :city);");
-            $addressStmt->execute([
-                ':postal_code' => $address->getPostalCode(),
-                ':house_number' => $address->getHouseNumber(),
-                ':street_name' => $address->getStreetName(),
-                ':city' => $address->getCity(),
-            ]);
-            $addressStmt->closeCursor();
         }
 
         // 3. Voeg gebruiker toe
@@ -68,10 +60,10 @@ class UserRepository
     /**
      * @throws Exception
      */
-    public function getUser($emailOrId): User
+    public function getUser($emailOrId): ?User
     {
         if (!$emailOrId) {
-            throw new Exception("Email of Id niet meegegeven");
+            return null;
         }
 
         $sql = $this->db->prepare("CALL get_user(:id, :email);");
@@ -81,7 +73,7 @@ class UserRepository
         ]);
         $user = $sql->fetch();
         if (!$user) {
-            throw new Exception("Gebruiker niet gevonden."); // gooit een error als de gebruiker niet gevonden is
+            return null; // gooit een error als de gebruiker niet gevonden is
         }
 
         $sql = $this->db->prepare("CALL get_address(:postal_code, :house_number);");

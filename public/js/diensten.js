@@ -58,9 +58,32 @@ function createDienstElement(dienst) {
         <div class="flex px-15 pb-10">
 			<h2>${dienst.title}</h2>
         	<p>${dienst.description}</p>
-        	<button class="button">Bekijk</button>
+        	<button class="button" onclick="location.href='dienst.php?id=${dienst.id}'">Bekijk</button>
 		</div>
     `
 	// return the dienst element
 	return dienstElement
+}
+
+function dienstDetails() {
+	// Haal de id uit de querystring
+	const params = new URLSearchParams(window.location.search)
+	const id = parseInt(params.get("id"))
+
+	// Zoek de juiste dienst
+	const dienst = diensten.find(d => d.id === id)
+
+	// Toon inhoud
+	const dienstDetails = document.getElementById("dienstDetails")
+	if (dienst) {
+		dienstDetails.innerHTML = `
+			<h1 class="text-center">${dienst.title}</h1>
+			<div class="flex justify-center col-12 mb-col-12">
+				<img src="${dienst.image}" alt="${dienst.title}" />
+			</div>
+			<p class="pb-30">${dienst.description}</p>
+		`
+	} else {
+		dienstDetails.innerHTML = "<p>Dienst niet gevonden.</p>"
+	}
 }

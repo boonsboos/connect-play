@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form');
     const errorBox = document.getElementById('error-box');
+    const errorMessage = this.getElementsByClassName('error-message')[0];
 
     form.addEventListener('submit', function (e) {
         const name = document.querySelector('[name="name"]').value.trim();
@@ -40,8 +41,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (errors.length > 0) {
             console.log(errors);
             e.preventDefault();
-            errorBox.getElementsByClassName('error-message')[0].innerText = errors.join("\n");
-            errorBox.style.display = 'flex';
+            errorMessage.innerText = errors.join("\n");
+            errorBox.style.display = 'block';
+            errorMessage.style.display = 'block';
         }
     });
 });

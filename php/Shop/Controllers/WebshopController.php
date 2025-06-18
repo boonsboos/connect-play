@@ -61,7 +61,7 @@ class WebshopController {
         if ($amountOfGames > 0) {
             $this->gamesPerPage = $amountOfGames;
         } else {
-            $this->gamesPerPage = 6;
+            $this->gamesPerPage = 12;
         }
 
         // Sla de games voor deze pagina op

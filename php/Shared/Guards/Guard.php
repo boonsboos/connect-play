@@ -14,10 +14,10 @@ abstract class Guard
      * @param string $location de pagina waar naar geredirect wordt.
      * @return void
      */
-    public function redirectIfNotAllowed(string $location = "/login.php"): void
+    public function redirectIfNotAllowed(string $location = "/login.php", int $status = 308): void
     {
         if (!$this->allowed()) {
-            header("Location: $location");
+            header("Location: $location", true, $status);
             die();
         }
     }

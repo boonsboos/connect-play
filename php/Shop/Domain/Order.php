@@ -5,14 +5,14 @@ require_once '/var/www/php/Shop/Domain/OrderStatus.php';
 
 class Order
 {
+    /** @param CartEntry[] $entries */
     // met constructor property promotion hoef je de properties niet apart te declareren bovenaan de klasse
     public function __construct(
         private int $userId,
         private string $date,
         private OrderStatus $status,
-        private string $comment = '',
+        private ?string $comment,
         private float $total = 0.0,
-        /** @var CartEntry[] */
         private array $entries = [],
         private ?int $orderNumber = null
     ) {}
@@ -47,6 +47,7 @@ class Order
         return $this->total;
     }
 
+    // dit is de id van order
     public function setOrderNumber(int $orderNumber): void
     {
         $this->orderNumber = $orderNumber;
@@ -97,7 +98,7 @@ class Order
     {
         $total = 0.0;
         foreach ($this->entries as $entry) {
-            $total += $entry->getPriceSnapshot() * $entry->getCopies();
+            $total += $entry->getPriceSnapshot() * $entry->getAmount();
         }
         return $total;
     }

@@ -1,4 +1,4 @@
-/* Copyright 2024 Connect & Play. All rights reserved. */
+/* Copyright 2025 Connect & Play. All rights reserved. */
 /* page wide settings */
 :root {
 	--foreground: #0a0a0a;
@@ -26,54 +26,6 @@ body {
 	color: var(--foreground);
 }
 
-/* text style classes */
-h1 {
-	font-size: 41px;
-	font-weight: bold;
-}
-
-h2 {
-	font-size: 33px;
-	font-weight: bold;
-}
-
-h3 {
-	font-size: 27px;
-	font-weight: bold;
-}
-
-h4 {
-	font-size: 24px;
-	font-weight: bold;
-}
-
-h5 {
-	font-size: 18px;
-	font-weight: bold;
-}
-
-p,
-a {
-	font-size: 16px;
-}
-
-.tiny-text {
-	font-size: 12px;
-}
-
-.heading {
-	font-size: 50px;
-	font-weight: 400;
-}
-
-.text-center {
-	text-align: center;
-}
-
-.text-left {
-	text-align: left;
-}
-
 #dashboardBox > div > a {
 	color: #ffffff;
 	font-weight: bold;
@@ -83,7 +35,7 @@ a {
 
 /* img style classes */
 .home-banner {
-	background-image: url("images/header.jpg");
+	background-image: url("/images/header.jpg");
 	background-size: cover;
 	width: 100%;
 	height: 500px;
@@ -120,12 +72,19 @@ a {
 	resize: none;
 }
 
+.table-head {
+	border-bottom: 1px solid var(--box-1);
+}
+
 .dashboardButton {
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 18px;
+	text-decoration: none;
 	width: 100%;
 	padding: 30px 0;
-	border: 1px solid #c3c3c3;
+	border: 1px solid var(--background);
 	border-radius: 5px;
-	box-shadow: 0 1px 1px var(--primary);
 	background: linear-gradient(
 		90deg,
 		rgba(75, 0, 110, 0.48),
@@ -134,21 +93,18 @@ a {
 }
 
 .dashboardButton:hover {
-	background: linear-gradient(
-		90deg,
-		rgba(128, 128, 128, 0.48),
-		rgba(128, 128, 128, 1)
-	);
+	border: 1px solid var(--primary)
 }
 
 .emptyField {
 	border: 2px solid #ff0000;
 }
 
+/*Error Messages*/
 .error-message {
-	background-color: #ffe5e5;
-	color: #b10000;
-	border: 1px solid #f5c2c2;
+	background-color: #202020;
+	border: 2px solid #ff0000;
+	color: #ff0000;
 	padding: 12px 16px;
 	border-radius: 8px;
 	font-weight: 500;
@@ -156,216 +112,17 @@ a {
 	display: none; /* standaard verborgen */
 }
 
-.table-head {
-	border-bottom: 1px solid var(--box-1);
-}
-
+/*Success Messages*/
 .success-message {
-	background-color: #e5ffe5;
+	background-color: #202020;
+	border: 2px solid #00b100;
 	color: #00b100;
-	border: 1px solid #c2f5c2;
 	padding: 12px 16px;
 	border-radius: 8px;
 	font-weight: 500;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 	display: none; /* standaard verborgen */
 }
-
-/* spacing and alignment classes */
-.flex {
-	display: flex;
-	flex-wrap: wrap;
-	column-gap: 1vw;
-	row-gap: 1vh;
-}
-
-.flex-nowrap {
-	flex-wrap: nowrap;
-}
-
-.flex-col {
-	flex-direction: column;
-}
-
-.flex-row {
-	flex-direction: row;
-}
-
-.flex-col-reverse {
-	flex-direction: column-reverse;
-}
-
-.flex-row-reverse {
-	flex-direction: row-reverse;
-}
-
-.justify-center {
-	justify-content: center;
-}
-
-.justify-between {
-	justify-content: space-between;
-}
-
-.align-center {
-	align-items: center;
-}
-
-/* Default padding styles for 10px paddings */
-.p-10 {
-	padding: 10px;
-}
-
-.pt-10 {
-	padding-top: 10px;
-}
-
-.pb-10 {
-	padding-bottom: 10px;
-}
-
-.pl-10 {
-	padding-left: 10px;
-}
-
-.pr-10 {
-	padding-right: 10px;
-}
-
-.py-10 {
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-.px-10 {
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-/* Default padding styles for 15px paddings */
-.p-15 {
-	padding: 15px;
-}
-
-.pt-15 {
-	padding-top: 15px;
-}
-
-.pb-15 {
-	padding-bottom: 15px;
-}
-
-.pl-15 {
-	padding-left: 15px;
-}
-
-.pr-15 {
-	padding-right: 15px;
-}
-
-.py-15 {
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
-
-.px-15 {
-	padding-left: 15px;
-	padding-right: 15px;
-}
-
-/* Default padding styles for 30px paddings */
-.p-30 {
-	padding: 30px;
-}
-
-.pt-30 {
-	padding-top: 30px;
-}
-
-.pb-30 {
-	padding-bottom: 30px;
-}
-
-.pl-30 {
-	padding-left: 30px;
-}
-
-.pr-30 {
-	padding-right: 30px;
-}
-
-.py-30 {
-	padding-top: 30px;
-	padding-bottom: 30px;
-}
-
-.px-30 {
-	padding-left: 30px;
-	padding-right: 30px;
-}
-
-/* Default padding styles for 40px paddings */
-.p-40 {
-	padding: 40px;
-}
-
-.pt-40 {
-	padding-top: 40px;
-}
-
-.pb-40 {
-	padding-bottom: 40px;
-}
-
-.pl-40 {
-	padding-left: 40px;
-}
-
-.pr-40 {
-	padding-right: 40px;
-}
-
-.py-40 {
-	padding-top: 40px;
-	padding-bottom: 40px;
-}
-
-.px-40 {
-	padding-left: 40px;
-	padding-right: 40px;
-}
-
-/* Default padding styles for 50px paddings */
-.p-50 {
-	padding: 50px;
-}
-.pt-50 {
-	padding-top: 50px;
-}
-
-.pb-50 {
-	padding-bottom: 50px;
-}
-
-.pl-50 {
-	padding-left: 50px;
-}
-
-.pr-50 {
-	padding-right: 50px;
-}
-
-.py-50 {
-	padding-top: 50px;
-	padding-bottom: 50px;
-}
-
-.px-50 {
-	padding-left: 50px;
-	padding-right: 50px;
-}
-
-/* Border radius utilities */
 
 /* border-radius: 8px */
 .br-8 {
@@ -380,17 +137,6 @@ a {
 	grid-template-columns: repeat(3, 1fr); /* Verdeel in drie kolommen */
 }
 
-/*Error Messages*/
-.error-message {
-	background-color: #202020;
-	border: 2px solid #ff0000;
-}
-
-/*Success Messages*/
-.success-message {
-	background-color: #202020;
-	border: 2px solid #00ff00;
-}
 
 /* Header */
 header {
@@ -454,7 +200,8 @@ ul {
 }
 
 .home-head-box .button,
-#service-container .button {
+#service-container .button,
+#data-hub-container .button {
 	background-color: var(--primary);
 	color: #ffffff;
 	border: none;
@@ -464,7 +211,8 @@ ul {
 }
 
 .home-head-box .button:hover,
-#service-container .button:hover {
+#service-container .button:hover,
+#data-hub-container .button:hover {
 	background-color: var(--accent);
 }
 
@@ -557,6 +305,13 @@ ul {
 	padding: 0;
 }
 
+#dienstDetails img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 /* Over Ons page */
 #over-ons-container h1 {
 	padding-top: 50px;
@@ -574,6 +329,28 @@ ul {
 .over-ons-img {
 	object-fit: cover;
 }
+/* Data Hub page */
+#data-hub-container .table {
+	width: 100%;
+	border: 1px solid var(--box-1);
+	border-spacing: 0;
+}
+#data-hub-container .table tr {
+	background-color: var(--box-1);
+	color: var(--foreground);
+}
+#data-hub-container .table th,
+#data-hub-container .table td {
+	padding: 5px;
+	text-align: center;
+	border: none;
+}
+#data-hub-container .table tbody tr:nth-child(odd) {
+	background-color: color-mix(in srgb, var(--box-1) 50%, var(--background));
+}
+#data-hub-container .button {
+	width: fit-content;
+}
 
 /* Contactpage */
 #contact-container,
@@ -589,6 +366,8 @@ ul {
 #form-box,
 #dashboardBox,
 #noSearchResultBox {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 	background-color: color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
@@ -625,7 +404,8 @@ ul {
 	background-color: var(--background);
 }
 
-#profile-container .button {
+#profile-container .button,
+#checkout-container .button {
 	width: auto;
 	background-color: var(--accent);
 	color: var(--foreground);
@@ -639,7 +419,6 @@ ul {
 #productfilter {
 	display: flex;
 	gap: 16px;
-	padding: 16px;
 }
 
 .product-accent-border {
@@ -654,16 +433,23 @@ ul {
 	border-radius: inherit; /* zo steekt de padding niet uit */
 }
 
-.game-card {
-	border: 1px solid #ddd;
+.game-card,
+#checkout-container .box {
+	border: 1px solid var(--box-2);
 	border-radius: 8px;
-	padding: 16px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .game-card:hover {
 	border-color: var(--accent);
 	transition: border-color 200ms;
+}
+
+.game-card-image {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	margin: 10px;
 }
 
 #pagination a {
@@ -727,6 +513,16 @@ ul {
 	font-weight: 500;
 }
 
+.product-score {
+	color: var(--primary);
+	font-size: 1.25rem;
+}
+
+.product-price {
+	color: var(--primary);
+	font-weight: 700;
+}
+
 /* Mislukte zoek resultaten pagina */
 #zoekTermBox {
 	color: var(--foreground);
@@ -743,7 +539,7 @@ ul {
 	font-weight: bold;
 }
 
-/* toevoegen aan winkelwagen knop */
+/* Toevoegen aan winkelwagen knop */
 #add-to-cart {
 	display: flex;
 	border: none;
@@ -866,14 +662,6 @@ i.trash {
 	flex: 1;
 	text-align: left;
 }
-
-/* duplicated styling van de .cart-icon-button?!? */
-/* .remove-item-button {
-	background: none;
-	border: none;
-	cursor: pointer;
-	padding: 0;
-} */
 
 .cart-dropdown.hidden {
 	display: none;
@@ -1037,7 +825,7 @@ i.trash {
 .edit-game-form {
   	display: flex;
   	flex-direction: column;
-  	align-items: center; 
+  	align-items: center;
   	gap: 36px;
 	margin-left: 1px;
 	margin-right: 1px;
@@ -1291,62 +1079,6 @@ i.trash {
 
 /* mobile only classes */
 @media only screen and (max-width: 768px) {
-	.mb-flex-col {
-		flex-direction: column;
-	}
-
-	.mb-col {
-		width: calc((1 / 12) * 100% - 1vw);
-	}
-
-	.mb-col-3 {
-		width: calc(25% - 1vw);
-	}
-
-	.mb-col-4 {
-		width: calc(33.33% - 1vw);
-	}
-
-	.mb-col-6 {
-		width: calc(50% - 1vw);
-	}
-
-	.mb-col-8 {
-		width: calc(66.66% - 1vw);
-	}
-
-	.mb-col-9 {
-		width: calc(75% - 1vw);
-	}
-
-	.mb-col-12 {
-		width: calc(100% - 1vw);
-	}
-
-	.mb-offset {
-		margin-left: calc((1 / 12) * 100%);
-	}
-
-	.mb-offset-3 {
-		margin-left: 33.33%;
-	}
-
-	.mb-offset-4 {
-		margin-left: 25%;
-	}
-
-	.mb-offset-6 {
-		margin-left: 50%;
-	}
-
-	.mb-offset-8 {
-		margin-left: 66.66%;
-	}
-
-	.mb-offset-9 {
-		margin-left: 75%;
-	}
-
 	.home-banner {
 		height: 300px;
 	}
@@ -1394,7 +1126,7 @@ i.trash {
 		transition: transform 0.5s ease;
 	}
 
-	.productlijst {
+	#productlijst {
 		grid-template-columns: repeat(
 			2,
 			1fr
@@ -1411,7 +1143,7 @@ i.trash {
 }
 
 @media (max-width: 480px) {
-	.productlijst {
+	#productlijst {
 		grid-template-columns: 1fr; /* Toon 1 kaart per rij op mobiele apparaten */
 	}
 }
@@ -1438,6 +1170,10 @@ i.trash {
 		color: #fff;
 	}
 
+	a:visited {
+		color: #fff;
+	}
+
 	header,
 	footer {
 		background-color: #000;
@@ -1458,7 +1194,6 @@ i.trash {
 	}
 
 	.game-card {
-		border-color: var(--box-2);
 		box-shadow: none;
 	}
 
@@ -1468,6 +1203,14 @@ i.trash {
 
 	.product-accent-border {
 		border: 1px solid var(--highlight);
+	}
+
+	.product-score {
+		color: var(--highlight);
+	}
+
+	.product-price {
+		color: var(--highlight);
 	}
 
 	.home-head-box,
@@ -1488,13 +1231,18 @@ i.trash {
 	.status-success {
 		border: 2px solid var(--highlight);
 	}
-	
-	.search-sidebar {
-		border-right-color: var(--highlight);
+
+	.lineBetweenRoles {
+		background: var(--highlight);
+		color: var(--highlight);
 	}
-	
-	.edit-game-form {
-		border: var(--highlight) 1px solid;
+
+	.dashboardButton {
+		border-color: var(--primary);
+	}
+
+	.dashboardButton:hover {
+		border: 1px solid var(--highlight);
 	}
 
 	.form-left input:focus,

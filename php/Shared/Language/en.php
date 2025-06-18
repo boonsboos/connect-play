@@ -89,8 +89,64 @@ return [
         "login" => "Login",
         "register" => "Register",
     ],
+    "register" => [
+        "email" => "Email",
+        "repeat_email" => "Repeat Email",
+        "password" => "Password",
+        "repeat_password" => "Repeat Password",
+        "firstname" => "First Name",
+        "infix" => "Infix",
+        "lastname" => "Last Name",
+        "streetname" => "Street Name",
+        "postalcode" => "Postal Code",
+        "housenumber" => "House Number",
+        "city" => "City",
+        "submit" => "Register",
+        "success" => "You have been successfully registered! You can now log in.",
+    ],
     "forgot_password" => [
         "email" => "Email",
         "submit" => "Submit"
     ],
+    "dashboard" => [
+        "products" => [
+            "workshop" => [
+                "add" => "Add workshop",
+                "edit" => "Edit workshop",
+            ],
+            "game" => [
+                "add" => "Add game",
+                "search" => "Search game",
+            ],
+            "name" => "Products"
+        ],
+        "orders" => [
+            "name" => "Orders",
+        ],
+        "servicedesk" => [
+            "name" => "ServiceDesk"
+        ],
+        "searches" => [
+            "name" => "Not found articles"
+        ],
+        "datahub" => [
+            "name" => "DataHub",
+            "description" => "Upload a .csv file to update the price list."
+        ]
+    ],
+    "webshop" => [
+        "search" => [
+            "label" => "Search",
+            "placeholder" => "Your game"
+        ],
+        "maxplayers" => "Max. players",
+        "minplayers" => "Min. players",
+        "filter" => [
+            "button" => "Filter",
+            "heading" => "Filters"
+        ],
+        "notfound" => "We couldn't find the product you're looking for... :(",
+        "previous" => "Previous",
+        "next" => "Next",
+    ]
 ];

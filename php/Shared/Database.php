@@ -36,4 +36,30 @@ class Database
         // Geef de bestaande of nieuwe verbinding terug
         return self::$connection;
     }
+
+    /**
+     * Haalt de kolomnamen van een opgegeven tabel op.
+     * Handig voor als je wilt checken 
+     * 
+     * @param string $tableName De naam van de tabel waarvan de kolommen moeten worden opgehaald.
+     * @return array Een array met de kolomnamen van de opgegeven tabel.
+     */
+    public static function getTableColumns(string $tableName): array
+    {
+        if (empty($tableName)) {
+            throw new InvalidArgumentException("Tabelnaam mag niet leeg zijn.");
+        }
+        // Zorg dat we verbonden zijn met de database
+        self::connect();
+
+        // Bereid een SQL-query voor om de kolomnamen van de opgegeven tabel op te halen
+        $stmt = self::$connection->prepare("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'webshop' AND TABLE_NAME = :tableName;");
+        $stmt->execute([
+            ':tableName' => $tableName
+        ]);
+        $columns = array_column($stmt->fetchAll(), 'COLUMN_NAME'); // Haal de kolomnamen op uit het resultaat
+        $stmt->closeCursor();
+
+        return $columns;
+    }
 }

@@ -22,16 +22,7 @@ class UserController extends Controller
              */
 
             // Controleer of gebruiker al bestaat
-            try {
-                $this->userRepository->getUser($data['email']);
-                // Als bovenstaande niet faalt, bestaat de gebruiker al
-                throw new Exception("E-mailadres is al in gebruik.");
-            } catch (Exception $e) {
-                if ($e->getMessage() !== "Gebruiker niet gevonden.") {
-                    // Als het een andere exception is dan "gebruiker niet gevonden", gooi die door
-                    throw $e;
-                }
-
+            if (!$this->userRepository->getUser($data['email'])) {
                 if (empty($data['fullName'])) throw new Exception("Naam is verplicht.");
 
                 // Controller of het een valide e-mailadres is
@@ -70,6 +61,11 @@ class UserController extends Controller
 
                 // Als alle validatie is gedaan wordt de gebruiker toegevoegd aan de database hier:
                 $this->userRepository->addUser($user);
+                header("Location: /registreer.php?success=1", true, 303);
+                die();
+            } else {
+                // Als de gebruiker al bestaat wordt er een foutmelding gegeven
+                throw new Exception("E-mailadres is al in gebruik.");
             }
         } catch (Exception $e) {
             header("Location: /registreer.php?error=" . urlencode($e->getMessage()), true, 303);

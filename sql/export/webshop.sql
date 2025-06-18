@@ -117,6 +117,9 @@ CREATE PROCEDURE `add_order` (IN `p_user_id` INT)   BEGIN
          CURRENT_DATE(),
         'PENDING'
     );
+    
+    -- om de id van de toegevoegde order te kunnen ophalen
+    SELECT LAST_INSERT_ID() AS id;
 END$$
 
 CREATE PROCEDURE `add_review` (IN `p_game_id` INT, IN `p_user_id` INT, IN `p_comment` VARCHAR(280), IN `p_score` TINYINT, IN `p_username` VARCHAR(150))   BEGIN
@@ -265,6 +268,21 @@ CREATE PROCEDURE `get_cart_entries_by_order` (IN `p_order_number` INT)   BEGIN
         `game` ON `cart_entry`.`game_id` = `game`.`game_id`
     WHERE
         `cart_entry`.`order_number` = p_order_number;
+END$$
+
+CREATE PROCEDURE `get_cart_entry_by_order_and_game` (IN `p_order_number` INT, IN `p_game_id` INT)
+BEGIN
+    SELECT
+        `cart_entry`.`order_number`,
+        `cart_entry`.`game_id`,
+        `cart_entry`.`amount`,
+        `cart_entry`.`when`,
+        `cart_entry`.`price_snapshot`
+    FROM
+        `cart_entry`
+    WHERE
+        `cart_entry`.`order_number` = p_order_number
+        AND `cart_entry`.`game_id` = p_game_id;
 END$$
 
 CREATE PROCEDURE `get_contact` (IN `p_id` INT, IN `p_email` VARCHAR(255))   BEGIN
