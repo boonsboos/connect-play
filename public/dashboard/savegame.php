@@ -1,7 +1,14 @@
 <?php
 require_once '/var/www/php/Shop/Controllers/GameController.php';
+require_once '/var/www/php/Shared/Guards/EmployeeGuard.php';
+
+$guard = new EmployeeGuard();
 
 try {
+    if (!$guard->allowed()) {
+        throw new Exception("Geen toegang!");
+    }
+
     $controller = new GameController();
     $controller->addGame();
 } catch (Exception $e) {

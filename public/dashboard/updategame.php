@@ -1,5 +1,8 @@
 <?php
 require_once '/var/www/php/Shop/Controllers/GameController.php';
+require_once '/var/www/php/Shared/Guards/EmployeeGuard.php';
+
+$guard = new EmployeeGuard();
 
 // Alleen POST toegestaan
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -7,6 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("Location: /dashboard/zoekgame.php?error=$error");
     exit;
 }
+
+$guard->redirectIfNotAllowed();
 
 try {
     // Controleer of ID is gezet en  of het een nummer is

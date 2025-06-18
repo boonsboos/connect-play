@@ -1,7 +1,10 @@
 <?php
-
-//require_once "/var/www/php/Shared/employee-only.php";
 require_once "/var/www/php/Shared/header.php";
+require_once '/var/www/php/Shared/Guards/EmployeeGuard.php';
+
+$guard = new EmployeeGuard();
+$guard->redirectIfNotAllowed();
+
 ?>
 
 <img class="banner-img" src="/images/bannerImg.jpg" alt="Banner afbeelding" />
@@ -12,10 +15,10 @@ require_once "/var/www/php/Shared/header.php";
 	<section id="game-section">
 		<h2>Games</h2>
 		<div class="product-accent-border flex flex-row py-30 px-30">
-			<a href="/dashboard.php" class="dashboardButton text-center col-5">
+			<a href="/dashboard/addgame.php" class="dashboardButton text-center col-5">
 				<?= __("dashboard.products.game.add") ?>
 			</a>
-			<a href="/dashboard.php" class="dashboardButton text-center offset-2 col-5">
+			<a href="/dashboard/zoekgame.php" class="dashboardButton text-center offset-2 col-5">
 				<?= __("dashboard.products.game.search") ?>
 			</a>
 		</div>

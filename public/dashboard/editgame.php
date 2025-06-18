@@ -1,5 +1,10 @@
 <?php
 require_once '/var/www/php/Shared/header.php';
+require_once '/var/www/php/Shared/Guards/EmployeeGuard.php';
+
+$guard = new EmployeeGuard();
+$guard->redirectIfNotAllowed();
+
 require_once '/var/www/php/Shop/Controllers/GameController.php';
 ?>
 
