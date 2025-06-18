@@ -1,72 +1,91 @@
 <?php
 require_once "/var/www/php/Shared/header.php";
+require_once "/var/www/php/Shop/Controllers/GameController.php";
 ?>
 
-<div class="p-50 flex justify-content-center">
-<h1>Nieuwe game toevoegen</h1>
+<img class="banner-img" src="/images/bannerImg.jpg" alt="Banner afbeelding" />
 
-<!-- Laat succesbericht zien als er via de URL een success parameter is meegegeven -->
+<div class="flex justify-center pt-10 pb-10">
+  <h1>Nieuwe game toevoegen</h1>
+</div>
+
+<form method="POST" action="savegame.php" class="edit-game-form">
+  <div class="form-columns">
+    <div class="form-left">
+      <div class="form-row">
+        <label for="name">Naam:</label>
+        <input type="text" id="name" name="name" placeholder="Naam van het spel" required>
+      </div>
+
+      <div class="form-row">
+        <label for="players">Aantal spelers:</label>
+        <input type="number" id="players" name="players" placeholder="Voor hoeveel spelers" required>
+      </div>
+
+      <div class="form-row">
+        <label for="price">Prijs:</label>
+        <input type="number" step="0.01" id="price" name="price" placeholder="De prijs" required>
+      </div>
+
+      <div class="form-row">
+        <label for="duration">Duur (min):</label>
+        <input type="number" id="duration" name="duration" placeholder="Duur van spel" required>
+      </div>
+
+      <div class="form-row">
+        <label for="description">Beschrijving:</label>
+        <textarea id="description" name="description" placeholder="Beschrijving van spel" required></textarea>
+      </div>
+
+      <div class="form-row">
+        <label for="difficulty">Moeilijkheid:</label>
+        <select id="difficulty" name="difficulty">
+          <option value="Gemakkelijk">Gemakkelijk</option>
+          <option value="Matig">Gemiddeld</option>
+          <option value="Moeilijk">Moeilijk</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label for="left_in_stock">Op voorraad:</label>
+        <input type="number" id="left_in_stock" name="left_in_stock" placeholder="Voorraad van spel" required>
+      </div>
+
+      <div class="form-row">
+        <label for="image_url">Afbeeldings-URL:</label>
+        <input type="url" id="image_url" name="image_url" placeholder="https://..." oninput="updatePreview()">
+      </div>
+    </div>
+
+    <div class="form-right">
+      <img id="preview" src="https://firstbenefits.org/wp-content/uploads/2017/10/placeholder-1024x1024.png" alt="Voorbeeldafbeelding">
+    </div>
+  </div>
+
+  <div class="flex justify-center form-buttons">
+    <button type="submit">Toevoegen</button>
+    <button type="reset" onclick="toonPopup('🧹 Formulier is geleegd.')">Reset</button>
+    <button type="button" onclick="window.location.href='/dashboard/zoekgame.php'">Terug</button>
+  </div>
+</form>
+
+<!-- Popup -->
+<div id="popup" class="popup-overlay" style="display: none;">
+  <div class="popup-box">
+    <p id="popup-message"></p>
+    <button onclick="sluitPopup()">OK</button>
+  </div>
+</div>
+
+<!-- Externe JavaScript -->
+<script src="/js/dashboard/game-form.js"></script>
+
 <?php if (isset($_GET['success'])): ?>
-    <div style="color: green;">✅ Game succesvol toegevoegd.</div>
+  <script>window.addEventListener("DOMContentLoaded", () => toonPopup("✅ Game succesvol toegevoegd!"));</script>
 <?php endif; ?>
 
-<!-- Formulier voor het toevoegen van een nieuwe game -->
-<form action="savegame.php" method="post">
-    <div>
-    <label for="name">Naam:</label>
-    <input type="text" id="name" name="name" required>
-    <br/>
-    <label for="players">Aantal spelers:</label>
-    <input type="number" id="players" name="players" required>
-    <br/>
-    <label for="price">Prijs:</label>
-    <input type="number" step="0.01" id="price" name="price" required>
-    <br/>
-    <label for="duration">Duur (in minuten):</label>
-    <input type="number" id="duration" name="duration" required>
-    <br/>
-    <label for="description">Beschrijving:</label>
-    <textarea id="description" name="description" required></textarea>
-    <br/>
-    <label for="difficulty">Moeilijkheidsgraad:</label>
-    <select id="difficulty" name="difficulty">
-        <option value="Gemakkelijk">Gemakkelijk</option>
-        <option value="Matig">Gemiddeld</option>
-        <option value="Moeilijk">Moeilijk</option>
-    </select>
-    <br/>
-    <label for="left_in_stock">Aantal op voorraad:</label>
-    <input type="number" id="left_in_stock" name="left_in_stock" required>
-    <br/>
-    <label for="image_url">Afbeeldings-URL:</label>
-    <input type="url" id="image_url" name="image_url" placeholder="https://..." oninput="updatePreview()">
-    <br/>
-    <img id="preview" style="display:none; max-width:300px; margin-top:10px;" alt="Voorbeeld afbeelding">
-    <button type="submit">Game toevoegen</button>
-</form>
-</div>
-</div>
+<?php if (isset($_GET['error'])): ?>
+  <script>window.addEventListener("DOMContentLoaded", () => toonPopup("❌ <?= htmlspecialchars(urldecode($_GET['error'])) ?>"));</script>
+<?php endif; ?>
 
-<!-- JavaScript voor live preview van afbeelding zodra geldige URL is ingevoerd -->
-<script>
-function updatePreview() {
-    // Haal de waarde van de URL input op en trim eventuele spaties
-    const url = document.getElementById('image_url').value.trim();
-    // Zoek het preview element op
-    const img = document.getElementById('preview');
-    // Alleen tonen als URL eindigt op een geldige afbeeldingsextensie
-    if (url.match(/^https?:\/\/.+\.(jpg|jpeg|png|gif|webp)$/i)) {
-        // Stel de src van de afbeelding in op de URL
-        img.src = url;
-        // Zorg dat de afbeelding zichtbaar is
-        img.style.display = 'block';
-    } else {
-        // Verberg de afbeelding als de URL ongeldig is
-        img.style.display = 'none';
-    }
-}
-</script>
-
-<?php
-require_once "/var/www/php/Shared/footer.php";
-?>
+<?php require_once "/var/www/php/Shared/footer.php"; ?>
