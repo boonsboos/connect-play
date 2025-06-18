@@ -806,7 +806,7 @@ CREATE TABLE `game` (
   `description` mediumtext NOT NULL,
   `difficulty` varchar(20) NOT NULL,
   `left_in_stock` int(11) NOT NULL,
-  `image_url` varchar(255) DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT NULL
 );
 
 --
