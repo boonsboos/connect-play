@@ -76,7 +76,7 @@ class WorkshopRepository
 
         // als er geen resultaat is, blijft de array leeg
         // omdat de loop niet uitgevoerd wordt
-        foreach ($allWorkshops AS $workshop) {
+        foreach ($allWorkshops as $workshop) {
             $workshops[] = new Workshop(
                 (int) $workshop['game_id'],
                 (int) $workshop['min_size'],

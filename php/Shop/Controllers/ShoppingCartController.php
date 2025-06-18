@@ -77,7 +77,8 @@ class ShoppingCartController
             $username = 'Onbekend';
             $address = null;
         }
-        
+
+        // return een array met alle waardes
         return [
             'success' => true,
             'orderId' => $order->getId(),

@@ -164,8 +164,6 @@ class OrderRepository
         $cartEntries = [];
         $rows = $stmt->fetchAll();
         $stmt->closeCursor();
-        
-        error_log('Cart entries uit DB: ' . json_encode($rows));
 
         foreach ($rows as $row) {
             // haal de game details op
@@ -196,7 +194,7 @@ class OrderRepository
                 (float)$row['price_snapshot']
             );
         }
-error_log('DB game IDs: ' . json_encode($cartEntries));
+
         return $cartEntries;
     }
 

@@ -27,7 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
  * en werkt ook de cart count badge bij
  */
 function updateCartDropdown() {
-	const cartEntries = JSON.parse(localStorage.getItem(`cartEntries_${userId}`) || "[]") // Haalt winkelwagenitems op
+	const cartEntries = JSON.parse(
+		localStorage.getItem(`cartEntries_${userId}`) || "[]"
+	) // Haalt winkelwagenitems op
 
 	const cartItemsList = document.getElementById("cart-items")
 	const cartCount = document.getElementById("cart-count")
@@ -103,7 +105,9 @@ function updateCartDropdown() {
  */
 function removeItemFromCart(gameId) {
 	gameId = parseInt(gameId, 10) // Zorgt dat gameId een integer is
-	const cartEntries = JSON.parse(localStorage.getItem(`cartEntries_${userId}`) || "[]")
+	const cartEntries = JSON.parse(
+		localStorage.getItem(`cartEntries_${userId}`) || "[]"
+	)
 
 	// Zoekt index van de entry met dit gameId
 	const entryIndex = cartEntries.findIndex(
@@ -125,7 +129,10 @@ function removeItemFromCart(gameId) {
 	if (cartEntries.length === 0) {
 		localStorage.removeItem(`cartEntries_${userId}`)
 	} else {
-		localStorage.setItem(`cartEntries_${userId}`, JSON.stringify(cartEntries))
+		localStorage.setItem(
+			`cartEntries_${userId}`,
+			JSON.stringify(cartEntries)
+		)
 	}
 
 	// Update het dropdown-menu
@@ -137,7 +144,9 @@ function removeItemFromCart(gameId) {
  */
 function addItemToCart(gameId) {
 	gameId = parseInt(gameId, 10) // Zorgt dat gameId een integer is
-	const cartEntries = JSON.parse(localStorage.getItem(`cartEntries_${userId}`) || "[]")
+	const cartEntries = JSON.parse(
+		localStorage.getItem(`cartEntries_${userId}`) || "[]"
+	)
 
 	// Zoekt index van de entry met dit gameId
 	const entryIndex = cartEntries.findIndex(
