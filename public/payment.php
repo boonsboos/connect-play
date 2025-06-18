@@ -33,24 +33,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 ?>
 
 <img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
-<div id="profile-container" class="mb-flex-col flex py-15 px-15">
+<div id="profile-container" class="mb-flex-col flex py-50">
     <?php if ($success): ?>
-        <div class="mb-col-12 col-12 flex flex-col justify-center align-center py-20">
-            <h1 class="text-center">Betaling succesvol!</h1>
+        <div class="mb-col-12 col-12 flex flex-col justify-center align-center py-10">
+            <h1 class="text-center pb-15">Betaling succesvol!</h1>
             <a href="/webshop.php" class="button">Terug naar webshop</a>
         </div>
     <?php else: ?>
-        <div class="mb-col-12 col-12 flex justify-center align-center py-20">
+        <div class="mb-col-12 col-12 flex justify-center align-center py-10">
             <h1 class="text-center"><?= $bank ?></h1>
         </div>
-        <div class="mb-col-12 col-12 flex justify-center align-center py-20">
+        <div class="mb-col-12 col-12 flex justify-center align-center pt-10 pb-5">
             <p class="text-center">
                 Te betalen bedrag: €
                 <?= $total ?>
             </p>
         </div>
 
-        <form method="post" class="mb-col-12 col-12 flex justify-center align-center py-20">
+        <form method="post" class="mb-col-12 col-12 flex justify-center align-center">
             <input type="hidden" name="success" value="1">
             <button class="button" type="submit" name="confirm_payment">Betaal</button>
         </form>
