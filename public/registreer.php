@@ -31,6 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'city' => $city,
     ]);
 }
+$successKey = '';
+if (isset($_GET['success']) && $_GET['success'] == 1) {
+    $successKey = "register.success";
+}
 ?>
 <script src="js/userValidation.js"></script>
 
@@ -40,71 +44,74 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <form id="form-box" class="mb-col-12 col-6 flex justify-center" method="post">
 
         <div id="error-box" class="mb-col-12 col-12 error-message"></div>
+        <div id="success-box" class="mb-col-12 col-12 success-message" style="display: <?php echo $successKey ? 'block' : 'none'; ?>;"><?= __($successKey); ?></div>
 
         <div class="mb-col-10 col-8 flex justify-center">
             <div class="mb-col-12 col-12">
-                <label for="firstname">Voornaam</label>
+                <label for="firstname"><?= __('register.firstname'); ?></label>
                 <input type="text" class="input" name="firstname" required />
             </div>
 
             <div class="mb-col-12 col-12">
-                <label for="infix">Tussenvoegsel</label>
+                <label for="infix"><?= __('register.infix'); ?></label>
                 <input type="text" class="input" name="infix" />
             </div>
 
             <div class="mb-col-12 col-12">
-                <label for="lastname">Achternaam</label>
+                <label for="lastname"><?= __('register.lastname'); ?></label>
                 <input type="text" class="input" name="lastname" required />
             </div>
         </div>
 
         <div class="mb-col-10 col-8 flex justify-center py-15">
             <div class="mb-col-12 col-12">
-                <label for="email">E-mail:</label>
+                <label for="email"><?= __('register.email'); ?></label>
                 <input class="input" type="email" name="email" placeholder="email@example.com" />
             </div>
 
             <div class="mb-col-12 col-12">
-                <label for="repeat_email">Herhaal Email</label>
+                <label for="repeat_email"><?= __('register.repeat_email'); ?></label>
                 <input type="email" class="input" name="repeat_email" required />
+
             </div>
 
             <div class="mb-col-12 col-12">
-                <label for="password">Wachtwoord</label>
+                <label for="password"><?= __('register.password'); ?></label>
                 <input type="password" class="input" name="password" required />
             </div>
 
             <div class="mb-col-12 col-12">
-                <label for="repeat_password">Herhaal wachtwoord</label>
+                <label for="repeat_password"><?= __('register.repeat_password'); ?></label>
+
                 <input type="password" class="input" name="repeat_password" required />
             </div>
         </div>
 
         <div class="mb-col-10 col-8 flex justify-center">
             <div class="mb-col-12 col-12">
-                <label for="streetname">Straat</label>
+                <label for="streetname"><?= __('register.streetname'); ?></label>
                 <input type="text" class="input" name="streetname" required />
             </div>
 
             <div class="mb-col-12 col-12">
-                <label for="postalcode">Postcode</label>
+                <label for="postalcode"><?= __('register.postalcode'); ?></label>
                 <input type="text" class="input" name="postalcode" placeholder="1234AB" required />
             </div>
 
             <div class="mb-col-12 col-12">
-                <label for="housenumber">Huisnummer</label>
+                <label for="housenumber"><?= __('register.housenumber'); ?></label>
                 <input type="text" class="input" name="housenumber" required />
             </div>
 
             <div class="mb-col-12 col-12">
-                <label for="city">Plaats</label>
+                <label for="city"><?= __('register.city'); ?></label>
                 <input type="text" class="input" name="city" required />
             </div>
         </div>
 
         <div class="mb-col-10 col-8 flex justify-center pt-15">
             <div class="mb-col-8 col-8">
-                <button class="button" type="submit">Registreer</button>
+                <button class="button" type="submit"><?= __('register.submit'); ?></button>
             </div>
         </div>
     </form>

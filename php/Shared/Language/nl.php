@@ -89,6 +89,21 @@ return [
         "login" => "Inloggen",
         "register" => "Registreren",
     ],
+    "register" => [
+        "email" => "E-mail",
+        "repeat_email" => "Herhaal E-mail",
+        "password" => "Wachtwoord",
+        "repeat_password" => "Herhaal wachtwoord",
+        "firstname" => "Voornaam",
+        "infix" => "Tussenvoegsel",
+        "lastname" => "Achternaam",
+        "streetname" => "Straatnaam",
+        "postalcode" => "Postcode",
+        "housenumber" => "Huisnummer",
+        "city" => "Woonplaats",
+        "submit" => "Registreren",
+        "success" => "Je bent succesvol geregistreerd! Je kunt nu inloggen.",
+    ],
     "forgot_password" => [
         "email" => "E-mail",
         "submit" => "Verstuur"

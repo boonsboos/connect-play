@@ -89,6 +89,21 @@ return [
         "login" => "Login",
         "register" => "Register",
     ],
+    "register" => [
+        "email" => "Email",
+        "repeat_email" => "Repeat Email",
+        "password" => "Password",
+        "repeat_password" => "Repeat Password",
+        "firstname" => "First Name",
+        "infix" => "Infix",
+        "lastname" => "Last Name",
+        "streetname" => "Street Name",
+        "postalcode" => "Postal Code",
+        "housenumber" => "House Number",
+        "city" => "City",
+        "submit" => "Register",
+        "success" => "You have been successfully registered! You can now log in.",
+    ],
     "forgot_password" => [
         "email" => "Email",
         "submit" => "Submit"
