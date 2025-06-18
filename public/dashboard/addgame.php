@@ -70,7 +70,7 @@ require_once "/var/www/php/Shop/Controllers/GameController.php";
   <div class="flex justify-center form-buttons">
     <button type="submit">Toevoegen</button>
     <button type="reset" onclick="toonPopup('🧹 Formulier is geleegd.')">Reset</button>
-    <button type="button" onclick="window.location.href='/dashboard/zoekgame.php'">Terug</button>
+    <button type="button" onclick="window.location.href='/dashboard/producten.php'">Terug</button>
   </div>
 </form>
 
