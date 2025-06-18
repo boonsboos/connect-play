@@ -10,7 +10,7 @@ class DashboardRepository
         $this->alleButtons = [
             [
                 'nameButton' => 'Producten',
-                'url' =>  'volgt',
+                'url' =>  '/dashboard/zoekgame.php',
                 'role' => 'EMPLOYEE'  
             ],
             [

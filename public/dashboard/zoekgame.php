@@ -32,6 +32,7 @@ try {
 
   <!-- RESULTATEN RECHTS -->
   <main class="search-results-area col-9 mb-col-12">
+     <button type="button" onclick="window.location.href='/dashboard/addgame.php'">Nieuwe game toevoegen</button>
     <?php if (!empty($searchResults)): ?>
       <h2>Resultaten</h2>
       <div class="results-grid">

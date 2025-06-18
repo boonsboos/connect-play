@@ -1209,6 +1209,12 @@ i.trash {
 	flex: 1;
 	padding: 8px;
 	box-sizing: border-box;
+	width: 300px;
+}
+
+.form-row textarea {
+	max-width: 300px;
+	min-height: 100px;
 }
 
 @media only screen and (min-width: 768px) {
