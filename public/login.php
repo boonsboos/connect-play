@@ -30,14 +30,14 @@ if (isset($_GET['error'])) {
 		<div class="mb-col-10 col-8 flex justify-center pb-15">
 			<div class="mb-col-12 col-8">
 				<label for="email"><?= __("login.email") ?>:</label>
-				<input id="email" class="input" type="text" name="email" placeholder="email@example.com" />
+				<input id="email" class="input" type="text" name="email" placeholder="email@example.com" required />
 			</div>
 		</div>
 
 		<div class="mb-col-10 col-8 flex justify-center">
 			<div class="mb-col-12 col-8">
 				<label for="password"><?= __("login.password") ?>:</label>
-				<input id="password" class="input" type="password" name="password" placeholder="<?= __("login.password") ?>" />
+				<input id="password" class="input" type="password" name="password" placeholder="<?= __("login.password") ?>" required />
 			</div>
 		</div>
 		<div class="mb-col-10 col-8 flex justify-center">

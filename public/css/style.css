@@ -454,8 +454,8 @@ ul {
 }
 
 .game-card-image {
-	width: 100px;
-	height: 100px;
+	width: 150px;
+	height: 150px;
 	object-fit: cover;
 	margin: 10px;
 }
@@ -726,7 +726,7 @@ i.trash {
 	background: var(--background);
 	overflow: hidden;
 	position: relative;
-	min-height:calc(100vh - 288px);
+	min-height: calc(100vh - 288px);
 }
 
 .search-sidebar {
@@ -736,18 +736,17 @@ i.trash {
 	background: var(--background);
 	position: fixed;
 	overflow: hidden;
-	left:0;
+	left: 0;
 	height: calc(100% - 71px);
 	border-right: 1px solid var(--accent);
 }
-
 
 .search-results-area {
 	flex: 1;
 	overflow-y: auto;
 	padding: 40px;
 	box-sizing: border-box;
-	margin-left:280px;
+	margin-left: 280px;
 	height: fit-content;
 	height: calc(100% - 71px);
 }
@@ -800,7 +799,6 @@ i.trash {
 	margin-bottom: 4px;
 }
 
-
 .card-button {
 	margin-top: auto;
 	display: flex;
@@ -827,17 +825,17 @@ i.trash {
 	display: block;
 	width: 200px;
 	height: auto;
-	object-fit: cover;;
+	object-fit: cover;
 	border-radius: 6px;
 	border: 1px var(--primary) solid;
-	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .edit-game-form {
-  	display: flex;
-  	flex-direction: column;
-  	align-items: center;
-  	gap: 36px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 36px;
 	margin-left: 1px;
 	margin-right: 1px;
 	margin-bottom: 5px;
@@ -886,26 +884,26 @@ i.trash {
 }
 
 .form-right img {
-  	width: 500px !important;
-  	height: auto;
-  	border: 1px solid var(--accent);
-  	border-radius: 6px;;
+	width: 500px !important;
+	height: auto;
+	border: 1px solid var(--accent);
+	border-radius: 6px;
 	align-items: center;
 	align-content: center;
 }
 
 .form-buttons {
-  	gap: 40px;
+	gap: 40px;
 }
 
 .form-buttons button {
-  	padding: 10px 20px;
-  	font-weight: bold;
-  	border: none;
-  	border-radius: 6px;
-  	background: var(--primary);
-  	color: white;
-  	cursor: pointer;
+	padding: 10px 20px;
+	font-weight: bold;
+	border: none;
+	border-radius: 6px;
+	background: var(--primary);
+	color: white;
+	cursor: pointer;
 	margin-bottom: 40px;
 	width: 250px;
 	height: 75px;
@@ -917,77 +915,76 @@ i.trash {
 }
 
 .modal-overlay {
-  	position: fixed;
-  	top: 0;
-  	left: 0;
-  	width: 100%;
-  	height: 100%;
-  	background: black;
-  	display: flex;
-  	align-items: center;
-  	justify-content: center;
-  	z-index: 9999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
 }
 
 .modal-box {
-  	background: white;
-  	padding: 50px;
+	background: white;
+	padding: 50px;
 	border-radius: 8px;
-  	max-width: 400px;
-  	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  	text-align: center;
+	max-width: 400px;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+	text-align: center;
 }
 
 .modal-box button {
-  	margin-top: 10px;
-  	padding: 5px;
-  	background: var(--primary);
-  	color: white;
-  	border: none;
-  	border-radius: 6px;
-  	cursor: pointer;
+	margin-top: 10px;
+	padding: 5px;
+	background: var(--primary);
+	color: white;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
 }
 
 .modal-box button:hover {
-  	background: var(--accent);
+	background: var(--accent);
 }
 
 .popup-overlay {
-  	position: fixed;
-  	top: 0;
-  	left: 0;
-  	width: 100%;
-  	height: 100%;
-  	background: rgba(0, 0, 0, 0.6);
-  	display: flex;
-  	align-items: center;
-  	justify-content: center;
-  	z-index: 9999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
 }
 
-
 .popup-box {
-  	background:var(--background);
-  	padding: 40px;
-  	border-radius: 8px;
-  	max-width: 400px;
-  	box-shadow: 0 5px 15px black;
-  	text-align: center;
-  	border: var(--primary) solid 2px;
+	background: var(--background);
+	padding: 40px;
+	border-radius: 8px;
+	max-width: 400px;
+	box-shadow: 0 5px 15px black;
+	text-align: center;
+	border: var(--primary) solid 2px;
 }
 
 .popup-box button {
-  	margin-top: 20px;
-  	padding: 10px;
-  	background: var(--primary);
-  	color: white;
-  	border: none;
-  	border-radius: 6px;
-  	cursor: pointer;
+	margin-top: 20px;
+	padding: 10px;
+	background: var(--primary);
+	color: white;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
 }
 
 .popup-box button:hover {
-  	background: var(--accent);
+	background: var(--accent);
 }
 
 .form-row {
@@ -1072,11 +1069,14 @@ i.trash {
 		); /* Toon 2 kaarten naast elkaar op tablets */
 	}
 
-		.results-grid {
-		grid-template-columns: repeat(
-			2,
-			1fr
-		);
+	.game-card:has(.game-card-image) div {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.results-grid {
+		grid-template-columns: repeat(2, 1fr);
 		height: auto; /* Toon 2 kaarten naast elkaar op tablets */
 	}
 }

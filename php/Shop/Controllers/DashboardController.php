@@ -12,10 +12,10 @@ class DashboardController
                 'name' => "dashboard.products.name",
                 'url' =>  '/dashboard/producten.php'
             ],
-            [
-                'name' => 'dashboard.orders.name',
-                'url' => 'volgt'
-            ],         
+            // [
+            //     'name' => 'dashboard.orders.name',
+            //     'url' => 'volgt'
+            // ],         
             [
                 'name' => 'dashboard.servicedesk.name',
                 'url' =>  '/dashboard/service.php'

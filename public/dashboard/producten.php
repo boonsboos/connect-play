@@ -14,7 +14,7 @@ $guard->redirectIfNotAllowed();
 
 	<section id="game-section">
 		<h2>Games</h2>
-		<div class="product-accent-border flex flex-row py-30 px-30">
+		<div class="product-accent-border flex flex-row py-30 px-30 justify-around">
 			<a href="/dashboard/addgame.php" class="dashboardButton text-center col-5">
 				<?= __("dashboard.products.game.add") ?>
 			</a>
@@ -26,7 +26,7 @@ $guard->redirectIfNotAllowed();
 
 	<section id="workshop-section">
 		<h2>Workshops</h2>
-		<div class="product-accent-border flex flex-row py-30 px-30">
+		<div class="product-accent-border flex flex-row py-30 px-30 justify-around">
 			<a href="/dashboard/workshop/addworkshop.php" class="dashboardButton text-center col-5">
 				<?= __("dashboard.products.workshop.add") ?>
 			</a>
