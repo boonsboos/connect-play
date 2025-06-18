@@ -36,7 +36,7 @@ try {
       </div>
 
       <div class="form-row">
-        <label for="price">Prijs:</label>
+        <label for="price">Prijs: (€)</label>
         <input type="number" step="0.01" id="price" name="price" value="<?= htmlspecialchars($game->getPrice()) ?>" required>
       </div>
 

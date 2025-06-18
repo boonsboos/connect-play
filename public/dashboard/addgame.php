@@ -23,7 +23,7 @@ require_once "/var/www/php/Shop/Controllers/GameController.php";
       </div>
 
       <div class="form-row">
-        <label for="price">Prijs:</label>
+        <label for="price">Prijs: (€)</label>
         <input type="number" step="0.01" id="price" name="price" placeholder="De prijs" required>
       </div>
 
