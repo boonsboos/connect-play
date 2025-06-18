@@ -20,7 +20,7 @@ try {
   <h1>Game bewerken</h1>
 </div>
 
-<form method="POST" action="updategame.php" class="edit-game-form justify-center">
+<form method="POST" action="updategame.php" class="edit-game-form flex flex-col justify-center">
   <div class="form-columns">
     <div class="form-left">
       <input type="hidden" name="id" value="<?= htmlspecialchars($game->getId()) ?>">
@@ -83,7 +83,7 @@ try {
 
   <div class="flex justify-center form-buttons">
     <button type="submit">Opslaan</button>
-    <button type="reset" onclick="toonPopup('🧹 Formulier is geleegd.')">Reset</button>
+    <button type="reset" onclick="toonPopup('🧹 Aanpassingen zijn gereset.')">Reset</button>
     <button type="button" onclick="window.location.href='/dashboard/zoekgame.php'">Terug</button>
   </div>
 </form>

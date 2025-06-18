@@ -927,7 +927,7 @@ i.trash {
 	background: var(--background);
 	overflow: hidden;
 	position: relative;
-	min-height: calc(100% - 324px);
+	min-height:calc(100vh - 290px);
 }
 
 .search-sidebar {
@@ -1037,7 +1037,7 @@ i.trash {
 .edit-game-form {
   	display: flex;
   	flex-direction: column;
-  	align-items: center; /* centraal uitlijnen */
+  	align-items: center; 
   	gap: 36px;
 	margin-left: 1px;
 	margin-right: 1px;
@@ -1048,7 +1048,7 @@ i.trash {
 
 .form-columns {
 	display: flex;
-	align-items: center; /* Verticale uitlijning tussen form en image */
+	align-items: center;
 	justify-content: center;
 	gap: 60px;
 	flex-wrap: wrap;
@@ -1069,8 +1069,15 @@ i.trash {
 .form-left select,
 .form-left textarea {
 	padding: 8px;
-	width: 100%; /* volledig binnen de container */
+	width: 100%;
 	box-sizing: border-box;
+	border-radius: 5px;
+}
+
+.form-left input:focus,
+.form-left textarea:focus,
+.form-left select:focus {
+	box-shadow: var(--accent) 0px 0px 10px;
 }
 
 .form-right {
@@ -1082,7 +1089,7 @@ i.trash {
 .form-right img {
   	width: 500px !important;
   	height: auto;
-  	border: 1px solid #ccc;
+  	border: 1px solid var(--accent);
   	border-radius: 6px;;
 	align-items: center;
 	align-content: center;
@@ -1474,5 +1481,11 @@ i.trash {
 	
 	.edit-game-form {
 		border: var(--highlight) 1px solid;
+	}
+
+	.form-left input:focus,
+	.form-left textarea:focus,
+	.form-left select:focus {
+		box-shadow: var(--accent) 0px 0px 10px;
 	}
 }
