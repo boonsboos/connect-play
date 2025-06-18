@@ -173,9 +173,11 @@ header img {
 
 /* Footer */
 footer {
+	position: relative;
 	background-color: #fff;
 	border-bottom: 1px var(--accent) solid;
 	border-top: 1px var(--accent) solid;
+	z-index: 2;
 }
 
 footer img {
@@ -443,6 +445,13 @@ ul {
 	transition: border-color 200ms;
 }
 
+.game-card-image {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	margin: 10px;
+}
+
 #pagination a {
 	color: var(--foreground);
 	text-decoration: none;
@@ -701,6 +710,301 @@ i.trash {
 	padding: 30px;
 }
 
+.search-layout {
+	display: flex;
+	background: var(--background);
+	overflow: hidden;
+	position: relative;
+	min-height:calc(100vh - 288px);
+}
+
+.search-sidebar {
+	min-width: 200px;
+	padding: 25px;
+	box-sizing: border-box;
+	background: var(--background);
+	position: fixed;
+	overflow: hidden;
+	left:0;
+	height: calc(100% - 71px);
+	border-right: 1px solid var(--accent);
+}
+
+
+.search-results-area {
+	flex: 1;
+	overflow-y: auto;
+	padding: 40px;
+	box-sizing: border-box;
+	margin-left:280px;
+	height: fit-content;
+	height: calc(100% - 71px);
+}
+
+.results-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 36px;
+	min-height: 100%;
+}
+
+.result-card {
+	justify-content: space-between;
+	background: var(--background);
+	border: 1px var(--primary) solid;
+	border-radius: 8px;
+	padding: 10px;
+	box-shadow: #4b006e 0px 0px 10px;
+}
+
+.card-content {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.game-image {
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+	border-radius: 4px;
+	flex-shrink: 0;
+	margin: 20px;
+}
+
+.game-info {
+	flex: 1;
+	font-size: 10px;
+	line-height: 1.4;
+}
+
+.game-details {
+	padding-left: 10px;
+	margin: 10px;
+	list-style-type: circle;
+}
+
+.game-details li {
+	margin-bottom: 4px;
+}
+
+
+.card-button {
+	margin-top: auto;
+	display: flex;
+	justify-content: center;
+}
+
+.search-button {
+	width: 100%;
+	padding: 20px;
+	background: linear-gradient(to right, #7a1ea1, #4b006e);
+	color: white;
+	text-align: center;
+	border-radius: 6px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.search-button:hover {
+	background: linear-gradient(to right, #9c00e5, #7a1ea1);
+	transition: 0.3s ease;
+}
+
+#preview {
+	display: block;
+	width: 200px;
+	height: auto;
+	object-fit: cover;;
+	border-radius: 6px;
+	border: 1px var(--primary) solid;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.edit-game-form {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	gap: 36px;
+	margin-left: 1px;
+	margin-right: 1px;
+	margin-bottom: 5px;
+	background: var(--background);
+	align-content: center;
+}
+
+.form-columns {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 60px;
+	flex-wrap: wrap;
+	padding: 20px;
+}
+
+.form-left {
+	flex: 1;
+	min-width: 300px;
+	max-width: 500px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	align-items: start;
+}
+
+.form-left input,
+.form-left select,
+.form-left textarea {
+	padding: 8px;
+	width: 100%;
+	box-sizing: border-box;
+	border-radius: 5px;
+}
+
+.form-left input:focus,
+.form-left textarea:focus,
+.form-left select:focus {
+	box-shadow: var(--accent) 0px 0px 10px;
+}
+
+.form-right {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.form-right img {
+  	width: 500px !important;
+  	height: auto;
+  	border: 1px solid var(--accent);
+  	border-radius: 6px;;
+	align-items: center;
+	align-content: center;
+}
+
+.form-buttons {
+  	gap: 40px;
+}
+
+.form-buttons button {
+  	padding: 10px 20px;
+  	font-weight: bold;
+  	border: none;
+  	border-radius: 6px;
+  	background: var(--primary);
+  	color: white;
+  	cursor: pointer;
+	margin-bottom: 40px;
+	width: 250px;
+	height: 75px;
+}
+
+.form-buttons button:hover {
+	border: var(--highlight) 3px solid;
+	color: var(--highlight);
+}
+
+.modal-overlay {
+  	position: fixed;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100%;
+  	background: black;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	z-index: 9999;
+}
+
+.modal-box {
+  	background: white;
+  	padding: 50px;
+	border-radius: 8px;
+  	max-width: 400px;
+  	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  	text-align: center;
+}
+
+.modal-box button {
+  	margin-top: 10px;
+  	padding: 5px;
+  	background: var(--primary);
+  	color: white;
+  	border: none;
+  	border-radius: 6px;
+  	cursor: pointer;
+}
+
+.modal-box button:hover {
+  	background: var(--accent);
+}
+
+.popup-overlay {
+  	position: fixed;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100%;
+  	background: rgba(0, 0, 0, 0.6);
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	z-index: 9999;
+}
+
+
+.popup-box {
+  	background:var(--background);
+  	padding: 40px;
+  	border-radius: 8px;
+  	max-width: 400px;
+  	box-shadow: 0 5px 15px black;
+  	text-align: center;
+  	border: var(--primary) solid 2px;
+}
+
+.popup-box button {
+  	margin-top: 20px;
+  	padding: 10px;
+  	background: var(--primary);
+  	color: white;
+  	border: none;
+  	border-radius: 6px;
+  	cursor: pointer;
+}
+
+.popup-box button:hover {
+  	background: var(--accent);
+}
+
+.form-row {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.form-row label {
+	width: 180px;
+	font-weight: bold;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+	flex: 1;
+	padding: 8px;
+	box-sizing: border-box;
+	width: 300px;
+}
+
+.form-row textarea {
+	max-width: 300px;
+	min-height: 100px;
+}
+
 /* mobile only classes */
 @media only screen and (max-width: 768px) {
 	.home-banner {
@@ -755,6 +1059,14 @@ i.trash {
 			2,
 			1fr
 		); /* Toon 2 kaarten naast elkaar op tablets */
+	}
+
+		.results-grid {
+		grid-template-columns: repeat(
+			2,
+			1fr
+		);
+		height: auto; /* Toon 2 kaarten naast elkaar op tablets */
 	}
 }
 
@@ -859,5 +1171,11 @@ i.trash {
 
 	.dashboardButton:hover {
 		border: 1px solid var(--highlight);
+	}
+
+	.form-left input:focus,
+	.form-left textarea:focus,
+	.form-left select:focus {
+		box-shadow: var(--highlight) 0px 0px 10px;
 	}
 }

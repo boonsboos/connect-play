@@ -19,7 +19,7 @@ class GameRepository
     public function addGame(Game $game): void
     {
         try {
-            $stmtGame = $this->db->prepare("CALL add_game(:players, :price, :duration, :name, :description, :difficulty, :left_in_stock)");
+            $stmtGame = $this->db->prepare("CALL add_game(:players, :price, :duration, :name, :description, :difficulty, :left_in_stock, :image_url)");
 
             $stmtGame->execute([
                 ':players' => $game->getPlayers(),
@@ -28,7 +28,8 @@ class GameRepository
                 ':name' => $game->getName(),
                 ':description' => $game->getDescription(),
                 ':difficulty' => $game->getDifficulty(),
-                ':left_in_stock' => $game->getLeftInStock()
+                ':left_in_stock' => $game->getLeftInStock(),
+                ':image_url' => $game->getImageUrl() // image_url is optioneel, dus kan leeg zijn
             ]);
 
             $gameId = $stmtGame->fetchColumn(); // haalt 1 waarde op uit het resultaat van de query (dus SELECT LAST_INSERT_ID() AS id)
@@ -67,13 +68,14 @@ class GameRepository
                 (string) $row['description'],
                 (string) $row['difficulty'],
                 (int) $row['left_in_stock'],
+                (string) $row['image_url'] ?? '', // image_url is optioneel, dus gebruik een lege string als het niet bestaat
                 (int) $row['game_id']
             );
         }
         return $allGames;
     }
-
-    public function getGame(int $id): Game
+    
+    public function getGame(int $id): ?Game
     {
         $stmtGame = $this->db->prepare("CALL get_game(:id)");
 
@@ -92,15 +94,16 @@ class GameRepository
             name: $gameData['name'],
             description: $gameData['description'],
             difficulty: $gameData['difficulty'],
-            leftInStock: (int)$gameData['left_in_stock'],
-            id: (int)$gameData['game_id']
+            leftInStock: $gameData['left_in_stock'],
+            imageUrl: $gameData['image_url'] ?? '',
+            id: $gameData['game_id'] // image_url is optioneel, dus gebruik een lege string als het niet bestaat
         );
     }
 
     public function updateGame(Game $game): void
     {
         // Voer update_game procedure uit
-        $stmtNewGameInfo = $this->db->prepare("CALL update_game(:id, :price, :duration, :name, :description, :difficulty, :left_in_stock)");
+        $stmtNewGameInfo = $this->db->prepare("CALL update_game(:id, :price, :duration, :name, :description, :difficulty, :left_in_stock, :image_url)");
 
         $stmtNewGameInfo->execute([
             ':id' => $game->getId(),
@@ -109,7 +112,8 @@ class GameRepository
             ':name' => $game->getName(),
             ':description' => $game->getDescription(),
             ':difficulty' => $game->getDifficulty(),
-            ':left_in_stock' => $game->getLeftInStock()
+            ':left_in_stock' => $game->getLeftInStock(),
+            ':image_url' => $game->getImageUrl() // image_url is optioneel, dus kan leeg zijn
         ]);
     }
 
@@ -125,7 +129,8 @@ class GameRepository
             ':name' => $data["name"] ?? null,
             ':description' => $data["description"] ?? null,
             ':difficulty' => $data["difficulty"] ?? null,
-            ':left_in_stock' => $data["left_in_stock"] ?? null
+            ':left_in_stock' => $data["left_in_stock"] ?? null,
+            ':image_url' => $data["image_url"] ?? null
         ]);
 
         $stmt->closeCursor();
@@ -159,6 +164,7 @@ class GameRepository
                 (string) $row['description'],
                 (string) $row['difficulty'],
                 (string) $row['left_in_stock'],
+                (string) $row['image_url'] ?? '',
                 (int) $row['game_id']
             );
         }
@@ -185,10 +191,39 @@ class GameRepository
                 (string) $row['description'],
                 (string) $row['difficulty'],
                 (string) $row['left_in_stock'],
+                (string) $row['image_url'] ?? '',
                 (int) $row['game_id']
             );
         }
 
         return $allGames;
     }
+
+
+    public function searchByName(string $name): array
+    {
+        $stmt = $this->db->prepare("SELECT * FROM game WHERE name LIKE :name");
+        $stmt->execute([':name' => '%' . $name . '%']);
+
+        $rows = $stmt->fetchAll();
+        $games = [];
+
+        foreach ($rows as $row) {
+            $games[] = new Game(
+                (int)$row['players'],
+                (float)$row['price'],
+                (int)$row['duration'],
+                (string)$row['name'],
+                (string)$row['description'],
+                (string)$row['difficulty'],
+                (int)$row['left_in_stock'],
+                (string)$row['image_url'] ?? '',  // indien van toepassing
+                (int)$row['game_id']
+            );
+        }
+
+        return $games;
+    }
+
+
 }

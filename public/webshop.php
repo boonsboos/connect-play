@@ -53,12 +53,13 @@ $controller->fetchGames();
 			<!-- Productlijstweergave -->
 
 			<?php foreach ($controller->getGames() as $game): ?>
-				<div class="game-card p-15" onclick="window.location='/product.php?id=<?php echo $game->getId() ?>'">
+				<div class="game-card p-15" onclick="window.location='/product.php?id=<?= $game->getId() ?>'">
 					<!-- Weergave van een individuele game-kaart -->
-					<h3 class="text-center"><?= $game->getName(); ?></h3>
-					<p>€<?= htmlspecialchars($game->getPrice()); ?></p>
+					<img src="<?= htmlspecialchars($game->getImageUrl()) ?>" alt="Afbeelding<?= htmlspecialchars($game->getName()) ?>" class="game-card-image">
+					<h3 class="text-center"><?= htmlspecialchars($game->getName()); ?></h3>
+					<hr/>
 					<p><?= htmlspecialchars($game->getDescription()); ?></p>
-					<hr />
+					<p>€<?= htmlspecialchars($game->getPrice()); ?></p>
 				</div>
 			<?php endforeach; ?>
 		</div>
