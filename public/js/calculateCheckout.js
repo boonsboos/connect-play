@@ -5,11 +5,11 @@ function calculateTotalOrder() {
 	const shippingElement = document.getElementById("checkout-shipping")
 	const taxElement = document.getElementById("checkout-tax")
 	const totalElement = document.getElementById("checkout-total")
+	const hiddenTotalElement = document.getElementById("hidden-checkout-total")
 
 	const cartEntries = JSON.parse(localStorage.getItem(`currentOrder`))
 
 	if (!cartEntries || !cartEntries.cartEntries) {
-		window.location.href = "/webshop.php"
 		return
 	}
 
@@ -28,4 +28,6 @@ function calculateTotalOrder() {
 	totalElement.innerHTML = formatPrice(
 		subtotal + calculateShipping(subtotal) + subtotal * 0.21
 	)
+	hiddenTotalElement.value =
+		subtotal + calculateShipping(subtotal) + subtotal * 0.21
 }

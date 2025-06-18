@@ -128,6 +128,7 @@ function removeItemFromCart(gameId) {
 	// Sla bijgewerkte winkelwagen op
 	if (cartEntries.length === 0) {
 		localStorage.removeItem(`cartEntries_${userId}`)
+		localStorage.removeItem(`currentOrder`)
 	} else {
 		localStorage.setItem(
 			`cartEntries_${userId}`,

@@ -623,7 +623,8 @@ ul {
 	background-color: var(--background);
 }
 
-#profile-container .button {
+#profile-container .button,
+#checkout-container .button {
 	width: auto;
 	background-color: var(--accent);
 	color: var(--foreground);
@@ -652,7 +653,8 @@ ul {
 	border-radius: inherit; /* zo steekt de padding niet uit */
 }
 
-.game-card {
+.game-card,
+#checkout-container .box {
 	border: 1px solid #ddd;
 	border-radius: 8px;
 	padding: 16px;
