@@ -59,10 +59,13 @@ class Game
     
     public function getImageUrl(): string
     {
-        return $this->imageUrl ?? "https://firstbenefits.org/wp-content/uploads/2017/10/placeholder-1024x1024.png";
+        if (empty($this->imageUrl)) {
+            return "https://firstbenefits.org/wp-content/uploads/2017/10/placeholder-1024x1024.png";
+        }
+        return $this->imageUrl;
     }
 
-    public function setImageUrl(string $url = null)
+    public function setImageUrl(?string $url = null)
     {
         // geeft de image url aan het game object nadat deze is opgeslagen in de database
         $this->imageUrl = $url;
