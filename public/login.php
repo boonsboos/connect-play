@@ -60,4 +60,4 @@ if (isset($_GET['error'])) {
 
 </section>
 
-<?php require_once '../php/Shared/footer.php'; ?>
+<?php require_once '/var/www/php/Shared/footer.php'; ?>

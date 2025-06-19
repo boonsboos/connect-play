@@ -1,7 +1,7 @@
 <?php
 
-require_once '../php/Shared/header.php';
-require_once '../php/Profile/Controllers/UserController.php';
+require_once '/var/www/php/Shared/header.php';
+require_once '/var/www/php/Profile/Controllers/UserController.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $firstname = $_POST['firstname'] ?? '';
@@ -117,4 +117,4 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
     </form>
 </section>
 
-<?php require_once '../php/Shared/footer.php'; ?>
+<?php require_once '/var/www/php/Shared/footer.php'; ?>
