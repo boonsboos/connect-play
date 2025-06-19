@@ -58,7 +58,7 @@ class GameController extends Controller
             }
         }
 
-        $imageUrl = $_POST['image_url']?? '';
+        $imageUrl = $_POST['image_url'] ?? '';
         if (!empty($imageUrl)) {
             if (
                 // Controleren of imgurl een url is en een geldige extensie heeft
@@ -77,7 +77,7 @@ class GameController extends Controller
             description: (string)$_POST['description'],
             difficulty: (string)$_POST['difficulty'],
             leftInStock: (int)$_POST['left_in_stock'],
-            imageUrl: (string)$_POST['image_url'] ?? '',// Image URL is optioneel en wordt hier niet gebruikt
+            imageUrl: (string)$_POST['image_url'],// Image URL is optioneel en wordt hier niet gebruikt
             id: (int)$_POST['id']
         );
 
@@ -154,7 +154,7 @@ class GameController extends Controller
             description: (string)$_POST['description'],
             difficulty: (string)$_POST['difficulty'],
             leftInStock: (int)$_POST['left_in_stock'],
-            imageUrl: (string)$_POST['image_url'] ?? '', // Image URL is optioneel en wordt hier niet gebruikt
+            imageUrl: (string)$_POST['image_url'], // Image URL is optioneel en wordt hier niet gebruikt
             id: (int)$_POST['id']
         );
 
