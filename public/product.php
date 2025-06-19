@@ -1,12 +1,12 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	require_once '../php/Shop/Controllers/ShoppingCartController.php';
+	require_once '/var/www/php/Shop/Controllers/ShoppingCartController.php';
 	$shoppingCartController = new ShoppingCartController();
 	$shoppingCartController->addCartEntry($_POST['gameId']);
 	exit;
 }
-require_once '../php/Shared/header.php';
-require_once '../php/Shop/Controllers/GameController.php';
+require_once '/var/www/php/Shared/header.php';
+require_once '/var/www/php/Shop/Controllers/GameController.php';
 
 $userId = $_SESSION['userId'] ?? null;
 
@@ -78,5 +78,5 @@ if (!$game instanceof Game) {
 </div>
 <script src="js/handleAddToCart.js"></script>
 <?php
-require_once '../php/Shared/footer.php';
+require_once '/var/www/php/Shared/footer.php';
 ?>

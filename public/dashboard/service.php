@@ -40,7 +40,7 @@ if (isset($_GET["answered"]) && is_numeric($_GET["answered"])) {
 					<p><b>Contactpoging ID:<?php echo $contact->getId() ?></b></p>
 					<p><?php echo $contact->getMessage() ?></p>
 					<div class="flex">
-						<div class="col-2 py-30">
+						<div class="col-4 py-30">
 							<?php if ($contact->getStatus() == ContactReplyStatus::Unread): ?>
 								<a class="button" href="?answered=<?php echo $contact->getId() ?>">Beantwoorden</a>
 							<?php elseif ($contact->getStatus() == ContactReplyStatus::Answered): ?>

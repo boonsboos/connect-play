@@ -1,7 +1,7 @@
 <?php
 
-require_once '../php/Shared/header.php';
-require_once '../php/Profile/Controllers/UserController.php';
+require_once '/var/www/php/Shared/header.php';
+require_once '/var/www/php/Profile/Controllers/UserController.php';
 
 $controller = new UserController();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -51,4 +51,4 @@ if (isset($_GET['code']) && isset($_GET['email'])) {
     </form>
 </section>
 
-<?php require_once '../php/Shared/footer.php'; ?>
+<?php require_once '/var/www/php/Shared/footer.php'; ?>

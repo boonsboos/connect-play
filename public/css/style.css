@@ -422,6 +422,7 @@ ul {
 
 #profile-container .button.active {
 	background-color: var(--primary);
+	color: var(--background);
 }
 
 #productfilter {
@@ -1188,5 +1189,9 @@ i.trash {
 	.form-left textarea:focus,
 	.form-left select:focus {
 		box-shadow: var(--highlight) 0px 0px 10px;
+	}
+
+	#profile-container .button.active {
+		color: var(--foreground);
 	}
 }

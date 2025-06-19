@@ -1,8 +1,8 @@
 <?php
 
 // Inclusie van noodzakelijke bestanden
-require_once '../php/Shared/header.php';
-require_once '../php/Shop/controllers/WebshopController.php';
+require_once '/var/www/php/Shared/header.php';
+require_once '/var/www/php/Shop/controllers/WebshopController.php';
 
 $controller = new WebshopController();
 
@@ -94,4 +94,4 @@ $controller->fetchGames();
 	</div>
 </div>
 
-<?php require_once '../php/Shared/footer.php'; ?>
+<?php require_once '/var/www/php/Shared/footer.php'; ?>

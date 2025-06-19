@@ -2,7 +2,7 @@
 /*
     checkout-action.php is de tussenpersoon tussen JS en PHP
 */
-require_once '../php/Shop/Controllers/shoppingCartController.php';
+require_once '/var/www/php/Shop/Controllers/ShoppingCartController.php';
 
 if (!isset($_SESSION)) {
     session_start();
