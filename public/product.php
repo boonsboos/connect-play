@@ -28,7 +28,7 @@ if (!$game instanceof Game) {
 		</div>
 		<div class="col-10 flex flex-row">
 			<div class="col-6 flex flex-col align-center">
-				<img src="images/dienst_3.jpg" class="product-img" alt="Product afbeelding" />
+				<img src="<?= $game->getImageUrl() ?>" class="product-img" alt="Product afbeelding" />
 			</div>
 
 			<!-- Rechterkant: Details + prijs + button -->
