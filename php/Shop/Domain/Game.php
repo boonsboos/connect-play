@@ -11,7 +11,7 @@ class Game
         private string $description,
         private string $difficulty,
         private int $leftInStock,
-        private string $imageUrl = '',
+        private ?string $imageUrl = null,
         // optioneel, wordt pas gebruikt na aanmaken game
         // een optionele variabele zet je altijd als laatste (sinds php 8.0)
         private ?int $id = null 
@@ -59,10 +59,10 @@ class Game
     
     public function getImageUrl(): string
     {
-        return $this->imageUrl;
+        return $this->imageUrl ?? "https://firstbenefits.org/wp-content/uploads/2017/10/placeholder-1024x1024.png";
     }
 
-    public function setImageUrl(string $url = '')
+    public function setImageUrl(string $url = null)
     {
         // geeft de image url aan het game object nadat deze is opgeslagen in de database
         $this->imageUrl = $url;
