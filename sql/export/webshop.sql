@@ -476,7 +476,8 @@ CREATE PROCEDURE `update_contact` (IN `p_id` INT, IN `p_status` INT)   BEGIN
         `id` = p_id;
 END$$
 
-CREATE PROCEDURE `update_game` (IN `p_game_id` INT, IN `p_price` DECIMAL(10,2), IN `p_duration` INT, IN `p_name` VARCHAR(150), IN `p_description` MEDIUMTEXT, IN `p_difficulty` VARCHAR(20), IN `p_left_in_stock` INT, IN p_image_url VARCHAR(255))   BEGIN
+CREATE PROCEDURE `update_game` (IN `p_game_id` INT, IN `p_price` DECIMAL(10,2), IN `p_duration` INT, IN `p_name` VARCHAR(150), IN `p_description` MEDIUMTEXT, IN `p_difficulty` VARCHAR(20), IN `p_left_in_stock` INT, IN `p_image_url` VARCHAR(255), IN `p_players` INT)
+BEGIN
     UPDATE `game`
     SET 
         `price` = COALESCE(p_price, `price`),
@@ -485,10 +486,10 @@ CREATE PROCEDURE `update_game` (IN `p_game_id` INT, IN `p_price` DECIMAL(10,2), 
         `description` = COALESCE(p_description, `description`),
         `difficulty` = COALESCE(p_difficulty, `difficulty`), 
         `left_in_stock` = COALESCE(p_left_in_stock, `left_in_stock`),
-        `image_url` = p_image_url
+        `image_url` = COALESCE(p_image_url, `image_url`),
+        `players` = COALESCE(p_players, `players`)
     WHERE 
         `game_id` = p_game_id;
-
 END$$
 
 CREATE PROCEDURE `update_order` (IN `p_order_number` INT, IN `p_status` VARCHAR(20), IN `p_comment` VARCHAR(280))   BEGIN
