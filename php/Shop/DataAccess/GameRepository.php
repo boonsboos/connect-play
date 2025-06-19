@@ -103,7 +103,7 @@ class GameRepository
     public function updateGame(Game $game): void
     {
         // Voer update_game procedure uit
-        $stmtNewGameInfo = $this->db->prepare("CALL update_game(:id, :price, :duration, :name, :description, :difficulty, :left_in_stock, :image_url)");
+        $stmtNewGameInfo = $this->db->prepare("CALL update_game(:id, :price, :duration, :name, :description, :difficulty, :left_in_stock, :image_url, :players)");
 
         $stmtNewGameInfo->execute([
             ':id' => $game->getId(),
@@ -113,14 +113,15 @@ class GameRepository
             ':description' => $game->getDescription(),
             ':difficulty' => $game->getDifficulty(),
             ':left_in_stock' => $game->getLeftInStock(),
-            ':image_url' => $game->getImageUrl() // image_url is optioneel, dus kan leeg zijn
+            ':image_url' => $game->getImageUrl(), // image_url is optioneel, dus kan leeg zijn
+            ':players' => $game->getPlayers()
         ]);
     }
 
     public function updateGameOptional(array $data): void
     {
         // Voer update_game procedure uit
-        $stmt = $this->db->prepare("CALL update_game(:id, :price, :duration, :name, :description, :difficulty, :left_in_stock)");
+        $stmt = $this->db->prepare("CALL update_game(:id, :price, :duration, :name, :description, :difficulty, :left_in_stock, :image_url, :players)");
 
         $stmt->execute([
             ':id' => $data["game_id"],
@@ -130,7 +131,8 @@ class GameRepository
             ':description' => $data["description"] ?? null,
             ':difficulty' => $data["difficulty"] ?? null,
             ':left_in_stock' => $data["left_in_stock"] ?? null,
-            ':image_url' => $data["image_url"] ?? null
+            ':image_url' => $data["image_url"] ?? null,
+            ':players' => $data["players"] ?? null
         ]);
 
         $stmt->closeCursor();

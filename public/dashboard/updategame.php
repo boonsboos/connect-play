@@ -2,6 +2,9 @@
 require_once '/var/www/php/Shop/Controllers/GameController.php';
 require_once '/var/www/php/Shared/Guards/EmployeeGuard.php';
 
+if (!isset($_SESSION)) {
+    session_start();
+}
 $guard = new EmployeeGuard();
 
 // Alleen POST toegestaan
@@ -29,7 +32,6 @@ try {
     $id = (int)$_POST['id'];
     header("Location: /dashboard/editgame.php?id=$id&success=1");
     exit;
-
 } catch (Exception $e) {
     // Encode foutmelding en redirect naar editpagina met ID
     $message = urlencode($e->getMessage());

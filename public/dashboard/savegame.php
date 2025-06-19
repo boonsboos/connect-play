@@ -2,6 +2,10 @@
 require_once '/var/www/php/Shop/Controllers/GameController.php';
 require_once '/var/www/php/Shared/Guards/EmployeeGuard.php';
 
+if(!isset($_SESSION)) {
+    session_start();
+}
+
 $guard = new EmployeeGuard();
 
 try {
