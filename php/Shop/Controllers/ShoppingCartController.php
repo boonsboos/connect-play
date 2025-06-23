@@ -1,10 +1,10 @@
 <?php
-// require_once '/var/www/php/Shared/Debug.php';
+
 if (!isset($_SESSION)) {
     session_start();
 }
-require_once '/var/www/php/Shared/Controller.php';
-require_once '/var/www/php/Shop/Controllers/GameController.php';
+
+require_once '/var/www/php/Shop/DataAccess/GameRepository.php';
 require_once '/var/www/php/Shop/DataAccess/OrderRepository.php';
 require_once '/var/www/php/Shop/Domain/Order.php';
 require_once '/var/www/php/Shop/Domain/CartEntry.php';
@@ -14,10 +14,14 @@ require_once '/var/www/php/Profile/DataAccess/UserRepository.php';
 class ShoppingCartController
 {
     private OrderRepository $orderRepository;
+    private GameRepository $gameRepository;
+    private UserRepository $userRepository;
 
     public function __construct()
     {
         $this->orderRepository = new OrderRepository();
+        $this->gameRepository = new GameRepository();
+        $this->userRepository = new UserRepository();
     }
 
     public function dispatch(): void
@@ -29,7 +33,7 @@ class ShoppingCartController
                 $this->createOrder();
                 break;
             case 'addCartEntries':
-                $this->addCartEntries();
+                $this->saveCartEntries();
                 break;
             default:
                 // als $_POST['action'] geen waarde heeft 'createOrder' of 'addCartEntries' wordt deze melding gestuurd    
@@ -37,8 +41,10 @@ class ShoppingCartController
                     'success' => false, 
                     'message' => 'Geen geldige actie meegegeven'
                 ]);
-                exit; // beter een exit gebruiken zodat php daadwerkelijk stopt
         }
+
+        // zorg ervoor dat niks verder kan lopen dan de voltooide dispatch
+        exit;
     }
 
     /**
@@ -56,7 +62,7 @@ class ShoppingCartController
         }
 
         // Haal de order op die gekoppeld is aan de user uit de database
-        $order = $this->orderRepository->getOrderForUser($userId);
+        $order = $this->orderRepository->getLatestPendingOrderForUser($userId);
 
         // Controleer of er ene order aanwezig is
         if (!$order) {
@@ -66,19 +72,22 @@ class ShoppingCartController
         // Indien order aanwezig haal alle cartEntries op die gekoppeld zijn aan de order
         $cartEntries = $this->orderRepository->getCartEntriesByOrderId($order->getId());
 
-        // Voor het ophalen van de user en adres maken we een userRepo aan
-        $userRepository = new UserRepository();
+        $user = $this->userRepository->getUser((int)$userId);
 
-        try {
-            $user = $userRepository->getUser((int)$userId);
-            $username = $user->getName();
-            $address = $user->getAddresses()[0];
-        } catch (Exception $e) {
-            $username = 'Onbekend';
-            $address = null;
+        if (!$user) {
+            return [
+                'success' => false,
+                'message' => 'User bestaat niet (meer)',
+                'orderId' => -1,
+                'username' => 'Onbekend',
+                'address' => null,
+                'cartEntries' => []
+            ];
         }
 
-        // return een array met alle waardes
+        $username = $user->getName();
+        $address = $user->getAddresses()[0];
+
         return [
             'success' => true,
             'orderId' => $order->getId(),
@@ -90,15 +99,9 @@ class ShoppingCartController
     
     public function createOrder(): void
     {
-        // Zorg dat je een gebruiker hebt
-        $userId = $_SESSION['userId'] ?? null;
+        $userId = $this->validateUser();
 
-        if (!$userId) {
-            echo json_encode(['success' => false, 'message' => 'Niet ingelogd.']);
-            exit;
-        }
-
-        $foundOrder = $this->orderRepository->getOrderForUser($userId); // Haal de openstaande (PENDING) van de gebruiker op
+        $foundOrder = $this->orderRepository->getLatestPendingOrderForUser($userId); // Haal de openstaande (PENDING) van de gebruiker op
 
         if ($foundOrder) {
             $_SESSION["currentOrderNumber"] = $foundOrder->getId();
@@ -108,40 +111,42 @@ class ShoppingCartController
                 'orderNumber' => $foundOrder->getId(),
                 'userId' => $foundOrder->getUserId()
             ]);
-            exit;
-        } else{
-            try {
-                // Maak een nieuwe Order aan (orderNumber is null, wordt door DB gezet)
-                $order = new Order(
-                    userId: (int)$userId,
-                    date: date('Y-m-d'),
-                    status: OrderStatus::Pending,
-                );
+            return;
+        }
 
-                // Sla op in de database via de repository
-                $this->orderRepository->createOrder($order);
+        try {
+            // Maak een nieuwe Order aan (orderNumber is null, wordt door DB gezet)
+            $order = new Order(
+                userId: (int)$userId,
+                date: date('Y-m-d'),
+                status: OrderStatus::Pending,
+            );
 
-                // Zet het ordernummer in de sessie voor het kunenn toevoegen van de entrys
-                $_SESSION["currentOrderNumber"] = $order->getId();
+            // Sla op in de database via de repository
+            $this->orderRepository->createOrder($order);
 
-                // Zet het ordernummer en userId klaar om in localStorage te stoppen via frontend (optioneel)
-                echo json_encode([
-                    'success' => true,
-                    'orderNumber' => $order->getId(),
-                    'userId' => $order->getUserId()
-                ]);
-                return;
-            } catch (Exception $e) {
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'Fout bij aanmaken van order: ' . $e->getMessage()
-                ]);
-                return;
-            }
+            // Zet het ordernummer in de sessie voor het kunenn toevoegen van de entrys
+            $_SESSION["currentOrderNumber"] = $order->getId();
+
+            // Zet het ordernummer en userId klaar om in localStorage te stoppen via frontend (optioneel)
+            echo json_encode([
+                'success' => true,
+                'orderNumber' => $order->getId(),
+                'userId' => $order->getUserId()
+            ]);
+        } catch (Exception $e) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Fout bij aanmaken van order: ' . $e->getMessage()
+            ]);
         }
     }
-    
-    public function addCartEntries(): void
+
+    /**
+     * Sla de cart entries op in de database bij de order
+     * @return void
+     */
+    public function saveCartEntries(): void
     {
         // de waardes in de $_POST komen vanuit de checkout.js, het FormData object
         $orderNumber = $_POST['orderNumber'] ?? null;
@@ -149,8 +154,11 @@ class ShoppingCartController
 
           // het ordernummer en minimaal één cartentry is nodig om verder te gaan
         if (!$orderNumber || !$cartEntriesJson) {
-            echo json_encode(['success' => false, 'message' => 'Geen order of cartentries gevonden.']);
-            exit;
+            echo json_encode([
+                'success' => false,
+                'message' => 'Geen order of cartentries gevonden.'
+            ]);
+            return;
         }
 
         // zet JSON string om naar een associatieve array
@@ -162,10 +170,8 @@ class ShoppingCartController
                 'success' => false,
                 'message' => 'Kan cartEntriesJson niet omzetten naar array.'
             ]);
-            exit;
+            return;
         }
-
-        $gameController = new GameController();
 
         // haal alle bestaande cartEntries op uit de database adhv ordernummer
         $allCartEntriesFromOrder = $this->orderRepository->getCartEntriesByOrderId($orderNumber);
@@ -183,7 +189,7 @@ class ShoppingCartController
         // voeg cartEntry toe of werk deze bij in de database
         foreach ($cartEntries as $entry) {
             // een game object is nodig voor cartEntry object
-            $game = $gameController->getGameById($entry["gameId"]);
+            $game = $this->gameRepository->getGame($entry["gameId"]);
 
             $cartEntry = new CartEntry(
                 $orderNumber,
@@ -202,44 +208,54 @@ class ShoppingCartController
 
         echo json_encode([
             'success' => true,
-            'message' => 'De cartEntries zijn toegevoegd aan de database.'
+            'message' => 'Winkelwagen opgeslagen'
         ]);
         exit;
     }
 
-    public function addCartEntry(int $gameId)
+    public function addCartEntry(int $gameId): void
     {
-        // zorg dat je een gebruiker hebt
-        $userId = $_SESSION['userId'] ?? null;
+        $this->validateUser();
 
-        if (!$userId) {
-            echo json_encode(['success' => false, 'message' => 'Niet ingelogd.']);
-            return;
-        }
+        $game = $this->gameRepository->getGame($gameId);
 
-        $gameController = new GameController();
-        $game = $gameController->getGameById($gameId);
-
-        try {
-            echo json_encode([
-                'success' => true,
-                'message' => 'Game toegevoegd aan je winkelwagen.',
-                'cartEntry' => [
-                    'gameId' => (int) $gameId,
-                    'name' => $game->getName(),
-                    'price' => $game->getPrice(),
-                    'amount' => 1
-                ],
-                'action' => 'add'
-            ]);
-            return;
-        } catch (Exception $e) {
+        if (!$game) {
             echo json_encode([
                 'success' => false,
-                'message' => 'Fout bij toevoegen aan winkelwagen: ' . $e->getMessage(),
+                'message' => 'Game niet gevonden',
                 'action' => 'add'
             ]);
             return;
         }
+
+        echo json_encode([
+            'success' => true,
+            'message' => 'Game toegevoegd aan je winkelwagen.',
+            'cartEntry' => [
+                'gameId' => $gameId,
+                'name' => $game->getName(),
+                'price' => $game->getPrice(),
+                'amount' => 1
+            ],
+            'action' => 'add'
+        ]);
+    }
+
+    /**
+     * Deze functie callt exit/die als de user niet is ingelogd
+     * en retourneert de ID als dat wel zo is.
+     *
+     * @return int de id van de user
+     */
+    private function validateUser(): int {
+        // Zorg dat je een gebruiker hebt
+        $userId = $_SESSION['userId'] ?? null;
+
+        if (empty($userId) || !is_numeric($userId)) {
+            echo json_encode(['success' => false, 'message' => 'Niet ingelogd.']);
+            exit;
+        }
+
+        return (int) $userId;
     }
 }

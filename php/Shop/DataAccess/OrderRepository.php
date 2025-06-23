@@ -24,34 +24,33 @@ class OrderRepository
         // Aan de hand van de userId wordt er een Order aangemaakt
         $userId = $order->getUserId();
 
-        try {
-            // 1. Order toevoegen
-            $stmtOrder  = $this->db->prepare("CALL add_order(:userId)");
-            /**
-             * In de stored prodecure 'add_order' wordt het volgende al toegevoegd:
-             * -----------------------------------
-             * -- orderNumber => AUTO_INCREMENT --
-             * -- date => CURRENT_DATE()        --
-             * -- Status => 'PENDING'           --
-             * -----------------------------------
-             */
-            $stmtOrder->execute([':userId' => $userId]);
+        // 1. Order toevoegen
+        $stmtOrder  = $this->db->prepare("CALL add_order(:userId)");
+        /**
+         * In de stored prodecure 'add_order' wordt het volgende al toegevoegd:
+         * -----------------------------------
+         * -- orderNumber => AUTO_INCREMENT --
+         * -- date => CURRENT_DATE()        --
+         * -- Status => 'PENDING'           --
+         * -----------------------------------
+         */
+        $stmtOrder->execute([':userId' => $userId]);
 
-            // 2. Haalt het orderNumber op
-            $orderId = $stmtOrder->fetchColumn();
-            $order->setOrderNumber((int)$orderId);
+        // 2. Haalt het orderNumber op
+        $orderId = $stmtOrder->fetchColumn();
+        $order->setOrderNumber((int)$orderId);
 
-            // 3. sluit de cursor van de procedure voordat een nieuwe query begint
-            $stmtOrder->closeCursor();
-        } catch (PDOException $e) {
-            if ($e->getCode() === '23000') { // Code 23000 betekent "Integrity constraint violation". je probeert iets toe te voegen dat de db verbied, zoals dubbele orders
-                throw new Exception("Ordernummer bestaat al!");  // hier maak je een Exception voor ALLEEN de foutcode 23000 zo worden andere foutmeldingen niet stilgezet
-            }
-            throw $e; // hier wordt de Exception gegooit voor alle andere fouten
-        }
+        // 3. sluit de cursor van de procedure voordat een nieuwe query begint
+        $stmtOrder->closeCursor();
     }
 
-    public function getOrderForUser($userId): ?Order // return type betekend order of een null
+    /**
+     * @param $userId De ID van de user van wie we de laatste pending order willen
+     * @return Order|null
+     * - `Order` als de order bestaat.
+     * - `null` als er geen pending orders zijn.
+     */
+    public function getLatestPendingOrderForUser($userId): ?Order // return type betekend order of een null
     {
         // haal alle orders op die gekoppeld zijn aan de gebruiker
         $allOrders = $this->getOrdersByUser($userId);

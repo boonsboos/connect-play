@@ -31,11 +31,9 @@ class WebshopRepository
     {
         $stmtSr = $this->db->prepare("CALL get_no_search_result()");
 
-        $stmtSr->execute([]);
+        $stmtSr->execute();
 
-        $allSearchTerms = $stmtSr->fetchAll();
-        
-        return $allSearchTerms;
+        return $stmtSr->fetchAll();
     }
 
 }

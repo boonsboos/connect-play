@@ -57,9 +57,6 @@ class UserRepository
         $stmtUser->closeCursor();
     }
 
-    /**
-     * @throws Exception
-     */
     public function getUser($emailOrId): ?User
     {
         if (!$emailOrId) {

@@ -52,9 +52,9 @@ class ContactRepository
     }
 
     /**
-     * @return array|null
+     * @return array
      */
-    public function getUnresolvedContacts(): ?array
+    public function getUnresolvedContacts(): array
     {
         $stmt = $this->db->prepare("CALL get_unresolved_contacts()");
 

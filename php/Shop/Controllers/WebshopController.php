@@ -142,7 +142,7 @@ class WebshopController {
         return "";
     }
 
-    public function getEmptySearchResults()
+    public function getEmptySearchResults(): array
     {
          return $this->webshopRepository->getEmptySearchResults();
     }

@@ -1,7 +1,6 @@
 <?php
 
 require_once '/var/www/php/Shared/Database.php';
-require_once '/var/www/php/Shop/Domain/Game.php';
 require_once '/var/www/php/Shop/Domain/Workshop.php';
 
 class WorkshopRepository

@@ -1,10 +1,9 @@
 <?php
 
-require_once '/var/www/php/Shared/Controller.php';
 require_once '/var/www/php/Shop/DataAccess/GameRepository.php';
 require_once '/var/www/php/Shop/Domain/Game.php';
 
-class GameController extends Controller
+class GameController
 {
     private GameRepository $gameRepository;
 
@@ -28,13 +27,7 @@ class GameController extends Controller
             throw new Exception("Ongeldig of ontbrekend ID");
         }
 
-        return $this->getGameById((int)$id); //de (int) forceert dat $id een integer wordt
-    }
-
-    // met de methode getGameById heb je de mogelijheid om een game adhv een id op te halen
-    public function getGameById(int $id): Game
-    {
-        return $this->gameRepository->getGame($id);
+        return $this->gameRepository->getGame((int) $id); // cast naar int om zeker te zijn van type
     }
 
     public function removeGame(int $gameId): void
@@ -44,7 +37,7 @@ class GameController extends Controller
         $this->gameRepository->removeGame($gameId);
     }
 
-    public function addGame()
+    public function addGame(): void
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             throw new Exception("Ongeldige methode, alleen POST is toegestaan", 405);
@@ -109,7 +102,7 @@ class GameController extends Controller
 
             // Redirect terug naar formulier met succesmelding
         header("Location: /dashboard/addgame.php?success=1");
-    exit;
+        exit;
     }
 
     public function searchGamesByName(string $name): array

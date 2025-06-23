@@ -84,7 +84,7 @@ class GameRepository
         $gameData = $stmtGame->fetch();
 
         if (!$gameData) {
-            throw new Exception("Game niet gevonden.", 404);
+            return null;
         }
 
         return new Game(

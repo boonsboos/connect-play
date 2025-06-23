@@ -1,10 +1,8 @@
 <?php
-require_once '/var/www/php/Shared/Controller.php';
-
 require_once '/var/www/php/Profile/DataAccess/ContactRepository.php';
 require_once "/var/www/php/Profile/Domain/ContactReplyStatus.php";
 
-class ContactController extends Controller
+class ContactController
 {
     private ContactRepository $contactRepository;
 

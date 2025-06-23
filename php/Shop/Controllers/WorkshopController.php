@@ -1,12 +1,11 @@
 <?php
 
-require_once '/var/www/php/Shared/Controller.php';
 require_once '/var/www/php/Shop/DataAccess/WorkshopRepository.php';
 require_once '/var/www/php/Shop/Domain/Workshop.php';
 require_once "/var/www/php/Shop/DataAccess/GameRepository.php";
 require_once "/var/www/php/Shop/Domain/Game.php";
 
-class WorkshopController extends Controller
+class WorkshopController
 {
     private WorkshopRepository $workshopRepository;
     private GameRepository $gameRepository;
@@ -60,7 +59,7 @@ class WorkshopController extends Controller
         ));
     }
 
-    private function validateWorkshop() {
+    private function validateWorkshop(): bool {
         // valideer dat alle data beschikbaar is en het juiste formaat heeft
         if (!isset($_POST['gameId']) || !is_numeric($_POST['gameId'])
             || !isset($_POST['minplayers']) || !is_numeric($_POST['minplayers'])

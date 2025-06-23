@@ -1,11 +1,10 @@
 <?php
 
-require_once '/var/www/php/Shared/Controller.php';
 require_once '/var/www/php/Profile/DataAccess/UserRepository.php';
 require_once '/var/www/php/Profile/Domain/User.php';
 require_once '/var/www/php/Profile/Domain/Address.php';
 
-class UserController extends Controller
+class UserController
 {
     private UserRepository $userRepository;
 
