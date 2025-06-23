@@ -16,7 +16,8 @@ class WorkshopController
     }
 
     /**
-     * @throws Exception als er iets fout gaat met de database
+     * @return bool
+     * @throws
      */
     public function createWorkshop(): bool
     {
@@ -24,14 +25,17 @@ class WorkshopController
             return false;
         }
 
-        $this->workshopRepository->createWorkshop(new Workshop(
-            (int) $_POST['gameId'],
-            (int) $_POST['minplayers'],
-            (int) $_POST['maxplayers'],
-            (float) $_POST['price'],
-            (int) $_POST['duration']
-        ));
-        return true;
+        try {
+            return $this->workshopRepository->createWorkshop(new Workshop(
+                (int) $_POST['gameId'],
+                (int) $_POST['minplayers'],
+                (int) $_POST['maxplayers'],
+                (float) $_POST['price'],
+                (int) $_POST['duration']
+            ));
+        } catch (PDOException) {
+            return false;
+        }
     }
 
     public function getWorkshop(int $gameId): ?Workshop
@@ -50,13 +54,17 @@ class WorkshopController
             return false;
         }
 
-        return $this->workshopRepository->updateWorkshop(new Workshop(
-            (int) $_POST['gameId'],
-            (int) $_POST['minplayers'],
-            (int) $_POST['maxplayers'],
-            (float) $_POST['price'],
-            (int) $_POST['duration']
-        ));
+        try {
+            return $this->workshopRepository->updateWorkshop(new Workshop(
+                (int) $_POST['gameId'],
+                (int) $_POST['minplayers'],
+                (int) $_POST['maxplayers'],
+                (float) $_POST['price'],
+                (int) $_POST['duration']
+            ));
+        } catch (PDOException) {
+            return false;
+        }
     }
 
     private function validateWorkshop(): bool {
@@ -95,8 +103,6 @@ class WorkshopController
 
     public function removeWorkshop(int $gameId): void
     {
-        $this->workshopRepository->getWorkshop($gameId);
-
         $this->workshopRepository->removeWorkshop($gameId);
     }
 

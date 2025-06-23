@@ -45,6 +45,7 @@ class GameRepository
     }
 
     /**
+     * Haalt alle games op
      * @returns Game[]
      */
     public function getGames(): array
@@ -148,6 +149,7 @@ class GameRepository
     }
 
     /**
+     * Haalt alle games op die geen workshop hebben geconfigureerd
      * @return Game[]
      */
     public function getGamesWithoutWorkshops(): array
@@ -175,6 +177,7 @@ class GameRepository
     }
 
     /**
+     * Haalt alle games op die wel een worksho hebben geconfigureerd
      * @return Game[]
      */
     public function getGamesWithWorkshops(): array

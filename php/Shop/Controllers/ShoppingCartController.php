@@ -24,7 +24,12 @@ class ShoppingCartController
         $this->userRepository = new UserRepository();
     }
 
-    public function dispatch(): void
+    /**
+     * Beslist op basis van POST-parameter welke actie uitgevoerd moet worden
+     *
+     * @return never
+     */
+    public function dispatch(): never
     {
         $orderAction = $_POST['action'] ?? null; // deze komt van de orderData.append
 

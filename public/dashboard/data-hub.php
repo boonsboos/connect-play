@@ -13,7 +13,7 @@ $success = null;
 $controller = new DataHubController(isset($_SESSION['data']) ? $_SESSION['data'] : [], isset($_SESSION['headers']) ? $_SESSION['headers'] : [], isset($_SESSION['fileName']) ? $_SESSION['fileName'] : null);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['csvFile'])) {
-    if ($controller->uploadCSVFile($_FILES['csvFile'])) {
+    if ($controller->processCSVFile($_FILES['csvFile'])) {
         $success = "CSV-bestand succesvol geüpload en verwerkt.";
     } else {
         $error = $controller->getError(); // Haal de foutmelding van de controller op

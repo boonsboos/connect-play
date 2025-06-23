@@ -16,9 +16,14 @@ class DataHubController
     }
 
     /**
-     * Upload en verwerk een CSV-bestand.
+     * Verwerk een CSV-bestand.
+     *
+     * @param array $file het bestand dat is geupload
+     * @return bool
+     * - true als het verwerken slaagt
+     * - false als het verwerken fout gaat
      */
-    public function uploadCSVFile($file): bool
+    public function processCSVFile(array $file): bool
     {
         // Laad het CSV-bestand met de CSVLoader 
         [$this->fileName, $tmpName] = CSVLoader::load($file); // destructureer de array om de originele bestandsnaam en de tijdelijke bestandsnaam te krijgen 
@@ -48,6 +53,8 @@ class DataHubController
     /**
      * Retourneer de verwerkte CSV-gegevens zonder de headers.
      * De headers worden apart behandeld in de {@see getHeaders()} methode.
+     *
+     * @return array
      */
     public function getData(): array
     {
@@ -56,6 +63,8 @@ class DataHubController
 
     /**
      * Retourneer de headers van de CSV-gegevens.
+     *
+     * @return string[]
      */
     public function getHeaders(): array
     {
@@ -64,12 +73,25 @@ class DataHubController
 
     /**
      * Retourneer de bestandsnaam van het geüploade CSV-bestand.
+     *
+     * @return string|null
+     * - string als het bestand bestaat
+     * - null als het bestand niet bestaat
      */
     public function getFileName(): ?string
     {
         return $this->fileName;
     }
 
+    /**
+     * Valideert de CSV headers door ze te vergelijken
+     * met de namen van de kolommen in de database
+     *
+     * @param array $headers de headers om te vergelijken
+     * @return bool
+     * - true als ze overeenkomen
+     * - false als ze niet overeenkomen
+     */
     private function validateHeaders(array $headers): bool
     {
         // Controleer of de headers overeenkomen met de verwachte kolommen in de database
@@ -79,12 +101,22 @@ class DataHubController
 
     /**
      * Retourneer de foutmelding, indien aanwezig.
+     *
+     * @return string|null
+     * - string als er een foutmelding is
+     * - null als er geen fouten zijn
      */
     public function getError(): ?string
     {
         return $this->error;
     }
 
+    /**
+     * Stelt een foutmelding in
+     *
+     * @param string|null $error de foutmelding
+     * @return void
+     */
     private function setError(?string $error): void
     {
         $this->error = $error;
@@ -126,6 +158,10 @@ class DataHubController
 
     /**
      * Controleer of er een CSV-bestand is geüpload.
+     *
+     * @return bool
+     * - true als het bestand is geüpload
+     * - false als dat niet zo is
      */
     public function isUploaded(): bool
     {

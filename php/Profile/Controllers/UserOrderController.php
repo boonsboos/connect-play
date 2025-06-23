@@ -19,31 +19,25 @@ class UserOrderController
     /** @return Order[]  */
     public function getUserOrders(): array
     {
-        try {
-            // Haal de gebruiker op
-            $user = $this->userRepository->getUser($_SESSION["userId"]);
-            if (!$user) {
-                return throw new Exception("Gebruiker niet gevonden");
-            }
-
-            // Haal de bestellingen van de gebruiker op
-            $orders = $this->orderRepository->getOrdersByUser($user->getId());
-            if (empty($orders)) {
-                return [];
-            }
-
-            foreach ($orders as $order) {
-                // Haal de details van elke bestelling op
-                $cartEntries = $this->orderRepository->getCartEntriesByOrderId($order->getId());
-                $order->setEntries($cartEntries);
-            }
-
-            return $orders;
-        } catch (Exception $e) {
-            // Log de fout of handel deze op een andere manier af
-            header("Location: /profiel/bestellingen.php?error=" . urlencode($e->getMessage()));
-            die;
+        // Haal de gebruiker op
+        $user = $this->userRepository->getUser($_SESSION["userId"]);
+        if (!$user) {
+            return [];
         }
+
+        // Haal de bestellingen van de gebruiker op
+        $orders = $this->orderRepository->getOrdersByUser($user->getId());
+        if (empty($orders)) {
+            return [];
+        }
+
+        foreach ($orders as $order) {
+            // Haal de details van elke bestelling op
+            $cartEntries = $this->orderRepository->getCartEntriesByOrderId($order->getId());
+            $order->setEntries($cartEntries);
+        }
+
+        return $orders;
     }
 
     public function getUserOrderById(int $orderId): ?Order

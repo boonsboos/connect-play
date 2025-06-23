@@ -28,14 +28,27 @@ class ServiceController
     public function markInquiryAsResolved(int $ticketId): void {
         $this->updateContactStatusById($ticketId, ContactReplyStatus::Resolved);
         // ververs de pagina, nu zal de contactpoging verdwijnen.
-        header("Location: service.php");
-        die();
+        $this->refresh();
     }
 
     private function updateContactStatusById(int $ticketId, ContactReplyStatus $status): Contact {
         $contact = $this->contactRepository->getContactById($ticketId);
         $contact->setStatus($status);
-        $this->contactRepository->updateContactStatus($contact);
+
+        try {
+            $this->contactRepository->updateContactStatus($contact);
+        } catch (PDOException) {
+            $this->refresh();
+        }
+
         return $contact;
+    }
+
+    /**
+     * @return never omdat deze functie nooit retourneert
+     */
+    private function refresh(): never {
+        header("Location: service.php");
+        die();
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-require_once '/var/www/php/Shared/Controller.php';
 require_once '/var/www/php/Shop/DataAccess/GameRepository.php';
 require_once '/var/www/php/Shop/DataAccess/WebshopRepository.php';
 

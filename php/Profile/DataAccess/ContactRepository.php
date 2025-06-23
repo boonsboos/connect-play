@@ -17,6 +17,12 @@ class ContactRepository
         }
     }
 
+    /**
+     * Slaat een contactpoging op in de database
+     *
+     * @param Contact $contact de contactpoging om op te slaan
+     * @return void
+     */
     public function addContact(Contact $contact): void
     {
         $stmt = $this->db->prepare("CALL add_contact(:first_name, :last_name, :email, :message)");
@@ -28,6 +34,14 @@ class ContactRepository
         ]);
     }
 
+    /**
+     * Haalt een contactpoging op bij contactpoging ID
+     *
+     * @param int $id de id van de contactpoging
+     * @return Contact|null
+     * - Contact als deze bestaat
+     * - null als deze niet is gevondn
+     */
     public function getContactById(int $id): ?Contact
     {
         $stmt = $this->db->prepare("CALL get_contact(:id, NULL)");
@@ -52,7 +66,9 @@ class ContactRepository
     }
 
     /**
-     * @return array
+     * Haalt alle contactpogingen die nog niet op zijn gelost.
+     *
+     * @return Contact[]
      */
     public function getUnresolvedContacts(): array
     {
@@ -81,6 +97,7 @@ class ContactRepository
 
     /**
      * Updatet de status van een contactpoging naar of beantwoord of opgelost
+     * 
      * @param Contact $contact de contactpoging
      * @return bool als de query slaagt
      */

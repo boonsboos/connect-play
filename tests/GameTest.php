@@ -62,13 +62,9 @@ class GameTest extends TestCase {
         $gameRepository->removeGame($game->getId());
 
         // Assert
-        // omdat de getGame een Exception gooit, moet je deze opvangen met een try catch
-        try {
-            $gameRepository->getGame($game->getId());
-            $this->fail("Game is niet verwijderd.");
-        } catch (Exception $e) {
-            $this->assertEquals("Game niet gevonden.", $e->getMessage());
-        }
+        $this->assertNull(
+            $gameRepository->getGame($game->getId())
+        );
     }
 
     public function testGetGames() {
@@ -86,13 +82,13 @@ class GameTest extends TestCase {
         $gameRepository->removeGame($game1->getId());
         $gameRepository->removeGame($game2->getId());
         
-        // EXTRA COMMIT AAN TOEVOEGEN
-        $getGamesIsTrue = array_filter($allGames, function($game) use ($game1, $game2) {
+        // we filteren op de games die overeen komen met de games die we hebben toegevoegd
+        $result = array_filter($allGames, function($game) use ($game1, $game2) {
             return $game1->getId() == $game->getId() || $game2->getId() == $game->getId();
         });
 
         // Assert
-        $this->assertCount(2, $getGamesIsTrue);
+        $this->assertCount(2, $result);
     }
 
 }

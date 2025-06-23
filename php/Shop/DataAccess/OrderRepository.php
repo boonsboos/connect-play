@@ -19,6 +19,11 @@ class OrderRepository
         }
     }
 
+    /**
+     * Maakt de order aan
+     * @param Order $order de order om op te slaan.
+     * @return void
+     */
     public function createOrder(Order $order): void
     {
         // Aan de hand van de userId wordt er een Order aangemaakt
@@ -26,7 +31,7 @@ class OrderRepository
 
         // 1. Order toevoegen
         $stmtOrder  = $this->db->prepare("CALL add_order(:userId)");
-        /**
+        /*
          * In de stored prodecure 'add_order' wordt het volgende al toegevoegd:
          * -----------------------------------
          * -- orderNumber => AUTO_INCREMENT --
@@ -45,12 +50,12 @@ class OrderRepository
     }
 
     /**
-     * @param $userId De ID van de user van wie we de laatste pending order willen
+     * @param $userId int De ID van de user van wie we de laatste pending order willen
      * @return Order|null
      * - `Order` als de order bestaat.
      * - `null` als er geen pending orders zijn.
      */
-    public function getLatestPendingOrderForUser($userId): ?Order // return type betekend order of een null
+    public function getLatestPendingOrderForUser(int $userId): ?Order // return type betekend order of een null
     {
         // haal alle orders op die gekoppeld zijn aan de gebruiker
         $allOrders = $this->getOrdersByUser($userId);
@@ -65,6 +70,11 @@ class OrderRepository
         return null;
     }
 
+    /**
+     * Slaat de cart entry op
+     * @param CartEntry $cartEntry
+     * @return void
+     */
     public function addCartEntry(CartEntry $cartEntry): void
     {
         $stmtCartEntry = $this->db->prepare("CALL add_cart_entry(:orderNumber, :gameId, :amount, :when)");
@@ -77,6 +87,11 @@ class OrderRepository
         ]);
     }
 
+    /**
+     * Werkt een cart entry bij
+     * @param CartEntry $cartEntry
+     * @return void
+     */
     public function updateCartEntry(CartEntry $cartEntry): void
     {
         $stmtCartEntry = $this->db->prepare("CALL update_cart_entry(:orderNumber, :gameId, :newAmount, :newWhen)");
@@ -89,6 +104,12 @@ class OrderRepository
         ]);
     }
 
+    /**
+     * Verwijdert een cart entry
+     * @param int $orderNumber de order waar de cart entry onderdeel van uitmaakt
+     * @param int $gameId de id van de game
+     * @return void
+     */
     public function deleteCartEntry(int $orderNumber, int $gameId): void
     {
         $stmtCartEntry = $this->db->prepare("CALL delete_cart_entry(:orderNumber, :gameId)");
@@ -99,7 +120,15 @@ class OrderRepository
         ]);
     }
 
-    public function cartEntryExists(int $orderNumber, int $gameId): bool // hoeft alleen te checken of ordernummer en gameid overeenkomt
+    /**
+     * Checkt of een cart entry bestaat
+     * @param int $orderNumber het order waar de cart entry onderdeel van uitmaakt
+     * @param int $gameId de game waarvoor de cart entry geldt
+     * @return bool
+     * - true als de entry bestaat
+     * - false als deze niet bestaat
+     */
+    public function cartEntryExists(int $orderNumber, int $gameId): bool
     {
         $stmtCartEntry = $this->db->prepare("CALL get_cart_entry_by_order_and_game(:orderNumber, :gameId)");
 
@@ -110,15 +139,12 @@ class OrderRepository
 
         $cartEntryResult = $stmtCartEntry->fetch();
 
-        if ($cartEntryResult) {
-            return true;
-        }
-
-        return false;
+        // als leeg is: false | als gevuld is: true
+        return !empty($cartEntryResult);
     }
 
     /**
-     * Deze methode haalt alle bestellingen op voor een specifieke gebruiker
+     * Haalt alle bestellingen op voor een specifieke gebruiker
      *
      * @param string $userId
      * @return Order[]
@@ -147,7 +173,7 @@ class OrderRepository
     }
 
     /**
-     * Deze methode haalt de details van een specifieke bestelling op
+     * Haalt de cart entries van een order op
      * 
      * @param string $orderId
      * @return CartEntry[]
@@ -196,6 +222,13 @@ class OrderRepository
         return $cartEntries;
     }
 
+    /**
+     * Haalt een order op bij order ID/order nummer
+     * @param string $orderId de id van de order om op te zoeken
+     * @return Order|null
+     * - Order als de order bestaat
+     * - null als deze niet bestaat
+     */
     public function getOrderById(string $orderId): ?Order
     {
         $query = "CALL get_order(:orderId)";

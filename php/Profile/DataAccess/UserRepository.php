@@ -18,9 +18,15 @@ class UserRepository
         }
     }
 
-    public function addUser(User $user)
+    /**
+     * Slaat het account van de nieuwe gebruiker op
+     *
+     * @param User $user de gebruiker die een account aanmaakt
+     * @return void
+     * @throws PDOException als iets faalt aan de databasekant
+     */
+    public function addUser(User $user): void
     {
-        // Gebruik de prepare() ipv query() om sql injectie voorkomen. Zo komt de invoer niet direct in de query
         $address = $user->getAddresses()[0];
 
         // 1. Kijkt of address bestaat
@@ -57,7 +63,15 @@ class UserRepository
         $stmtUser->closeCursor();
     }
 
-    public function getUser($emailOrId): ?User
+    /**
+     * Haalt een gebruiker op aan de hand van hun e-mailadres of user ID
+     *
+     * @param string $emailOrId het e-mailadres of de user ID
+     * @return User|null
+     * - User als de gebruiker een account heeft
+     * - null als de gebruiker geen account heeft
+     */
+    public function getUser(string $emailOrId): ?User
     {
         if (!$emailOrId) {
             return null;
@@ -98,7 +112,15 @@ class UserRepository
         );
     }
 
-    public function updateUser(User $user): void
+    /**
+     * Werkt de gegevens van een gebruiker bij
+     *
+     * @param User $user
+     * @return bool
+     * - true als het gelukt is
+     * - false als het niet gelukt is
+     */
+    public function updateUser(User $user): bool
     {
         $addressStmt = $this->db->prepare("CALL get_address(:postal_code, :house_number);");
         $addressStmt->execute([
@@ -123,7 +145,7 @@ class UserRepository
             ]);
         }
         $userStmt = $this->db->prepare("CALL update_user(:id, :postal_code, :house_number, :email, :name, :role, :pass);");
-        $userStmt->execute([
+        return $userStmt->execute([
             ':id' => $user->getId(),
             ':postal_code' => $user->getAddresses()[0]->getPostalCode(),
             ':house_number' => $user->getAddresses()[0]->getHouseNumber(),
