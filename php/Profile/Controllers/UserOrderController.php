@@ -16,7 +16,11 @@ class UserOrderController
         $this->orderRepository = new OrderRepository();
     }
 
-    /** @return Order[]  */
+    /**
+     * Haalt alle orders op van een gebruiker mits ingelogd
+     *
+     * @return Order[]
+     */
     public function getUserOrders(): array
     {
         // Haal de gebruiker op
@@ -40,6 +44,14 @@ class UserOrderController
         return $orders;
     }
 
+    /**
+     * Haalt de order inclusief artikelen van een gebruiker op op basis van order ID
+     *
+     * @param int $orderId de id van de order
+     * @return Order|null
+     * - Order als de order bestaat
+     * - null als de order niet bestaat
+     */
     public function getUserOrderById(int $orderId): ?Order
     {
         // Haal de bestelling op

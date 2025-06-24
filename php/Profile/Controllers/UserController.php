@@ -13,6 +13,12 @@ class UserController
         $this->userRepository = new UserRepository();
     }
 
+    /**
+     * Maakt een account aan voor een nieuwe user
+     *
+     * @param array $data gelijk aan $_POST
+     * @return void
+     */
     public function register(array $data): void
     {
         try {
@@ -72,6 +78,13 @@ class UserController
         }
     }
 
+    /**
+     * Logt een gebruiker in en begint de sessie
+     *
+     * @param string $email het email van de gebruiker
+     * @param string $enteredPassword het wachtwoord dat is ingevoerd
+     * @return void
+     */
     public function login(string $email, string $enteredPassword): void
     {
         try {
@@ -92,7 +105,14 @@ class UserController
             die();
         }
     }
-    public function forgotPassword($email)
+
+    /**
+     * Start het wachtwoordreset-proces
+     *
+     * @param string $email het e-mailadres van de gebruiker
+     * @return void
+     */
+    public function forgotPassword(string $email)
     {
         try {
             $this->userRepository->getUser($email);
@@ -108,7 +128,15 @@ class UserController
         }
     }
 
-    public function resetPassword($email, $code, $newPassword)
+    /**
+     * Stelt het wachtwoord van de gebruiker opnieuw in
+     *
+     * @param string $email het e-mailadres van de gebruiker
+     * @param string $code de verificatiecode
+     * @param string $newPassword het nieuwe wachtwoord
+     * @return void
+     */
+    public function resetPassword(string $email, string $code, string $newPassword)
     {
         try {
             $user = $this->userRepository->getUser(urldecode($email));
@@ -127,7 +155,14 @@ class UserController
         }
     }
 
-    public function updateUserInfo($userId, array $data): void
+    /**
+     * Werkt de info van een gebruiker bij op basis van het formulier
+     *
+     * @param int $userId de id van de gebruiker
+     * @param array $data $_POST
+     * @return void
+     */
+    public function updateUserInfo(int $userId, array $data): void
     {
         try {
             $user = $this->userRepository->getUser($userId);
