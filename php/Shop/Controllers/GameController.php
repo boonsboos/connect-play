@@ -1,10 +1,9 @@
 <?php
 
-require_once '/var/www/php/Shared/Controller.php';
 require_once '/var/www/php/Shop/DataAccess/GameRepository.php';
 require_once '/var/www/php/Shop/Domain/Game.php';
 
-class GameController extends Controller
+class GameController
 {
     private GameRepository $gameRepository;
 
@@ -13,30 +12,37 @@ class GameController extends Controller
         $this->gameRepository = new GameRepository();
     }
 
+    /**
+     * Haalt alle games op
+     *
+     * @return Game[]
+     */
     public function getGames(): array
     {
         return $this->gameRepository->getGames();
     }
 
-    public function getGame(): Game
+    /**
+     * Haalt de game op aan de hand game ID die meegegeven wordt in de query parameters
+     *
+     * @return Game|null
+     * - Game als de game bestaat
+     * - null als de game niet bestaat
+     */
+    public function getGame(): ?Game
     {
-        // Haalt het ID uit de url, anders staat die op null
-        $id = $_GET['id'] ?? null;
+        // Haalt het ID uit de url, anders staat die op nul
+        $id = $_GET['id'] ?? 0;
 
-        // Check of het id leeg is of niet een nummer is:
-        if (!$id || !is_numeric($id)) {
-            throw new Exception("Ongeldig of ontbrekend ID");
-        }
-
-        return $this->getGameById((int)$id); //de (int) forceert dat $id een integer wordt
+        return $this->gameRepository->getGame((int) $id); // cast naar int om zeker te zijn van type
     }
 
-    // met de methode getGameById heb je de mogelijheid om een game adhv een id op te halen
-    public function getGameById(int $id): Game
-    {
-        return $this->gameRepository->getGame($id);
-    }
-
+    /**
+     * Verwijdert een game aan de hand van de game ID
+     *
+     * @param int $gameId de id van de game die verwijderd moet worden
+     * @return void
+     */
     public function removeGame(int $gameId): void
     {
         $this->gameRepository->getGame($gameId);
@@ -44,7 +50,13 @@ class GameController extends Controller
         $this->gameRepository->removeGame($gameId);
     }
 
-    public function addGame()
+    /**
+     * Voegt een nieuwe game toe
+     *
+     * @return void
+     * @throws Exception als validatie faalt
+     */
+    public function addGame(): void
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             throw new Exception("Ongeldige methode, alleen POST is toegestaan", 405);
@@ -109,15 +121,27 @@ class GameController extends Controller
 
             // Redirect terug naar formulier met succesmelding
         header("Location: /dashboard/addgame.php?success=1");
-    exit;
+        exit;
     }
 
+    /**
+     * Zoekt games bij naam
+     *
+     * @param string $name
+     * @return Game[]
+     */
     public function searchGamesByName(string $name): array
     {
         return $this->gameRepository->searchByName($name);
     }
 
-    public function updateGame()
+    /**
+     * Werkt een game bij
+     *
+     * @return void
+     * @throws Exception als validatie faalt
+     */
+    public function updateGame(): void
     {
         // Controleer of de request een POST is
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

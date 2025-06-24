@@ -52,7 +52,7 @@ $controller->fetchGames();
 		<div id="productlijst" class="mb-col-12 col-12 flex justify-center p-15">
 			<!-- Productlijstweergave -->
 
-			<?php foreach ($controller->getGames() as $game): ?>
+			<?php foreach ($controller->getPaginatedGames() as $game): ?>
 				<div class="game-card p-15" onclick="window.location='/product.php?id=<?= $game->getId() ?>'">
 					<!-- Weergave van een individuele game-kaart -->
 					<div class="flex align-center">

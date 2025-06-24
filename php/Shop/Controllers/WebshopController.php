@@ -1,6 +1,5 @@
 <?php
 
-require_once '/var/www/php/Shared/Controller.php';
 require_once '/var/www/php/Shop/DataAccess/GameRepository.php';
 require_once '/var/www/php/Shop/DataAccess/WebshopRepository.php';
 
@@ -32,6 +31,7 @@ class WebshopController {
 
     /**
      * Ophalen van de huidige pagina uit de URL-querystring (met een standaardwaarde van 1 als 'page' niet is ingesteld)
+     *
      * @return int de huidige pagina
      */
     public function getCurrentPage(): int {
@@ -39,9 +39,11 @@ class WebshopController {
     }
 
     /**
+     * Pagineert de games op basis van de pagina waar de gebruiker op dat moment zit.
+     *
      * @return Game[]
      */
-    public function getGames(): array
+    public function getPaginatedGames(): array
     {
         // We moeten 1 aftrekken van de huidige pagina zodat de offset goed staat
         // (1 - 1) = 0 * 6 = de eerste 6 items
@@ -56,6 +58,12 @@ class WebshopController {
         );
     }
 
+    /**
+     * Haalt de games op uit de database en verwerkt de zoekopdracht
+     *
+     * @param int $amountOfGames limiet van hoeveel games op de pagina moeten komen
+     * @return void
+     */
     public function fetchGames(int $amountOfGames = 0): void {
         // Als er een custom limiet wordt meegegeven, houd die aan, gebruik anders de standaard
         if ($amountOfGames > 0) {
@@ -70,12 +78,16 @@ class WebshopController {
         // Sla de gefilterde games op
         $this->games = $this->filterGames($this->games);
 
-        if ($this->filterActive && count($this->games) == 0) { // $this->games is een array en je telt hier de opgeslagen waarden
-            $webshopRepository = New WebshopRepository;
-            $userId = isset($_SESSION["userId"]) ? $_SESSION["userId"] : null; // als er een session is waarbij die geset, is dat wordt die toegevoegd anders is de waar de null
-            $webshopRepository->saveEmptySearch($this->searchQuery, $userId, $_SERVER['REMOTE_ADDR']); // Zoekresultaten, userId en Ip-address wordt naar de repo verzonden
+        // geen zoekresultaten? sla de zoekopdracht op
+        if ($this->filterActive && $this->getTotalOfGames() == 0) {
+            $this->webshopRepository->saveEmptySearch(
+                $this->searchQuery,
+                $_SESSION["userId"] ?? null,
+                $_SERVER['REMOTE_ADDR']
+            );
         }
     }
+
 
     public function getTotalOfGames(): int {
         return count($this->games);
@@ -88,6 +100,12 @@ class WebshopController {
         return ceil($this->getTotalOfGames() / $this->gamesPerPage);
     }
 
+    /**
+     * Haalt de filter settings uit de query parameters en slaat ze in de controller op
+     *
+     * @param array $filterSettings gelijk aan $_GET
+     * @return void
+     */
     public function setFilterSettings(array $filterSettings): void
     {
         $this->filterActive = true;
@@ -132,7 +150,12 @@ class WebshopController {
 
         return $games;
     }
-    
+
+    /**
+     * Utility-functie om de zoekopdracht query parameters mee te geven voor de volgende request
+     *
+     * @return string
+     */
     public function getFilterParams(): string
     {
         if ($this->filterActive) {
@@ -142,7 +165,12 @@ class WebshopController {
         return "";
     }
 
-    public function getEmptySearchResults()
+    /**
+     * Haalt de zoekopdrachten op die geen resultaat opleverden
+     *
+     * @return array
+     */
+    public function getEmptySearchResults(): array
     {
          return $this->webshopRepository->getEmptySearchResults();
     }

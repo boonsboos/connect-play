@@ -1,12 +1,12 @@
 <?php
 
 require_once '/var/www/php/Shared/Database.php';
-require_once '/var/www/php/Shop/Domain/Game.php';
 require_once '/var/www/php/Shop/Domain/Workshop.php';
 
 class WorkshopRepository
 {    
     private PDO $db;
+
     public function __construct()
     {
         try {
@@ -16,28 +16,34 @@ class WorkshopRepository
             exit;
         }
     }
-    
-    public function createWorkshop(Workshop $workshop): void
-    {
-        try {
-            $stmtWorkshop = $this->db->prepare("CALL add_workshop(:game_id, :min_size, :max_size, :duration, :price)");
-            
-            $stmtWorkshop->execute([
-                ':game_id' => $workshop->getGameId(),
-                ':min_size' => $workshop->getMinSize(),
-                ':max_size' => $workshop->getMaxSize(),
-                ':duration' => $workshop->getDuration(),
-                ':price' => $workshop->getPrice(),
-            ]);
 
-        } catch (PDOException $e) {
-            if ($e->getCode() === '23000') {
-                throw new Exception("Workshop voor deze game bestaat al"); 
-            }
-            throw $e;
-        }
+    /**
+     * Slaat een workshop op voor een game
+     *
+     * @param Workshop $workshop
+     * @return void
+     */
+    public function createWorkshop(Workshop $workshop): bool
+    {
+        $stmtWorkshop = $this->db->prepare("CALL add_workshop(:game_id, :min_size, :max_size, :duration, :price)");
+
+        return $stmtWorkshop->execute([
+            ':game_id' => $workshop->getGameId(),
+            ':min_size' => $workshop->getMinSize(),
+            ':max_size' => $workshop->getMaxSize(),
+            ':duration' => $workshop->getDuration(),
+            ':price' => $workshop->getPrice(),
+        ]);
     }
 
+    /**
+     * Haalt de workshop op van een game
+     *
+     * @param int $gameId de game om de workshop voor op te halen
+     * @return Workshop|null
+     * - Workshop als de game een workshop heeft
+     * - null als de game geen workshop heeft
+     */
     public function getWorkshop(int $gameId): ?Workshop
     {
         $stmtWorkshop = $this->db->prepare("CALL get_workshop(:gameId)");
@@ -46,23 +52,25 @@ class WorkshopRepository
         
         $workshopRow = $stmtWorkshop->fetch();
 
-        if (!empty($workshopRow)) {
-            // Retourneert een workshop object met opgehaalde data
-            return new Workshop(
-                (int) $workshopRow['game_id'],
-                (int) $workshopRow['min_size'],
-                (int) $workshopRow['max_size'],
-                (float) $workshopRow['price'],
-                (int) $workshopRow['duration']
-            );
+        if (empty($workshopRow)) {
+            return null;
         }
 
-        return null;
+        // Retourneert een workshop object met opgehaalde data
+        return new Workshop(
+            (int)$workshopRow['game_id'],
+            (int)$workshopRow['min_size'],
+            (int)$workshopRow['max_size'],
+            (float)$workshopRow['price'],
+            (int)$workshopRow['duration']
+        );
     }
 
     /**
+     * Haalt alle workshops op voor een bepaalde game
      * @param int $gameId
      * @return Workshop[]
+     * - Leeg als er geen workshops zijn voor de game
      */
     public function getWorkshops(int $gameId): array 
     {
@@ -89,7 +97,14 @@ class WorkshopRepository
         return $workshops;
     }
 
-
+    /**
+     * Werk een workshop bij
+     *
+     * @param Workshop $workshop
+     * @return bool
+     * - true als het bijwerken lukt
+     * - false als het bijwerken faalt
+     */
     public function updateWorkshop(Workshop $workshop): bool
     {
         $stmtNewGameInfo = $this->db->prepare("CALL update_workshop(:game_id, :min_size, :max_size, :duration, :price)");
@@ -103,6 +118,12 @@ class WorkshopRepository
         ]); 
     }
 
+    /**
+     * Verwijdert de workshop van een game
+     *
+     * @param int $gameId de game om de workshop bij te verwijderen
+     * @return void
+     */
     public function removeWorkshop(int $gameId): void
     {
         $stmtNewGameInfo = $this->db->prepare("CALL delete_workshop(:game_id)");

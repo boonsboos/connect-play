@@ -33,11 +33,20 @@ class DashboardController
         ];
     }
 
-    // je maakt altijd nog een functie voor het ophalen van je gegevens
+    /**
+     * Geeft de associatieve array met daarin de knoppen voor de administrator mee
+     *
+     * @return array[]
+     */
     public function getAdminButtons(): array {
         return $this->adminButtons;
     }
 
+    /**
+     * Geeft de associatieve array met daarin de knoppen voor de gewone medewerker mee
+     *
+     * @return array[]
+     */
     public function getEmployeeButtons(): array {
         return $this->employeeButtons;
     }

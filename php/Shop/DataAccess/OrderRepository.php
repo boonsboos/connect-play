@@ -19,39 +19,46 @@ class OrderRepository
         }
     }
 
+    /**
+     * Maakt de order aan en voegt het nieuwe ordernummer toe aan het object
+     *
+     * @param Order $order de order om aan te maken
+     * @return void
+     */
     public function createOrder(Order $order): void
     {
         // Aan de hand van de userId wordt er een Order aangemaakt
         $userId = $order->getUserId();
 
-        try {
-            // 1. Order toevoegen
-            $stmtOrder  = $this->db->prepare("CALL add_order(:userId)");
-            /**
-             * In de stored prodecure 'add_order' wordt het volgende al toegevoegd:
-             * -----------------------------------
-             * -- orderNumber => AUTO_INCREMENT --
-             * -- date => CURRENT_DATE()        --
-             * -- Status => 'PENDING'           --
-             * -----------------------------------
-             */
-            $stmtOrder->execute([':userId' => $userId]);
+        // 1. Order toevoegen
+        $stmtOrder  = $this->db->prepare("CALL add_order(:userId)");
+        /*
+         * In de stored prodecure 'add_order' wordt het volgende al toegevoegd:
+         * -----------------------------------
+         * -- orderNumber => AUTO_INCREMENT --
+         * -- date => CURRENT_DATE()        --
+         * -- Status => 'PENDING'           --
+         * -----------------------------------
+         */
+        $stmtOrder->execute([':userId' => $userId]);
 
-            // 2. Haalt het orderNumber op
-            $orderId = $stmtOrder->fetchColumn();
-            $order->setOrderNumber((int)$orderId);
+        // 2. Haalt het orderNumber op
+        $orderId = $stmtOrder->fetchColumn();
+        $order->setOrderNumber((int)$orderId);
 
-            // 3. sluit de cursor van de procedure voordat een nieuwe query begint
-            $stmtOrder->closeCursor();
-        } catch (PDOException $e) {
-            if ($e->getCode() === '23000') { // Code 23000 betekent "Integrity constraint violation". je probeert iets toe te voegen dat de db verbied, zoals dubbele orders
-                throw new Exception("Ordernummer bestaat al!");  // hier maak je een Exception voor ALLEEN de foutcode 23000 zo worden andere foutmeldingen niet stilgezet
-            }
-            throw $e; // hier wordt de Exception gegooit voor alle andere fouten
-        }
+        // 3. sluit de cursor van de procedure voordat een nieuwe query begint
+        $stmtOrder->closeCursor();
     }
 
-    public function getOrderForUser($userId): ?Order // return type betekend order of een null
+    /**
+     * Haalt de laatste order op van een gebruiker die nog in behandeling is.
+     *
+     * @param $userId int De ID van de user van wie we de laatste pending order willen
+     * @return Order|null
+     * - `Order` als de order bestaat.
+     * - `null` als er geen pending orders zijn.
+     */
+    public function getLatestPendingOrderForUser(int $userId): ?Order // return type betekend order of een null
     {
         // haal alle orders op die gekoppeld zijn aan de gebruiker
         $allOrders = $this->getOrdersByUser($userId);
@@ -66,6 +73,12 @@ class OrderRepository
         return null;
     }
 
+    /**
+     * Slaat de cart entry op
+     *
+     * @param CartEntry $cartEntry
+     * @return void
+     */
     public function addCartEntry(CartEntry $cartEntry): void
     {
         $stmtCartEntry = $this->db->prepare("CALL add_cart_entry(:orderNumber, :gameId, :amount, :when)");
@@ -78,6 +91,12 @@ class OrderRepository
         ]);
     }
 
+    /**
+     * Werkt een cart entry bij
+     *
+     * @param CartEntry $cartEntry
+     * @return void
+     */
     public function updateCartEntry(CartEntry $cartEntry): void
     {
         $stmtCartEntry = $this->db->prepare("CALL update_cart_entry(:orderNumber, :gameId, :newAmount, :newWhen)");
@@ -90,6 +109,13 @@ class OrderRepository
         ]);
     }
 
+    /**
+     * Verwijdert een cart entry
+     *
+     * @param int $orderNumber de order waar de cart entry onderdeel van uitmaakt
+     * @param int $gameId de id van de game
+     * @return void
+     */
     public function deleteCartEntry(int $orderNumber, int $gameId): void
     {
         $stmtCartEntry = $this->db->prepare("CALL delete_cart_entry(:orderNumber, :gameId)");
@@ -100,7 +126,16 @@ class OrderRepository
         ]);
     }
 
-    public function cartEntryExists(int $orderNumber, int $gameId): bool // hoeft alleen te checken of ordernummer en gameid overeenkomt
+    /**
+     * Checkt of een cart entry bestaat
+     *
+     * @param int $orderNumber het order waar de cart entry onderdeel van uitmaakt
+     * @param int $gameId de game waarvoor de cart entry geldt
+     * @return bool
+     * - true als de entry bestaat
+     * - false als deze niet bestaat
+     */
+    public function cartEntryExists(int $orderNumber, int $gameId): bool
     {
         $stmtCartEntry = $this->db->prepare("CALL get_cart_entry_by_order_and_game(:orderNumber, :gameId)");
 
@@ -111,15 +146,12 @@ class OrderRepository
 
         $cartEntryResult = $stmtCartEntry->fetch();
 
-        if ($cartEntryResult) {
-            return true;
-        }
-
-        return false;
+        // als leeg is: false | als gevuld is: true
+        return !empty($cartEntryResult);
     }
 
     /**
-     * Deze methode haalt alle bestellingen op voor een specifieke gebruiker
+     * Haalt alle bestellingen op voor een specifieke gebruiker
      *
      * @param string $userId
      * @return Order[]
@@ -148,7 +180,7 @@ class OrderRepository
     }
 
     /**
-     * Deze methode haalt de details van een specifieke bestelling op
+     * Haalt de cart entries van een order op
      * 
      * @param string $orderId
      * @return CartEntry[]
@@ -197,6 +229,14 @@ class OrderRepository
         return $cartEntries;
     }
 
+    /**
+     * Haalt een order op bij order ID of ordernummer
+     *
+     * @param string $orderId de id van de order om op te zoeken
+     * @return Order|null
+     * - Order als de order bestaat
+     * - null als deze niet bestaat
+     */
     public function getOrderById(string $orderId): ?Order
     {
         $query = "CALL get_order(:orderId)";

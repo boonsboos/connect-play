@@ -13,7 +13,7 @@ $userId = $_SESSION['userId'] ?? null;
 $gameController = new GameController();
 $game = $gameController->getGame();
 
-if (!$game instanceof Game) {
+if (!$game) {
 	echo "<p>Er is iets misgegaan bij het ophalen van de game.</p>";
 	exit;
 }

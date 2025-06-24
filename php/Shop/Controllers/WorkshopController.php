@@ -1,12 +1,11 @@
 <?php
 
-require_once '/var/www/php/Shared/Controller.php';
 require_once '/var/www/php/Shop/DataAccess/WorkshopRepository.php';
 require_once '/var/www/php/Shop/Domain/Workshop.php';
 require_once "/var/www/php/Shop/DataAccess/GameRepository.php";
 require_once "/var/www/php/Shop/Domain/Game.php";
 
-class WorkshopController extends Controller
+class WorkshopController
 {
     private WorkshopRepository $workshopRepository;
     private GameRepository $gameRepository;
@@ -17,7 +16,11 @@ class WorkshopController extends Controller
     }
 
     /**
-     * @throws Exception als er iets fout gaat met de database
+     * Slaat een nieuwe workshop op
+     *
+     * @return bool
+     * - true als de workshop voldoet en is opgeslagen
+     * - false als de workshop niet voldoet of er iets anders misgaat
      */
     public function createWorkshop(): bool
     {
@@ -25,42 +28,76 @@ class WorkshopController extends Controller
             return false;
         }
 
-        $this->workshopRepository->createWorkshop(new Workshop(
-            (int) $_POST['gameId'],
-            (int) $_POST['minplayers'],
-            (int) $_POST['maxplayers'],
-            (float) $_POST['price'],
-            (int) $_POST['duration']
-        ));
-        return true;
+        try {
+            return $this->workshopRepository->createWorkshop(new Workshop(
+                (int) $_POST['gameId'],
+                (int) $_POST['minplayers'],
+                (int) $_POST['maxplayers'],
+                (float) $_POST['price'],
+                (int) $_POST['duration']
+            ));
+        } catch (PDOException) {
+            return false;
+        }
     }
 
+    /**
+     * Haalt een workshop op op basis van de game ID
+     *
+     * @param int $gameId
+     * @return Workshop|null
+     * - Workshop als de game een workshop heeft
+     * - null als de game geen workshop heeft
+     */
     public function getWorkshop(int $gameId): ?Workshop
     {
         return $this->workshopRepository->getWorkshop($gameId);
     }
 
+    /**
+     * Haalt games op die geen workshop hebben geconfigureerd
+     *
+     * @return Game[]
+     */
     public function getGamesWithWorkshops(): array
     {
         return $this->gameRepository->getGamesWithWorkshops();
     }
 
+    /**
+     * Werkt een workshop bij
+     *
+     * @return bool
+     * - true als de update geslaagd is
+     * - false als de update faalde
+     */
     public function updateWorkshop(): bool
     {
         if (!$this->validateWorkshop()){
             return false;
         }
 
-        return $this->workshopRepository->updateWorkshop(new Workshop(
-            (int) $_POST['gameId'],
-            (int) $_POST['minplayers'],
-            (int) $_POST['maxplayers'],
-            (float) $_POST['price'],
-            (int) $_POST['duration']
-        ));
+        try {
+            return $this->workshopRepository->updateWorkshop(new Workshop(
+                (int) $_POST['gameId'],
+                (int) $_POST['minplayers'],
+                (int) $_POST['maxplayers'],
+                (float) $_POST['price'],
+                (int) $_POST['duration']
+            ));
+        } catch (PDOException) {
+            return false;
+        }
     }
 
-    private function validateWorkshop() {
+    /**
+     * Valideert of een nieuwe workshop voldoet
+     *
+     * @return bool
+     * - true als de workshop klopt
+     * - false als de workshop niet klopt
+     */
+    private function validateWorkshop(): bool {
         // valideer dat alle data beschikbaar is en het juiste formaat heeft
         if (!isset($_POST['gameId']) || !is_numeric($_POST['gameId'])
             || !isset($_POST['minplayers']) || !is_numeric($_POST['minplayers'])
@@ -94,25 +131,46 @@ class WorkshopController extends Controller
         return true;
     }
 
+    /**
+     * Verwijdert de workshops voor een game
+     *
+     * @param int $gameId de game waaraan workshops zijn gekoppeld
+     * @return void
+     */
     public function removeWorkshop(int $gameId): void
     {
-        $this->workshopRepository->getWorkshop($gameId);
-
         $this->workshopRepository->removeWorkshop($gameId);
     }
 
     /**
+     * Haalt alle games op zonder workshops
+     *
      * @return Game[]
      */
     public function getGamesWithoutWorkshops(): array {
         return $this->gameRepository->getGamesWithoutWorkshops();
     }
 
+    /**
+     * Checkt of er een game ID is meegegeven aan de pagina
+     *
+     * @return bool
+     * - true als er een valide game ID is
+     * - false als er geen of geen valide game ID is
+     */
     public function gameProvided(): bool {
         return isset($_GET['gameId']) && is_numeric($_GET['gameId']);
     }
 
-    public function getGame(int $gameId): Game {
+    /**
+     * Haalt een game op op basis van de game ID
+     *
+     * @param int $gameId de ID van de game
+     * @return Game|null
+     * - Game als de game bestaat
+     * - null als de game niet bestaat
+     */
+    public function getGame(int $gameId): ?Game {
         return $this->gameRepository->getGame($gameId);
     }
 }

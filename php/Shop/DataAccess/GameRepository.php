@@ -16,6 +16,14 @@ class GameRepository
         }
     }
 
+    /**
+     * Slaat een nieuwe game op in de database.
+     * De ID wordt in het bestaande object gezet.
+     *
+     * @param Game $game de game om toe te voegen
+     * @return void
+     * @throws Exception
+     */
     public function addGame(Game $game): void
     {
         try {
@@ -45,6 +53,8 @@ class GameRepository
     }
 
     /**
+     * Haalt alle games op
+     *
      * @returns Game[]
      */
     public function getGames(): array
@@ -74,7 +84,15 @@ class GameRepository
         }
         return $allGames;
     }
-    
+
+    /**
+     * Haalt een game op op basis van game ID
+     *
+     * @param int $id
+     * @return Game|null
+     * - Game als een game met het ID bestaat
+     * - null als er geen game is met dat ID
+     */
     public function getGame(int $id): ?Game
     {
         $stmtGame = $this->db->prepare("CALL get_game(:id)");
@@ -84,7 +102,7 @@ class GameRepository
         $gameData = $stmtGame->fetch();
 
         if (!$gameData) {
-            throw new Exception("Game niet gevonden.", 404);
+            return null;
         }
 
         return new Game(
@@ -100,6 +118,12 @@ class GameRepository
         );
     }
 
+    /**
+     * Bewerkt de game
+     *
+     * @param Game $game de game om bij te werken
+     * @return void
+     */
     public function updateGame(Game $game): void
     {
         // Voer update_game procedure uit
@@ -148,6 +172,7 @@ class GameRepository
     }
 
     /**
+     * Haalt alle games op die geen workshop hebben geconfigureerd
      * @return Game[]
      */
     public function getGamesWithoutWorkshops(): array
@@ -175,6 +200,7 @@ class GameRepository
     }
 
     /**
+     * Haalt alle games op die wel een worksho hebben geconfigureerd
      * @return Game[]
      */
     public function getGamesWithWorkshops(): array
