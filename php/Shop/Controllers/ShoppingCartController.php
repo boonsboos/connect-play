@@ -102,7 +102,7 @@ class ShoppingCartController
         ];
     }
     
-    public function createOrder(): void
+    private function createOrder(): void
     {
         $userId = $this->validateUser();
 
@@ -151,7 +151,7 @@ class ShoppingCartController
      * Sla de cart entries op in de database bij de order
      * @return void
      */
-    public function saveCartEntries(): void
+    private function saveCartEntries(): void
     {
         // de waardes in de $_POST komen vanuit de checkout.js, het FormData object
         $orderNumber = $_POST['orderNumber'] ?? null;
