@@ -20,8 +20,9 @@ class OrderRepository
     }
 
     /**
-     * Maakt de order aan
-     * @param Order $order de order om op te slaan.
+     * Maakt de order aan en voegt het nieuwe ordernummer toe aan het object
+     *
+     * @param Order $order de order om aan te maken
      * @return void
      */
     public function createOrder(Order $order): void
@@ -50,6 +51,8 @@ class OrderRepository
     }
 
     /**
+     * Haalt de laatste order op van een gebruiker die nog in behandeling is.
+     *
      * @param $userId int De ID van de user van wie we de laatste pending order willen
      * @return Order|null
      * - `Order` als de order bestaat.
@@ -72,6 +75,7 @@ class OrderRepository
 
     /**
      * Slaat de cart entry op
+     *
      * @param CartEntry $cartEntry
      * @return void
      */
@@ -89,6 +93,7 @@ class OrderRepository
 
     /**
      * Werkt een cart entry bij
+     *
      * @param CartEntry $cartEntry
      * @return void
      */
@@ -106,6 +111,7 @@ class OrderRepository
 
     /**
      * Verwijdert een cart entry
+     *
      * @param int $orderNumber de order waar de cart entry onderdeel van uitmaakt
      * @param int $gameId de id van de game
      * @return void
@@ -122,6 +128,7 @@ class OrderRepository
 
     /**
      * Checkt of een cart entry bestaat
+     *
      * @param int $orderNumber het order waar de cart entry onderdeel van uitmaakt
      * @param int $gameId de game waarvoor de cart entry geldt
      * @return bool
@@ -223,7 +230,8 @@ class OrderRepository
     }
 
     /**
-     * Haalt een order op bij order ID/order nummer
+     * Haalt een order op bij order ID of ordernummer
+     *
      * @param string $orderId de id van de order om op te zoeken
      * @return Order|null
      * - Order als de order bestaat
