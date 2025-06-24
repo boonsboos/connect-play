@@ -11,6 +11,8 @@ class ServiceController
     }
 
     /**
+     * Haalt alle onopgeloste en onbeantwoorde contactpogingen op
+     *
      * @return Contact[]
      */
     public function getServiceInquiries(): array
@@ -18,6 +20,12 @@ class ServiceController
         return $this->contactRepository->getUnresolvedContacts();
     }
 
+    /**
+     * Markeert een contactpoging als beantwoord op basis van contactpoging ID
+     *
+     * @param int $ticketId de id van de contactpoging
+     * @return void
+     */
     public function markInquiryAsAnswered(int $ticketId): void {
         $contact = $this->updateContactStatusById($ticketId, ContactReplyStatus::Answered);
         // laat de browser een e-mail prompt openen zodat het bericht gelijk beantwoord kan worden
@@ -25,12 +33,25 @@ class ServiceController
         die();
     }
 
+    /**
+     * Markeert een contactpoging als opgelost op basis van contactpoging ID
+     *
+     * @param int $ticketId de id van de contactpoging
+     * @return void
+     */
     public function markInquiryAsResolved(int $ticketId): void {
         $this->updateContactStatusById($ticketId, ContactReplyStatus::Resolved);
         // ververs de pagina, nu zal de contactpoging verdwijnen.
         $this->refresh();
     }
 
+    /**
+     * Werkt de status van een contactpoging bij op basis van contactpoging ID
+     *
+     * @param int $ticketId de id van de contactpoging
+     * @param ContactReplyStatus $status de nieuwe status van de contactpoging
+     * @return Contact de bijgewerkte contactpoging
+     */
     private function updateContactStatusById(int $ticketId, ContactReplyStatus $status): Contact {
         $contact = $this->contactRepository->getContactById($ticketId);
         $contact->setStatus($status);
