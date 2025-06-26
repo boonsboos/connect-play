@@ -172,40 +172,39 @@ return [
         "submit" => "Verstuur"
     ],
     "checkout" => [
-	"banner_alt" => "Banner afbeelding",
-	"title" => "Bestelling van:",
-	"order_number" => "Ordernummer:",
-	"articles" => "Artikelen",
-	"subtotal" => "Subtotaal:",
-	"shipping" => "Verzendkosten:",
-	"tax" => "BTW (21%):",
-	"total" => "Totaal:",
-	"choose_bank" => "Kies uw bank",
-	"banks" => [
-		"abn" => "ABN AMRO",
-		"ing" => "ING",
-		"rabo" => "Rabobank"
+        "banner_alt" => "Banner afbeelding",
+        "title" => "Bestelling van:",
+        "order_number" => "Ordernummer:",
+        "articles" => "Artikelen",
+        "subtotal" => "Subtotaal:",
+        "shipping" => "Verzendkosten:",
+        "tax" => "BTW (21%):",
+        "total" => "Totaal:",
+        "choose_bank" => "Kies uw bank",
+        "banks" => [
+            "abn" => "ABN AMRO",
+            "ing" => "ING",
+            "rabo" => "Rabobank"
 	],
 	"address" => [
 		"title" => "Afleveradres"
 	],
 	"cta" => "Ga verder naar betalen",
-	"error" => [
-		"no_items" => "Geen artikelen gevonden"
+        "error" => [
+            "no_items" => "Geen artikelen gevonden"
+        ]
     ],
     "payment" => [
-    "banner_alt" => "Banner afbeelding",
-    "success" => [
-        "title" => "Betaling succesvol!",
-        "button" => "Terug naar webshop"
-    ],
-    "bank_label" => "Bank",
-    "amount" => "Te betalen bedrag: €",
-    "pay_button" => "Betaal",
-    "error" => "Winkelwagen is leeg"
-    ],
-    
-]
-
-
+        "banner_alt" => "Banner afbeelding",
+        "success" => [
+            "title" => "Betaling succesvol!",
+            "button" => "Terug naar webshop"
+        ],
+        "bank_label" => "Bank",
+        "unknown_bank" => "Onbekende bank",
+        "amount" => "Te betalen bedrag: €",
+        "pay_button" => "Betaal",
+        "error" => "Winkelwagen is leeg"
+    ]
+        
 ];

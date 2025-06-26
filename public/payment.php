@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['success']) && $_POST[
             $bank = htmlspecialchars('Rabobank');
             break;
         default:
-            $bank = __('payment.bank_label') . ' (onbekend)';
+            $bank = __('payment.bank_label') . __('payment.bank_unknown');
     }
     $total = number_format((float)$_POST['total'], 2, ',', '.');
 } else {

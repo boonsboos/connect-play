@@ -172,19 +172,19 @@ return [
         "submit" => "Submit"
     ],
     "checkout" => [
-	"banner_alt" => "Banner image",
-	"title" => "Order by:",
-	"order_number" => "Order number:",
-	"articles" => "Articles",
-	"subtotal" => "Subtotal:",
-	"shipping" => "Shipping:",
-	"tax" => "VAT (21%):",
-	"total" => "Total:",
-	"choose_bank" => "Choose your bank",
-	"banks" => [
-		"abn" => "ABN AMRO",
-		"ing" => "ING",
-		"rabo" => "Rabobank"
+        "banner_alt" => "Banner image",
+        "title" => "Order by:",
+        "order_number" => "Order number:",
+        "articles" => "Articles",
+        "subtotal" => "Subtotal:",
+        "shipping" => "Shipping:",
+        "tax" => "VAT (21%):",
+        "total" => "Total:",
+        "choose_bank" => "Choose your bank",
+        "banks" => [
+            "abn" => "ABN AMRO",
+            "ing" => "ING",
+            "rabo" => "Rabobank",
 	],
 	"address" => [
 		"title" => "Shipping address"
@@ -192,17 +192,19 @@ return [
 	"cta" => "Proceed to payment",
 	"error" => [
 		"no_items" => "No items found"
+    ]
     ],
     "payment" => [
-    "banner_alt" => "Banner image",
-    "success" => [
-        "title" => "Payment successful!",
-        "button" => "Back to webshop"
-    ],
-    "bank_label" => "Bank",
-    "amount" => "Amount to pay: €",
-    "pay_button" => "Pay",
-    "error" => "Cart is empty"
-    ],
-]
+        "banner_alt" => "Banner image",
+        "success" => [
+            "title" => "Payment successful!",
+            "button" => "Back to webshop"
+        ],
+        "bank_label" => "Bank",
+        "bank_unknown" => "Unknown bank",
+        "amount" => "Amount to pay: €",
+        "pay_button" => "Pay",
+        "error" => "Cart is empty"
+    ]
+
 ];
