@@ -148,5 +148,61 @@ return [
         "notfound" => "We couldn't find the product you're looking for... :(",
         "previous" => "Previous",
         "next" => "Next",
-    ]
+    ],
+      "profile" => [
+        "banner_alt" => 'Banner image',
+        "greeting" => "Hello",
+        "my_profile" => "My Profile",
+        "orders" => "Orders",
+        "edit" => "Edit Profile",
+        "no_addresses" => "No addresses found.",
+        "labels" => [
+            "name" => "Name:",
+            "email" => "Email Address:",
+            "address" => "Address:",
+        ]
+    ],
+    "reset_password" => [
+        "banner_alt" => "Banner image",
+        "error" => "Something went wrong.",
+        "code_label" => "Code:",
+        "email_label" => "Email:",
+        "new_password_label" => "New password:",
+        "new_password_placeholder" => "Enter your new password",
+        "submit" => "Submit"
+    ],
+    "checkout" => [
+	"banner_alt" => "Banner image",
+	"title" => "Order by:",
+	"order_number" => "Order number:",
+	"articles" => "Articles",
+	"subtotal" => "Subtotal:",
+	"shipping" => "Shipping:",
+	"tax" => "VAT (21%):",
+	"total" => "Total:",
+	"choose_bank" => "Choose your bank",
+	"banks" => [
+		"abn" => "ABN AMRO",
+		"ing" => "ING",
+		"rabo" => "Rabobank"
+	],
+	"address" => [
+		"title" => "Shipping address"
+	],
+	"cta" => "Proceed to payment",
+	"error" => [
+		"no_items" => "No items found"
+    ],
+    "payment" => [
+    "banner_alt" => "Banner image",
+    "success" => [
+        "title" => "Payment successful!",
+        "button" => "Back to webshop"
+    ],
+    "bank_label" => "Bank",
+    "amount" => "Amount to pay: €",
+    "pay_button" => "Pay",
+    "error" => "Cart is empty"
+    ],
+]
 ];

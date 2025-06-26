@@ -148,5 +148,64 @@ return [
         "notfound" => "We hebben het product dat je zoekt niet kunnen vinden... :(",
         "previous" => "Vorige",
         "next" => "Volgende",
-    ]
+    ],
+        "profile" => [
+        "banner_alt" => "Banner afbeelding",
+        "greeting" => "Hallo",
+        "my_profile" => "Mijn profiel",
+        "orders" => "Bestellingen",
+        "edit" => "Profiel aanpassen",
+        "no_addresses" => "Geen adressen gevonden.",
+        "labels" => [
+            "name" => "Naam:",
+            "email" => "E-mailadres:",
+            "address" => "Adres:",
+        ]
+    ],
+    "reset_password" => [
+        "banner_alt" => "Banner afbeelding",
+        "error" => "Er is iets misgegaan.",
+        "code_label" => "Code:",
+        "email_label" => "E-mail:",
+        "new_password_label" => "Nieuw wachtwoord:",
+        "new_password_placeholder" => "Voer je nieuwe wachtwoord in",
+        "submit" => "Verstuur"
+    ],
+    "checkout" => [
+	"banner_alt" => "Banner afbeelding",
+	"title" => "Bestelling van:",
+	"order_number" => "Ordernummer:",
+	"articles" => "Artikelen",
+	"subtotal" => "Subtotaal:",
+	"shipping" => "Verzendkosten:",
+	"tax" => "BTW (21%):",
+	"total" => "Totaal:",
+	"choose_bank" => "Kies uw bank",
+	"banks" => [
+		"abn" => "ABN AMRO",
+		"ing" => "ING",
+		"rabo" => "Rabobank"
+	],
+	"address" => [
+		"title" => "Afleveradres"
+	],
+	"cta" => "Ga verder naar betalen",
+	"error" => [
+		"no_items" => "Geen artikelen gevonden"
+    ],
+    "payment" => [
+    "banner_alt" => "Banner afbeelding",
+    "success" => [
+        "title" => "Betaling succesvol!",
+        "button" => "Terug naar webshop"
+    ],
+    "bank_label" => "Bank",
+    "amount" => "Te betalen bedrag: €",
+    "pay_button" => "Betaal",
+    "error" => "Winkelwagen is leeg"
+    ],
+    
+]
+
+
 ];
