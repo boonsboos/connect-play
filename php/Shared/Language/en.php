@@ -1,15 +1,15 @@
 <?php
 
 return [
-    'nav' => [
-        'services' => 'Services',
-        'about' => 'About Us',
+    "nav" => [
+        "services" => "Services",
+        "about" => "About Us",
         "webshop" => "Webshop",
-        'contact' => 'Contact',
-        'dashboard' => 'Dashboard',
-        'profile' => 'Profile',
-        'logout' => 'Logout',
-        'login' => 'Login',
+        "contact" => "Contact",
+        "dashboard" => "Dashboard",
+        "profile" => "Profile",
+        "logout" => "Logout",
+        "login" => "Login",
     ],
     "home" => [
         "banner" => [
@@ -61,7 +61,7 @@ return [
     "about" => [
         "who" => [
             "title" => "Who are we?",
-            "text" => "At Connect &amp; Play, we believe that playing board games, card games, and video games is more than just a game. It's a way to connect with each other through challenges, competitive thinking, and teamwork. Connect &amp; Play was founded in 2024 by a group of students at Avans University of Applied Sciences with a passionate love for playing games together. The goal is to organize tournaments for board games, card games, and interactive gaming, focusing on team building and fun.",
+            "text" => "At Connect &amp; Play, we believe that playing board games, card games, and video games is more than just a game. It's a way to connect with each other through challenges, competitive thinking, and teamwork. Connect &amp; Play was founded in 2024 by a group of students at Avans University of Applied Sciences with a passionate love for playing games together. The goal is to organize tournaments for board games, card games, and interactive gaming, focusing on team building and fun."
         ],
         "mission" => [
             "title" => "Mission &amp; Vision",
@@ -87,7 +87,7 @@ return [
         "password" => "Password",
         "forgot_password" => "Forgot Password?",
         "login" => "Login",
-        "register" => "Register",
+        "register" => "Register"
     ],
     "register" => [
         "email" => "Email",
@@ -102,7 +102,7 @@ return [
         "housenumber" => "House Number",
         "city" => "City",
         "submit" => "Register",
-        "success" => "You have been successfully registered! You can now log in.",
+        "success" => "You have been successfully registered! You can now log in."
     ],
     "forgot_password" => [
         "email" => "Email",
@@ -112,16 +112,16 @@ return [
         "products" => [
             "workshop" => [
                 "add" => "Add workshop",
-                "edit" => "Edit workshop",
+                "edit" => "Edit workshop"
             ],
             "game" => [
                 "add" => "Add game",
-                "search" => "Search game",
+                "search" => "Search game"
             ],
             "name" => "Products"
         ],
         "orders" => [
-            "name" => "Orders",
+            "name" => "Orders"
         ],
         "servicedesk" => [
             "name" => "ServiceDesk"
@@ -147,6 +147,63 @@ return [
         ],
         "notfound" => "We couldn't find the product you're looking for... :(",
         "previous" => "Previous",
-        "next" => "Next",
+        "next" => "Next"
+    ],
+    "profile" => [
+        "banner_alt" => "Banner image",
+        "greeting" => "Hello",
+        "my_profile" => "My Profile",
+        "orders" => "Orders",
+        "edit" => "Edit Profile",
+        "no_addresses" => "No addresses found.",
+        "labels" => [
+            "name" => "Name:",
+            "email" => "Email Address:",
+            "address" => "Address:"
+        ]
+    ],
+    "reset_password" => [
+        "banner_alt" => "Banner image",
+        "error" => "Something went wrong.",
+        "code_label" => "Code:",
+        "email_label" => "Email:",
+        "new_password_label" => "New password:",
+        "new_password_placeholder" => "Enter your new password",
+        "submit" => "Submit"
+    ],
+    "checkout" => [
+        "banner_alt" => "Banner image",
+        "title" => "Order by:",
+        "order_number" => "Order number:",
+        "articles" => "Articles",
+        "subtotal" => "Subtotal:",
+        "shipping" => "Shipping:",
+        "tax" => "VAT (21%):",
+        "total" => "Total:",
+        "choose_bank" => "Choose your bank",
+        "banks" => [
+            "abn" => "ABN AMRO",
+            "ing" => "ING",
+            "rabo" => "Rabobank"
+        ],
+        "address" => [
+            "title" => "Shipping address"
+        ],
+        "cta" => "Proceed to payment",
+        "error" => [
+            "no_items" => "No items found"
+        ]
+    ],
+    "payment" => [
+        "banner_alt" => "Banner image",
+        "success" => [
+            "title" => "Payment successful!",
+            "button" => "Back to webshop"
+        ],
+        "bank_label" => "Bank",
+        "bank_unknown" => "Unknown bank",
+        "amount" => "Amount to pay: €",
+        "pay_button" => "Pay",
+        "error" => "Cart is empty"
     ]
 ];

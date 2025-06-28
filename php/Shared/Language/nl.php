@@ -9,7 +9,7 @@ return [
         "dashboard" => "Dashboard",
         "profile" => "Profiel",
         "logout" => "Log uit",
-        "login" => "Log in",
+        "login" => "Log in"
     ],
     "home" => [
         "banner" => [
@@ -42,11 +42,11 @@ return [
             ],
             "environment" => [
                 "title" => "Milieuvriendelijk & Duurzaam",
-                "text" => "100% milieuvriendelijke producten, duurzaam en ethisch verantwoord geproduceerd.."
+                "text" => "100% milieuvriendelijke producten, duurzaam en ethisch verantwoord geproduceerd."
             ],
             "customer_service" => [
                 "title" => "Uitstekende klantenservice",
-                "text" => "24/7 beschikbaar, met echte mensen die altijd klaarstaan om je te helpen wanneer je ons nodig hebt. "
+                "text" => "24/7 beschikbaar, met echte mensen die altijd klaarstaan om je te helpen wanneer je ons nodig hebt."
             ]
         ]
     ],
@@ -87,7 +87,7 @@ return [
         "password" => "Wachtwoord",
         "forgot_password" => "Wachtwoord vergeten?",
         "login" => "Inloggen",
-        "register" => "Registreren",
+        "register" => "Registreren"
     ],
     "register" => [
         "email" => "E-mail",
@@ -102,7 +102,7 @@ return [
         "housenumber" => "Huisnummer",
         "city" => "Woonplaats",
         "submit" => "Registreren",
-        "success" => "Je bent succesvol geregistreerd! Je kunt nu inloggen.",
+        "success" => "Je bent succesvol geregistreerd! Je kunt nu inloggen."
     ],
     "forgot_password" => [
         "email" => "E-mail",
@@ -112,16 +112,16 @@ return [
         "products" => [
             "workshop" => [
                 "add" => "Workshop toevoegen",
-                "edit" => "Workshop bewerken",
+                "edit" => "Workshop bewerken"
             ],
             "game" => [
                 "add" => "Game toevoegen",
-                "search" => "Game zoeken",
+                "search" => "Game zoeken"
             ],
             "name" => "Producten"
         ],
         "orders" => [
-            "name" => "Bestellingen",
+            "name" => "Bestellingen"
         ],
         "servicedesk" => [
             "name" => "ServiceDesk"
@@ -147,6 +147,63 @@ return [
         ],
         "notfound" => "We hebben het product dat je zoekt niet kunnen vinden... :(",
         "previous" => "Vorige",
-        "next" => "Volgende",
+        "next" => "Volgende"
+    ],
+    "profile" => [
+        "banner_alt" => "Banner afbeelding",
+        "greeting" => "Hallo",
+        "my_profile" => "Mijn profiel",
+        "orders" => "Bestellingen",
+        "edit" => "Profiel aanpassen",
+        "no_addresses" => "Geen adressen gevonden.",
+        "labels" => [
+            "name" => "Naam:",
+            "email" => "E-mailadres:",
+            "address" => "Adres:"
+        ]
+    ],
+    "reset_password" => [
+        "banner_alt" => "Banner afbeelding",
+        "error" => "Er is iets misgegaan.",
+        "code_label" => "Code:",
+        "email_label" => "E-mail:",
+        "new_password_label" => "Nieuw wachtwoord:",
+        "new_password_placeholder" => "Voer je nieuwe wachtwoord in",
+        "submit" => "Verstuur"
+    ],
+    "checkout" => [
+        "banner_alt" => "Banner afbeelding",
+        "title" => "Bestelling van:",
+        "order_number" => "Ordernummer:",
+        "articles" => "Artikelen",
+        "subtotal" => "Subtotaal:",
+        "shipping" => "Verzendkosten:",
+        "tax" => "BTW (21%):",
+        "total" => "Totaal:",
+        "choose_bank" => "Kies uw bank",
+        "banks" => [
+            "abn" => "ABN AMRO",
+            "ing" => "ING",
+            "rabo" => "Rabobank"
+        ],
+        "address" => [
+            "title" => "Afleveradres"
+        ],
+        "cta" => "Ga verder naar betalen",
+        "error" => [
+            "no_items" => "Geen artikelen gevonden"
+        ]
+    ],
+    "payment" => [
+        "banner_alt" => "Banner afbeelding",
+        "success" => [
+            "title" => "Betaling succesvol!",
+            "button" => "Terug naar webshop"
+        ],
+        "bank_label" => "Bank",
+        "unknown_bank" => "Onbekende bank",
+        "amount" => "Te betalen bedrag: €",
+        "pay_button" => "Betaal",
+        "error" => "Winkelwagen is leeg"
     ]
 ];

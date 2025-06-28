@@ -23,7 +23,7 @@ if (isset($_GET['code']) && isset($_GET['email'])) {
 }
 
 ?>
-<img class="banner-img" src="images/bannerImg.jpg" alt="Banner afbeelding" />
+<img class="banner-img" src="images/bannerImg.jpg" alt="<?= __('reset_password.banner_alt') ?>" />
 
 <section id="login-container" class="flex justify-center">
     <form id="form-box" class="mb-col-12 col-6 flex justify-center" method="post">
@@ -40,13 +40,13 @@ if (isset($_GET['code']) && isset($_GET['email'])) {
         <?php endif; ?>
         <div class="mb-col-12 col-12 flex justify-center pb-30">
             <div class="mb-col-12 col-5">
-                <label for="new-password">Nieuw wachtwoord:</label>
-                <input id="new-password" class="input" type="password" name="new-password" placeholder="Nieuw wachtwoord" />
+                <label for="new-password"><?= __('reset_password.new_password_label') ?></label>
+                <input id="new-password" class="input" type="password" name="new-password" placeholder="<?= __('reset_password.new_password_placeholder') ?>" />
             </div>
         </div>
 
         <div class="send-message mb-col-6 col-5 pt-30">
-            <button class="button" type="submit">Verstuur</button>
+            <button class="button" type="submit"><?= __('reset_password.submit') ?></button>
         </div>
     </form>
 </section>
