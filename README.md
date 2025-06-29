@@ -25,3 +25,5 @@ docker compose --profile test up --build
 ```
 
 Nu worden de unit tests uitgevoerd.
+Het kan zijn dat de editor een waarschuwing geeft over ontbrekende functies/klasses.
+Dit klopt, want deze worden in de testcontainer geïnstalleerd.
