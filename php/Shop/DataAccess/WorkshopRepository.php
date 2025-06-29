@@ -21,7 +21,7 @@ class WorkshopRepository
      * Slaat een workshop op voor een game
      *
      * @param Workshop $workshop
-     * @return void
+     * @return bool
      */
     public function createWorkshop(Workshop $workshop): bool
     {
