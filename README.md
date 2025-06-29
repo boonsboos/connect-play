@@ -9,7 +9,7 @@ docker compose up --build
 
 Nu zullen de containers opstarten.
 
-Als het de eerste keer is dat je deze invoert, moet je de database importeren.
+Als het de eerste keer is dat je deze opstart, moet je de database importeren.
 
 Navigeer naar `localhost:8081` en log in.
 
