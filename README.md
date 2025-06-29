@@ -15,9 +15,14 @@ Navigeer in je browser naar `localhost:8081` en log in.
 
 Raadpleeg het beheerdocument §4.4 phpMyAdmin voor verdere informatie
 
-## tests uitvoeren (na runnen)
-De container die de unit tests uitvoert zit onder een andere profiel dan de rest.
+## unit testen uitvoeren
+De container die de unit tests uitvoert zit in een ander profiel dan de rest.
 Deze moet je dus apart opstarten.
+
+Wij hebben database tests, vandaar deze opzet.
+
+> [!IMPORTANT] Het kan zijn dat de editor een waarschuwing geeft over ontbrekende functies/klasses.
+Dit klopt, want deze worden in de testcontainer geïnstalleerd.
 
 In een nieuwe terminal: 
 ```shell
@@ -25,5 +30,3 @@ docker compose --profile test up --build
 ```
 
 Nu worden de unit tests uitgevoerd.
-Het kan zijn dat de editor een waarschuwing geeft over ontbrekende functies/klasses.
-Dit klopt, want deze worden in de testcontainer geïnstalleerd.
