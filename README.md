@@ -11,7 +11,7 @@ Nu zullen de containers opstarten.
 
 Als het de eerste keer is dat je deze opstart, moet je de database importeren.
 
-Navigeer naar `localhost:8081` en log in.
+Navigeer in je browser naar `localhost:8081` en log in.
 
 Raadpleeg het beheerdocument §4.4 phpMyAdmin voor verdere informatie
 
