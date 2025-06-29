@@ -21,7 +21,8 @@ Deze moet je dus apart opstarten.
 
 Wij hebben database tests, vandaar deze opzet.
 
-> [!IMPORTANT] Het kan zijn dat de editor een waarschuwing geeft over ontbrekende functies/klasses.
+> [!IMPORTANT]
+> Het kan zijn dat de editor een waarschuwing geeft over ontbrekende functies/klasses.
 Dit klopt, want deze worden in de testcontainer geïnstalleerd.
 
 In een nieuwe terminal: 
